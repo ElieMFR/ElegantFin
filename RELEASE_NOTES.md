@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.34
+# ElegantFin Cinema Edition v1.2.35
 
 ## [English](#english) | [Francais](#francais)
 
@@ -312,6 +312,14 @@ Quick iteration based on user testing of v1.2.28:
 
 - **`.mediaInfoOfficialRating` (FR-XX age rating chip) unified with other chips** — The original styling used `transform: translateY(-0.15em)` plus `background: transparent`, which made the FR-12 / FR-10 badge appear visually raised compared to year, star rating, and percentage chips. On TV the offset could even cause the chip to be clipped at the top edge. Now matches `.mediaInfoItem:not(.endsAt)` styling: same background (`rgba(255,255,255,0.05)`), same border (`1px rgba(255,255,255,0.15)`), same border-radius, padding, font-size, font-weight, letter-spacing. Transform removed. All chips now sit at the same height with consistent appearance.
 - **Mobile breadcrumb margin-top reduced from 5vh to 2vh** — 5vh still left a visible empty gap between the logo and the breadcrumb. 2vh is the minimum that still avoids overlap with the logo's bottom edge.
+
+---
+
+#### v1.2.35 — TV focus passé du violet au BLANC (cohérence thème)
+
+- **Focus TV de `var(--uiAccentColor)` (violet) à blanc** — Le violet hérité de l'upstream ElegantFin ne correspondait pas à l'identité Cinema Edition (bouton Lire blanc, dégradés sombres, palette warm cinema). Passé à `rgba(255, 255, 255, 0.95)` pour bordure inset, `rgba(255, 255, 255, 0.3)` pour glow. Visible à distance TV + cohérent avec le reste du thème (pattern Netflix/Disney+/Apple TV qui utilisent tous des focus clairs).
+- Box-shadow inset conservé de v1.2.34 (jamais clipped sur cards en bord viewport).
+- Cards et boutons traités cohéremment (3px sur cards, 2px sur boutons).
 
 ---
 

@@ -1,11 +1,11 @@
-/* ElegantFin Cinema Edition v1.2.34 */
+/* ElegantFin Cinema Edition v1.2.35 */
 /* Enhanced with 27 cinematic modules — Netflix-inspired streaming experience */
 
 /* Inter Font Family */
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.34";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.35";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -320,34 +320,34 @@ body {
     box-shadow: 0 0 1em var(--activeColorAlpha);
 }
 
-/* v1.2.34 (refonte Fix A): TV focus avec box-shadow INSET (jamais clipped).
-   v1.2.33 utilisait outline-offset: 4px + box-shadow 24px qui sortaient
-   des conteneurs parents (overflow: hidden) → bordures coupées asymétriques
-   sur les cards en bord de viewport (visible sur screenshots Films/Programmes).
-   La version inset met la bordure À L'INTÉRIEUR du bord card, garantissant
-   qu'elle est TOUJOURS complète. Glow et shadow réduits car ils peuvent
-   être clipped sans souci (juste perte d'effet, pas de bordure cassée). */
+/* v1.2.35: TV focus passé du violet (var(--uiAccentColor)) au BLANC.
+   Le violet hérité de l'upstream ElegantFin ne cohérent pas avec :
+   - Le bouton "Lire" blanc (pattern principal du thème)
+   - Les dégradés sombres cinéma
+   - L'identité chaude/dark Netflix/Disney+
+   Blanc 95% opacity = très visible à distance TV + cohérent avec le reste
+   du thème. Box-shadow inset conservé de v1.2.34 (jamais clipped). */
 .layout-tv .card:focus-visible .cardBox,
 .layout-tv .card:focus .cardBox {
     outline: none !important;
     box-shadow:
-        inset 0 0 0 3px var(--uiAccentColor),       /* bordure interne, jamais clipped */
-        0 0 12px var(--activeColorAlpha),           /* glow modéré */
-        0 4px 16px rgba(0, 0, 0, 0.4);              /* shadow profondeur */
-    transform: scale(1.03);                          /* scale plus subtle (était 1.06) */
+        inset 0 0 0 3px rgba(255, 255, 255, 0.95),    /* bordure blanche franche */
+        0 0 16px rgba(255, 255, 255, 0.3),             /* glow blanc subtle */
+        0 4px 20px rgba(0, 0, 0, 0.5);                 /* shadow profondeur */
+    transform: scale(1.03);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
     z-index: 10;
     position: relative;
 }
 
-/* Boutons : box-shadow inset cohérent (bordure 2px car plus petits) */
+/* Boutons : focus blanc cohérent */
 .layout-tv .emby-button:focus-visible,
 .layout-tv .btnPlay:focus-visible,
 .layout-tv .detailButton:focus-visible {
     outline: none !important;
     box-shadow:
-        inset 0 0 0 2px var(--uiAccentColor),       /* bordure interne 2px */
-        0 0 12px var(--activeColorAlpha);
+        inset 0 0 0 2px rgba(255, 255, 255, 0.95),    /* bordure interne blanche 2px */
+        0 0 12px rgba(255, 255, 255, 0.25);            /* glow blanc subtle */
     transition: box-shadow 0.15s ease;
 }
 
