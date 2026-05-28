@@ -1,11 +1,11 @@
-/* ElegantFin Cinema Edition v1.2.33 */
+/* ElegantFin Cinema Edition v1.2.34 */
 /* Enhanced with 27 cinematic modules — Netflix-inspired streaming experience */
 
 /* Inter Font Family */
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.33";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.34";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -320,32 +320,35 @@ body {
     box-shadow: 0 0 1em var(--activeColorAlpha);
 }
 
-/* v1.2.33 (Fix A): TV focus renforcé pour navigation télécommande à distance.
-   À 3-5m de la TV, le focus actuel 0.15em outline est faible. Renforcé:
-   outline 3px solid + box-shadow glow + subtle scale 1.06x pour distinction
-   immédiate. Pattern Netflix/Disney+ TV. Transition 0.15s pour fluidité. */
+/* v1.2.34 (refonte Fix A): TV focus avec box-shadow INSET (jamais clipped).
+   v1.2.33 utilisait outline-offset: 4px + box-shadow 24px qui sortaient
+   des conteneurs parents (overflow: hidden) → bordures coupées asymétriques
+   sur les cards en bord de viewport (visible sur screenshots Films/Programmes).
+   La version inset met la bordure À L'INTÉRIEUR du bord card, garantissant
+   qu'elle est TOUJOURS complète. Glow et shadow réduits car ils peuvent
+   être clipped sans souci (juste perte d'effet, pas de bordure cassée). */
 .layout-tv .card:focus-visible .cardBox,
 .layout-tv .card:focus .cardBox {
-    outline: 3px solid var(--uiAccentColor) !important;
-    outline-offset: 4px;
-    box-shadow: 0 0 0 6px var(--activeColorAlpha),
-                0 0 24px var(--uiAccentColor),
-                0 8px 32px rgba(0, 0, 0, 0.6);
-    transform: scale(1.06);
-    transition: transform 0.15s ease, box-shadow 0.15s ease, outline 0.15s ease;
+    outline: none !important;
+    box-shadow:
+        inset 0 0 0 3px var(--uiAccentColor),       /* bordure interne, jamais clipped */
+        0 0 12px var(--activeColorAlpha),           /* glow modéré */
+        0 4px 16px rgba(0, 0, 0, 0.4);              /* shadow profondeur */
+    transform: scale(1.03);                          /* scale plus subtle (était 1.06) */
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
     z-index: 10;
     position: relative;
 }
 
-/* Boutons : même approche focus renforcé */
+/* Boutons : box-shadow inset cohérent (bordure 2px car plus petits) */
 .layout-tv .emby-button:focus-visible,
 .layout-tv .btnPlay:focus-visible,
 .layout-tv .detailButton:focus-visible {
-    outline: 3px solid var(--uiAccentColor) !important;
-    outline-offset: 4px;
-    box-shadow: 0 0 0 6px var(--activeColorAlpha),
-                0 0 16px var(--uiAccentColor);
-    transition: outline 0.15s ease, box-shadow 0.15s ease;
+    outline: none !important;
+    box-shadow:
+        inset 0 0 0 2px var(--uiAccentColor),       /* bordure interne 2px */
+        0 0 12px var(--activeColorAlpha);
+    transition: box-shadow 0.15s ease;
 }
 
 .mdl-radio__focus-circle,

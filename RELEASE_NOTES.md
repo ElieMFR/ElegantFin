@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.33
+# ElegantFin Cinema Edition v1.2.34
 
 ## [English](#english) | [Francais](#francais)
 
@@ -312,6 +312,13 @@ Quick iteration based on user testing of v1.2.28:
 
 - **`.mediaInfoOfficialRating` (FR-XX age rating chip) unified with other chips** — The original styling used `transform: translateY(-0.15em)` plus `background: transparent`, which made the FR-12 / FR-10 badge appear visually raised compared to year, star rating, and percentage chips. On TV the offset could even cause the chip to be clipped at the top edge. Now matches `.mediaInfoItem:not(.endsAt)` styling: same background (`rgba(255,255,255,0.05)`), same border (`1px rgba(255,255,255,0.15)`), same border-radius, padding, font-size, font-weight, letter-spacing. Transform removed. All chips now sit at the same height with consistent appearance.
 - **Mobile breadcrumb margin-top reduced from 5vh to 2vh** — 5vh still left a visible empty gap between the logo and the breadcrumb. 2vh is the minimum that still avoids overlap with the logo's bottom edge.
+
+---
+
+#### v1.2.34 — TV focus refactor : box-shadow inset (fix bordures clipped)
+
+- **TV focus passé d'outline outside à box-shadow inset** — v1.2.33 (Fix A) utilisait `outline: 3px + outline-offset: 4px + box-shadow: 24px` qui sortaient des conteneurs parents `overflow: hidden`. Résultat : bordures clipped asymétriquement sur les cards en bord de viewport (vu sur screenshots utilisateur — cards Films, Programmes, Stargate, Dr. STONE). Refonte avec `box-shadow inset 0 0 0 3px var(--uiAccentColor)` : la bordure de focus est À L'INTÉRIEUR du bord de la card, ne peut JAMAIS être clipped. Glow externe et drop-shadow conservés (peuvent être clipped sans souci visuel). Scale réduit de 1.06 à 1.03 (moins risque de débordement viewport).
+- **Boutons : même refonte** — `outline + offset` remplacé par `inset 0 0 0 2px` (bordure 2px car boutons plus petits). Cohérent avec les cards.
 
 ---
 
