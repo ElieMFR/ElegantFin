@@ -1,11 +1,11 @@
-/* ElegantFin Cinema Edition v1.2.35 */
+/* ElegantFin Cinema Edition v1.2.36 */
 /* Enhanced with 27 cinematic modules — Netflix-inspired streaming experience */
 
 /* Inter Font Family */
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.35";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.36";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -1653,6 +1653,26 @@ body {
         width: auto !important;
         height: auto !important;
     }
+}
+
+/* ============================================================
+   v1.2.36 — Push h3.subtitle sous le logo (Saison/Episode pages, PC + Mobile)
+   ============================================================
+   Problème : sur les pages Saison/Episode, le logo est en position: absolute
+   et occupe ~9vh-34vh sur PC. Le h3.itemName.subtitle ("Saison 4" ou
+   "Saison X - 7. Episode") est en flow naturel à ~13vh → OVERLAP avec
+   le logo. La rule globale --itemTitleVisibility cache h1 mais pas h3.
+
+   Fix : padding-top sur .nameContainer pousse le contenu en flow (la
+   subtitle visible) sous le logo. Le h1.parentName overlay (v1.2.32) reste
+   absolute, non affecté. Les siblings (itemMiscInfo, boutons) suivent
+   naturellement plus bas. */
+.layout-desktop #itemDetailPage:has(.subtitle) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer {
+    padding-top: 23vh !important;
+}
+
+.layout-mobile #itemDetailPage:has(.subtitle) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer {
+    padding-top: 20vh !important;
 }
 
 /* ============================================================

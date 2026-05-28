@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.35
+# ElegantFin Cinema Edition v1.2.36
 
 ## [English](#english) | [Francais](#francais)
 
@@ -312,6 +312,12 @@ Quick iteration based on user testing of v1.2.28:
 
 - **`.mediaInfoOfficialRating` (FR-XX age rating chip) unified with other chips** — The original styling used `transform: translateY(-0.15em)` plus `background: transparent`, which made the FR-12 / FR-10 badge appear visually raised compared to year, star rating, and percentage chips. On TV the offset could even cause the chip to be clipped at the top edge. Now matches `.mediaInfoItem:not(.endsAt)` styling: same background (`rgba(255,255,255,0.05)`), same border (`1px rgba(255,255,255,0.15)`), same border-radius, padding, font-size, font-weight, letter-spacing. Transform removed. All chips now sit at the same height with consistent appearance.
 - **Mobile breadcrumb margin-top reduced from 5vh to 2vh** — 5vh still left a visible empty gap between the logo and the breadcrumb. 2vh is the minimum that still avoids overlap with the logo's bottom edge.
+
+---
+
+#### v1.2.36 — Subtitle "Saison X" positionné sous le logo (fix overlap PC + Mobile)
+
+- **Push `.nameContainer` sous le logo sur pages Saison/Episode** — Sur PC et Mobile, le logo est `position: absolute` et occupe ~9vh-34vh en vertical. Le `h3.itemName.subtitle` ("Saison 4" ou "Saison X - 7. Episode Y") tombait dans le flow à ~13vh → overlap visuel avec le logo. La règle globale `--itemTitleVisibility: none` cache les `h1` mais pas les `h3`. Fix : `padding-top: 23vh` (PC) / `20vh` (Mobile) sur `.nameContainer` quand `:has(.subtitle)` + logo présent. Le `h1.parentName` overlay invisible v1.2.32 (logo cliquable) reste absolute et n'est pas affecté. Les siblings (`itemMiscInfo`, boutons "Lire") suivent naturellement plus bas. TV non touché.
 
 ---
 
