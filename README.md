@@ -26,7 +26,7 @@
 
 ### What is this?
 
-This is a **Cinema Edition** of the ElegantFin theme by [lscambo13](https://github.com/lscambo13), enhanced with **26 cinematic modules** that transform your Jellyfin into a professional streaming experience inspired by Netflix, Disney+ and Apple TV+.
+This is a **Cinema Edition** of the ElegantFin theme by [lscambo13](https://github.com/lscambo13), enhanced with **27 cinematic modules** that transform your Jellyfin into a professional streaming experience inspired by Netflix, Disney+ and Apple TV+.
 
 Everything works on **desktop, mobile and TV** with a single CSS import.
 
@@ -140,6 +140,28 @@ All original ElegantFin customization options are preserved. Add these overrides
 
 ---
 
+### 🔌 Supported plugins
+
+Cinema Edition has dedicated styling for these popular Jellyfin plugins:
+
+| Plugin | What it does | Cinema styling |
+|--------|--------------|----------------|
+| [**Editor's Choice**](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | Curated editorial picks on home page | Banner spacing fix, button/section collision resolved, 3-line description on desktop |
+| [**Media Bar**](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) | Auto-cycling slideshow at top of home | Glassmorphism overlay, gradient backdrop, polished button states |
+| [**NotifySync**](https://github.com/peterdu1109/NotifySync) | Real-time notification bell | Native integration with theme's accent color and styling |
+
+If a plugin isn't in this list, the theme just doesn't add overrides for it — it'll work with default styling.
+
+---
+
+### What's new?
+
+📋 See the [**latest GitHub Releases**](https://github.com/peterdu1109/ElegantFin/releases) for a curated, bilingual changelog of all major updates with installation URLs.
+
+🗂️ The full technical changelog (every version) is in [`RELEASE_NOTES.md`](./RELEASE_NOTES.md).
+
+---
+
 ### Credits
 
 - **Original theme:** [ElegantFin](https://github.com/lscambo13/ElegantFin) by [lscambo13](https://github.com/lscambo13)
@@ -153,7 +175,7 @@ All original ElegantFin customization options are preserved. Add these overrides
 
 ### C'est quoi ?
 
-C'est une **Edition Cinema** du theme ElegantFin par [lscambo13](https://github.com/lscambo13), enrichie de **26 modules cinematiques** qui transforment votre Jellyfin en une experience de streaming professionnelle inspiree de Netflix, Disney+ et Apple TV+.
+C'est une **Edition Cinema** du theme ElegantFin par [lscambo13](https://github.com/lscambo13), enrichie de **27 modules cinematiques** qui transforment votre Jellyfin en une experience de streaming professionnelle inspiree de Netflix, Disney+ et Apple TV+.
 
 Tout fonctionne sur **bureau, mobile et TV** avec un seul import CSS.
 
@@ -264,6 +286,28 @@ Toutes les options de personnalisation originales d'ElegantFin sont preservees. 
 - `prefers-reduced-motion` est respecte : toutes les animations sont desactivees si l'utilisateur a cette preference
 - Les layouts TV desactivent tous les blur, ombres et animations pour la performance
 - Les layouts Mobile utilisent une intensite de blur reduite
+
+---
+
+### 🔌 Plugins supportes
+
+Cinema Edition a un styling dedie pour ces plugins Jellyfin populaires :
+
+| Plugin | Ce qu'il fait | Styling Cinema |
+|--------|---------------|----------------|
+| [**Editor's Choice**](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | Selection editoriale curatee sur la home | Fix espacement banner, collision bouton/section resolue, description 3 lignes desktop |
+| [**Media Bar**](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) | Slideshow auto-cycling en haut de la home | Overlay glassmorphism, backdrop gradient, etats boutons polish |
+| [**NotifySync**](https://github.com/peterdu1109/NotifySync) | Cloche notifications temps reel | Integration native avec la couleur accent et le styling du theme |
+
+Si un plugin n'est pas dans cette liste, le theme ne lui applique aucun override — il fonctionne avec son styling par defaut.
+
+---
+
+### Quoi de neuf ?
+
+📋 Voir les [**dernieres GitHub Releases**](https://github.com/peterdu1109/ElegantFin/releases) pour un changelog curate, bilingue, avec URLs d'installation.
+
+🗂️ Le changelog technique complet (chaque version) est dans [`RELEASE_NOTES.md`](./RELEASE_NOTES.md).
 
 ---
 
