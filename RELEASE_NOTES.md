@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.36
+# ElegantFin Cinema Edition v1.2.37
 
 ## [English](#english) | [Francais](#francais)
 
@@ -312,6 +312,12 @@ Quick iteration based on user testing of v1.2.28:
 
 - **`.mediaInfoOfficialRating` (FR-XX age rating chip) unified with other chips** — The original styling used `transform: translateY(-0.15em)` plus `background: transparent`, which made the FR-12 / FR-10 badge appear visually raised compared to year, star rating, and percentage chips. On TV the offset could even cause the chip to be clipped at the top edge. Now matches `.mediaInfoItem:not(.endsAt)` styling: same background (`rgba(255,255,255,0.05)`), same border (`1px rgba(255,255,255,0.15)`), same border-radius, padding, font-size, font-weight, letter-spacing. Transform removed. All chips now sit at the same height with consistent appearance.
 - **Mobile breadcrumb margin-top reduced from 5vh to 2vh** — 5vh still left a visible empty gap between the logo and the breadcrumb. 2vh is the minimum that still avoids overlap with the logo's bottom edge.
+
+---
+
+#### v1.2.37 — Padding-top restreint aux pages Saison (fix vide sur Episode)
+
+- **Sélecteur affiné** : `:has(.subtitle:not(.focuscontainer-x))` au lieu de `:has(.subtitle)`. v1.2.36 appliquait le padding-top 23vh/20vh sur Saison ET Episode pages, créant un grand vide sur Episode (où l'élément en haut est une card image, pas un logo). SDK confirme : sur Saison page le `h3.subtitle` n'a PAS `.focuscontainer-x` (juste "Saison X"), sur Episode page `.focuscontainer-x` est présent (contient un `<a Season>` link). Le push ne s'applique maintenant que sur Saison pages où l'overlap logo/subtitle existe vraiment.
 
 ---
 

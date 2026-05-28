@@ -1,11 +1,11 @@
-/* ElegantFin Cinema Edition v1.2.36 */
+/* ElegantFin Cinema Edition v1.2.37 */
 /* Enhanced with 27 cinematic modules — Netflix-inspired streaming experience */
 
 /* Inter Font Family */
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.36";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.37";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -1667,11 +1667,17 @@ body {
    subtitle visible) sous le logo. Le h1.parentName overlay (v1.2.32) reste
    absolute, non affecté. Les siblings (itemMiscInfo, boutons) suivent
    naturellement plus bas. */
-.layout-desktop #itemDetailPage:has(.subtitle) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer {
+/* v1.2.37 : restreindre le padding-top aux SAISON pages seulement.
+   v1.2.36 utilisait :has(.subtitle) qui match Saison ET Episode → créait
+   un grand vide sur les pages Episode (où c'est une card image, pas un logo,
+   et où le subtitle est "Saison X - N. Episode Title", pas juste "Saison X").
+   SDK confirmé : sur Saison page, subtitle n'a PAS .focuscontainer-x ;
+   sur Episode page, subtitle.focuscontainer-x (contient un <a Season>). */
+.layout-desktop #itemDetailPage:has(.subtitle:not(.focuscontainer-x)) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer {
     padding-top: 23vh !important;
 }
 
-.layout-mobile #itemDetailPage:has(.subtitle) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer {
+.layout-mobile #itemDetailPage:has(.subtitle:not(.focuscontainer-x)) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer {
     padding-top: 20vh !important;
 }
 
