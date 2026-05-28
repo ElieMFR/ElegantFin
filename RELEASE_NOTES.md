@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.31
+# ElegantFin Cinema Edition v1.2.32
 
 ## [English](#english) | [Francais](#francais)
 
@@ -312,6 +312,20 @@ Quick iteration based on user testing of v1.2.28:
 
 - **`.mediaInfoOfficialRating` (FR-XX age rating chip) unified with other chips** — The original styling used `transform: translateY(-0.15em)` plus `background: transparent`, which made the FR-12 / FR-10 badge appear visually raised compared to year, star rating, and percentage chips. On TV the offset could even cause the chip to be clipped at the top edge. Now matches `.mediaInfoItem:not(.endsAt)` styling: same background (`rgba(255,255,255,0.05)`), same border (`1px rgba(255,255,255,0.15)`), same border-radius, padding, font-size, font-weight, letter-spacing. Transform removed. All chips now sit at the same height with consistent appearance.
 - **Mobile breadcrumb margin-top reduced from 5vh to 2vh** — 5vh still left a visible empty gap between the logo and the breadcrumb. 2vh is the minimum that still avoids overlap with the logo's bottom edge.
+
+---
+
+#### v1.2.32 — Clickable logo navigation + subtitle wrap fixes + emby-linkbutton hover global
+
+Plan derived from SDK analysis of `jellyfin/jellyfin-web` (`controllers/itemDetails/index.js`):
+
+- **Logo cliquable vers la série parente (PC + Mobile)** — `<a is="emby-linkbutton" data-type="Series">` existant dans `h1.parentName` est maintenant utilisé comme overlay invisible cliquable couvrant exactement la zone du `.detailLogo`. Click n'importe où sur le logo → navigation vers la série parente. Adaptation automatique par type de page via `:has(.subtitle)` (saison/épisode = position différente). Sur page série principale (pas de `<a>` dans parentName), le breadcrumb est caché (`:not(:has(a))`) — cohérent car déjà sur la série. TV non touché (garde rendu v1.2.26).
+- **Season link visible dans subtitle** — Le `<a data-type="Season">` dans `.subtitle` (sur pages épisode) reçoit un underline subtil au hover, signalant qu'il est cliquable pour remonter à la saison.
+- **Global `[is="emby-linkbutton"]` hover** — Tous les Web Components Jellyfin Web qui sont des liens (artist, album, série, saison, etc.) reçoivent maintenant `cursor: pointer` + léger hover opacity. Améliore l'UX sur toutes les pages, pas juste détail.
+- **Music breadcrumbs (`.musicParentName`) cohérence** — Les `<a>` artiste/album dans les pages musique stylés au même niveau que les autres breadcrumbs (cursor + hover underline).
+- **`.originalTitle` polish** — Les titres VO (japonais pour animes type Re:ZERO) maintenant en italique, opacity 55%, font-weight 300 pour distinction discrète. Wrap autorisé sur PC pour les longs titres romaji.
+- **Mobile subtitle line-clamp 4** (était 2) — Longs titres épisodes anime (ex: "Saison 4 - 7. En sortant de la supérette, je me suis retrouvé dans un monde étrange") s'affichent maintenant sur 4 lignes au lieu d'être coupés à 2.
+- **PC subtitle wrap 3 lignes** (était `white-space: nowrap` + ellipsis) — Plus de débordement horizontal sur les longs titres, wrap propre sur 3 lignes.
 
 ---
 

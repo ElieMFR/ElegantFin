@@ -1,11 +1,11 @@
-/* ElegantFin Cinema Edition v1.2.31 */
+/* ElegantFin Cinema Edition v1.2.32 */
 /* Enhanced with 27 cinematic modules — Netflix-inspired streaming experience */
 
 /* Inter Font Family */
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.31";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.32";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -1566,15 +1566,11 @@ body {
     display: var(--itemTitleVisibility);
 }
 
-/* v1.2.26: re-expose parentName link when clearLogo is visible, styled
-   to match the "Saison X" / "Episode Y" rendering (.subtitle style).
-   Prior versions either showed it tiny (v1.2.24) or with a permanent
-   underline at title-clamp size (v1.2.25). Now: same look-and-feel as
-   the season title — moderate 2em size, weight 400, white, centered,
-   no underline by default. Click affordance comes from a subtle
-   underline that appears ONLY on hover (text-decoration: underline
-   on :hover). itemName stays hidden via the original rule. */
-.detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName {
+/* v1.2.26: re-expose parentName link when clearLogo is visible (TV ONLY now).
+   On TV (couch UX), the breadcrumb stays visible as a centered title text
+   (2em, weight 400, white) — keeps the rendering that worked well per
+   user testing. PC and Mobile use the v1.2.32 overlay-logo approach below. */
+.layout-tv .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName {
     display: block !important;
     font-size: 2em !important;
     font-weight: 400 !important;
@@ -1585,44 +1581,134 @@ body {
     text-align: center;
 }
 
-.detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName a {
+.layout-tv .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName a {
     color: inherit !important;
     text-decoration: none !important;
     transition: text-decoration-color 0.2s ease;
 }
 
-.detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName a:hover {
-    text-decoration: underline !important;
-    text-decoration-color: rgba(255, 255, 255, 0.6);
-    text-decoration-thickness: 1.5px;
+/* ============================================================
+   v1.2.32 — Logo cliquable + amélioration breadcrumbs (PC + Mobile)
+   ============================================================
+   Confirmé par analyse SDK Jellyfin 10.11.x (controllers/itemDetails/index.js):
+   - h1.parentName contient un <a is="emby-linkbutton"> sur Episode/Saison
+     qui pointe vers la SÉRIE parente via data-action="link" data-id="{SeriesId}"
+   - h3.itemName.subtitle sur Episode contient AUSSI un <a data-type="Season">
+     qui pointe vers la SAISON parente
+   - Sur page Série principale : h1.parentName = texte plain SANS <a>
+   - Sur Film : h1.parentName n'existe pas
+   - TV NON AFFECTÉ : conserve le rendu v1.2.26 ci-dessus.
+
+   Stratégie : overlay invisible cliquable sur la zone du logo (PC + Mobile).
+   Le <a> existant dans h1.parentName devient une cible cliquable transparente
+   qui couvre exactement la zone du logo, permettant un clic-pour-remonter
+   tout en gardant le visuel du logo intact. Sur série principale (pas de <a>),
+   le breadcrumb est caché proprement via :not(:has(a)). */
+
+/* === Page avec logo : h1.parentName devient un container positionné sur le logo === */
+
+.layout-desktop .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a),
+.layout-mobile .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) {
+    position: absolute !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    pointer-events: none;
+    z-index: 5;
+    color: transparent !important;
+    text-shadow: none !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+}
+
+/* PC default (série principale) : logo à ~50-75vh, hauteur 25vh */
+.layout-desktop .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) {
+    top: calc(100vh - var(--clearLogoBottomSpace) - var(--primaryItemPageNegativeSpace) - 25vh);
+    left: 30%;
+    width: 40%;
+    height: 25vh;
+}
+
+/* PC saison/épisode : logo positionné différemment */
+.layout-desktop #itemDetailPage:has(.subtitle) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) {
+    top: calc(100vh - 6em - var(--secondaryItemPageNegativeSpace) - 25vh);
+}
+
+/* Mobile default : logo plein largeur en bas du backdrop */
+.layout-mobile .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) {
+    top: 45vh;
+    left: 1em;
+    width: calc(100vw - 2em);
+    height: 17vh;
+}
+
+/* Mobile saison/épisode : logo plus haut */
+.layout-mobile #itemDetailPage:has(.subtitle) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) {
+    top: calc(100vh - 11em - var(--secondaryItemPageNegativeSpace));
+}
+
+/* Le <a is="emby-linkbutton"> à l'intérieur devient la cible cliquable */
+.layout-desktop .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName a,
+.layout-mobile .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName a {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+    color: transparent !important;
+    text-decoration: none !important;
+    font-size: 0 !important;
+    text-shadow: none !important;
+    transition: background-color 0.2s ease;
+}
+
+/* Léger feedback hover sur PC (mobile a pas de hover) */
+.layout-desktop .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName a:hover {
+    background-color: rgba(255, 255, 255, 0.04);
+    border-radius: 0.5em;
+}
+
+/* === Page série principale (pas de <a> dans parentName) : cacher le breadcrumb === */
+
+.layout-desktop .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:not(:has(a)),
+.layout-mobile .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:not(:has(a)) {
+    display: none !important;
+}
+
+/* === Pas de logo : parentName s'affiche comme titre normal (PC + Mobile) === */
+
+.layout-desktop .detailLogo.hide ~ .detailPageWrapperContainer .nameContainer h1.parentName,
+.layout-mobile .detailLogo.hide ~ .detailPageWrapperContainer .nameContainer h1.parentName {
+    position: static !important;
+    color: white !important;
+    font-size: clamp(2em, 5vw, 4em) !important;
+    pointer-events: auto;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5) !important;
+    text-align: center;
+    padding-bottom: 0.5ch !important;
+}
+
+.layout-desktop .detailLogo.hide ~ .detailPageWrapperContainer .nameContainer h1.parentName a:hover {
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.5);
+    text-decoration-thickness: 2px;
     text-underline-offset: 0.2em;
 }
 
-/* v1.2.30: parentName breadcrumb on mobile — margin-top further reduced
-   to 2vh. v1.2.29's 5vh was still leaving visible empty space between
-   the logo and the breadcrumb. 2vh is the minimum gap that still avoids
-   any visual overlap with the logo's bottom edge. */
-.layout-mobile .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName {
-    display: block !important;
-    font-size: 1.5em !important;
-    font-weight: 400 !important;
-    letter-spacing: normal !important;
-    color: #fff !important;
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4) !important;
-    padding: 0.25em 1em !important;
-    text-align: center;
-    margin-top: 2vh !important;
-    position: relative;
-    z-index: 5;
+/* === Idée 2 : rendre visible le <a data-type="Season"> dans subtitle === */
+
+.layout-desktop .subtitle a[data-type="Season"],
+.layout-desktop .subtitle a[is="emby-linkbutton"] {
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.25);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.2em;
+    transition: text-decoration-color 0.2s ease;
 }
 
-.layout-mobile .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName a {
-    color: inherit !important;
-    text-decoration: none !important;
-}
-
-.layout-mobile .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName a:active {
-    opacity: 0.7;
+.layout-desktop .subtitle a[data-type="Season"]:hover,
+.layout-desktop .subtitle a[is="emby-linkbutton"]:hover {
+    text-decoration-color: rgba(255, 255, 255, 0.85);
 }
 
 /* v1.2.27: constrain detail page containers to viewport width on mobile.
@@ -3836,10 +3922,23 @@ div[data-role="controlgroup"] a.ui-btn-active {
     padding-bottom: 0.5em;
     white-space: normal;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
+    -webkit-line-clamp: 4;       /* v1.2.32: était 2, monté à 4 pour longs titres anime */
+    line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+/* v1.2.32: PC subtitle wrap au lieu de l'ellipsis horizontal global.
+   Le rule global .subtitle a white-space: nowrap → titres épisodes longs
+   débordent à droite. Sur PC, wrap propre sur 3 lignes. */
+.layout-desktop .subtitle {
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: clip;
 }
 
 /* v1.2.21: TV subtitle wrap fix — without this rule, the global .subtitle
@@ -3857,15 +3956,64 @@ div[data-role="controlgroup"] a.ui-btn-active {
     max-height: 4em;
 }
 
+/* ============================================================
+   v1.2.32 — Global emby-linkbutton hover (Idée A du SDK analysis)
+   ============================================================
+   Le SDK Jellyfin 10.11.x utilise <a is="emby-linkbutton"> partout pour
+   les liens cliquables (artist, album, series, season, etc.). Aucun style
+   visuel global n'existe pour signaler ces éléments comme cliquables.
+   Ajouter cursor: pointer + léger hover améliore l'UX sur toutes les pages. */
+[is="emby-linkbutton"] {
+    cursor: pointer;
+}
+
+.layout-desktop [is="emby-linkbutton"]:hover {
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+}
+
+/* === Music breadcrumbs (artist → album) cohérence === */
+/* Le SDK rend .parentName.musicParentName pour les pages musique
+   avec des <a> pour les artistes/albums. Style cohérent avec les autres
+   breadcrumbs (cursor + hover discret). */
+.musicParentName [is="emby-linkbutton"],
+.musicParentName a {
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.layout-desktop .musicParentName a:hover,
+.layout-desktop .musicParentName [is="emby-linkbutton"]:hover {
+    opacity: 0.85;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.4);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.2em;
+}
+
+/* v1.2.32: .originalTitle (titre VO, ex: japonais pour les animes) — polish
+   pour cohérence cinéma. Discret, italique, opacité réduite. Wrap autorisé
+   sur PC pour ne pas tronquer les longs titres romaji. */
 .itemName.originalTitle {
     padding-top: 0.25em;
     padding-bottom: 0.25em;
-    color: var(--dimTextColor);
+    color: rgba(255, 255, 255, 0.55) !important;
     display: var(--itemOriginalTitleVisibility);
+    font-weight: 300 !important;
+    font-style: italic;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
     max-width: 100%;
+}
+
+/* Wrap autorisé sur PC pour les longs titres VO (anime romaji + traduction) */
+.layout-desktop .itemName.originalTitle {
+    white-space: normal;
+    text-overflow: clip;
+    text-align: center;
+    line-height: 1.3;
 }
 
 .channelPrograms,
