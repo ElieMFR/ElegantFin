@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.37
+# ElegantFin Cinema Edition v1.2.38
 
 ## [English](#english) | [Francais](#francais)
 
@@ -312,6 +312,12 @@ Quick iteration based on user testing of v1.2.28:
 
 - **`.mediaInfoOfficialRating` (FR-XX age rating chip) unified with other chips** — The original styling used `transform: translateY(-0.15em)` plus `background: transparent`, which made the FR-12 / FR-10 badge appear visually raised compared to year, star rating, and percentage chips. On TV the offset could even cause the chip to be clipped at the top edge. Now matches `.mediaInfoItem:not(.endsAt)` styling: same background (`rgba(255,255,255,0.05)`), same border (`1px rgba(255,255,255,0.15)`), same border-radius, padding, font-size, font-weight, letter-spacing. Transform removed. All chips now sit at the same height with consistent appearance.
 - **Mobile breadcrumb margin-top reduced from 5vh to 2vh** — 5vh still left a visible empty gap between the logo and the breadcrumb. 2vh is the minimum that still avoids overlap with the logo's bottom edge.
+
+---
+
+#### v1.2.38 — Lien série visible (italique) au-dessus de "Saison X" sur pages Saison
+
+- **Le h1.parentName redevient visible** comme lien italique sur les pages Saison — L'overlay invisible v1.2.32 ne fonctionne pas fiablement en pratique (positioned ancestor mismatch + emby-linkbutton web component sensible à visibility). Plus simple et meilleur UX : rendre le `h1.parentName` visible directement comme un lien italique (taille 1.4em, weight 500, opacity 0.8, italic) au-dessus du subtitle "Saison X". Sur PC, hover révèle un underline subtil. Utilise le sélecteur `:has(.subtitle:not(.focuscontainer-x))` pour cibler uniquement les pages Saison (pas Series principale ni Episode). Le `<a>` existant dans parentName (pointant vers `data-type="Series"`) reste fonctionnel et marche garantie. Sur Episode pages, l'overlay v1.2.32 reste (sans changement).
 
 ---
 

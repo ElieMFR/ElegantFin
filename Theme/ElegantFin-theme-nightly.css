@@ -1,11 +1,11 @@
-/* ElegantFin Cinema Edition v1.2.37 */
+/* ElegantFin Cinema Edition v1.2.38 */
 /* Enhanced with 27 cinematic modules — Netflix-inspired streaming experience */
 
 /* Inter Font Family */
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.37";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.38";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -1679,6 +1679,55 @@ body {
 
 .layout-mobile #itemDetailPage:has(.subtitle:not(.focuscontainer-x)) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer {
     padding-top: 20vh !important;
+}
+
+/* ============================================================
+   v1.2.38 — Re:ZERO link (visible series name) above "Saison X" on Saison pages
+   ============================================================
+   L'overlay invisible cliquable v1.2.32 sur le logo ne fonctionne pas
+   fiablement en pratique (positioned ancestor mismatch + emby-linkbutton
+   web component sensible à visibility). Pour la page Saison, on rend
+   donc le h1.parentName VISIBLE comme un lien italique au-dessus du
+   subtitle "Saison X" — meilleure UX, navigation explicite, marche garanti. */
+.layout-desktop #itemDetailPage:has(.subtitle:not(.focuscontainer-x)) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a),
+.layout-mobile #itemDetailPage:has(.subtitle:not(.focuscontainer-x)) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) {
+    /* Override v1.2.32 invisible overlay */
+    position: static !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-size: 1.4em !important;
+    font-weight: 500 !important;
+    font-style: italic;
+    letter-spacing: 0.02em;
+    text-align: center;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 1em !important;
+    margin: 0 0 0.3em 0 !important;
+    pointer-events: auto !important;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5) !important;
+    line-height: 1.3 !important;
+}
+
+/* Le <a> à l'intérieur devient visible, cliquable, hover underline */
+.layout-desktop #itemDetailPage:has(.subtitle:not(.focuscontainer-x)) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) a,
+.layout-mobile #itemDetailPage:has(.subtitle:not(.focuscontainer-x)) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) a {
+    color: inherit !important;
+    font-size: inherit !important;
+    background: none !important;
+    width: auto !important;
+    height: auto !important;
+    display: inline !important;
+    text-shadow: inherit !important;
+    cursor: pointer;
+    text-decoration: none !important;
+    transition: text-decoration-color 0.2s ease;
+}
+
+.layout-desktop #itemDetailPage:has(.subtitle:not(.focuscontainer-x)) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) a:hover {
+    text-decoration: underline !important;
+    text-decoration-color: rgba(255, 255, 255, 0.5);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2em;
 }
 
 /* ============================================================
