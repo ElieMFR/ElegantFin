@@ -1,11 +1,11 @@
-/* ElegantFin Cinema Edition v1.2.38 */
+/* ElegantFin Cinema Edition v1.2.39 */
 /* Enhanced with 27 cinematic modules — Netflix-inspired streaming experience */
 
 /* Inter Font Family */
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.38";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.39";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -1691,6 +1691,10 @@ body {
    subtitle "Saison X" — meilleure UX, navigation explicite, marche garanti. */
 .layout-desktop #itemDetailPage:has(.subtitle:not(.focuscontainer-x)) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a),
 .layout-mobile #itemDetailPage:has(.subtitle:not(.focuscontainer-x)) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) {
+    /* v1.2.39 fix: override --itemTitleVisibility: none (globale ligne ~1601)
+       qui mettait display: none sur tous les h1 dans nameContainer.
+       Sans ce display:block, mon override visible v1.2.38 n'avait aucun effet. */
+    display: block !important;
     /* Override v1.2.32 invisible overlay */
     position: static !important;
     color: rgba(255, 255, 255, 0.8) !important;

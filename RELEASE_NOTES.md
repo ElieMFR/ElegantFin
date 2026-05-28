@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.38
+# ElegantFin Cinema Edition v1.2.39
 
 ## [English](#english) | [Francais](#francais)
 
@@ -378,6 +378,12 @@ Plan derived from full ecosystem audit (jellyfin-web, jellyfin-tizen, jellyfin-a
 #### v1.2.38 — Lien série visible (italique) au-dessus de "Saison X" sur pages Saison
 
 - **Le h1.parentName redevient visible** comme lien italique sur les pages Saison — L'overlay invisible v1.2.32 ne fonctionne pas fiablement en pratique (positioned ancestor mismatch + emby-linkbutton web component sensible à visibility). Plus simple et meilleur UX : rendre le `h1.parentName` visible directement comme un lien italique (taille 1.4em, weight 500, opacity 0.8, italic) au-dessus du subtitle "Saison X". Sur PC, hover révèle un underline subtil. Utilise le sélecteur `:has(.subtitle:not(.focuscontainer-x))` pour cibler uniquement les pages Saison (pas Series principale ni Episode). Le `<a>` existant dans parentName (pointant vers `data-type="Series"`) reste fonctionnel et marche garantie. Sur Episode pages, l'overlay v1.2.32 reste (sans changement).
+
+---
+
+#### v1.2.39 — v1.2.38 bug fix: add display:block (override --itemTitleVisibility)
+
+- **v1.2.38 bug** : the visible rule on h1.parentName had no visual effect — h1 was still `display: none` inherited from the global rule `display: var(--itemTitleVisibility)` (default: none). v1.2.38 overrode position/color/font-size but NOT display. Element styled but hidden → nothing on screen. Fix: added `display: block !important;` in the v1.2.38 rule. The italic link "Re:ZERO" / "Moi quand je me réincarne en Slime" / etc. now correctly appears above "Saison X" on Saison pages.
 
 ---
 
@@ -762,6 +768,12 @@ Plan derive de l'audit complet de l'ecosysteme (jellyfin-web, jellyfin-tizen, je
 #### v1.2.38 — Lien serie visible (italique) au-dessus de "Saison X" sur pages Saison
 
 - **Le h1.parentName redevient visible** comme lien italique sur les pages Saison — L'overlay invisible v1.2.32 ne fonctionne pas fiablement en pratique (positioned ancestor mismatch + emby-linkbutton web component sensible a visibility). Plus simple et meilleur UX : rendre le `h1.parentName` visible directement comme un lien italique (taille 1.4em, weight 500, opacity 0.8, italic) au-dessus du subtitle "Saison X". Sur PC, hover revele un underline subtil. Utilise le selecteur `:has(.subtitle:not(.focuscontainer-x))` pour cibler uniquement les pages Saison (pas Series principale ni Episode). Le `<a>` existant dans parentName (pointant vers `data-type="Series"`) reste fonctionnel et marche garantie. Sur Episode pages, l'overlay v1.2.32 reste (sans changement).
+
+---
+
+#### v1.2.39 — Fix v1.2.38 : ajout display:block (override --itemTitleVisibility)
+
+- **Bug v1.2.38** : la regle visible sur h1.parentName n'avait aucun effet visuel — le h1 restait `display: none` herite de la regle globale `display: var(--itemTitleVisibility)` (defaut: none). v1.2.38 overridait position/color/font-size mais PAS display. Element styled mais cache → rien a l'ecran. Fix : ajout `display: block !important;` dans la regle v1.2.38. Le lien italique "Re:ZERO" / "Moi quand je me reincarne en Slime" / etc. apparait maintenant correctement au-dessus de "Saison X" sur les pages Saison.
 
 ---
 
