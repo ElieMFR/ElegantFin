@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.32
+# ElegantFin Cinema Edition v1.2.33
 
 ## [English](#english) | [Francais](#francais)
 
@@ -312,6 +312,18 @@ Quick iteration based on user testing of v1.2.28:
 
 - **`.mediaInfoOfficialRating` (FR-XX age rating chip) unified with other chips** — The original styling used `transform: translateY(-0.15em)` plus `background: transparent`, which made the FR-12 / FR-10 badge appear visually raised compared to year, star rating, and percentage chips. On TV the offset could even cause the chip to be clipped at the top edge. Now matches `.mediaInfoItem:not(.endsAt)` styling: same background (`rgba(255,255,255,0.05)`), same border (`1px rgba(255,255,255,0.15)`), same border-radius, padding, font-size, font-weight, letter-spacing. Transform removed. All chips now sit at the same height with consistent appearance.
 - **Mobile breadcrumb margin-top reduced from 5vh to 2vh** — 5vh still left a visible empty gap between the logo and the breadcrumb. 2vh is the minimum that still avoids overlap with the logo's bottom edge.
+
+---
+
+#### v1.2.33 — Cross-platform polish (iOS, TV remote, old Tizen compat)
+
+Plan derived from full ecosystem audit (jellyfin-web, jellyfin-tizen, jellyfin-android, jellyfin-androidtv):
+
+- **iOS Safari: `text-size-adjust: 100%`** — Prevents iOS auto-zooming text on orientation change/rotation. Without this, iPhones zoomed text by 10-20% when rotating from portrait to landscape, breaking carefully-designed CSS layouts. iPhone/iPad Safari users now see stable text sizes.
+- **iOS: tap-highlight already present** — Confirmed at line 203 (`-webkit-tap-highlight-color: transparent !important;`). No change needed.
+- **Mobile: safe-area-inset support (notches)** — iPhone X+ have notches/Dynamic Island at top, Home Indicator at bottom. Android with gesture nav has system bar at bottom. Added `padding-top: env(safe-area-inset-top)` on `.layout-mobile .skinHeader`, `padding-bottom: env(safe-area-inset-bottom)` on `.nowPlayingBar`. Landscape: also handles left/right safe areas for sideways notch. `env()` falls back to 0 on devices without safe areas (iPad classic, older Android).
+- **TV: reinforced focus for remote navigation** — Cards at 3-5m viewing distance had only `0.15em` outline — barely visible. Now: `3px solid` outline + `box-shadow` glow + subtle `scale(1.06)` for immediate focus distinction. Netflix/Disney+ TV pattern. Same applied to buttons (`.btnPlay`, `.detailButton`). Transition `0.15s` for fluidity.
+- **Old Tizen `:has()` fallback** — v1.2.32 uses `:has(a)` for conditional logo overlay. Tizen 2018-2021 (Chromium 76-79) doesn't support `:has()`. Added `@supports not (selector(:has(*)))` block that reverts the breadcrumb to a visible clickable text on these old TVs. Tizen 9.0+ users unaffected (overlay v1.2.32 behavior preserved).
 
 ---
 

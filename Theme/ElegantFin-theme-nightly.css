@@ -1,11 +1,11 @@
-/* ElegantFin Cinema Edition v1.2.32 */
+/* ElegantFin Cinema Edition v1.2.33 */
 /* Enhanced with 27 cinematic modules — Netflix-inspired streaming experience */
 
 /* Inter Font Family */
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.32";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.33";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -201,6 +201,11 @@ html {
     font-weight: 425;
     font-style: normal;
     -webkit-tap-highlight-color: transparent !important;
+    /* v1.2.33 (Fix D): prevent iOS Safari auto-zoom on rotation/orientation
+       change. Without this, iPhones zoom text by 10-20% when rotating from
+       portrait to landscape, breaking carefully-designed CSS layouts. */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
 }
@@ -313,6 +318,34 @@ body {
     outline: 0.15em solid var(--uiAccentColor);
     outline-offset: 0.15em;
     box-shadow: 0 0 1em var(--activeColorAlpha);
+}
+
+/* v1.2.33 (Fix A): TV focus renforcé pour navigation télécommande à distance.
+   À 3-5m de la TV, le focus actuel 0.15em outline est faible. Renforcé:
+   outline 3px solid + box-shadow glow + subtle scale 1.06x pour distinction
+   immédiate. Pattern Netflix/Disney+ TV. Transition 0.15s pour fluidité. */
+.layout-tv .card:focus-visible .cardBox,
+.layout-tv .card:focus .cardBox {
+    outline: 3px solid var(--uiAccentColor) !important;
+    outline-offset: 4px;
+    box-shadow: 0 0 0 6px var(--activeColorAlpha),
+                0 0 24px var(--uiAccentColor),
+                0 8px 32px rgba(0, 0, 0, 0.6);
+    transform: scale(1.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, outline 0.15s ease;
+    z-index: 10;
+    position: relative;
+}
+
+/* Boutons : même approche focus renforcé */
+.layout-tv .emby-button:focus-visible,
+.layout-tv .btnPlay:focus-visible,
+.layout-tv .detailButton:focus-visible {
+    outline: 3px solid var(--uiAccentColor) !important;
+    outline-offset: 4px;
+    box-shadow: 0 0 0 6px var(--activeColorAlpha),
+                0 0 16px var(--uiAccentColor);
+    transition: outline 0.15s ease, box-shadow 0.15s ease;
 }
 
 .mdl-radio__focus-circle,
@@ -1585,6 +1618,38 @@ body {
     color: inherit !important;
     text-decoration: none !important;
     transition: text-decoration-color 0.2s ease;
+}
+
+/* v1.2.33 (Fix B): fallback pour vieux Tizen (Chromium <105) sans support :has().
+   Sur ces TVs (Tizen 2018-2021), l'overlay invisible v1.2.32 ne peut pas vérifier
+   conditionnellement la présence de <a>. Le breadcrumb redevient un texte visible
+   cliquable (comportement v1.2.26). Ne s'applique QUE si :has() n'est pas supporté. */
+@supports not (selector(:has(*))) {
+    .layout-desktop .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName,
+    .layout-mobile .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName {
+        display: block !important;
+        position: static !important;
+        color: #fff !important;
+        font-size: 1.5em !important;
+        font-weight: 400 !important;
+        text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4) !important;
+        text-align: center;
+        padding: 0.5em 1em !important;
+        pointer-events: auto;
+    }
+
+    .layout-desktop .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName a,
+    .layout-mobile .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName a {
+        display: inline !important;
+        color: inherit !important;
+        text-decoration: none !important;
+        font-size: inherit !important;
+        cursor: pointer;
+        pointer-events: auto !important;
+        background: none !important;
+        width: auto !important;
+        height: auto !important;
+    }
 }
 
 /* ============================================================
@@ -5044,6 +5109,32 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 .layout-tv .nowPlayingBar {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+}
+
+/* v1.2.33 (Fix F): respect iOS notches and Android system gesture bars.
+   iPhone X+ have notches/Dynamic Island at top, Home Indicator at bottom.
+   Android with gesture nav has a system bar at bottom. Without safe-area
+   handling, content can be partially hidden. env() falls back to 0 on
+   devices without safe areas (iPad, older Android). */
+.layout-mobile .skinHeader {
+    padding-top: env(safe-area-inset-top, 0);
+}
+
+.layout-mobile .nowPlayingBar {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+/* Landscape iPhone: notch at left/right depending on rotation */
+@media screen and (orientation: landscape) {
+    .layout-mobile .skinHeader {
+        padding-left: env(safe-area-inset-left, 0);
+        padding-right: env(safe-area-inset-right, 0);
+    }
+    .layout-mobile .detailPagePrimaryContent,
+    .layout-mobile .detailPagePrimaryContainer {
+        padding-left: env(safe-area-inset-left, 0);
+        padding-right: env(safe-area-inset-right, 0);
+    }
 }
 
 /* --- 7. Watched Overlay on Seen Items --- */
