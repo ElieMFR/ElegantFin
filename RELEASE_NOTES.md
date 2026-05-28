@@ -315,48 +315,10 @@ Quick iteration based on user testing of v1.2.28:
 
 ---
 
-#### v1.2.38 — Lien série visible (italique) au-dessus de "Saison X" sur pages Saison
+#### v1.2.31 — Full chip alignment (year / FR-XX / ★ rating / 100%)
 
-- **Le h1.parentName redevient visible** comme lien italique sur les pages Saison — L'overlay invisible v1.2.32 ne fonctionne pas fiablement en pratique (positioned ancestor mismatch + emby-linkbutton web component sensible à visibility). Plus simple et meilleur UX : rendre le `h1.parentName` visible directement comme un lien italique (taille 1.4em, weight 500, opacity 0.8, italic) au-dessus du subtitle "Saison X". Sur PC, hover révèle un underline subtil. Utilise le sélecteur `:has(.subtitle:not(.focuscontainer-x))` pour cibler uniquement les pages Saison (pas Series principale ni Episode). Le `<a>` existant dans parentName (pointant vers `data-type="Series"`) reste fonctionnel et marche garantie. Sur Episode pages, l'overlay v1.2.32 reste (sans changement).
-
----
-
-#### v1.2.37 — Padding-top restreint aux pages Saison (fix vide sur Episode)
-
-- **Sélecteur affiné** : `:has(.subtitle:not(.focuscontainer-x))` au lieu de `:has(.subtitle)`. v1.2.36 appliquait le padding-top 23vh/20vh sur Saison ET Episode pages, créant un grand vide sur Episode (où l'élément en haut est une card image, pas un logo). SDK confirme : sur Saison page le `h3.subtitle` n'a PAS `.focuscontainer-x` (juste "Saison X"), sur Episode page `.focuscontainer-x` est présent (contient un `<a Season>` link). Le push ne s'applique maintenant que sur Saison pages où l'overlap logo/subtitle existe vraiment.
-
----
-
-#### v1.2.36 — Subtitle "Saison X" positionné sous le logo (fix overlap PC + Mobile)
-
-- **Push `.nameContainer` sous le logo sur pages Saison/Episode** — Sur PC et Mobile, le logo est `position: absolute` et occupe ~9vh-34vh en vertical. Le `h3.itemName.subtitle` ("Saison 4" ou "Saison X - 7. Episode Y") tombait dans le flow à ~13vh → overlap visuel avec le logo. La règle globale `--itemTitleVisibility: none` cache les `h1` mais pas les `h3`. Fix : `padding-top: 23vh` (PC) / `20vh` (Mobile) sur `.nameContainer` quand `:has(.subtitle)` + logo présent. Le `h1.parentName` overlay invisible v1.2.32 (logo cliquable) reste absolute et n'est pas affecté. Les siblings (`itemMiscInfo`, boutons "Lire") suivent naturellement plus bas. TV non touché.
-
----
-
-#### v1.2.35 — TV focus passé du violet au BLANC (cohérence thème)
-
-- **Focus TV de `var(--uiAccentColor)` (violet) à blanc** — Le violet hérité de l'upstream ElegantFin ne correspondait pas à l'identité Cinema Edition (bouton Lire blanc, dégradés sombres, palette warm cinema). Passé à `rgba(255, 255, 255, 0.95)` pour bordure inset, `rgba(255, 255, 255, 0.3)` pour glow. Visible à distance TV + cohérent avec le reste du thème (pattern Netflix/Disney+/Apple TV qui utilisent tous des focus clairs).
-- Box-shadow inset conservé de v1.2.34 (jamais clipped sur cards en bord viewport).
-- Cards et boutons traités cohéremment (3px sur cards, 2px sur boutons).
-
----
-
-#### v1.2.34 — TV focus refactor : box-shadow inset (fix bordures clipped)
-
-- **TV focus passé d'outline outside à box-shadow inset** — v1.2.33 (Fix A) utilisait `outline: 3px + outline-offset: 4px + box-shadow: 24px` qui sortaient des conteneurs parents `overflow: hidden`. Résultat : bordures clipped asymétriquement sur les cards en bord de viewport (vu sur screenshots utilisateur — cards Films, Programmes, Stargate, Dr. STONE). Refonte avec `box-shadow inset 0 0 0 3px var(--uiAccentColor)` : la bordure de focus est À L'INTÉRIEUR du bord de la card, ne peut JAMAIS être clipped. Glow externe et drop-shadow conservés (peuvent être clipped sans souci visuel). Scale réduit de 1.06 à 1.03 (moins risque de débordement viewport).
-- **Boutons : même refonte** — `outline + offset` remplacé par `inset 0 0 0 2px` (bordure 2px car boutons plus petits). Cohérent avec les cards.
-
----
-
-#### v1.2.33 — Cross-platform polish (iOS, TV remote, old Tizen compat)
-
-Plan derived from full ecosystem audit (jellyfin-web, jellyfin-tizen, jellyfin-android, jellyfin-androidtv):
-
-- **iOS Safari: `text-size-adjust: 100%`** — Prevents iOS auto-zooming text on orientation change/rotation. Without this, iPhones zoomed text by 10-20% when rotating from portrait to landscape, breaking carefully-designed CSS layouts. iPhone/iPad Safari users now see stable text sizes.
-- **iOS: tap-highlight already present** — Confirmed at line 203 (`-webkit-tap-highlight-color: transparent !important;`). No change needed.
-- **Mobile: safe-area-inset support (notches)** — iPhone X+ have notches/Dynamic Island at top, Home Indicator at bottom. Android with gesture nav has system bar at bottom. Added `padding-top: env(safe-area-inset-top)` on `.layout-mobile .skinHeader`, `padding-bottom: env(safe-area-inset-bottom)` on `.nowPlayingBar`. Landscape: also handles left/right safe areas for sideways notch. `env()` falls back to 0 on devices without safe areas (iPad classic, older Android).
-- **TV: reinforced focus for remote navigation** — Cards at 3-5m viewing distance had only `0.15em` outline — barely visible. Now: `3px solid` outline + `box-shadow` glow + subtle `scale(1.06)` for immediate focus distinction. Netflix/Disney+ TV pattern. Same applied to buttons (`.btnPlay`, `.detailButton`). Transition `0.15s` for fluidity.
-- **Old Tizen `:has()` fallback** — v1.2.32 uses `:has(a)` for conditional logo overlay. Tizen 2018-2021 (Chromium 76-79) doesn't support `:has()`. Added `@supports not (selector(:has(*)))` block that reverts the breadcrumb to a visible clickable text on these old TVs. Tizen 9.0+ users unaffected (overlay v1.2.32 behavior preserved).
+- **All `.mediaInfoItem` chips now share strict identical dimensions** — v1.2.30 only fixed the FR-XX badge alignment (removed translateY) but the chips still had different visual heights because their content (text vs text+icon) drove their natural rendering size. v1.2.31 enforces `height: 1.8em; min-height: 1.8em; padding: 0 0.6em; line-height: 1; display: inline-flex; align-items: center` on **every** chip variant — year, FR-XX, star rating, percentage. Same background, same border, same border-radius. Inline icons inside (`.material-icons`, `.starIcon`, `svg`) clamped to `font-size: 0.9em` so they don't push chip heights apart.
+- **`.itemMiscInfo-primary` container**: now `display: flex; flex-wrap: wrap; align-items: center; justify-content: center; column-gap: 0.5em; row-gap: 0.5em` — chips wrap to a second line on very narrow viewports instead of overflowing/clipping (safety net only — typically stays on one line).
 
 ---
 
@@ -374,10 +336,48 @@ Plan derived from SDK analysis of `jellyfin/jellyfin-web` (`controllers/itemDeta
 
 ---
 
-#### v1.2.31 — Full chip alignment (year / FR-XX / ★ rating / 100%)
+#### v1.2.33 — Cross-platform polish (iOS, TV remote, old Tizen compat)
 
-- **All `.mediaInfoItem` chips now share strict identical dimensions** — v1.2.30 only fixed the FR-XX badge alignment (removed translateY) but the chips still had different visual heights because their content (text vs text+icon) drove their natural rendering size. v1.2.31 enforces `height: 1.8em; min-height: 1.8em; padding: 0 0.6em; line-height: 1; display: inline-flex; align-items: center` on **every** chip variant — year, FR-XX, star rating, percentage. Same background, same border, same border-radius. Inline icons inside (`.material-icons`, `.starIcon`, `svg`) clamped to `font-size: 0.9em` so they don't push chip heights apart.
-- **`.itemMiscInfo-primary` container**: now `display: flex; flex-wrap: wrap; align-items: center; justify-content: center; column-gap: 0.5em; row-gap: 0.5em` — chips wrap to a second line on very narrow viewports instead of overflowing/clipping (safety net only — typically stays on one line).
+Plan derived from full ecosystem audit (jellyfin-web, jellyfin-tizen, jellyfin-android, jellyfin-androidtv):
+
+- **iOS Safari: `text-size-adjust: 100%`** — Prevents iOS auto-zooming text on orientation change/rotation. Without this, iPhones zoomed text by 10-20% when rotating from portrait to landscape, breaking carefully-designed CSS layouts. iPhone/iPad Safari users now see stable text sizes.
+- **iOS: tap-highlight already present** — Confirmed at line 203 (`-webkit-tap-highlight-color: transparent !important;`). No change needed.
+- **Mobile: safe-area-inset support (notches)** — iPhone X+ have notches/Dynamic Island at top, Home Indicator at bottom. Android with gesture nav has system bar at bottom. Added `padding-top: env(safe-area-inset-top)` on `.layout-mobile .skinHeader`, `padding-bottom: env(safe-area-inset-bottom)` on `.nowPlayingBar`. Landscape: also handles left/right safe areas for sideways notch. `env()` falls back to 0 on devices without safe areas (iPad classic, older Android).
+- **TV: reinforced focus for remote navigation** — Cards at 3-5m viewing distance had only `0.15em` outline — barely visible. Now: `3px solid` outline + `box-shadow` glow + subtle `scale(1.06)` for immediate focus distinction. Netflix/Disney+ TV pattern. Same applied to buttons (`.btnPlay`, `.detailButton`). Transition `0.15s` for fluidity.
+- **Old Tizen `:has()` fallback** — v1.2.32 uses `:has(a)` for conditional logo overlay. Tizen 2018-2021 (Chromium 76-79) doesn't support `:has()`. Added `@supports not (selector(:has(*)))` block that reverts the breadcrumb to a visible clickable text on these old TVs. Tizen 9.0+ users unaffected (overlay v1.2.32 behavior preserved).
+
+---
+
+#### v1.2.34 — TV focus refactor : box-shadow inset (fix bordures clipped)
+
+- **TV focus passé d'outline outside à box-shadow inset** — v1.2.33 (Fix A) utilisait `outline: 3px + outline-offset: 4px + box-shadow: 24px` qui sortaient des conteneurs parents `overflow: hidden`. Résultat : bordures clipped asymétriquement sur les cards en bord de viewport (vu sur screenshots utilisateur — cards Films, Programmes, Stargate, Dr. STONE). Refonte avec `box-shadow inset 0 0 0 3px var(--uiAccentColor)` : la bordure de focus est À L'INTÉRIEUR du bord de la card, ne peut JAMAIS être clipped. Glow externe et drop-shadow conservés (peuvent être clipped sans souci visuel). Scale réduit de 1.06 à 1.03 (moins risque de débordement viewport).
+- **Boutons : même refonte** — `outline + offset` remplacé par `inset 0 0 0 2px` (bordure 2px car boutons plus petits). Cohérent avec les cards.
+
+---
+
+#### v1.2.35 — TV focus passé du violet au BLANC (cohérence thème)
+
+- **Focus TV de `var(--uiAccentColor)` (violet) à blanc** — Le violet hérité de l'upstream ElegantFin ne correspondait pas à l'identité Cinema Edition (bouton Lire blanc, dégradés sombres, palette warm cinema). Passé à `rgba(255, 255, 255, 0.95)` pour bordure inset, `rgba(255, 255, 255, 0.3)` pour glow. Visible à distance TV + cohérent avec le reste du thème (pattern Netflix/Disney+/Apple TV qui utilisent tous des focus clairs).
+- Box-shadow inset conservé de v1.2.34 (jamais clipped sur cards en bord viewport).
+- Cards et boutons traités cohéremment (3px sur cards, 2px sur boutons).
+
+---
+
+#### v1.2.36 — Subtitle "Saison X" positionné sous le logo (fix overlap PC + Mobile)
+
+- **Push `.nameContainer` sous le logo sur pages Saison/Episode** — Sur PC et Mobile, le logo est `position: absolute` et occupe ~9vh-34vh en vertical. Le `h3.itemName.subtitle` ("Saison 4" ou "Saison X - 7. Episode Y") tombait dans le flow à ~13vh → overlap visuel avec le logo. La règle globale `--itemTitleVisibility: none` cache les `h1` mais pas les `h3`. Fix : `padding-top: 23vh` (PC) / `20vh` (Mobile) sur `.nameContainer` quand `:has(.subtitle)` + logo présent. Le `h1.parentName` overlay invisible v1.2.32 (logo cliquable) reste absolute et n'est pas affecté. Les siblings (`itemMiscInfo`, boutons "Lire") suivent naturellement plus bas. TV non touché.
+
+---
+
+#### v1.2.37 — Padding-top restreint aux pages Saison (fix vide sur Episode)
+
+- **Sélecteur affiné** : `:has(.subtitle:not(.focuscontainer-x))` au lieu de `:has(.subtitle)`. v1.2.36 appliquait le padding-top 23vh/20vh sur Saison ET Episode pages, créant un grand vide sur Episode (où l'élément en haut est une card image, pas un logo). SDK confirme : sur Saison page le `h3.subtitle` n'a PAS `.focuscontainer-x` (juste "Saison X"), sur Episode page `.focuscontainer-x` est présent (contient un `<a Season>` link). Le push ne s'applique maintenant que sur Saison pages où l'overlap logo/subtitle existe vraiment.
+
+---
+
+#### v1.2.38 — Lien série visible (italique) au-dessus de "Saison X" sur pages Saison
+
+- **Le h1.parentName redevient visible** comme lien italique sur les pages Saison — L'overlay invisible v1.2.32 ne fonctionne pas fiablement en pratique (positioned ancestor mismatch + emby-linkbutton web component sensible à visibility). Plus simple et meilleur UX : rendre le `h1.parentName` visible directement comme un lien italique (taille 1.4em, weight 500, opacity 0.8, italic) au-dessus du subtitle "Saison X". Sur PC, hover révèle un underline subtil. Utilise le sélecteur `:has(.subtitle:not(.focuscontainer-x))` pour cibler uniquement les pages Saison (pas Series principale ni Episode). Le `<a>` existant dans parentName (pointant vers `data-type="Series"`) reste fonctionnel et marche garantie. Sur Episode pages, l'overlay v1.2.32 reste (sans changement).
 
 ---
 
@@ -703,6 +703,65 @@ Iteration rapide suite au test utilisateur de v1.2.28 :
 
 - **Tous les chips `.mediaInfoItem` ont maintenant des dimensions strictement identiques** — v1.2.30 ne corrigeait que l'alignement du badge FR-XX (retrait du translateY) mais les chips avaient encore des hauteurs visuelles differentes parce que leur contenu (texte vs texte+icone) determinait leur taille de rendu naturelle. v1.2.31 force `height: 1.8em; min-height: 1.8em; padding: 0 0.6em; line-height: 1; display: inline-flex; align-items: center` sur **chaque** variante de chip — annee, FR-XX, star rating, pourcentage. Meme background, meme border, meme border-radius. Les icones inline (`.material-icons`, `.starIcon`, `svg`) bornees a `font-size: 0.9em` pour ne pas pousser les hauteurs des chips.
 - **Conteneur `.itemMiscInfo-primary`** : maintenant `display: flex; flex-wrap: wrap; align-items: center; justify-content: center; column-gap: 0.5em; row-gap: 0.5em` — les chips wrappent sur une seconde ligne sur viewports tres etroits au lieu de deborder/clipper (filet de securite uniquement — reste typiquement sur une ligne).
+
+---
+
+#### v1.2.32 — Navigation logo cliquable + fix wrap subtitle + hover emby-linkbutton global
+
+Plan derive de l'analyse SDK `jellyfin/jellyfin-web` (`controllers/itemDetails/index.js`) :
+
+- **Logo cliquable vers la serie parente (PC + Mobile)** — Le `<a is="emby-linkbutton" data-type="Series">` existant dans `h1.parentName` est utilise comme overlay invisible cliquable couvrant exactement la zone du `.detailLogo`. Click n'importe ou sur le logo → navigation vers la serie parente. Adaptation auto par type de page via `:has(.subtitle)`. Sur page serie principale (pas de `<a>`), le breadcrumb est cache (`:not(:has(a))`) — coherent car deja sur la serie. TV non touche.
+- **Lien Saison visible dans subtitle** — Le `<a data-type="Season">` dans `.subtitle` (sur pages episode) recoit un underline subtil au hover, signalant qu'il est cliquable pour remonter a la saison.
+- **Hover global `[is="emby-linkbutton"]`** — Tous les Web Components Jellyfin qui sont des liens (artist, album, serie, saison, etc.) recoivent maintenant `cursor: pointer` + leger hover opacity. Ameliore l'UX sur toutes les pages, pas juste detail.
+- **Coherence `.musicParentName`** — Les `<a>` artist/album dans les pages musique stylises au meme niveau que les autres breadcrumbs (cursor + hover underline).
+- **Polish `.originalTitle`** — Les titres VO (japonais pour animes type Re:ZERO) maintenant en italique, opacity 55%, font-weight 300 pour distinction discrete. Wrap autorise sur PC pour les longs titres romaji.
+- **Mobile subtitle line-clamp 4** (etait 2) — Longs titres episodes anime s'affichent maintenant sur 4 lignes au lieu d'etre coupes a 2.
+- **PC subtitle wrap 3 lignes** (etait `white-space: nowrap` + ellipsis) — Plus de debordement horizontal sur les longs titres, wrap propre sur 3 lignes.
+
+---
+
+#### v1.2.33 — Polish cross-platform (iOS, telecommande TV, compat vieux Tizen)
+
+Plan derive de l'audit complet de l'ecosysteme (jellyfin-web, jellyfin-tizen, jellyfin-android, jellyfin-androidtv) :
+
+- **iOS Safari : `text-size-adjust: 100%`** — Empeche iOS d'auto-zoomer le texte en cas de changement d'orientation. Sans ca, les iPhones zoomaient le texte de 10-20% en passant portrait → landscape, cassant les layouts CSS soigneusement designes. Tailles texte stables maintenant pour iPhone/iPad Safari.
+- **iOS : tap-highlight deja present** — Confirme ligne 203 (`-webkit-tap-highlight-color: transparent !important;`). Aucun changement necessaire.
+- **Mobile : support safe-area-inset (notches)** — iPhone X+ ont des notches/Dynamic Island en haut, Home Indicator en bas. Android avec gestures a une system bar en bas. Ajout de `padding-top: env(safe-area-inset-top)` sur `.layout-mobile .skinHeader`, `padding-bottom: env(safe-area-inset-bottom)` sur `.nowPlayingBar`. Landscape : gere aussi left/right safe areas pour notch lateral. `env()` fallback a 0 sur les appareils sans safe areas.
+- **TV : focus renforce pour navigation telecommande** — Cards a 3-5m de distance visionnage avaient seulement `0.15em` outline — a peine visible. Maintenant : `3px solid` outline + `box-shadow` glow + leger `scale(1.06)` pour distinction immediate. Pattern Netflix/Disney+ TV. Idem applique aux boutons (`.btnPlay`, `.detailButton`). Transition `0.15s` pour fluidite.
+- **Fallback `:has()` vieux Tizen** — v1.2.32 utilise `:has(a)` pour overlay logo conditionnel. Tizen 2018-2021 (Chromium 76-79) ne supporte pas `:has()`. Ajout d'un bloc `@supports not (selector(:has(*)))` qui ramene le breadcrumb en texte cliquable visible sur ces vieux TVs. Utilisateurs Tizen 9.0+ non affectes (comportement overlay v1.2.32 preserve).
+
+---
+
+#### v1.2.34 — Refactor focus TV : box-shadow inset (fix bordures clipped)
+
+- **Focus TV passe d'outline outside a box-shadow inset** — v1.2.33 (Fix A) utilisait `outline: 3px + outline-offset: 4px + box-shadow: 24px` qui sortaient des conteneurs parents `overflow: hidden`. Resultat : bordures clipped asymetriquement sur les cards en bord de viewport (vu sur screenshots utilisateur — cards Films, Programmes, Stargate, Dr. STONE). Refonte avec `box-shadow inset 0 0 0 3px var(--uiAccentColor)` : la bordure de focus est A L'INTERIEUR du bord de la card, ne peut JAMAIS etre clipped. Glow externe et drop-shadow conserves (peuvent etre clipped sans souci visuel). Scale reduit de 1.06 a 1.03 (moins risque de debordement viewport).
+- **Boutons : meme refonte** — `outline + offset` remplace par `inset 0 0 0 2px` (bordure 2px car boutons plus petits). Coherent avec les cards.
+
+---
+
+#### v1.2.35 — Focus TV passe du violet au BLANC (coherence theme)
+
+- **Focus TV de `var(--uiAccentColor)` (violet) a blanc** — Le violet herite de l'upstream ElegantFin ne correspondait pas a l'identite Cinema Edition (bouton Lire blanc, degrades sombres, palette warm cinema). Passe a `rgba(255, 255, 255, 0.95)` pour bordure inset, `rgba(255, 255, 255, 0.3)` pour glow. Visible a distance TV + coherent avec le reste du theme (pattern Netflix/Disney+/Apple TV qui utilisent tous des focus clairs).
+- Box-shadow inset conserve de v1.2.34 (jamais clipped sur cards en bord viewport).
+- Cards et boutons traites coherement (3px sur cards, 2px sur boutons).
+
+---
+
+#### v1.2.36 — Subtitle "Saison X" positionne sous le logo (fix overlap PC + Mobile)
+
+- **Push `.nameContainer` sous le logo sur pages Saison/Episode** — Sur PC et Mobile, le logo est `position: absolute` et occupe ~9vh-34vh en vertical. Le `h3.itemName.subtitle` ("Saison 4" ou "Saison X - 7. Episode Y") tombait dans le flow a ~13vh → overlap visuel avec le logo. La regle globale `--itemTitleVisibility: none` cache les `h1` mais pas les `h3`. Fix : `padding-top: 23vh` (PC) / `20vh` (Mobile) sur `.nameContainer` quand `:has(.subtitle)` + logo present. Le `h1.parentName` overlay invisible v1.2.32 (logo cliquable) reste absolute et n'est pas affecte. Les siblings (`itemMiscInfo`, boutons "Lire") suivent naturellement plus bas. TV non touche.
+
+---
+
+#### v1.2.37 — Padding-top restreint aux pages Saison (fix vide sur Episode)
+
+- **Selecteur affine** : `:has(.subtitle:not(.focuscontainer-x))` au lieu de `:has(.subtitle)`. v1.2.36 appliquait le padding-top 23vh/20vh sur Saison ET Episode pages, creant un grand vide sur Episode (ou l'element en haut est une card image, pas un logo). SDK confirme : sur Saison page le `h3.subtitle` n'a PAS `.focuscontainer-x` (juste "Saison X"), sur Episode page `.focuscontainer-x` est present (contient un `<a Season>` link). Le push ne s'applique maintenant que sur Saison pages ou l'overlap logo/subtitle existe vraiment.
+
+---
+
+#### v1.2.38 — Lien serie visible (italique) au-dessus de "Saison X" sur pages Saison
+
+- **Le h1.parentName redevient visible** comme lien italique sur les pages Saison — L'overlay invisible v1.2.32 ne fonctionne pas fiablement en pratique (positioned ancestor mismatch + emby-linkbutton web component sensible a visibility). Plus simple et meilleur UX : rendre le `h1.parentName` visible directement comme un lien italique (taille 1.4em, weight 500, opacity 0.8, italic) au-dessus du subtitle "Saison X". Sur PC, hover revele un underline subtil. Utilise le selecteur `:has(.subtitle:not(.focuscontainer-x))` pour cibler uniquement les pages Saison (pas Series principale ni Episode). Le `<a>` existant dans parentName (pointant vers `data-type="Series"`) reste fonctionnel et marche garantie. Sur Episode pages, l'overlay v1.2.32 reste (sans changement).
 
 ---
 
