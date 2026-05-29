@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.39
+# ElegantFin Cinema Edition v1.2.40
 
 ## [English](#english) | [Francais](#francais)
 
@@ -384,6 +384,13 @@ Plan derived from full ecosystem audit (jellyfin-web, jellyfin-tizen, jellyfin-a
 #### v1.2.39 — v1.2.38 bug fix: add display:block (override --itemTitleVisibility)
 
 - **v1.2.38 bug** : the visible rule on h1.parentName had no visual effect — h1 was still `display: none` inherited from the global rule `display: var(--itemTitleVisibility)` (default: none). v1.2.38 overrode position/color/font-size but NOT display. Element styled but hidden → nothing on screen. Fix: added `display: block !important;` in the v1.2.38 rule. The italic link "Re:ZERO" / "Moi quand je me réincarne en Slime" / etc. now correctly appears above "Saison X" on Saison pages.
+
+---
+
+#### v1.2.40 — Consolidation: single visible series link, removed broken invisible overlay
+
+- **Removed the v1.2.32 invisible clickable overlay** — The original "click the logo to go to the series" mechanism used an invisible overlay (`font-size: 0; color: transparent; position: absolute` with hardcoded `calc()`/`left:30%;width:40%`). User confirmed it never actually worked (logo click HS) — the absolute positioning didn't reliably cover the logo, and the emby-linkbutton web component was sensitive to the transparency. ~60 lines of fragile dead code removed.
+- **Generalized the visible series link to ALL pages with a logo** — v1.2.38 had introduced a visible italic series link but only on Season pages. Now it applies to Season AND Episode pages (any `h1.parentName:has(a)` with a logo). Single, reliable, consistent navigation mechanism: the series name shows as a clickable italic link above the subtitle, hover underline on desktop. Main series page (no `<a>`) still hidden via `:not(:has(a))`. No-logo fallback (big title) preserved. TV unaffected (keeps v1.2.26 rendering). Less code, no fragile `calc()` positioning, easier to maintain.
 
 ---
 
@@ -774,6 +781,13 @@ Plan derive de l'audit complet de l'ecosysteme (jellyfin-web, jellyfin-tizen, je
 #### v1.2.39 — Fix v1.2.38 : ajout display:block (override --itemTitleVisibility)
 
 - **Bug v1.2.38** : la regle visible sur h1.parentName n'avait aucun effet visuel — le h1 restait `display: none` herite de la regle globale `display: var(--itemTitleVisibility)` (defaut: none). v1.2.38 overridait position/color/font-size mais PAS display. Element styled mais cache → rien a l'ecran. Fix : ajout `display: block !important;` dans la regle v1.2.38. Le lien italique "Re:ZERO" / "Moi quand je me reincarne en Slime" / etc. apparait maintenant correctement au-dessus de "Saison X" sur les pages Saison.
+
+---
+
+#### v1.2.40 — Consolidation : un seul lien serie visible, suppression de l'overlay invisible casse
+
+- **Suppression de l'overlay invisible cliquable v1.2.32** — Le mecanisme original "clic sur le logo pour aller a la serie" utilisait un overlay invisible (`font-size: 0; color: transparent; position: absolute` avec `calc()`/`left:30%;width:40%` hardcode). L'utilisateur a confirme qu'il ne marchait jamais vraiment (clic logo HS) — le positionnement absolu ne couvrait pas le logo de facon fiable, et le web component emby-linkbutton etait sensible a la transparence. ~60 lignes de code mort fragile supprimees.
+- **Generalisation du lien serie visible a TOUTES les pages avec logo** — v1.2.38 avait introduit un lien serie italique visible mais uniquement sur les pages Saison. Il s'applique maintenant aux pages Saison ET Episode (tout `h1.parentName:has(a)` avec un logo). Mecanisme de navigation unique, fiable, coherent : le nom de la serie s'affiche comme lien italique cliquable au-dessus du subtitle, underline au hover sur desktop. Page serie principale (pas de `<a>`) toujours cachee via `:not(:has(a))`. Fallback sans logo (gros titre) preserve. TV non affecte (garde rendu v1.2.26). Moins de code, plus de positionnement `calc()` fragile, plus facile a maintenir.
 
 ---
 

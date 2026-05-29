@@ -1,11 +1,11 @@
-/* ElegantFin Cinema Edition v1.2.39 */
+/* ElegantFin Cinema Edition v1.2.40 */
 /* Enhanced with 27 cinematic modules — Netflix-inspired streaming experience */
 
 /* Inter Font Family */
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.39";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.40";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -1682,20 +1682,28 @@ body {
 }
 
 /* ============================================================
-   v1.2.38 — Re:ZERO link (visible series name) above "Saison X" on Saison pages
+   v1.2.40 — CONSOLIDATION : lien série visible cliquable (remplace overlay v1.2.32)
    ============================================================
-   L'overlay invisible cliquable v1.2.32 sur le logo ne fonctionne pas
-   fiablement en pratique (positioned ancestor mismatch + emby-linkbutton
-   web component sensible à visibility). Pour la page Saison, on rend
-   donc le h1.parentName VISIBLE comme un lien italique au-dessus du
-   subtitle "Saison X" — meilleure UX, navigation explicite, marche garanti. */
-.layout-desktop #itemDetailPage:has(.subtitle:not(.focuscontainer-x)) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a),
-.layout-mobile #itemDetailPage:has(.subtitle:not(.focuscontainer-x)) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) {
-    /* v1.2.39 fix: override --itemTitleVisibility: none (globale ligne ~1601)
-       qui mettait display: none sur tous les h1 dans nameContainer.
-       Sans ce display:block, mon override visible v1.2.38 n'avait aucun effet. */
+   Analyse SDK Jellyfin 10.11.x (controllers/itemDetails/index.js):
+   - h1.parentName contient un <a is="emby-linkbutton"> sur Episode/Saison
+     qui pointe vers la SÉRIE parente (data-action="link" data-id="{SeriesId}")
+   - Sur page Série principale : h1.parentName = texte plain SANS <a>
+   - Sur Film : h1.parentName n'existe pas
+   - TV NON AFFECTÉ : conserve le rendu v1.2.26 ci-dessus.
+
+   HISTORIQUE : v1.2.32 utilisait un overlay invisible (font-size:0, transparent,
+   position:absolute avec calc hardcodé) sur la zone du logo. Confirmé NON
+   FONCTIONNEL par l'utilisateur (clic logo HS). v1.2.38 avait corrigé ça pour
+   les pages Saison uniquement (lien visible). v1.2.40 SUPPRIME l'overlay et
+   généralise le lien visible à TOUTES les pages avec logo (Saison + Episode) :
+   navigation fiable, cohérente, un seul mécanisme à maintenir.
+
+   Le h1.parentName:has(a) est affiché comme un lien italique visible et
+   cliquable au-dessus du subtitle. Sur série principale (pas de <a>), caché. */
+.layout-desktop .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a),
+.layout-mobile .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) {
+    /* display:block override la globale --itemTitleVisibility: none */
     display: block !important;
-    /* Override v1.2.32 invisible overlay */
     position: static !important;
     color: rgba(255, 255, 255, 0.8) !important;
     font-size: 1.4em !important;
@@ -1712,9 +1720,9 @@ body {
     line-height: 1.3 !important;
 }
 
-/* Le <a> à l'intérieur devient visible, cliquable, hover underline */
-.layout-desktop #itemDetailPage:has(.subtitle:not(.focuscontainer-x)) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) a,
-.layout-mobile #itemDetailPage:has(.subtitle:not(.focuscontainer-x)) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) a {
+/* Le <a> à l'intérieur : visible, cliquable, hover underline */
+.layout-desktop .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) a,
+.layout-mobile .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) a {
     color: inherit !important;
     font-size: inherit !important;
     background: none !important;
@@ -1727,91 +1735,11 @@ body {
     transition: text-decoration-color 0.2s ease;
 }
 
-.layout-desktop #itemDetailPage:has(.subtitle:not(.focuscontainer-x)) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) a:hover {
+.layout-desktop .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) a:hover {
     text-decoration: underline !important;
     text-decoration-color: rgba(255, 255, 255, 0.5);
     text-decoration-thickness: 2px;
     text-underline-offset: 0.2em;
-}
-
-/* ============================================================
-   v1.2.32 — Logo cliquable + amélioration breadcrumbs (PC + Mobile)
-   ============================================================
-   Confirmé par analyse SDK Jellyfin 10.11.x (controllers/itemDetails/index.js):
-   - h1.parentName contient un <a is="emby-linkbutton"> sur Episode/Saison
-     qui pointe vers la SÉRIE parente via data-action="link" data-id="{SeriesId}"
-   - h3.itemName.subtitle sur Episode contient AUSSI un <a data-type="Season">
-     qui pointe vers la SAISON parente
-   - Sur page Série principale : h1.parentName = texte plain SANS <a>
-   - Sur Film : h1.parentName n'existe pas
-   - TV NON AFFECTÉ : conserve le rendu v1.2.26 ci-dessus.
-
-   Stratégie : overlay invisible cliquable sur la zone du logo (PC + Mobile).
-   Le <a> existant dans h1.parentName devient une cible cliquable transparente
-   qui couvre exactement la zone du logo, permettant un clic-pour-remonter
-   tout en gardant le visuel du logo intact. Sur série principale (pas de <a>),
-   le breadcrumb est caché proprement via :not(:has(a)). */
-
-/* === Page avec logo : h1.parentName devient un container positionné sur le logo === */
-
-.layout-desktop .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a),
-.layout-mobile .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) {
-    position: absolute !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    pointer-events: none;
-    z-index: 5;
-    color: transparent !important;
-    text-shadow: none !important;
-    font-size: 0 !important;
-    line-height: 0 !important;
-}
-
-/* PC default (série principale) : logo à ~50-75vh, hauteur 25vh */
-.layout-desktop .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) {
-    top: calc(100vh - var(--clearLogoBottomSpace) - var(--primaryItemPageNegativeSpace) - 25vh);
-    left: 30%;
-    width: 40%;
-    height: 25vh;
-}
-
-/* PC saison/épisode : logo positionné différemment */
-.layout-desktop #itemDetailPage:has(.subtitle) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) {
-    top: calc(100vh - 6em - var(--secondaryItemPageNegativeSpace) - 25vh);
-}
-
-/* Mobile default : logo plein largeur en bas du backdrop */
-.layout-mobile .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) {
-    top: 45vh;
-    left: 1em;
-    width: calc(100vw - 2em);
-    height: 17vh;
-}
-
-/* Mobile saison/épisode : logo plus haut */
-.layout-mobile #itemDetailPage:has(.subtitle) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) {
-    top: calc(100vh - 11em - var(--secondaryItemPageNegativeSpace));
-}
-
-/* Le <a is="emby-linkbutton"> à l'intérieur devient la cible cliquable */
-.layout-desktop .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName a,
-.layout-mobile .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName a {
-    display: block !important;
-    width: 100% !important;
-    height: 100% !important;
-    pointer-events: auto !important;
-    cursor: pointer;
-    color: transparent !important;
-    text-decoration: none !important;
-    font-size: 0 !important;
-    text-shadow: none !important;
-    transition: background-color 0.2s ease;
-}
-
-/* Léger feedback hover sur PC (mobile a pas de hover) */
-.layout-desktop .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName a:hover {
-    background-color: rgba(255, 255, 255, 0.04);
-    border-radius: 0.5em;
 }
 
 /* === Page série principale (pas de <a> dans parentName) : cacher le breadcrumb === */
