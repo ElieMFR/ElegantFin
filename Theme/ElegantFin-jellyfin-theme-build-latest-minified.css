@@ -1,11 +1,11 @@
-/* ElegantFin Cinema Edition v1.2.40 */
+/* ElegantFin Cinema Edition v1.2.41 */
 /* Enhanced with 27 cinematic modules — Netflix-inspired streaming experience */
 
 /* Inter Font Family */
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.40";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.41";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -312,12 +312,6 @@ body {
     outline: 0.12em solid var(--uiAccentColor);
     outline-offset: 0.1em;
     box-shadow: 0 0 0.8em var(--activeColorAlpha);
-}
-
-.layout-tv .card:focus .cardBox {
-    outline: 0.15em solid var(--uiAccentColor);
-    outline-offset: 0.15em;
-    box-shadow: 0 0 1em var(--activeColorAlpha);
 }
 
 /* v1.2.35: TV focus passé du violet (var(--uiAccentColor)) au BLANC.
@@ -1623,10 +1617,12 @@ body {
     transition: text-decoration-color 0.2s ease;
 }
 
-/* v1.2.33 (Fix B): fallback pour vieux Tizen (Chromium <105) sans support :has().
-   Sur ces TVs (Tizen 2018-2021), l'overlay invisible v1.2.32 ne peut pas vérifier
-   conditionnellement la présence de <a>. Le breadcrumb redevient un texte visible
-   cliquable (comportement v1.2.26). Ne s'applique QUE si :has() n'est pas supporté. */
+/* v1.2.41 (doc fix): fallback pour navigateurs SANS support :has() (Chromium <105).
+   Concerne en pratique : Jellyfin Media Player (app desktop, vieux QtWebEngine)
+   et iOS <15.4 — PAS les TV Tizen (elles utilisent .layout-tv qui a sa propre
+   règle toujours-visible sans :has()). Sans ce bloc, le lien série serait
+   invisible sur ces clients (la règle :has(a) ne matchant jamais). Le breadcrumb
+   retombe en texte visible cliquable. Ne s'applique QUE si :has() non supporté. */
 @supports not (selector(:has(*))) {
     .layout-desktop .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName,
     .layout-mobile .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName {
@@ -5125,22 +5121,27 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    iPhone X+ have notches/Dynamic Island at top, Home Indicator at bottom.
    Android with gesture nav has a system bar at bottom. Without safe-area
    handling, content can be partially hidden. env() falls back to 0 on
-   devices without safe areas (iPad, older Android). */
+   devices without safe areas (iPad, older Android).
+   v1.2.41: !important required — the home header carries .skinHeader-blurred
+   whose `padding: 0` rule (higher specificity, 0,3,0) was silently killing
+   this padding-top exactly where the notch overlap happens. */
 .layout-mobile .skinHeader {
-    padding-top: env(safe-area-inset-top, 0);
+    padding-top: env(safe-area-inset-top, 0) !important;
 }
 
 .layout-mobile .nowPlayingBar {
     padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
-/* Landscape iPhone: notch at left/right depending on rotation */
+/* Landscape iPhone: notch at left/right depending on rotation.
+   v1.2.41: removed .detailPagePrimaryContent from this block — it has
+   `padding-left/right: var(--sidePadding) !important` (line ~1169) so the
+   env() padding never applied there (dead rule). Container keeps it. */
 @media screen and (orientation: landscape) {
     .layout-mobile .skinHeader {
         padding-left: env(safe-area-inset-left, 0);
         padding-right: env(safe-area-inset-right, 0);
     }
-    .layout-mobile .detailPagePrimaryContent,
     .layout-mobile .detailPagePrimaryContainer {
         padding-left: env(safe-area-inset-left, 0);
         padding-right: env(safe-area-inset-right, 0);

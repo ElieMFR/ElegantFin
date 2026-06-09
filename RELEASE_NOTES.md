@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.40
+# ElegantFin Cinema Edition v1.2.41
 
 ## [English](#english) | [Francais](#francais)
 
@@ -391,6 +391,18 @@ Plan derived from full ecosystem audit (jellyfin-web, jellyfin-tizen, jellyfin-a
 
 - **Removed the v1.2.32 invisible clickable overlay** — The original "click the logo to go to the series" mechanism used an invisible overlay (`font-size: 0; color: transparent; position: absolute` with hardcoded `calc()`/`left:30%;width:40%`). User confirmed it never actually worked (logo click HS) — the absolute positioning didn't reliably cover the logo, and the emby-linkbutton web component was sensitive to the transparency. ~60 lines of fragile dead code removed.
 - **Generalized the visible series link to ALL pages with a logo** — v1.2.38 had introduced a visible italic series link but only on Season pages. Now it applies to Season AND Episode pages (any `h1.parentName:has(a)` with a logo). Single, reliable, consistent navigation mechanism: the series name shows as a clickable italic link above the subtitle, hover underline on desktop. Main series page (no `<a>`) still hidden via `:not(:has(a))`. No-logo fallback (big title) preserved. TV unaffected (keeps v1.2.26 rendering). Less code, no fragile `calc()` positioning, easier to maintain.
+
+---
+
+#### v1.2.41 — Cold audit fixes: iPhone notch actually fixed + dead code removal
+
+Full theme audit (cascade conflicts, dead code, stale docs). Findings and fixes:
+
+- **🔴 iPhone notch padding was silently dead on the home page** — The v1.2.33 rule `.layout-mobile .skinHeader { padding-top: env(safe-area-inset-top) }` (specificity 0,2,0) was beaten by the pre-existing `.layout-mobile .skinHeader-blurred:not(.osdHeader) { padding: 0 }` (0,3,0) — and the home header carries `.skinHeader-blurred`, so the anti-notch padding never applied exactly where notch overlap happens. Fixed with `!important`. Only visible on iPhone X+ (env() = 0 elsewhere, zero change).
+- **Removed dead TV focus rule** — The old purple `0.15em outline` block was 100% overridden by the v1.2.35 white inset rule right below it (same selector, `outline: none !important`). 5 lines of dead code removed; zero visual change on TV.
+- **Removed dead landscape safe-area rule part** — `.detailPagePrimaryContent` already has `padding-left/right: var(--sidePadding) !important` so the landscape env() rule never applied to it. Removed from the media query; container keeps it.
+- **Fixed misleading fallback comment** — The `@supports not (selector(:has(*)))` block was documented as "old Tizen fallback" but Tizen TVs use `.layout-tv` (own always-visible rule, no `:has()`). The fallback actually serves **Jellyfin Media Player** (old QtWebEngine desktop app) and iOS <15.4 — without it the series link would be invisible there. Comment now documents the real reason this block must stay.
+- Audit also confirmed clean: zero leftovers from the removed v1.2.32 overlay, single consolidated navigation mechanism, `prefers-reduced-motion` respected, TV rules `:has()`-free (old Tizen safe), versions in sync. Privacy note (informational): the Google Fonts `@import` sends visitor IPs to Google — self-hosting Inter is an option if GDPR ever becomes a concern.
 
 ---
 
@@ -788,6 +800,18 @@ Plan derive de l'audit complet de l'ecosysteme (jellyfin-web, jellyfin-tizen, je
 
 - **Suppression de l'overlay invisible cliquable v1.2.32** — Le mecanisme original "clic sur le logo pour aller a la serie" utilisait un overlay invisible (`font-size: 0; color: transparent; position: absolute` avec `calc()`/`left:30%;width:40%` hardcode). L'utilisateur a confirme qu'il ne marchait jamais vraiment (clic logo HS) — le positionnement absolu ne couvrait pas le logo de facon fiable, et le web component emby-linkbutton etait sensible a la transparence. ~60 lignes de code mort fragile supprimees.
 - **Generalisation du lien serie visible a TOUTES les pages avec logo** — v1.2.38 avait introduit un lien serie italique visible mais uniquement sur les pages Saison. Il s'applique maintenant aux pages Saison ET Episode (tout `h1.parentName:has(a)` avec un logo). Mecanisme de navigation unique, fiable, coherent : le nom de la serie s'affiche comme lien italique cliquable au-dessus du subtitle, underline au hover sur desktop. Page serie principale (pas de `<a>`) toujours cachee via `:not(:has(a))`. Fallback sans logo (gros titre) preserve. TV non affecte (garde rendu v1.2.26). Moins de code, plus de positionnement `calc()` fragile, plus facile a maintenir.
+
+---
+
+#### v1.2.41 — Audit a froid : encoche iPhone vraiment corrigee + suppression code mort
+
+Audit complet du theme (conflits de cascade, code mort, doc obsolete). Constats et correctifs :
+
+- **🔴 Le padding anti-encoche iPhone etait silencieusement mort sur la home** — La regle v1.2.33 `.layout-mobile .skinHeader { padding-top: env(safe-area-inset-top) }` (specificite 0,2,0) etait battue par la regle pre-existante `.layout-mobile .skinHeader-blurred:not(.osdHeader) { padding: 0 }` (0,3,0) — or le header de la home porte `.skinHeader-blurred`, donc le padding ne s'appliquait jamais la ou l'encoche gene. Corrige avec `!important`. Visible uniquement sur iPhone X+ (env() = 0 ailleurs, zero changement).
+- **Suppression de la regle TV focus morte** — L'ancien bloc violet `0.15em outline` etait ecrase a 100% par la regle blanche inset v1.2.35 juste en dessous (meme selecteur, `outline: none !important`). 5 lignes de code mort supprimees ; zero changement visuel sur TV.
+- **Suppression de la partie morte du safe-area landscape** — `.detailPagePrimaryContent` a deja `padding-left/right: var(--sidePadding) !important`, la regle env() landscape ne s'y appliquait donc jamais. Retiree de la media query ; le container la garde.
+- **Correction du commentaire trompeur du fallback** — Le bloc `@supports not (selector(:has(*)))` etait documente comme "fallback vieux Tizen", mais les TV Tizen utilisent `.layout-tv` (regle toujours-visible dediee, sans `:has()`). Le fallback sert en realite **Jellyfin Media Player** (app desktop, vieux QtWebEngine) et iOS <15.4 — sans lui le lien serie y serait invisible. Le commentaire documente maintenant la vraie raison de garder ce bloc.
+- L'audit a aussi confirme : zero residu de l'overlay v1.2.32 supprime, mecanisme de navigation unique consolide, `prefers-reduced-motion` respecte, regles TV sans `:has()` (vieux Tizen safe), versions synchro. Note vie privee (informatif) : le `@import` Google Fonts envoie l'IP des visiteurs a Google — self-hoster Inter est une option si le RGPD devient un sujet.
 
 ---
 
