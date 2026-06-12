@@ -253,15 +253,17 @@ body {
     --secondaryItemPageNegativeSpace: 45vh;
 }
 
-/* Material Icons Round */
-/* https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200 */
+/* Material Icons Round — self-hosted (v1.2.42, même traitement qu'Inter).
+   Fichier identique à celui que Google servait (Material Symbols Rounded
+   v267, variable opsz/wght/FILL/GRAD, ~4.9 MB — police d'icônes complète,
+   non-subsettable car à ligatures). Même poids qu'avant pour les visiteurs,
+   mais plus aucune requête vers fonts.gstatic.com. */
 @font-face {
     font-family: "Material Icons Round";
     font-style: normal;
     font-weight: 100 700;
     font-display: swap;
-    src: url(https://fonts.gstatic.com/s/materialsymbolsrounded/v267/sykg-zNym6YjUruM-QrEh7-nyTnjDwKNJ_190Fjzag.woff2)
-        format("woff2");
+    src: url("./fonts/MaterialSymbolsRounded.woff2") format("woff2");
 }
 
 .material-icons {

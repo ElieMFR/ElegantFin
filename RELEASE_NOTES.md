@@ -406,11 +406,12 @@ Full theme audit (cascade conflicts, dead code, stale docs). Findings and fixes:
 
 ---
 
-#### v1.2.42 — Self-hosted Inter font (Google Fonts removed)
+#### v1.2.42 — Self-hosted fonts (Google Fonts fully removed)
 
-- **Inter is now served from this repo instead of Google Fonts** — Previously every visitor's browser contacted `fonts.googleapis.com` + `fonts.gstatic.com` (IP, User-Agent and server URL sent to Google — the Munich court 2022 GDPR precedent). Since the theme CSS is already delivered by jsDelivr, hosting the font files in the repo eliminates Google **without adding any new third party**. Official `rsms/inter` v4.1 variable files (`InterVariable.woff2` 352 KB + Italic 388 KB) in `Theme/fonts/`, declared via `@font-face` with **relative URLs** (resolve against the CSS URL → works for `@main`, pinned tags and forks alike).
-- **Why the variable font is required** — the theme uses `font-weight: 425` (non-standard weight) and `font-optical-sizing`, which need the `wght`/`opsz` axes; static per-weight files wouldn't render them.
-- **Bonus**: one less DNS+TLS handshake at load, and the font keeps working where Google Fonts is blocked (strict Pi-hole, corporate networks). `font-display: swap` + existing `sans-serif` fallback = rendering never blocks. Zero action required from users.
+- **Both Google-served fonts now live in this repo** — Previously every visitor's browser contacted `fonts.googleapis.com` + `fonts.gstatic.com` (IP, User-Agent and server URL sent to Google — the Munich court 2022 GDPR precedent). Since the theme CSS is already delivered by jsDelivr, hosting the font files in the repo eliminates Google **without adding any new third party**. Files in `Theme/fonts/`, declared via `@font-face` with **relative URLs** (resolve against the CSS URL → works for `@main`, pinned tags and forks alike):
+  - **Inter** (text) — official `rsms/inter` v4.1 variable files, `InterVariable.woff2` 352 KB + Italic 388 KB. The variable font is required: the theme uses `font-weight: 425` and `font-optical-sizing` (wght/opsz axes).
+  - **Material Symbols Rounded** (icon pack, the theme's default `--iconPack`) — the exact same v267 variable file Google was serving (~4.9 MB, complete ligature-based icon font, not subsettable). Same download size as before for visitors, just a different source.
+- **Bonus**: one less DNS+TLS handshake at load, and fonts keep working where Google is blocked (strict Pi-hole, corporate networks). `font-display: swap` + existing fallbacks = rendering never blocks. Zero action required from users.
 
 ---
 
@@ -823,11 +824,12 @@ Audit complet du theme (conflits de cascade, code mort, doc obsolete). Constats 
 
 ---
 
-#### v1.2.42 — Police Inter self-hostee (Google Fonts supprime)
+#### v1.2.42 — Polices self-hostees (Google Fonts entierement supprime)
 
-- **Inter est maintenant servie depuis ce repo au lieu de Google Fonts** — Avant, le navigateur de chaque visiteur contactait `fonts.googleapis.com` + `fonts.gstatic.com` (IP, User-Agent et URL du serveur envoyes a Google — precedent RGPD du tribunal de Munich 2022). Comme la CSS du theme est deja distribuee par jsDelivr, heberger les polices dans le repo elimine Google **sans ajouter aucun nouveau tiers**. Fichiers variables officiels `rsms/inter` v4.1 (`InterVariable.woff2` 352 Ko + Italic 388 Ko) dans `Theme/fonts/`, declares via `@font-face` avec des **URLs relatives** (resolues contre l'URL de la CSS → marche pour `@main`, les tags pinnes et les forks).
-- **Pourquoi la variable font est obligatoire** — le theme utilise `font-weight: 425` (graisse non-standard) et `font-optical-sizing`, qui necessitent les axes `wght`/`opsz` ; des fichiers statiques par graisse ne les rendraient pas.
-- **Bonus** : un handshake DNS+TLS de moins au chargement, et la police fonctionne la ou Google Fonts est bloque (Pi-hole strict, reseaux d'entreprise). `font-display: swap` + fallback `sans-serif` existant = le rendu ne bloque jamais. Zero action requise cote utilisateurs.
+- **Les deux polices servies par Google vivent maintenant dans ce repo** — Avant, le navigateur de chaque visiteur contactait `fonts.googleapis.com` + `fonts.gstatic.com` (IP, User-Agent et URL du serveur envoyes a Google — precedent RGPD du tribunal de Munich 2022). Comme la CSS du theme est deja distribuee par jsDelivr, heberger les polices dans le repo elimine Google **sans ajouter aucun nouveau tiers**. Fichiers dans `Theme/fonts/`, declares via `@font-face` avec des **URLs relatives** (resolues contre l'URL de la CSS → marche pour `@main`, les tags pinnes et les forks) :
+  - **Inter** (texte) — fichiers variables officiels `rsms/inter` v4.1, `InterVariable.woff2` 352 Ko + Italic 388 Ko. La variable font est obligatoire : le theme utilise `font-weight: 425` et `font-optical-sizing` (axes wght/opsz).
+  - **Material Symbols Rounded** (pack d'icones, le `--iconPack` par defaut du theme) — exactement le meme fichier variable v267 que Google servait (~4,9 Mo, police d'icones complete a ligatures, non-subsettable). Meme poids de telechargement qu'avant pour les visiteurs, juste une source differente.
+- **Bonus** : un handshake DNS+TLS de moins au chargement, et les polices fonctionnent la ou Google est bloque (Pi-hole strict, reseaux d'entreprise). `font-display: swap` + fallbacks existants = le rendu ne bloque jamais. Zero action requise cote utilisateurs.
 
 ---
 
