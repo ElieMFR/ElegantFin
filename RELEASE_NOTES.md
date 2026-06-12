@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.41
+# ElegantFin Cinema Edition v1.2.42
 
 ## [English](#english) | [Francais](#francais)
 
@@ -403,6 +403,14 @@ Full theme audit (cascade conflicts, dead code, stale docs). Findings and fixes:
 - **Removed dead landscape safe-area rule part** — `.detailPagePrimaryContent` already has `padding-left/right: var(--sidePadding) !important` so the landscape env() rule never applied to it. Removed from the media query; container keeps it.
 - **Fixed misleading fallback comment** — The `@supports not (selector(:has(*)))` block was documented as "old Tizen fallback" but Tizen TVs use `.layout-tv` (own always-visible rule, no `:has()`). The fallback actually serves **Jellyfin Media Player** (old QtWebEngine desktop app) and iOS <15.4 — without it the series link would be invisible there. Comment now documents the real reason this block must stay.
 - Audit also confirmed clean: zero leftovers from the removed v1.2.32 overlay, single consolidated navigation mechanism, `prefers-reduced-motion` respected, TV rules `:has()`-free (old Tizen safe), versions in sync. Privacy note (informational): the Google Fonts `@import` sends visitor IPs to Google — self-hosting Inter is an option if GDPR ever becomes a concern.
+
+---
+
+#### v1.2.42 — Self-hosted Inter font (Google Fonts removed)
+
+- **Inter is now served from this repo instead of Google Fonts** — Previously every visitor's browser contacted `fonts.googleapis.com` + `fonts.gstatic.com` (IP, User-Agent and server URL sent to Google — the Munich court 2022 GDPR precedent). Since the theme CSS is already delivered by jsDelivr, hosting the font files in the repo eliminates Google **without adding any new third party**. Official `rsms/inter` v4.1 variable files (`InterVariable.woff2` 352 KB + Italic 388 KB) in `Theme/fonts/`, declared via `@font-face` with **relative URLs** (resolve against the CSS URL → works for `@main`, pinned tags and forks alike).
+- **Why the variable font is required** — the theme uses `font-weight: 425` (non-standard weight) and `font-optical-sizing`, which need the `wght`/`opsz` axes; static per-weight files wouldn't render them.
+- **Bonus**: one less DNS+TLS handshake at load, and the font keeps working where Google Fonts is blocked (strict Pi-hole, corporate networks). `font-display: swap` + existing `sans-serif` fallback = rendering never blocks. Zero action required from users.
 
 ---
 
@@ -812,6 +820,14 @@ Audit complet du theme (conflits de cascade, code mort, doc obsolete). Constats 
 - **Suppression de la partie morte du safe-area landscape** — `.detailPagePrimaryContent` a deja `padding-left/right: var(--sidePadding) !important`, la regle env() landscape ne s'y appliquait donc jamais. Retiree de la media query ; le container la garde.
 - **Correction du commentaire trompeur du fallback** — Le bloc `@supports not (selector(:has(*)))` etait documente comme "fallback vieux Tizen", mais les TV Tizen utilisent `.layout-tv` (regle toujours-visible dediee, sans `:has()`). Le fallback sert en realite **Jellyfin Media Player** (app desktop, vieux QtWebEngine) et iOS <15.4 — sans lui le lien serie y serait invisible. Le commentaire documente maintenant la vraie raison de garder ce bloc.
 - L'audit a aussi confirme : zero residu de l'overlay v1.2.32 supprime, mecanisme de navigation unique consolide, `prefers-reduced-motion` respecte, regles TV sans `:has()` (vieux Tizen safe), versions synchro. Note vie privee (informatif) : le `@import` Google Fonts envoie l'IP des visiteurs a Google — self-hoster Inter est une option si le RGPD devient un sujet.
+
+---
+
+#### v1.2.42 — Police Inter self-hostee (Google Fonts supprime)
+
+- **Inter est maintenant servie depuis ce repo au lieu de Google Fonts** — Avant, le navigateur de chaque visiteur contactait `fonts.googleapis.com` + `fonts.gstatic.com` (IP, User-Agent et URL du serveur envoyes a Google — precedent RGPD du tribunal de Munich 2022). Comme la CSS du theme est deja distribuee par jsDelivr, heberger les polices dans le repo elimine Google **sans ajouter aucun nouveau tiers**. Fichiers variables officiels `rsms/inter` v4.1 (`InterVariable.woff2` 352 Ko + Italic 388 Ko) dans `Theme/fonts/`, declares via `@font-face` avec des **URLs relatives** (resolues contre l'URL de la CSS → marche pour `@main`, les tags pinnes et les forks).
+- **Pourquoi la variable font est obligatoire** — le theme utilise `font-weight: 425` (graisse non-standard) et `font-optical-sizing`, qui necessitent les axes `wght`/`opsz` ; des fichiers statiques par graisse ne les rendraient pas.
+- **Bonus** : un handshake DNS+TLS de moins au chargement, et la police fonctionne la ou Google Fonts est bloque (Pi-hole strict, reseaux d'entreprise). `font-display: swap` + fallback `sans-serif` existant = le rendu ne bloque jamais. Zero action requise cote utilisateurs.
 
 ---
 

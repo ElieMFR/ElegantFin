@@ -1,11 +1,32 @@
-/* ElegantFin Cinema Edition v1.2.41 */
+/* ElegantFin Cinema Edition v1.2.42 */
 /* Enhanced with 27 cinematic modules — Netflix-inspired streaming experience */
 
-/* Inter Font Family */
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+/* Inter Variable Font — self-hosted (v1.2.42, remplace l'@import Google Fonts).
+   Servi depuis ce repo via jsDelivr : les URLs relatives se résolvent contre
+   l'URL de la CSS, donc ça marche pour @main, les tags pinnés et les forks.
+   Plus aucun tiers police : l'IP des visiteurs n'est plus envoyée à Google
+   (RGPD), et un DNS+TLS de moins au chargement. Fichiers officiels rsms/inter
+   v4.1 (axes wght 100-900 + opsz — requis pour font-weight: 425 et
+   font-optical-sizing du thème). font-display: swap = rendu jamais bloqué,
+   fallback sans-serif via la stack existante. */
+@font-face {
+    font-family: "Inter";
+    src: url("./fonts/InterVariable.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("./fonts/InterVariable-Italic.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+}
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.41";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.42";
 
     /* Base theme colors */
     color-scheme: dark;
