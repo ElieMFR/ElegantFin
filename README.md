@@ -314,4 +314,4 @@ Si un plugin n'est pas dans cette liste, le theme ne lui applique aucun override
 ### Credits
 
 - **Theme original :** [ElegantFin](https://github.com/lscambo13/ElegantFin) par [lscambo13](https://github.com/lscambo13)
-- **Edition Cinema :** Ameliore par [peterdu1109](https://github.com/peterdu1109)
+- **Edition Cinema :** Ameliore par [ElieMFR](https://github.com/ElieMFR)
