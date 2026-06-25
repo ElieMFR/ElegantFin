@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.45
+# ElegantFin Cinema Edition v1.2.46
 
 ## [English](#english) | [Francais](#francais)
 
@@ -439,6 +439,16 @@ Two TV issues reported after v1.2.44's white-outline rollout:
 
 - **Card focus outline now wraps the image only, not the title** — The focus outline was on `.cardBox`, which contains both the thumbnail and the title/subtitle text below it, so the white border boxed the whole card including the text. Moved the inset outline to `.cardScalable` (the image area), keeping the scale + depth shadow on `.cardBox`. The outline now hugs just the image.
 - **Active tab no longer looks "selected" when it isn't** — v1.2.44 gave the active section tab (current page) the same white outline as the focus state. On TV, where the active indicator and the remote cursor are both visible, the current tab looked permanently selected even when the remote was elsewhere. Active now uses a subtle white tint (`rgba(255,255,255,0.14)`) instead of an outline, so the bright outline is reserved exclusively for the focused element. Clear hierarchy: active = faint tint, focus = bright outline + glow.
+
+---
+
+#### v1.2.46 — TV button focus: fixed white-button bug + much more visible
+
+Follow-up to the v1.2.44 monochrome rollout — the focus on detail-page buttons wasn't working well:
+
+- **🔴 Fixed the white Play/Resume button bug** — v1.2.44's `.show-focus:focus { background-color: transparent }` rule (meant for tabs/nav) also hit the white `.btnPlay` button, turning it transparent on focus so the bluish backdrop showed through ("Reprendre became blue"). And a white outline on a white button is invisible anyway. The button now keeps its white background and gets a **glow + scale (lift)** instead — like Apple TV, it lights up and grows toward you. Clearly visible without needing an (invisible) outline.
+- **Action icons + header icons much more visible** — The shuffle/check/heart/more buttons and the top header icons (bell, cast, search) had only a thin 2px outline that got lost at TV distance. Now they get a white outline **+ stronger glow + scale 1.12** so they clearly pop when focused.
+- **Three focus treatments by button type** — white button = glow + lift (no outline, it'd be invisible); icon buttons = outline + glow + scale; generic list/dialog buttons = outline + glow (no scale, so layout doesn't jump). All white, all monochrome, all on `.layout-tv` only — desktop/mobile unchanged.
 
 ---
 
@@ -884,6 +894,16 @@ Deux soucis TV remontes apres le passage au contour blanc de v1.2.44 :
 
 - **Le contour du focus entoure maintenant l'image seule, plus le titre** — Le contour etait sur `.cardBox`, qui contient la vignette ET le texte titre/sous-titre en dessous, donc la bordure blanche encadrait toute la card y compris le texte. Contour inset deplace sur `.cardScalable` (la zone image), le scale + l'ombre de profondeur restent sur `.cardBox`. Le contour epouse maintenant juste l'image.
 - **L'onglet actif ne parait plus "selectionne" a tort** — v1.2.44 donnait a l'onglet actif (page courante) le meme contour blanc que l'etat focus. Sur TV, ou l'indicateur d'actif et le curseur telecommande sont visibles en meme temps, l'onglet courant paraissait selectionne en permanence meme quand la telecommande etait ailleurs. L'actif utilise maintenant une teinte blanche discrete (`rgba(255,255,255,0.14)`) au lieu d'un contour, le contour vif est donc reserve exclusivement a l'element focus. Hierarchie claire : actif = teinte legere, focus = contour vif + lueur.
+
+---
+
+#### v1.2.46 — Focus boutons TV : bug bouton blanc corrige + bien plus visible
+
+Suite du passage monochrome v1.2.44 — le focus des boutons de la page detail ne fonctionnait pas bien :
+
+- **🔴 Bug du bouton blanc Lire/Reprendre corrige** — La regle v1.2.44 `.show-focus:focus { background-color: transparent }` (prevue pour les onglets/nav) touchait aussi le bouton blanc `.btnPlay`, le rendant transparent au focus, laissant transparaitre le backdrop bleuté ("Reprendre devenait bleu"). Et un contour blanc sur un bouton blanc est invisible de toute facon. Le bouton garde maintenant son fond blanc et recoit une **lueur + un zoom (lift)** a la place — comme Apple TV, il s'illumine et grandit vers toi. Bien visible sans avoir besoin d'un contour (invisible).
+- **Icones action + header bien plus visibles** — Les boutons aleatoire/vu/favori/plus et les icones du header (cloche, cast, recherche) n'avaient qu'un fin contour 2px qui se perdait a distance TV. Ils recoivent maintenant un contour blanc **+ lueur renforcee + zoom 1.12** pour ressortir clairement au focus.
+- **Trois traitements de focus selon le type de bouton** — bouton blanc = lueur + lift (pas de contour, il serait invisible) ; boutons icone = contour + lueur + zoom ; boutons generiques liste/dialogue = contour + lueur (sans zoom, pour ne pas faire sauter la mise en page). Tout en blanc, tout monochrome, tout sur `.layout-tv` uniquement — desktop/mobile inchanges.
 
 ---
 

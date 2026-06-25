@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.45 */
+/* ElegantFin Cinema Edition v1.2.46 */
 /* Enhanced with 27 cinematic modules — Netflix-inspired streaming experience */
 
 /* Inter Variable Font — self-hosted (v1.2.42, remplace l'@import Google Fonts).
@@ -26,7 +26,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.45";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.46";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -365,14 +365,55 @@ body {
         0 0 16px rgba(255, 255, 255, 0.3);             /* glow blanc subtle */
 }
 
-/* Boutons : focus blanc cohérent */
-.layout-tv .emby-button:focus-visible,
+/* ============================================================
+   v1.2.46 — Focus boutons TV : 3 traitements selon le type
+   (un contour blanc est invisible sur un bouton déjà blanc) */
+
+/* 1) Bouton blanc Lire/Reprendre — reste BLANC, s'illumine + zoom (lift).
+   Corrige le bug v1.2.44 où le bouton devenait transparent (bleu du
+   backdrop visible) à cause de la règle .show-focus:focus { transparent }. */
 .layout-tv .btnPlay:focus-visible,
-.layout-tv .detailButton:focus-visible {
+.layout-tv .btnPlay.show-focus:focus {
+    background-color: #fff !important;
+    color: #000 !important;
+    outline: none !important;
+    transform: scale(1.06);
+    box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.55),
+        0 0 22px rgba(255, 255, 255, 0.45),
+        0 6px 18px rgba(0, 0, 0, 0.5);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    z-index: 10;
+    position: relative;
+}
+
+/* 2) Icônes d'action (page détail) + icônes du header — contour blanc +
+   lueur + zoom renforcé pour être bien visibles à distance TV. */
+.layout-tv .detailButton:not(.btnPlay):focus-visible,
+.layout-tv .detailButton:not(.btnPlay).show-focus:focus,
+.layout-tv .headerButton:focus-visible,
+.layout-tv .headerButton.show-focus:focus,
+.layout-tv .paper-icon-button-light:focus-visible,
+.layout-tv .paper-icon-button-light.show-focus:focus {
+    background-color: transparent !important;
+    color: #fff !important;
     outline: none !important;
     box-shadow:
-        inset 0 0 0 2px rgba(255, 255, 255, 0.95),    /* bordure interne blanche 2px */
-        0 0 12px rgba(255, 255, 255, 0.25);            /* glow blanc subtle */
+        inset 0 0 0 2px rgba(255, 255, 255, 0.95),
+        0 0 16px rgba(255, 255, 255, 0.45);
+    transform: scale(1.12);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    z-index: 10;
+    position: relative;
+}
+
+/* 3) Boutons génériques restants — contour blanc + lueur, sans zoom
+   (un bouton de liste/dialogue qui zoome ferait sauter la mise en page). */
+.layout-tv .emby-button:not(.btnPlay):not(.detailButton):not(.headerButton):not(.paper-icon-button-light):focus-visible {
+    outline: none !important;
+    box-shadow:
+        inset 0 0 0 2px rgba(255, 255, 255, 0.95),
+        0 0 12px rgba(255, 255, 255, 0.3);
     transition: box-shadow 0.15s ease;
 }
 
@@ -383,11 +424,11 @@ body {
     color: var(--uiAccentColor);
 }
 
-/* v1.2.44: focus boutons/onglets — fond bleu plein + contour violet remplacés
-   par un contour blanc + lueur (niveau "focus" du système monochrome unifié).
-   Plus de "grand carré" coloré : fond transparent, l'image/contenu reste visible. */
-.emby-button.show-focus:focus,
-.paper-icon-button-light.show-focus:focus,
+/* v1.2.46 : focus onglets + boutons génériques (le bouton blanc, les icônes
+   d'action et du header ont leur traitement dédié plus haut). Contour blanc +
+   lueur, fond transparent. Le :not(.btnPlay) etc. évite que cette règle ré-
+   applique le fond transparent au bouton blanc (le bug du backdrop bleu). */
+.emby-button.show-focus:focus:not(.btnPlay):not(.detailButton):not(.headerButton):not(.paper-icon-button-light),
 .emby-tabs .emby-button.show-focus:focus {
     background-color: transparent !important;
     color: #fff !important;
