@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.42
+# ElegantFin Cinema Edition v1.2.43
 
 ## [English](#english) | [Francais](#francais)
 
@@ -412,6 +412,12 @@ Full theme audit (cascade conflicts, dead code, stale docs). Findings and fixes:
   - **Inter** (text) — official `rsms/inter` v4.1 variable files, `InterVariable.woff2` 352 KB + Italic 388 KB. The variable font is required: the theme uses `font-weight: 425` and `font-optical-sizing` (wght/opsz axes).
   - **Material Symbols Rounded** (icon pack, the theme's default `--iconPack`) — the exact same v267 variable file Google was serving (~4.9 MB, complete ligature-based icon font, not subsettable). Same download size as before for visitors, just a different source.
 - **Bonus**: one less DNS+TLS handshake at load, and fonts keep working where Google is blocked (strict Pi-hole, corporate networks). `font-display: swap` + existing fallbacks = rendering never blocks. Zero action required from users.
+
+---
+
+#### v1.2.43 — Mobile: long series titles no longer clipped on the right
+
+- **Fixed CSS grid blowout on the detail title** — On mobile, long series titles (e.g. "From Overshadowed to Overpowered: Second Reincarnation of a Talentless Sage") were clipped mid-word at the right edge. Root cause: `.infoWrapper` is a `display: grid`, and grid items default to `min-width: auto` — meaning the title container refused to shrink below its content's min-content width, overflowing the viewport. The existing `max-width: 100%` couldn't help because it resolves against an already-blown-out column. Fix: `min-width: 0` on `.nameContainer`/h1/h3 (lets them shrink) + `grid-template-columns: minmax(0, 1fr)` on `.infoWrapper` (caps the column at viewport width). The title now wraps normally at word boundaries within the screen. Mobile-only; desktop/TV unchanged.
 
 ---
 
@@ -830,6 +836,12 @@ Audit complet du theme (conflits de cascade, code mort, doc obsolete). Constats 
   - **Inter** (texte) — fichiers variables officiels `rsms/inter` v4.1, `InterVariable.woff2` 352 Ko + Italic 388 Ko. La variable font est obligatoire : le theme utilise `font-weight: 425` et `font-optical-sizing` (axes wght/opsz).
   - **Material Symbols Rounded** (pack d'icones, le `--iconPack` par defaut du theme) — exactement le meme fichier variable v267 que Google servait (~4,9 Mo, police d'icones complete a ligatures, non-subsettable). Meme poids de telechargement qu'avant pour les visiteurs, juste une source differente.
 - **Bonus** : un handshake DNS+TLS de moins au chargement, et les polices fonctionnent la ou Google est bloque (Pi-hole strict, reseaux d'entreprise). `font-display: swap` + fallbacks existants = le rendu ne bloque jamais. Zero action requise cote utilisateurs.
+
+---
+
+#### v1.2.43 — Mobile : les longs titres de serie ne sont plus coupes a droite
+
+- **Correction du "grid blowout" sur le titre de la page detail** — Sur mobile, les longs titres de serie (ex. "From Overshadowed to Overpowered: Second Reincarnation of a Talentless Sage") etaient coupes en plein milieu d'un mot au bord droit. Cause racine : `.infoWrapper` est une `display: grid`, et les items de grille ont `min-width: auto` par defaut — le conteneur du titre refusait donc de retrecir sous la largeur min-content de son contenu, debordant du viewport. Le `max-width: 100%` existant ne pouvait pas aider car il se calcule contre une colonne deja debordee. Fix : `min-width: 0` sur `.nameContainer`/h1/h3 (autorise le retrecissement) + `grid-template-columns: minmax(0, 1fr)` sur `.infoWrapper` (plafonne la colonne a la largeur du viewport). Le titre wrap maintenant normalement aux espaces dans l'ecran. Mobile uniquement ; desktop/TV inchanges.
 
 ---
 

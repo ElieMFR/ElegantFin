@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.42 */
+/* ElegantFin Cinema Edition v1.2.43 */
 /* Enhanced with 27 cinematic modules — Netflix-inspired streaming experience */
 
 /* Inter Variable Font — self-hosted (v1.2.42, remplace l'@import Google Fonts).
@@ -26,7 +26,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.42";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.43";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -1824,6 +1824,20 @@ body {
     max-width: 100%;
     overflow-wrap: anywhere;
     word-break: break-word;
+    /* v1.2.43: min-width:0 casse le "grid blowout". .infoWrapper est une grille
+       et ses items (dont .nameContainer) ont min-width:auto par defaut, donc
+       ils refusent de retrecir sous la largeur min-content de leur contenu —
+       un titre long deborde alors a droite et est coupe en plein milieu d'un mot
+       (ex: "Overpow[ered]"). min-width:0 autorise le retrecissement → le texte
+       wrap normalement aux espaces dans la largeur de l'ecran. */
+    min-width: 0;
+}
+
+/* v1.2.43: la grille .infoWrapper force une colonne minmax(0, 1fr) sur mobile
+   pour qu'elle ne puisse jamais depasser la largeur du viewport (fix racine
+   du blowout, complementaire au min-width:0 ci-dessus). */
+.layout-mobile .infoWrapper {
+    grid-template-columns: minmax(0, 1fr);
 }
 
 .layout-mobile .detailImageContainer {
