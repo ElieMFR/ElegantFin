@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.43
+# ElegantFin Cinema Edition v1.2.44
 
 ## [English](#english) | [Francais](#francais)
 
@@ -418,6 +418,18 @@ Full theme audit (cascade conflicts, dead code, stale docs). Findings and fixes:
 #### v1.2.43 — Mobile: long series titles no longer clipped on the right
 
 - **Fixed CSS grid blowout on the detail title** — On mobile, long series titles (e.g. "From Overshadowed to Overpowered: Second Reincarnation of a Talentless Sage") were clipped mid-word at the right edge. Root cause: `.infoWrapper` is a `display: grid`, and grid items default to `min-width: auto` — meaning the title container refused to shrink below its content's min-content width, overflowing the viewport. The existing `max-width: 100%` couldn't help because it resolves against an already-blown-out column. Fix: `min-width: 0` on `.nameContainer`/h1/h3 (lets them shrink) + `grid-template-columns: minmax(0, 1fr)` on `.infoWrapper` (caps the column at viewport width). The title now wraps normally at word boundaries within the screen. Mobile-only; desktop/TV unchanged.
+
+---
+
+#### v1.2.44 — Unified monochrome white selection (no more filled squares, no more scattered violet/blue)
+
+Theme-wide consistency pass on every selection/focus state and progress bar. Previously the theme mixed three accent treatments with no clear role — white (Play button, OSD scrubber), violet (`--uiAccentColor`: some focus, some progress, accent text) and blue (`--highlightOutlineColor`: TV focus fills, list/guide focus). The result looked like layered eras rather than one design. Now: a single white-on-dark monochrome system.
+
+- **Selection = white outline, never a filled block.** On TV, focusing a tab/button/list-row/guide-cell/alpha-letter previously filled it with a solid blue (or white) square. Now everything uses a transparent background with a crisp 2px white inset border. Two clear levels: **active** (current tab/page) = white outline; **focus** (remote/keyboard cursor) = white outline + subtle glow (+ scale on cards) so the two are distinguishable when both are on screen.
+- **Applies uniformly across TV, mobile and PC.** The active section tab (Films/Séries/Musique) went from a solid white pill to a white outline on all platforms; PC keyboard `:focus-visible` rings went from violet to white; the LiveTV Guide channel/program focus went from blue fill to white outline.
+- **Progress bars finished in white.** The card progress bars and OSD scrubber were already white, but the `<progress>` element and `.playbackProgress` indicator were still violet. Now white everywhere — the "White Progress Bars" module is finally complete.
+- **Remaining violet neutralized** on minor accents (save-button text, active-button text, progress label, loading spinner) → white.
+- **Deliberately kept colored**: the browser text-selection highlight (a white highlight would make selected text invisible) and form-input focus borders (blue, the standard web convention for data-entry fields). These are not navigation-selection states.
 
 ---
 
@@ -842,6 +854,18 @@ Audit complet du theme (conflits de cascade, code mort, doc obsolete). Constats 
 #### v1.2.43 — Mobile : les longs titres de serie ne sont plus coupes a droite
 
 - **Correction du "grid blowout" sur le titre de la page detail** — Sur mobile, les longs titres de serie (ex. "From Overshadowed to Overpowered: Second Reincarnation of a Talentless Sage") etaient coupes en plein milieu d'un mot au bord droit. Cause racine : `.infoWrapper` est une `display: grid`, et les items de grille ont `min-width: auto` par defaut — le conteneur du titre refusait donc de retrecir sous la largeur min-content de son contenu, debordant du viewport. Le `max-width: 100%` existant ne pouvait pas aider car il se calcule contre une colonne deja debordee. Fix : `min-width: 0` sur `.nameContainer`/h1/h3 (autorise le retrecissement) + `grid-template-columns: minmax(0, 1fr)` sur `.infoWrapper` (plafonne la colonne a la largeur du viewport). Le titre wrap maintenant normalement aux espaces dans l'ecran. Mobile uniquement ; desktop/TV inchanges.
+
+---
+
+#### v1.2.44 — Selection monochrome blanche unifiee (fini les carres pleins et le violet/bleu eparpille)
+
+Passe de coherence sur tous les etats de selection/focus et les barres de progression. Avant, le theme melangeait trois traitements d'accent sans role clair — blanc (bouton Lire, scrubber OSD), violet (`--uiAccentColor` : certains focus, certaines barres, du texte) et bleu (`--highlightOutlineColor` : fonds focus TV, focus listes/guide). Resultat : un empilement d'epoques plutot qu'un design unique. Maintenant : un seul systeme monochrome blanc-sur-sombre.
+
+- **Selection = contour blanc, jamais un bloc plein.** Sur TV, surligner un onglet/bouton/ligne de liste/cellule de guide/lettre A-Z le remplissait d'un carre bleu (ou blanc) plein. Maintenant tout utilise un fond transparent avec un contour blanc inset 2px net. Deux niveaux clairs : **actif** (onglet/page courante) = contour blanc ; **focus** (curseur telecommande/clavier) = contour blanc + legere lueur (+ zoom sur les cards) pour les distinguer quand les deux sont a l'ecran.
+- **Uniforme sur TV, mobile et PC.** L'onglet actif (Films/Series/Musique) est passe de la pastille blanche pleine au contour blanc sur toutes les plateformes ; le focus clavier PC `:focus-visible` est passe du violet au blanc ; le focus du Guide LiveTV (chaines/programmes) est passe du fond bleu au contour blanc.
+- **Barres de progression finies en blanc.** Les barres des cards et le scrubber OSD etaient deja blancs, mais l'element `<progress>` et l'indicateur `.playbackProgress` etaient encore violets. Maintenant blanc partout — le module "White Progress Bars" est enfin complet.
+- **Violet restant neutralise** sur les accents mineurs (texte bouton enregistrer, texte bouton actif, label de progression, spinner de chargement) → blanc.
+- **Garde delibérement une couleur** : le surlignage du texte selectionne (un surlignage blanc rendrait le texte invisible) et le focus des champs de formulaire (bleu, la convention web standard pour la saisie). Ce ne sont pas des etats de selection-navigation.
 
 ---
 

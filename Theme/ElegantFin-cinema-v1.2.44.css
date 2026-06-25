@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.43 */
+/* ElegantFin Cinema Edition v1.2.44 */
 /* Enhanced with 27 cinematic modules — Netflix-inspired streaming experience */
 
 /* Inter Variable Font — self-hosted (v1.2.42, remplace l'@import Google Fonts).
@@ -26,7 +26,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.43";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.44";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -332,9 +332,9 @@ body {
 }
 
 .card:focus-visible .cardBox {
-    outline: 0.12em solid var(--uiAccentColor);
+    outline: 0.12em solid rgba(255, 255, 255, 0.95);
     outline-offset: 0.1em;
-    box-shadow: 0 0 0.8em var(--activeColorAlpha);
+    box-shadow: 0 0 0.8em rgba(255, 255, 255, 0.3);
 }
 
 /* v1.2.35: TV focus passé du violet (var(--uiAccentColor)) au BLANC.
@@ -375,16 +375,18 @@ body {
     color: var(--uiAccentColor);
 }
 
+/* v1.2.44: focus boutons/onglets — fond bleu plein + contour violet remplacés
+   par un contour blanc + lueur (niveau "focus" du système monochrome unifié).
+   Plus de "grand carré" coloré : fond transparent, l'image/contenu reste visible. */
 .emby-button.show-focus:focus,
 .paper-icon-button-light.show-focus:focus,
 .emby-tabs .emby-button.show-focus:focus {
-    background-color: var(--highlightOutlineColor) !important;
+    background-color: transparent !important;
     color: #fff !important;
-}
-
-.emby-tabs .emby-button.show-focus:focus {
-    outline: 2px solid var(--uiAccentColor);
-    outline-offset: -2px;
+    outline: none !important;
+    box-shadow:
+        inset 0 0 0 2px rgba(255, 255, 255, 0.95),
+        0 0 12px rgba(255, 255, 255, 0.3);
 }
 
 [dir="ltr"] .itemsContainer > .card > .cardBox {
@@ -2156,7 +2158,7 @@ html,
 }
 
 .buttonActive {
-    color: var(--uiAccentColor) !important;
+    color: #fff !important;
 }
 
 #divRunningTasks progress {
@@ -2202,17 +2204,19 @@ html,
     background-color: var(--darkerGradientPoint);
 }
 
+/* v1.2.44 : barres de progression violettes → blanches, pour finir le module
+   "White Progress Bars" (les barres des cards étaient déjà blanches). */
 .playbackProgress > div {
-    background-color: var(--uiAccentColor);
+    background-color: #fff;
 }
 
 ::-moz-progress-bar {
-    background: var(--uiAccentColor) !important;
+    background: #fff !important;
     border-radius: var(--smallRadius) var(--smallRadius) var(--smallRadius) 0;
 }
 
 ::-webkit-progress-value {
-    background: var(--uiAccentColor) !important;
+    background: #fff !important;
     border-radius: var(--smallRadius) var(--smallRadius) var(--smallRadius) 0;
 }
 
@@ -2225,7 +2229,7 @@ progress,
 }
 
 progress + span {
-    color: var(--uiAccentColor) !important;
+    color: #fff !important;
 }
 
 .mdl-spinner__circle {
@@ -2364,7 +2368,7 @@ progress + span {
 }
 
 .btnHeaderSave.button-flat {
-    color: var(--uiAccentColor) !important;
+    color: #fff !important;
     gap: 0.3em;
     border-radius: var(--smallRadius);
 }
@@ -2960,33 +2964,33 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
     transition: all 0.2s var(--ease-smooth) !important;
 }
 
-/* Focus-visible for Cinema Edition buttons */
+/* Focus-visible (clavier) — v1.2.44 : violet → blanc pour cohérence monochrome */
 .btnPlay.detailButton:focus-visible {
-    outline: 2px solid var(--uiAccentColor);
+    outline: 2px solid rgba(255, 255, 255, 0.95);
     outline-offset: 3px;
-    box-shadow: 0 0 0 4px var(--activeColorAlpha);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
 }
 
 .detailButton:not(.btnPlay):focus-visible {
-    outline: 2px solid var(--uiAccentColor);
+    outline: 2px solid rgba(255, 255, 255, 0.95);
     outline-offset: 2px;
     background: rgba(255, 255, 255, 0.1) !important;
 }
 
 .sectionTabs .emby-tab-button:focus-visible {
-    outline: 2px solid var(--uiAccentColor);
+    outline: 2px solid rgba(255, 255, 255, 0.95);
     outline-offset: 2px;
 }
 
 .skip-button:focus-visible {
-    outline: 2px solid var(--uiAccentColor);
+    outline: 2px solid rgba(255, 255, 255, 0.95);
     outline-offset: 3px;
 }
 
 #loginPage .button-submit:focus-visible {
     outline: 2px solid #fff;
     outline-offset: 3px;
-    box-shadow: 0 0 0 4px var(--activeColorAlpha);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
 }
 
 .btnPlay:not(.formDialogFooterItem):not(.play-button):after {
@@ -3208,7 +3212,9 @@ div[data-role="controlgroup"] a.ui-btn-active {
 }
 
 .listItem:focus {
-    background: var(--highlightOutlineColor);
+    background: transparent;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.95);
+    border-radius: 0.7em;
 }
 
 .listItem:active,
@@ -3528,7 +3534,8 @@ div[data-role="controlgroup"] a.ui-btn-active {
 }
 
 .alphaPickerButton-tv:focus {
-    background-color: var(--highlightOutlineColor);
+    background-color: transparent;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.95);
     transform: scale(1.75);
 }
 
@@ -4174,8 +4181,11 @@ div[data-role="controlgroup"] a.ui-btn-active {
     padding-top: 3em !important;
 }
 
+/* v1.2.44 : focus du Guide LiveTV (chaînes + programmes) — fond bleu plein
+   remplacé par contour blanc, cohérent avec le reste du système monochrome. */
 .guide-channelHeaderCell:focus {
-    background-color: var(--highlightOutlineColor) !important;
+    background-color: transparent !important;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.95);
 }
 
 .programCell:focus {
@@ -4183,7 +4193,8 @@ div[data-role="controlgroup"] a.ui-btn-active {
 }
 
 .programCell:focus > .guideProgramName {
-    background-color: var(--highlightOutlineColor);
+    background-color: transparent;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.95);
 }
 
 .emby-select-iconbutton {
@@ -4277,7 +4288,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 }
 
 .progressring-spiner {
-    border-color: var(--uiAccentColor);
+    border-color: #fff;
 }
 
 .skinHeader.focuscontainer-x.skinHeader-withBackground.skinHeader-blurred.semiTransparent.noHeaderRight {
@@ -4809,11 +4820,15 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     color: #fff !important;
 }
 
+/* v1.2.44: onglet actif — pastille blanche pleine remplacée par un contour blanc
+   (niveau "actif" du système monochrome). Pas de lueur ici : c'est ce qui le
+   distingue de l'onglet simplement focus (qui, lui, a la lueur). */
 .sectionTabs .emby-tab-button-active {
     margin: 0.25em 0.5em;
-    background-color: #fff !important;
-    color: #000 !important;
+    background-color: transparent !important;
+    color: #fff !important;
     font-weight: 600 !important;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.95);
 }
 
 /* this increases page top padding when section tabs are expanded */
