@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.44
+# ElegantFin Cinema Edition v1.2.45
 
 ## [English](#english) | [Francais](#francais)
 
@@ -430,6 +430,15 @@ Theme-wide consistency pass on every selection/focus state and progress bar. Pre
 - **Progress bars finished in white.** The card progress bars and OSD scrubber were already white, but the `<progress>` element and `.playbackProgress` indicator were still violet. Now white everywhere — the "White Progress Bars" module is finally complete.
 - **Remaining violet neutralized** on minor accents (save-button text, active-button text, progress label, loading spinner) → white.
 - **Deliberately kept colored**: the browser text-selection highlight (a white highlight would make selected text invisible) and form-input focus borders (blue, the standard web convention for data-entry fields). These are not navigation-selection states.
+
+---
+
+#### v1.2.45 — TV selection refinements (image-only outline + active ≠ focus)
+
+Two TV issues reported after v1.2.44's white-outline rollout:
+
+- **Card focus outline now wraps the image only, not the title** — The focus outline was on `.cardBox`, which contains both the thumbnail and the title/subtitle text below it, so the white border boxed the whole card including the text. Moved the inset outline to `.cardScalable` (the image area), keeping the scale + depth shadow on `.cardBox`. The outline now hugs just the image.
+- **Active tab no longer looks "selected" when it isn't** — v1.2.44 gave the active section tab (current page) the same white outline as the focus state. On TV, where the active indicator and the remote cursor are both visible, the current tab looked permanently selected even when the remote was elsewhere. Active now uses a subtle white tint (`rgba(255,255,255,0.14)`) instead of an outline, so the bright outline is reserved exclusively for the focused element. Clear hierarchy: active = faint tint, focus = bright outline + glow.
 
 ---
 
@@ -866,6 +875,15 @@ Passe de coherence sur tous les etats de selection/focus et les barres de progre
 - **Barres de progression finies en blanc.** Les barres des cards et le scrubber OSD etaient deja blancs, mais l'element `<progress>` et l'indicateur `.playbackProgress` etaient encore violets. Maintenant blanc partout — le module "White Progress Bars" est enfin complet.
 - **Violet restant neutralise** sur les accents mineurs (texte bouton enregistrer, texte bouton actif, label de progression, spinner de chargement) → blanc.
 - **Garde delibérement une couleur** : le surlignage du texte selectionne (un surlignage blanc rendrait le texte invisible) et le focus des champs de formulaire (bleu, la convention web standard pour la saisie). Ce ne sont pas des etats de selection-navigation.
+
+---
+
+#### v1.2.45 — Raffinements selection TV (contour sur l'image seule + actif ≠ focus)
+
+Deux soucis TV remontes apres le passage au contour blanc de v1.2.44 :
+
+- **Le contour du focus entoure maintenant l'image seule, plus le titre** — Le contour etait sur `.cardBox`, qui contient la vignette ET le texte titre/sous-titre en dessous, donc la bordure blanche encadrait toute la card y compris le texte. Contour inset deplace sur `.cardScalable` (la zone image), le scale + l'ombre de profondeur restent sur `.cardBox`. Le contour epouse maintenant juste l'image.
+- **L'onglet actif ne parait plus "selectionne" a tort** — v1.2.44 donnait a l'onglet actif (page courante) le meme contour blanc que l'etat focus. Sur TV, ou l'indicateur d'actif et le curseur telecommande sont visibles en meme temps, l'onglet courant paraissait selectionne en permanence meme quand la telecommande etait ailleurs. L'actif utilise maintenant une teinte blanche discrete (`rgba(255,255,255,0.14)`) au lieu d'un contour, le contour vif est donc reserve exclusivement a l'element focus. Hierarchie claire : actif = teinte legere, focus = contour vif + lueur.
 
 ---
 

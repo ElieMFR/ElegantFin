@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.44 */
+/* ElegantFin Cinema Edition v1.2.45 */
 /* Enhanced with 27 cinematic modules — Netflix-inspired streaming experience */
 
 /* Inter Variable Font — self-hosted (v1.2.42, remplace l'@import Google Fonts).
@@ -26,7 +26,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.44";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.45";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -344,17 +344,25 @@ body {
    - L'identité chaude/dark Netflix/Disney+
    Blanc 95% opacity = très visible à distance TV + cohérent avec le reste
    du thème. Box-shadow inset conservé de v1.2.34 (jamais clipped). */
+/* v1.2.45 : contour blanc du focus déplacé de .cardBox vers .cardScalable
+   (= la zone IMAGE uniquement). Avant, .cardBox englobait image + titre, donc
+   le contour entourait aussi le texte sous la vignette. Le scale + l'ombre de
+   profondeur restent sur .cardBox (toute la card s'agrandit ensemble). */
 .layout-tv .card:focus-visible .cardBox,
 .layout-tv .card:focus .cardBox {
     outline: none !important;
-    box-shadow:
-        inset 0 0 0 3px rgba(255, 255, 255, 0.95),    /* bordure blanche franche */
-        0 0 16px rgba(255, 255, 255, 0.3),             /* glow blanc subtle */
-        0 4px 20px rgba(0, 0, 0, 0.5);                 /* shadow profondeur */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);        /* profondeur seulement */
     transform: scale(1.03);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
     z-index: 10;
     position: relative;
+}
+
+.layout-tv .card:focus-visible .cardScalable,
+.layout-tv .card:focus .cardScalable {
+    box-shadow:
+        inset 0 0 0 3px rgba(255, 255, 255, 0.95),    /* contour blanc — image seule */
+        0 0 16px rgba(255, 255, 255, 0.3);             /* glow blanc subtle */
 }
 
 /* Boutons : focus blanc cohérent */
@@ -4820,15 +4828,16 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     color: #fff !important;
 }
 
-/* v1.2.44: onglet actif — pastille blanche pleine remplacée par un contour blanc
-   (niveau "actif" du système monochrome). Pas de lueur ici : c'est ce qui le
-   distingue de l'onglet simplement focus (qui, lui, a la lueur). */
+/* v1.2.45: onglet ACTIF (page courante) = teinte blanche discrète + texte blanc
+   gras, PAS un contour. En v1.2.44 l'actif avait le même contour blanc que le
+   focus → sur TV, l'onglet courant paraissait "sélectionné" en permanence alors
+   que la télécommande était ailleurs. La teinte le marque comme "courant" sans
+   imiter le contour vif du focus. Hiérarchie : actif = teinte, focus = contour. */
 .sectionTabs .emby-tab-button-active {
     margin: 0.25em 0.5em;
-    background-color: transparent !important;
+    background-color: rgba(255, 255, 255, 0.14) !important;
     color: #fff !important;
     font-weight: 600 !important;
-    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.95);
 }
 
 /* this increases page top padding when section tabs are expanded */
