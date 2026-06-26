@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.48
+# ElegantFin Cinema Edition v1.2.49
 
 ## [English](#english) | [Francais](#francais)
 
@@ -478,6 +478,17 @@ The thin white outline on focused icons was weak at TV distance. Turns out no ma
 - **Play/Resume button** — since its scale is killed by the perf rule on TV, its **glow was strengthened** (4px ring + 30px halo) so it pops without depending on zoom (Apple TV lift, glow-forward).
 
 All `.layout-tv` only; desktop keyboard focus and mobile unchanged. Focus stays white, active stays violet — just expressed as a fill where an outline was too faint.
+
+---
+
+#### v1.2.49 — Card focus: fixed the "weird zoom" + Netflix sibling-dimming on TV
+
+Two card-focus issues on TV, both kept strictly within the theme's colours (white focus, no new colour):
+
+- **🔴 Fixed the "weird zoom" on cards** — focusing a card scaled the whole `.cardBox` to 1.03, but the remote also triggers `:hover`, which scaled the child `.cardScalable` (the image) to 1.06 **on top**. Parent × child transforms multiply (≈1.09 on the image, only 1.03 on the title), so the poster bulged out of sync with its frame/title. The image's own scale is now neutralised on TV — only the card pops, as **one unit** (image + outline + title together) at a clean 1.05. Applies to posters and round cast/director cards alike.
+- **✨ Netflix sibling-dimming now works on TV** — the "spotlight" effect (focused card stays bright, the rest of the row fades) previously existed on **desktop only** (driven by `:hover`). It's now also driven by remote **focus** on TV: siblings drop to `opacity: 0.5` so the cursor is obvious from across the room. Opacity only — no `filter: saturate` (too GPU-heavy for TV, banned by the perf section). Scoped to `.emby-scroller` so library grids aren't touched, and gated by `:has()` support so older TVs simply get no effect (nothing breaks). No colour added.
+
+Cards can't use the v1.2.48 solid fill (it would hide the poster/face), so the right pattern for cards stays outline + clean pop — exactly what Netflix/Disney+ do.
 
 ---
 
@@ -962,6 +973,17 @@ Le contour blanc fin sur les icones focus etait faible a distance TV. En fait au
 - **Bouton Lire/Reprendre** — comme son zoom est tue par la regle perf sur TV, sa **lueur a ete renforcee** (anneau 4px + halo 30px) pour ressortir sans dependre du zoom (lift Apple TV, axe sur la lueur).
 
 Tout sur `.layout-tv` uniquement ; focus clavier desktop et mobile inchanges. Le focus reste blanc, l'actif reste violet — juste exprime en plein la ou un contour etait trop faible.
+
+---
+
+#### v1.2.49 — Focus des cards : correction du "zoom bizarre" + dimming des voisines facon Netflix sur TV
+
+Deux soucis de focus des cards sur TV, tous deux strictement dans les couleurs du theme (focus blanc, aucune nouvelle couleur) :
+
+- **🔴 "Zoom bizarre" des cards corrige** — le focus scalait toute la `.cardBox` a 1.03, mais la telecommande declenche aussi le `:hover`, qui scalait l'enfant `.cardScalable` (l'image) a 1.06 **en plus**. Les transforms parent × enfant se multiplient (≈1.09 sur l'image, seulement 1.03 sur le titre) : l'affiche gonflait en decalage avec son cadre/titre. Le scale propre de l'image est maintenant neutralise sur TV — seule la card pop, **d'un seul tenant** (image + contour + titre ensemble) a un 1.05 propre. S'applique aux affiches comme aux cards rondes cast/realisateur.
+- **✨ Le dimming Netflix des voisines marche maintenant sur TV** — l'effet "spotlight" (la card ciblee reste vive, le reste de la rangee s'attenue) existait **sur PC uniquement** (pilote par `:hover`). Il est maintenant aussi pilote par le **focus** telecommande sur TV : les voisines passent a `opacity: 0.5` pour qu'on repere le curseur depuis le canape. Opacity seule — pas de `filter: saturate` (trop lourd GPU pour la TV, banni par la section perf). Scope a `.emby-scroller` pour ne pas toucher les grilles de bibliotheque, et conditionne au support de `:has()` pour que les vieilles TV n'aient simplement aucun effet (rien ne casse). Aucune couleur ajoutee.
+
+Les cards ne peuvent pas utiliser la pastille pleine de v1.2.48 (ca cacherait l'affiche/le visage), donc le bon pattern pour les cards reste contour + pop propre — exactement ce que font Netflix/Disney+.
 
 ---
 

@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.48 */
+/* ElegantFin Cinema Edition v1.2.49 */
 /* Enhanced with 27 cinematic modules — Netflix-inspired streaming experience */
 
 /* Inter Variable Font — self-hosted (v1.2.42, remplace l'@import Google Fonts).
@@ -26,7 +26,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.48";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.49";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -354,7 +354,8 @@ body {
 .layout-tv .card:focus .cardBox {
     outline: none !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);        /* profondeur seulement */
-    transform: scale(1.03);
+    transform: scale(1.05);                            /* v1.2.49 : pop UNIQUE, tout le bloc */
+    transform-origin: center center;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
     z-index: 10;
     position: relative;
@@ -365,6 +366,17 @@ body {
     box-shadow:
         inset 0 0 0 3px rgba(255, 255, 255, 0.95),    /* contour blanc — image seule */
         0 0 16px rgba(255, 255, 255, 0.3);             /* glow blanc subtle */
+}
+
+/* v1.2.49 — ANTI-CUMUL DE SCALE. La télécommande déclenche aussi le :hover, qui
+   scalait .cardScalable à 1.06 EN PLUS du scale 1.05 de .cardBox → l'image (enfant)
+   gonflait plus que son cadre/titre = « zoom bizarre ». On neutralise le scale
+   propre de l'image sur TV : seul .cardBox pop, d'un seul tenant (image+contour+titre). */
+.layout-tv .card:focus .cardScalable,
+.layout-tv .card:focus-visible .cardScalable,
+.layout-tv .card.show-focus:focus .cardScalable,
+.layout-tv .card-hoverable:hover .cardScalable {
+    transform: none !important;
 }
 
 /* ============================================================
@@ -5381,6 +5393,26 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     .layout-desktop .emby-scroller:has(.card:hover) .card:not(:hover) {
         opacity: 1 !important;
         filter: none !important;
+    }
+}
+
+/* v1.2.49 — Spotlight TV : même effet Netflix que sur desktop, mais piloté par le
+   FOCUS télécommande (pas le hover). La carte ciblée reste vive, les voisines de la
+   rangée s'atténuent → on repère le curseur à 3 m. opacity SEULE, sans filter:saturate
+   (coûteux GPU, banni sur TV par la section perf). Scopé à .emby-scroller → les grilles
+   de bibliothèque ne sont PAS touchées. :has() n'existe que sur TV récentes → dégradé
+   propre (aucun effet, rien ne casse) sur les anciennes. Aucune couleur ajoutée. */
+.layout-tv .emby-scroller .card {
+    transition: opacity 0.2s ease;
+}
+
+.layout-tv .emby-scroller:has(.card:focus) .card:not(:focus) {
+    opacity: 0.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .layout-tv .emby-scroller:has(.card:focus) .card:not(:focus) {
+        opacity: 1 !important;
     }
 }
 
