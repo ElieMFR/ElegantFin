@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.46
+# ElegantFin Cinema Edition v1.2.47
 
 ## [English](#english) | [Francais](#francais)
 
@@ -448,7 +448,21 @@ Follow-up to the v1.2.44 monochrome rollout — the focus on detail-page buttons
 
 - **🔴 Fixed the white Play/Resume button bug** — v1.2.44's `.show-focus:focus { background-color: transparent }` rule (meant for tabs/nav) also hit the white `.btnPlay` button, turning it transparent on focus so the bluish backdrop showed through ("Reprendre became blue"). And a white outline on a white button is invisible anyway. The button now keeps its white background and gets a **glow + scale (lift)** instead — like Apple TV, it lights up and grows toward you. Clearly visible without needing an (invisible) outline.
 - **Action icons + header icons much more visible** — The shuffle/check/heart/more buttons and the top header icons (bell, cast, search) had only a thin 2px outline that got lost at TV distance. Now they get a white outline **+ stronger glow + scale 1.12** so they clearly pop when focused.
-- **Three focus treatments by button type** — white button = glow + lift (no outline, it'd be invisible); icon buttons = outline + glow + scale; generic list/dialog buttons = outline + glow (no scale, so layout doesn't jump). All white, all monochrome, all on `.layout-tv` only — desktop/mobile unchanged.
+- **Three focus treatments by button type** — white button = glow + lift (no outline, it'd be invisible); icon buttons = outline + glow + scale; generic list/dialog buttons = outline + glow (no scale, so layout doesn't jump). All white, all on `.layout-tv` only — desktop/mobile unchanged.
+
+---
+
+#### v1.2.47 — Two-tone color system: white focus + violet selection, no more blue
+
+Reconsidered the full-monochrome direction (v1.2.44): pure white turned out to flatten the visual hierarchy — a faint white tint for "active" was hard to see, and it didn't distinguish "selected" from "focused". Switched to a disciplined **two-tone palette**, each color with one clear role:
+
+- **⚪ White = focus / cursor** — where the remote/keyboard is (card outlines, button glow/lift, form-field focus). Unchanged from v1.2.45-46.
+- **🟣 Violet = selected / active** — the current tab, selected sidebar item, checked menu item, `.Mui-selected`, filter indicator, hovered metadata links, active toggles, the save action and loading spinner. Violet pops far better than a white tint against the blue-navy base, and being a different colour from white it never gets confused with the focus cursor (which fixes the active-vs-focus ambiguity we fought in v1.2.44-45).
+- **❌ Blue removed everywhere** — the `--highlightOutlineColor` blue (form-field focus, checkboxes) was a third accent doing the same job as violet, and blue blends into the navy base. Form-field focus is now **white** (so "focus = white" is the absolute rule across the whole theme).
+- **Two near-identical violets unified** — `--uiAccentColor` (rgb 117,111,226) and `--activeColor` (rgb 119,91,244) were two barely-distinguishable purples used interchangeably. Now a single violet.
+- **Progress bars stay white** (card bars + OSD scrubber + `<progress>`).
+
+Net palette: navy base + grey text, **white for focus**, **violet for selection/active**, white progress. One accent, one role each.
 
 ---
 
@@ -903,7 +917,21 @@ Suite du passage monochrome v1.2.44 — le focus des boutons de la page detail n
 
 - **🔴 Bug du bouton blanc Lire/Reprendre corrige** — La regle v1.2.44 `.show-focus:focus { background-color: transparent }` (prevue pour les onglets/nav) touchait aussi le bouton blanc `.btnPlay`, le rendant transparent au focus, laissant transparaitre le backdrop bleuté ("Reprendre devenait bleu"). Et un contour blanc sur un bouton blanc est invisible de toute facon. Le bouton garde maintenant son fond blanc et recoit une **lueur + un zoom (lift)** a la place — comme Apple TV, il s'illumine et grandit vers toi. Bien visible sans avoir besoin d'un contour (invisible).
 - **Icones action + header bien plus visibles** — Les boutons aleatoire/vu/favori/plus et les icones du header (cloche, cast, recherche) n'avaient qu'un fin contour 2px qui se perdait a distance TV. Ils recoivent maintenant un contour blanc **+ lueur renforcee + zoom 1.12** pour ressortir clairement au focus.
-- **Trois traitements de focus selon le type de bouton** — bouton blanc = lueur + lift (pas de contour, il serait invisible) ; boutons icone = contour + lueur + zoom ; boutons generiques liste/dialogue = contour + lueur (sans zoom, pour ne pas faire sauter la mise en page). Tout en blanc, tout monochrome, tout sur `.layout-tv` uniquement — desktop/mobile inchanges.
+- **Trois traitements de focus selon le type de bouton** — bouton blanc = lueur + lift (pas de contour, il serait invisible) ; boutons icone = contour + lueur + zoom ; boutons generiques liste/dialogue = contour + lueur (sans zoom, pour ne pas faire sauter la mise en page). Tout en blanc, tout sur `.layout-tv` uniquement — desktop/mobile inchanges.
+
+---
+
+#### v1.2.47 — Systeme 2-tons : focus blanc + selection violette, fini le bleu
+
+Reconsideration du tout-monochrome (v1.2.44) : le blanc pur aplatissait la hierarchie visuelle — une teinte blanche legere pour "actif" etait peu visible, et ne distinguait pas "selectionne" de "focus". Passage a une **palette 2-tons** disciplinee, chaque couleur avec un role unique :
+
+- **⚪ Blanc = focus / curseur** — la ou pointe la telecommande/le clavier (contours de cards, lueur/lift des boutons, focus des champs de saisie). Inchange depuis v1.2.45-46.
+- **🟣 Violet = selectionne / actif** — l'onglet courant, l'item sidebar selectionne, l'element coche dans un menu, `.Mui-selected`, l'indicateur de filtre, les liens metadata au survol, les bascules actives, l'action enregistrer et le spinner de chargement. Le violet ressort bien mieux qu'une teinte blanche sur le fond bleu-navy, et etant d'une couleur differente du blanc il ne se confond jamais avec le curseur focus (ce qui regle l'ambiguite actif-vs-focus combattue en v1.2.44-45).
+- **❌ Bleu supprime partout** — le bleu `--highlightOutlineColor` (focus des champs, cases a cocher) etait un 3e accent faisant le meme job que le violet, et le bleu se fond dans le navy. Le focus des champs est maintenant **blanc** (donc "focus = blanc" est la regle absolue dans tout le theme).
+- **Deux violets quasi identiques unifies** — `--uiAccentColor` (rgb 117,111,226) et `--activeColor` (rgb 119,91,244) etaient deux violets a peine distinguables utilises indifferemment. Un seul violet desormais.
+- **Barres de progression toujours blanches** (barres des cards + scrubber OSD + `<progress>`).
+
+Palette finale : base navy + texte gris, **blanc pour le focus**, **violet pour selection/actif**, barres blanches. Un accent, un role chacun.
 
 ---
 

@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.46 */
+/* ElegantFin Cinema Edition v1.2.47 */
 /* Enhanced with 27 cinematic modules — Netflix-inspired streaming experience */
 
 /* Inter Variable Font — self-hosted (v1.2.42, remplace l'@import Google Fonts).
@@ -26,7 +26,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.46";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.47";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -51,7 +51,9 @@
     --osdSeekBarBufferedColorAlpha: rgba(128, 128, 128, 0.5);
     --osdSeekBarThumbColor: white;
     --tableBodyColor: rgb(31 41 55 / 1);
-    --uiAccentColor: rgb(117 111 226);
+    /* v1.2.47 : unifie sur l'unique violet d'accent (etait rgb(117 111 226),
+       un 2e violet quasi identique a --activeColor = desordre). Un seul violet. */
+    --uiAccentColor: rgb(119, 91, 244);
     --btnMiniPlayColor: rgb(41 154 93);
     --btnMiniPlayBorderColor: rgb(50, 167, 105);
 
@@ -2207,7 +2209,7 @@ html,
 }
 
 .buttonActive {
-    color: #fff !important;
+    color: var(--activeColor) !important;
 }
 
 #divRunningTasks progress {
@@ -2417,7 +2419,7 @@ progress + span {
 }
 
 .btnHeaderSave.button-flat {
-    color: #fff !important;
+    color: var(--activeColor) !important;
     gap: 0.3em;
     border-radius: var(--smallRadius);
 }
@@ -2824,13 +2826,14 @@ progress + span {
     border: var(--defaultLighterBorder);
 }
 
+/* v1.2.47 : focus des cases a cocher — bleu → blanc (règle "focus = blanc"). */
 .emby-checkbox:focus:not(:checked) + span + .checkboxOutline {
-    border-color: var(--highlightOutlineColor) !important;
+    border-color: rgba(255, 255, 255, 0.95) !important;
     outline: none;
 }
 
 .emby-checkbox:focus + span + .checkboxOutline {
-    border-color: var(--highlightOutlineColor) !important;
+    border-color: rgba(255, 255, 255, 0.95) !important;
     outline: none;
 }
 
@@ -2842,7 +2845,7 @@ progress + span {
 
     .emby-checkbox:focus + span + .checkboxOutline {
         border-color: white !important;
-        outline: var(--borderWidth) solid var(--highlightOutlineColor);
+        outline: var(--borderWidth) solid rgba(255, 255, 255, 0.95);
     }
 }
 
@@ -3963,10 +3966,12 @@ div[data-role="controlgroup"] a.ui-btn-active {
     color: #fff;
 }
 
+/* v1.2.47 : focus des champs de saisie (recherche, login, réglages) —
+   bleu → blanc, pour que "focus = blanc" reste la règle absolue partout. */
 .emby-select-withcolor:focus,
 .emby-input:focus,
 .emby-textarea:focus {
-    border-color: var(--highlightOutlineColor) !important;
+    border-color: rgba(255, 255, 255, 0.95) !important;
     outline: none !important;
 }
 
@@ -3974,8 +3979,8 @@ div[data-role="controlgroup"] a.ui-btn-active {
     .emby-select-withcolor:focus,
     .emby-input:focus,
     .emby-textarea:focus {
-        border-color: var(--highlightOutlineColor) !important;
-        outline: thin solid var(--highlightOutlineColor) !important;
+        border-color: rgba(255, 255, 255, 0.95) !important;
+        outline: thin solid rgba(255, 255, 255, 0.95) !important;
     }
 }
 
@@ -4337,7 +4342,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 }
 
 .progressring-spiner {
-    border-color: #fff;
+    border-color: var(--activeColor);
 }
 
 .skinHeader.focuscontainer-x.skinHeader-withBackground.skinHeader-blurred.semiTransparent.noHeaderRight {
@@ -4869,14 +4874,14 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     color: #fff !important;
 }
 
-/* v1.2.45: onglet ACTIF (page courante) = teinte blanche discrète + texte blanc
-   gras, PAS un contour. En v1.2.44 l'actif avait le même contour blanc que le
-   focus → sur TV, l'onglet courant paraissait "sélectionné" en permanence alors
-   que la télécommande était ailleurs. La teinte le marque comme "courant" sans
-   imiter le contour vif du focus. Hiérarchie : actif = teinte, focus = contour. */
+/* v1.2.47: onglet ACTIF (page courante) = fond VIOLET (l'accent du thème).
+   Système 2-tons : violet = actif/sélectionné, blanc = focus/curseur. Les deux
+   couleurs étant distinctes, l'actif (violet) et le focus (contour blanc) ne se
+   confondent plus — c'est ce qui résout la confusion des v1.2.44→45. Le violet
+   ressort aussi bien mieux que la teinte blanche sur le fond navy. */
 .sectionTabs .emby-tab-button-active {
     margin: 0.25em 0.5em;
-    background-color: rgba(255, 255, 255, 0.14) !important;
+    background-color: var(--activeColor) !important;
     color: #fff !important;
     font-weight: 600 !important;
 }
