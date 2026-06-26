@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.47
+# ElegantFin Cinema Edition v1.2.48
 
 ## [English](#english) | [Francais](#francais)
 
@@ -463,6 +463,21 @@ Reconsidered the full-monochrome direction (v1.2.44): pure white turned out to f
 - **Progress bars stay white** (card bars + OSD scrubber + `<progress>`).
 
 Net palette: navy base + grey text, **white for focus**, **violet for selection/active**, white progress. One accent, one role each.
+
+---
+
+#### v1.2.48 — TV focus: Netflix/Disney+ solid fill (much more visible) + perf-rule discovery
+
+The thin white outline on focused icons was weak at TV distance. Turns out no major streaming app uses outlines — Netflix/Disney+/Prime use a **solid fill** (the element fills white, icon/text inverts dark), Apple TV uses **scale + lift + glow**. Two findings + the fix:
+
+- **🔎 Discovery: a perf rule was silently killing the focus zoom on TV** — `.layout-tv .show-focus:focus { transform: none !important }` (a "low-end TV" optimization) was overriding the `transform: scale()` added in v1.2.46 — so on real TVs the focus only showed the thin outline, no zoom. That's why it felt weak. The fill approach sidesteps this entirely (no transform needed).
+- **Icon buttons (action + header) → solid white fill, dark icon** (Netflix/Disney+ pattern). Unmistakable at distance, and immune to the perf rule.
+- **List rows + LiveTV Guide cells → solid white fill + dark text** — a filled row highlight instead of a thin border. Child text/icons forced dark to avoid white-on-white.
+- **Guide date tabs** — were nearly invisible on focus (text-color change only); now solid white fill (focus) / violet (active).
+- **Skip-intro button** — outline → solid white fill, so it's clear during playback.
+- **Play/Resume button** — since its scale is killed by the perf rule on TV, its **glow was strengthened** (4px ring + 30px halo) so it pops without depending on zoom (Apple TV lift, glow-forward).
+
+All `.layout-tv` only; desktop keyboard focus and mobile unchanged. Focus stays white, active stays violet — just expressed as a fill where an outline was too faint.
 
 ---
 
@@ -932,6 +947,21 @@ Reconsideration du tout-monochrome (v1.2.44) : le blanc pur aplatissait la hiera
 - **Barres de progression toujours blanches** (barres des cards + scrubber OSD + `<progress>`).
 
 Palette finale : base navy + texte gris, **blanc pour le focus**, **violet pour selection/actif**, barres blanches. Un accent, un role chacun.
+
+---
+
+#### v1.2.48 — Focus TV : pastille pleine Netflix/Disney+ (bien plus visible) + decouverte d'une regle perf
+
+Le contour blanc fin sur les icones focus etait faible a distance TV. En fait aucune grande app streaming n'utilise de contour — Netflix/Disney+/Prime utilisent une **pastille pleine** (l'element se remplit en blanc, l'icone/texte passe en sombre), Apple TV utilise **zoom + lift + lueur**. Deux constats + le fix :
+
+- **🔎 Decouverte : une regle perf tuait silencieusement le zoom du focus sur TV** — `.layout-tv .show-focus:focus { transform: none !important }` (une optimisation "vieilles TV") ecrasait le `transform: scale()` ajoute en v1.2.46 — donc sur les vraies TV le focus ne montrait que le contour fin, pas de zoom. D'ou l'impression de faiblesse. L'approche fill contourne ca entierement (pas de transform necessaire).
+- **Boutons icone (action + header) → pastille blanche pleine, icone sombre** (pattern Netflix/Disney+). Imparable a distance, et immunise a la regle perf.
+- **Rangees de liste + cellules du Guide LiveTV → fond blanc plein + texte sombre** — une rangee remplie au lieu d'un fin contour. Texte/icones enfants forces en sombre pour eviter le blanc-sur-blanc.
+- **Onglets date du Guide** — etaient quasi invisibles au focus (juste un changement de couleur de texte) ; maintenant fond blanc plein (focus) / violet (actif).
+- **Bouton Skip intro/generique** — contour → fond blanc plein, bien clair pendant la lecture.
+- **Bouton Lire/Reprendre** — comme son zoom est tue par la regle perf sur TV, sa **lueur a ete renforcee** (anneau 4px + halo 30px) pour ressortir sans dependre du zoom (lift Apple TV, axe sur la lueur).
+
+Tout sur `.layout-tv` uniquement ; focus clavier desktop et mobile inchanges. Le focus reste blanc, l'actif reste violet — juste exprime en plein la ou un contour etait trop faible.
 
 ---
 

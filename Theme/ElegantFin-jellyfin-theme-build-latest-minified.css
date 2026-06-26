@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.47 */
+/* ElegantFin Cinema Edition v1.2.48 */
 /* Enhanced with 27 cinematic modules — Netflix-inspired streaming experience */
 
 /* Inter Variable Font — self-hosted (v1.2.42, remplace l'@import Google Fonts).
@@ -26,7 +26,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.47";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.48";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -371,9 +371,9 @@ body {
    v1.2.46 — Focus boutons TV : 3 traitements selon le type
    (un contour blanc est invisible sur un bouton déjà blanc) */
 
-/* 1) Bouton blanc Lire/Reprendre — reste BLANC, s'illumine + zoom (lift).
-   Corrige le bug v1.2.44 où le bouton devenait transparent (bleu du
-   backdrop visible) à cause de la règle .show-focus:focus { transparent }. */
+/* 1) Bouton blanc Lire/Reprendre — reste BLANC, lueur RENFORCÉE (le zoom étant
+   neutralisé sur TV par la règle perf `.layout-tv .show-focus:focus {transform:none}`,
+   c'est la lueur qui porte la visibilité). Pattern Apple TV : le bouton blanc flotte. */
 .layout-tv .btnPlay:focus-visible,
 .layout-tv .btnPlay.show-focus:focus {
     background-color: #fff !important;
@@ -381,30 +381,31 @@ body {
     outline: none !important;
     transform: scale(1.06);
     box-shadow:
-        0 0 0 3px rgba(255, 255, 255, 0.55),
-        0 0 22px rgba(255, 255, 255, 0.45),
-        0 6px 18px rgba(0, 0, 0, 0.5);
+        0 0 0 4px rgba(255, 255, 255, 0.7),
+        0 0 30px rgba(255, 255, 255, 0.6),
+        0 6px 20px rgba(0, 0, 0, 0.55);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
     z-index: 10;
     position: relative;
 }
 
-/* 2) Icônes d'action (page détail) + icônes du header — contour blanc +
-   lueur + zoom renforcé pour être bien visibles à distance TV. */
+/* 2) Icônes d'action (page détail) + icônes du header — PASTILLE BLANCHE PLEINE,
+   icône qui passe en sombre (pattern Netflix/Disney+). Un contour fin était trop
+   faible à distance TV ; le remplissage est imparable ET ne dépend pas du zoom
+   (donc immunisé à la règle perf qui tue les transform sur TV). */
 .layout-tv .detailButton:not(.btnPlay):focus-visible,
 .layout-tv .detailButton:not(.btnPlay).show-focus:focus,
 .layout-tv .headerButton:focus-visible,
 .layout-tv .headerButton.show-focus:focus,
 .layout-tv .paper-icon-button-light:focus-visible,
 .layout-tv .paper-icon-button-light.show-focus:focus {
-    background-color: transparent !important;
-    color: #fff !important;
+    background-color: #fff !important;
+    color: #000 !important;
     outline: none !important;
     box-shadow:
-        inset 0 0 0 2px rgba(255, 255, 255, 0.95),
-        0 0 16px rgba(255, 255, 255, 0.45);
-    transform: scale(1.12);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+        0 0 16px rgba(255, 255, 255, 0.45),
+        0 2px 8px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.12s ease, box-shadow 0.12s ease;
     z-index: 10;
     position: relative;
 }
@@ -3034,9 +3035,14 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
     outline-offset: 2px;
 }
 
-.skip-button:focus-visible {
-    outline: 2px solid rgba(255, 255, 255, 0.95);
-    outline-offset: 3px;
+/* v1.2.48 : bouton Skip intro/générique au focus = fond blanc plein + texte
+   sombre (au lieu d'un contour fin peu visible pendant la lecture). */
+.skip-button:focus-visible,
+.layout-tv .skip-button.show-focus:focus {
+    outline: none !important;
+    background-color: #fff !important;
+    color: #000 !important;
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.45);
 }
 
 #loginPage .button-submit:focus-visible {
@@ -3105,9 +3111,18 @@ div[data-role="controlgroup"] a.ui-btn-active {
     color: #fff !important;
 }
 
-.guide-date-tab-button.emby-tab-button-active,
+/* v1.2.48 : onglets date du Guide — actif = violet (accent), focus = blanc plein
+   (avant : juste "color: white", quasi invisible au focus). */
+.guide-date-tab-button.emby-tab-button-active {
+    background-color: var(--activeColor) !important;
+    color: #fff !important;
+    border-radius: 0.5em;
+}
+
 .guide-date-tab-button:focus {
-    color: white;
+    background-color: #fff !important;
+    color: #000 !important;
+    border-radius: 0.5em;
 }
 
 #btnDeleteImage,
@@ -3263,10 +3278,21 @@ div[data-role="controlgroup"] a.ui-btn-active {
     border-radius: 0.7em;
 }
 
+/* v1.2.48 : rangée de liste au focus = fond blanc plein + texte/icônes sombres
+   (pattern Netflix). Bien plus visible qu'un contour fin sur une rangée.
+   Le forçage en #000 des enfants évite tout texte blanc-sur-blanc. */
 .listItem:focus {
-    background: transparent;
-    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.95);
+    background: #fff !important;
     border-radius: 0.7em;
+}
+
+.listItem:focus,
+.listItem:focus .listItemBodyText,
+.listItem:focus .listItemBodyText.secondary,
+.listItem:focus .secondary,
+.listItem:focus .listItemMediaInfo,
+.listItem:focus .material-icons {
+    color: #000 !important;
 }
 
 .listItem:active,
@@ -4237,9 +4263,11 @@ div[data-role="controlgroup"] a.ui-btn-active {
 
 /* v1.2.44 : focus du Guide LiveTV (chaînes + programmes) — fond bleu plein
    remplacé par contour blanc, cohérent avec le reste du système monochrome. */
+/* v1.2.48 : focus des cellules du Guide = fond blanc plein + texte sombre
+   (pattern Netflix), bien plus visible que le contour fin. */
 .guide-channelHeaderCell:focus {
-    background-color: transparent !important;
-    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.95);
+    background-color: #fff !important;
+    color: #000 !important;
 }
 
 .programCell:focus {
@@ -4247,8 +4275,12 @@ div[data-role="controlgroup"] a.ui-btn-active {
 }
 
 .programCell:focus > .guideProgramName {
-    background-color: transparent;
-    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.95);
+    background-color: #fff !important;
+    color: #000 !important;
+}
+
+.programCell:focus > .guideProgramName * {
+    color: #000 !important;
 }
 
 .emby-select-iconbutton {
