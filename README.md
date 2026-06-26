@@ -5,7 +5,7 @@
 
 # ElegantFin Cinema Edition
 
-**A cinematic fork of [ElegantFin](https://github.com/lscambo13/ElegantFin) — Netflix-inspired Jellyfin theme**
+**A cinematic fork of [ElegantFin](https://github.com/lscambo13/ElegantFin) — streaming-inspired Jellyfin theme**
 
 [![Version](https://img.shields.io/badge/Cinema%20Edition-v1.2.49-red?style=flat&logo=github)](https://github.com/peterdu1109/ElegantFin/releases)
 [![Based on](https://img.shields.io/badge/Based%20on-ElegantFin%20v26.04.07-blue?style=flat&logo=github)](https://github.com/lscambo13/ElegantFin)
@@ -26,7 +26,7 @@
 
 ### What is this?
 
-This is a **Cinema Edition** of the ElegantFin theme by [lscambo13](https://github.com/lscambo13), enhanced with **27 cinematic modules** that transform your Jellyfin into a professional streaming experience inspired by Netflix, Disney+ and Apple TV+.
+This is a **Cinema Edition** of the ElegantFin theme by [lscambo13](https://github.com/lscambo13), enhanced with **27 cinematic modules** that transform your Jellyfin into a professional streaming experience inspired by the major streaming platforms.
 
 Everything works on **desktop, mobile and TV** with a single CSS import.
 
@@ -38,10 +38,10 @@ Everything works on **desktop, mobile and TV** with a single CSS import.
 |--------|-------------|
 | **Glassmorphism Login** | Frosted glass login card with smooth entrance animation |
 | **Page Transitions** | Fade-in and slide-up animations on every page load |
-| **Cascade Sections** | Staggered delays for a Netflix-style reveal effect |
+| **Cascade Sections** | Staggered delays for a streaming-style reveal effect |
 | **Shimmer Effect** | Subtle light sweep on the first row of cards (desktop) |
 | **Cinema Backdrop** | Deeper transparent header gradient, softer backdrop |
-| **Netflix Cards** | Pop zoom (1.06x), glowing borders, text highlight on hover |
+| **Cinema Cards** | Pop zoom (1.06x), glowing borders, text highlight on hover |
 | **White Progress Bars** | Clean white progress bars replacing colored ones |
 | **Premium Badges** | Blurred glass indicators for count, resolution, watched |
 | **Cinema Detail Page** | Ultra-light titles (weight 100), italic tagline, white Play button |
@@ -175,7 +175,7 @@ If a plugin isn't in this list, the theme just doesn't add overrides for it — 
 
 ### C'est quoi ?
 
-C'est une **Edition Cinema** du theme ElegantFin par [lscambo13](https://github.com/lscambo13), enrichie de **27 modules cinematiques** qui transforment votre Jellyfin en une experience de streaming professionnelle inspiree de Netflix, Disney+ et Apple TV+.
+C'est une **Edition Cinema** du theme ElegantFin par [lscambo13](https://github.com/lscambo13), enrichie de **27 modules cinematiques** qui transforment votre Jellyfin en une experience de streaming professionnelle inspiree des grandes plateformes de streaming.
 
 Tout fonctionne sur **bureau, mobile et TV** avec un seul import CSS.
 
@@ -187,10 +187,10 @@ Tout fonctionne sur **bureau, mobile et TV** avec un seul import CSS.
 |--------|-------------|
 | **Login Glassmorphism** | Carte de connexion en verre depoli avec animation d'entree |
 | **Transitions de pages** | Animations fade-in et slide-up a chaque chargement |
-| **Sections en cascade** | Delais decales pour un effet de revelation style Netflix |
+| **Sections en cascade** | Delais decales pour un effet de revelation style streaming |
 | **Effet Shimmer** | Balayage lumineux sur la premiere rangee de cartes (bureau) |
 | **Backdrop Cinema** | Degrade transparent profond, arriere-plan plus doux |
-| **Cartes Netflix** | Zoom pop (1.06x), bordures lumineuses, texte surbrillance |
+| **Cartes Cinema** | Zoom pop (1.06x), bordures lumineuses, texte surbrillance |
 | **Barres de progression blanches** | Barres blanches epurees remplacant les barres colorees |
 | **Badges Premium** | Indicateurs en verre flou pour compteur, resolution, vu |
 | **Page de details Cinema** | Titres ultra-legers (poids 100), tagline italique, bouton Play blanc |

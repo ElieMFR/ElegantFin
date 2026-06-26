@@ -9,7 +9,7 @@
 
 ### Cinema Edition — 28 cinematic modules on top of ElegantFin v26.04.07
 
-This release transforms the ElegantFin theme into a professional, Netflix-inspired streaming experience while keeping full compatibility with desktop, mobile, and TV platforms.
+This release transforms the ElegantFin theme into a professional, premium streaming experience while keeping full compatibility with desktop, mobile, and TV platforms.
 
 ---
 
@@ -37,7 +37,7 @@ This release transforms the ElegantFin theme into a professional, Netflix-inspir
 
 #### Visual Enhancements
 
-- **Netflix card pop** — Scale 1.06x on hover with glowing borders (`rgba(255,255,255,0.3)`), deep shadows, and text color transition to white
+- **Cinema card pop** — Scale 1.06x on hover with glowing borders (`rgba(255,255,255,0.3)`), deep shadows, and text color transition to white
 - **Cinema detail page** — Ultra-light titles (weight 100), italic tagline, `line-height: 1.65` synopsis, white Play button with hover lift
 - **White progress bars** — Clean `#fff` progress bars replacing theme-colored ones, with glow effect on OSD slider hover
 - **Premium badges** — Glass-blurred indicators (`backdrop-filter: blur(8px)`) for count, resolution, and watched badges
@@ -209,23 +209,23 @@ This release transforms the ElegantFin theme into a professional, Netflix-inspir
 
 ---
 
-#### v1.2.17 — Top header: Netflix-style gradient on item detail pages
+#### v1.2.17 — Top header: streaming-style gradient on item detail pages
 
-- **Replaced fully-transparent header with gradient** — On item detail pages (movies/series), the top bar used `background-color: transparent` which became invisible when the backdrop was dark or missing, making icons hard to spot. Replaced with `linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)` matching Netflix / Disney+ / Prime Video pattern. Icon legibility guaranteed on any backdrop, cinematic full-bleed effect preserved — actually enhanced thanks to added visual depth. Consistent across **desktop**, **TV** and **mobile**.
+- **Replaced fully-transparent header with gradient** — On item detail pages (movies/series), the top bar used `background-color: transparent` which became invisible when the backdrop was dark or missing, making icons hard to spot. Replaced with `linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)` matching premium streaming pattern. Icon legibility guaranteed on any backdrop, cinematic full-bleed effect preserved — actually enhanced thanks to added visual depth. Consistent across **desktop**, **TV** and **mobile**.
 
 ---
 
 #### v1.2.18 — Spotlight hover on card rows + header cleanup
 
-- **Netflix-style spotlight on horizontal rows** — Hovering a card in a scroll row now fades + desaturates the sibling cards (`opacity 0.55`, `saturate(0.7)`, smooth 0.3s transition) so the focused card really pops. Desktop-only (scoped with `@media (hover: hover) and (pointer: fine)`), limited to `.emby-scroller` so library grid views stay untouched, fully disabled under `prefers-reduced-motion`. Graceful degrade on browsers without `:has()` — no effect, nothing breaks.
+- **streaming-style spotlight on horizontal rows** — Hovering a card in a scroll row now fades + desaturates the sibling cards (`opacity 0.55`, `saturate(0.7)`, smooth 0.3s transition) so the focused card really pops. Desktop-only (scoped with `@media (hover: hover) and (pointer: fine)`), limited to `.emby-scroller` so library grid views stay untouched, fully disabled under `prefers-reduced-motion`. Graceful degrade on browsers without `:has()` — no effect, nothing breaks.
 - **Removed obsolete `text-shadow` fallback on header icons** — With the v1.2.17 gradient guaranteeing contrast on any backdrop, the `1px 1px 0 #00000080` shadow was just softening icon edges for no reason. Cleaner rendering now.
 - **Module count bumped to 27** (Spotlight Hover added).
 
 ---
 
-#### v1.2.19 — "See all →" chevron on row title hover (Netflix-pattern)
+#### v1.2.19 — "See all →" chevron on row title hover (streaming-pattern)
 
-- **Native chevron revealed on hover** — The theme previously unconditionally hid Jellyfin's native `chevron_right` next to row titles (Continue Watching, Recently Added, etc.). It now animates in on `:hover` using a `max-width` + `opacity` + `translateX` transition (0.25s ease). Clean Netflix-style "view all →" affordance without any new HTML. Desktop-only (`@media hover: hover and pointer: fine`), fully disabled under `prefers-reduced-motion`. The link behind is already wired to "view all" by Jellyfin.
+- **Native chevron revealed on hover** — The theme previously unconditionally hid Jellyfin's native `chevron_right` next to row titles (Continue Watching, Recently Added, etc.). It now animates in on `:hover` using a `max-width` + `opacity` + `translateX` transition (0.25s ease). Clean streaming-style "view all →" affordance without any new HTML. Desktop-only (`@media hover: hover and pointer: fine`), fully disabled under `prefers-reduced-motion`. The link behind is already wired to "view all" by Jellyfin.
 
 ---
 
@@ -242,7 +242,7 @@ This release transforms the ElegantFin theme into a professional, Netflix-inspir
 #### v1.2.21 — TV episode subtitle wrap + backdrop gradient redesign
 
 - **TV: subtitle now wraps on 3 lines instead of overflowing** — On Tizen / Samsung TV, entering a series episode caused the `.subtitle` (e.g. `S01E03 — Episode Title`) to overflow off-screen because only the global `white-space: nowrap` rule applied. Added a `.layout-tv .subtitle` override with `display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; max-height: 4em;`. 3 lines (vs mobile's 2) gives more breathing room appropriate for TV viewing distance, with `max-height` as a fallback for older Tizen WebKit if `-webkit-line-clamp` misbehaves.
-- **Desktop: backdrop gradient flipped from side to bottom (Netflix-pattern)** — The original `--itemBackdropSideGradient` darkened the LEFT half of the backdrop with `linear-gradient(90deg, var(--darkerGradientPoint) 0%, transparent 50%)`, designed for left-aligned content. But Jellyfin 10.11.x centers logo/buttons/description, so the side darkening was hiding the left of the image without purpose (e.g. cropping out characters in series like Classroom of the Elite). Replaced with a bottom-up vertical gradient `rgba(0,0,0,0.85) → transparent` matching Netflix / Disney+ / Prime Video pattern: dark at the bottom for button contrast, fully revealed at top.
+- **Desktop: backdrop gradient flipped from side to bottom (streaming-pattern)** — The original `--itemBackdropSideGradient` darkened the LEFT half of the backdrop with `linear-gradient(90deg, var(--darkerGradientPoint) 0%, transparent 50%)`, designed for left-aligned content. But Jellyfin 10.11.x centers logo/buttons/description, so the side darkening was hiding the left of the image without purpose (e.g. cropping out characters in series like Classroom of the Elite). Replaced with a bottom-up vertical gradient `rgba(0,0,0,0.85) → transparent` matching premium streaming pattern: dark at the bottom for button contrast, fully revealed at top.
 
 ---
 
@@ -343,7 +343,7 @@ Plan derived from full ecosystem audit (jellyfin-web, jellyfin-tizen, jellyfin-a
 - **iOS Safari: `text-size-adjust: 100%`** — Prevents iOS auto-zooming text on orientation change/rotation. Without this, iPhones zoomed text by 10-20% when rotating from portrait to landscape, breaking carefully-designed CSS layouts. iPhone/iPad Safari users now see stable text sizes.
 - **iOS: tap-highlight already present** — Confirmed at line 203 (`-webkit-tap-highlight-color: transparent !important;`). No change needed.
 - **Mobile: safe-area-inset support (notches)** — iPhone X+ have notches/Dynamic Island at top, Home Indicator at bottom. Android with gesture nav has system bar at bottom. Added `padding-top: env(safe-area-inset-top)` on `.layout-mobile .skinHeader`, `padding-bottom: env(safe-area-inset-bottom)` on `.nowPlayingBar`. Landscape: also handles left/right safe areas for sideways notch. `env()` falls back to 0 on devices without safe areas (iPad classic, older Android).
-- **TV: reinforced focus for remote navigation** — Cards at 3-5m viewing distance had only `0.15em` outline — barely visible. Now: `3px solid` outline + `box-shadow` glow + subtle `scale(1.06)` for immediate focus distinction. Netflix/Disney+ TV pattern. Same applied to buttons (`.btnPlay`, `.detailButton`). Transition `0.15s` for fluidity.
+- **TV: reinforced focus for remote navigation** — Cards at 3-5m viewing distance had only `0.15em` outline — barely visible. Now: `3px solid` outline + `box-shadow` glow + subtle `scale(1.06)` for immediate focus distinction. premium streaming TV pattern. Same applied to buttons (`.btnPlay`, `.detailButton`). Transition `0.15s` for fluidity.
 - **Old Tizen `:has()` fallback** — v1.2.32 uses `:has(a)` for conditional logo overlay. Tizen 2018-2021 (Chromium 76-79) doesn't support `:has()`. Added `@supports not (selector(:has(*)))` block that reverts the breadcrumb to a visible clickable text on these old TVs. Tizen 9.0+ users unaffected (overlay v1.2.32 behavior preserved).
 
 ---
@@ -357,7 +357,7 @@ Plan derived from full ecosystem audit (jellyfin-web, jellyfin-tizen, jellyfin-a
 
 #### v1.2.35 — TV focus passé du violet au BLANC (cohérence thème)
 
-- **Focus TV de `var(--uiAccentColor)` (violet) à blanc** — Le violet hérité de l'upstream ElegantFin ne correspondait pas à l'identité Cinema Edition (bouton Lire blanc, dégradés sombres, palette warm cinema). Passé à `rgba(255, 255, 255, 0.95)` pour bordure inset, `rgba(255, 255, 255, 0.3)` pour glow. Visible à distance TV + cohérent avec le reste du thème (pattern Netflix/Disney+/Apple TV qui utilisent tous des focus clairs).
+- **Focus TV de `var(--uiAccentColor)` (violet) à blanc** — Le violet hérité de l'upstream ElegantFin ne correspondait pas à l'identité Cinema Edition (bouton Lire blanc, dégradés sombres, palette warm cinema). Passé à `rgba(255, 255, 255, 0.95)` pour bordure inset, `rgba(255, 255, 255, 0.3)` pour glow. Visible à distance TV + cohérent avec le reste du thème (pattern des grandes apps de streaming qui utilisent tous des focus clairs).
 - Box-shadow inset conservé de v1.2.34 (jamais clipped sur cards en bord viewport).
 - Cards et boutons traités cohéremment (3px sur cards, 2px sur boutons).
 
@@ -446,7 +446,7 @@ Two TV issues reported after v1.2.44's white-outline rollout:
 
 Follow-up to the v1.2.44 monochrome rollout — the focus on detail-page buttons wasn't working well:
 
-- **🔴 Fixed the white Play/Resume button bug** — v1.2.44's `.show-focus:focus { background-color: transparent }` rule (meant for tabs/nav) also hit the white `.btnPlay` button, turning it transparent on focus so the bluish backdrop showed through ("Reprendre became blue"). And a white outline on a white button is invisible anyway. The button now keeps its white background and gets a **glow + scale (lift)** instead — like Apple TV, it lights up and grows toward you. Clearly visible without needing an (invisible) outline.
+- **🔴 Fixed the white Play/Resume button bug** — v1.2.44's `.show-focus:focus { background-color: transparent }` rule (meant for tabs/nav) also hit the white `.btnPlay` button, turning it transparent on focus so the bluish backdrop showed through ("Reprendre became blue"). And a white outline on a white button is invisible anyway. The button now keeps its white background and gets a **glow + scale (lift)** instead — like a premium set-top box, it lights up and grows toward you. Clearly visible without needing an (invisible) outline.
 - **Action icons + header icons much more visible** — The shuffle/check/heart/more buttons and the top header icons (bell, cast, search) had only a thin 2px outline that got lost at TV distance. Now they get a white outline **+ stronger glow + scale 1.12** so they clearly pop when focused.
 - **Three focus treatments by button type** — white button = glow + lift (no outline, it'd be invisible); icon buttons = outline + glow + scale; generic list/dialog buttons = outline + glow (no scale, so layout doesn't jump). All white, all on `.layout-tv` only — desktop/mobile unchanged.
 
@@ -466,29 +466,29 @@ Net palette: navy base + grey text, **white for focus**, **violet for selection/
 
 ---
 
-#### v1.2.48 — TV focus: Netflix/Disney+ solid fill (much more visible) + perf-rule discovery
+#### v1.2.48 — TV focus: premium streaming solid fill (much more visible) + perf-rule discovery
 
-The thin white outline on focused icons was weak at TV distance. Turns out no major streaming app uses outlines — Netflix/Disney+/Prime use a **solid fill** (the element fills white, icon/text inverts dark), Apple TV uses **scale + lift + glow**. Two findings + the fix:
+The thin white outline on focused icons was weak at TV distance. Turns out no major streaming app uses outlines — the major streaming apps use a **solid fill** (the element fills white, icon/text inverts dark), premium set-top UIs use **scale + lift + glow**. Two findings + the fix:
 
 - **🔎 Discovery: a perf rule was silently killing the focus zoom on TV** — `.layout-tv .show-focus:focus { transform: none !important }` (a "low-end TV" optimization) was overriding the `transform: scale()` added in v1.2.46 — so on real TVs the focus only showed the thin outline, no zoom. That's why it felt weak. The fill approach sidesteps this entirely (no transform needed).
-- **Icon buttons (action + header) → solid white fill, dark icon** (Netflix/Disney+ pattern). Unmistakable at distance, and immune to the perf rule.
+- **Icon buttons (action + header) → solid white fill, dark icon** (streaming pattern). Unmistakable at distance, and immune to the perf rule.
 - **List rows + LiveTV Guide cells → solid white fill + dark text** — a filled row highlight instead of a thin border. Child text/icons forced dark to avoid white-on-white.
 - **Guide date tabs** — were nearly invisible on focus (text-color change only); now solid white fill (focus) / violet (active).
 - **Skip-intro button** — outline → solid white fill, so it's clear during playback.
-- **Play/Resume button** — since its scale is killed by the perf rule on TV, its **glow was strengthened** (4px ring + 30px halo) so it pops without depending on zoom (Apple TV lift, glow-forward).
+- **Play/Resume button** — since its scale is killed by the perf rule on TV, its **glow was strengthened** (4px ring + 30px halo) so it pops without depending on zoom (premium-TV lift, glow-forward).
 
 All `.layout-tv` only; desktop keyboard focus and mobile unchanged. Focus stays white, active stays violet — just expressed as a fill where an outline was too faint.
 
 ---
 
-#### v1.2.49 — Card focus: fixed the "weird zoom" + Netflix sibling-dimming on TV
+#### v1.2.49 — Card focus: fixed the "weird zoom" + streaming sibling-dimming on TV
 
 Two card-focus issues on TV, both kept strictly within the theme's colours (white focus, no new colour):
 
 - **🔴 Fixed the "weird zoom" on cards** — focusing a card scaled the whole `.cardBox` to 1.03, but the remote also triggers `:hover`, which scaled the child `.cardScalable` (the image) to 1.06 **on top**. Parent × child transforms multiply (≈1.09 on the image, only 1.03 on the title), so the poster bulged out of sync with its frame/title. The image's own scale is now neutralised on TV — only the card pops, as **one unit** (image + outline + title together) at a clean 1.05. Applies to posters and round cast/director cards alike.
-- **✨ Netflix sibling-dimming now works on TV** — the "spotlight" effect (focused card stays bright, the rest of the row fades) previously existed on **desktop only** (driven by `:hover`). It's now also driven by remote **focus** on TV: siblings drop to `opacity: 0.5` so the cursor is obvious from across the room. Opacity only — no `filter: saturate` (too GPU-heavy for TV, banned by the perf section). Scoped to `.emby-scroller` so library grids aren't touched, and gated by `:has()` support so older TVs simply get no effect (nothing breaks). No colour added.
+- **✨ streaming sibling-dimming now works on TV** — the "spotlight" effect (focused card stays bright, the rest of the row fades) previously existed on **desktop only** (driven by `:hover`). It's now also driven by remote **focus** on TV: siblings drop to `opacity: 0.5` so the cursor is obvious from across the room. Opacity only — no `filter: saturate` (too GPU-heavy for TV, banned by the perf section). Scoped to `.emby-scroller` so library grids aren't touched, and gated by `:has()` support so older TVs simply get no effect (nothing breaks). No colour added.
 
-Cards can't use the v1.2.48 solid fill (it would hide the poster/face), so the right pattern for cards stays outline + clean pop — exactly what Netflix/Disney+ do.
+Cards can't use the v1.2.48 solid fill (it would hide the poster/face), so the right pattern for cards stays outline + clean pop — exactly what the major streaming apps do.
 
 ---
 
@@ -504,7 +504,7 @@ Cards can't use the v1.2.48 solid fill (it would hide the poster/face), so the r
 
 ### Edition Cinema — 28 modules cinematiques par-dessus ElegantFin v26.04.07
 
-Cette version transforme le theme ElegantFin en une experience de streaming professionnelle inspiree de Netflix, tout en gardant la compatibilite complete avec bureau, mobile et TV.
+Cette version transforme le theme ElegantFin en une experience de streaming professionnelle inspiree des grandes apps de streaming, tout en gardant la compatibilite complete avec bureau, mobile et TV.
 
 ---
 
@@ -532,7 +532,7 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 
 #### Ameliorations visuelles
 
-- **Cartes Netflix pop** — Scale 1.06x au survol avec bordures lumineuses (`rgba(255,255,255,0.3)`), ombres profondes, et transition du texte vers le blanc
+- **Cartes Cinema pop** — Scale 1.06x au survol avec bordures lumineuses (`rgba(255,255,255,0.3)`), ombres profondes, et transition du texte vers le blanc
 - **Page de details cinema** — Titres ultra-legers (poids 100), tagline italique, synopsis `line-height: 1.65`, bouton Play blanc avec effet de levitation
 - **Barres de progression blanches** — Barres `#fff` epurees remplacant les barres colorees, avec effet de lueur sur le slider OSD au survol
 - **Badges premium** — Indicateurs floutes en verre (`backdrop-filter: blur(8px)`) pour compteur, resolution et badges vus
@@ -704,23 +704,23 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 
 ---
 
-#### v1.2.17 — Barre du haut : degrade style Netflix sur les pages de detail
+#### v1.2.17 — Barre du haut : degrade style streaming sur les pages de detail
 
-- **Remplacement du header totalement transparent par un degrade** — Sur les pages de detail (films/series), la barre du haut utilisait `background-color: transparent` ce qui la rendait invisible quand le backdrop etait sombre ou absent, rendant les icones difficiles a reperer. Remplace par `linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)` selon le pattern Netflix / Disney+ / Prime Video. Lisibilite des icones garantie sur n'importe quel backdrop, effet cinema plein ecran preserve — meme renforce grace a la profondeur visuelle ajoutee. Coherent sur **desktop**, **TV** et **mobile**.
+- **Remplacement du header totalement transparent par un degrade** — Sur les pages de detail (films/series), la barre du haut utilisait `background-color: transparent` ce qui la rendait invisible quand le backdrop etait sombre ou absent, rendant les icones difficiles a reperer. Remplace par `linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)` selon le pattern des grandes apps de streaming. Lisibilite des icones garantie sur n'importe quel backdrop, effet cinema plein ecran preserve — meme renforce grace a la profondeur visuelle ajoutee. Coherent sur **desktop**, **TV** et **mobile**.
 
 ---
 
 #### v1.2.18 — Effet spotlight au survol des rangees de cards + nettoyage header
 
-- **Spotlight style Netflix sur les rangees horizontales** — Au survol d'une card dans une rangee, les cards voisines se fondent + desaturent (`opacity 0.55`, `saturate(0.7)`, transition 0.3s) pour faire ressortir la card ciblee. Desktop uniquement (scope `@media (hover: hover) and (pointer: fine)`), limite aux `.emby-scroller` pour ne PAS affecter les vues grille des bibliotheques, entierement desactive sous `prefers-reduced-motion`. Degrade gracieux sur les navigateurs sans `:has()` — aucun effet, rien ne casse.
+- **Spotlight style streaming sur les rangees horizontales** — Au survol d'une card dans une rangee, les cards voisines se fondent + desaturent (`opacity 0.55`, `saturate(0.7)`, transition 0.3s) pour faire ressortir la card ciblee. Desktop uniquement (scope `@media (hover: hover) and (pointer: fine)`), limite aux `.emby-scroller` pour ne PAS affecter les vues grille des bibliotheques, entierement desactive sous `prefers-reduced-motion`. Degrade gracieux sur les navigateurs sans `:has()` — aucun effet, rien ne casse.
 - **Suppression du `text-shadow` fallback obsolete sur les icones du header** — Avec le degrade v1.2.17 qui garantit le contraste sur n'importe quel backdrop, l'ombre `1px 1px 0 #00000080` adoucissait les bords des icones pour rien. Rendu plus net maintenant.
 - **Compteur de modules passe a 27** (ajout de Spotlight Hover).
 
 ---
 
-#### v1.2.19 — Chevron "Voir tout →" au survol des titres de rangees (pattern Netflix)
+#### v1.2.19 — Chevron "Voir tout →" au survol des titres de rangees (pattern streaming)
 
-- **Chevron natif revele au survol** — Le theme cachait jusqu'ici sans condition le `chevron_right` natif de Jellyfin a cote des titres de rangees (Continue Watching, Ajouts recents, etc.). Il apparait desormais au `:hover` via une transition `max-width` + `opacity` + `translateX` (0.25s ease). Affordance propre "voir tout →" style Netflix, sans aucun HTML nouveau. Desktop uniquement (`@media hover: hover and pointer: fine`), entierement desactive sous `prefers-reduced-motion`. Le lien derriere est deja cable vers "voir tout" par Jellyfin.
+- **Chevron natif revele au survol** — Le theme cachait jusqu'ici sans condition le `chevron_right` natif de Jellyfin a cote des titres de rangees (Continue Watching, Ajouts recents, etc.). Il apparait desormais au `:hover` via une transition `max-width` + `opacity` + `translateX` (0.25s ease). Affordance propre "voir tout →" style streaming, sans aucun HTML nouveau. Desktop uniquement (`@media hover: hover and pointer: fine`), entierement desactive sous `prefers-reduced-motion`. Le lien derriere est deja cable vers "voir tout" par Jellyfin.
 
 ---
 
@@ -737,7 +737,7 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 #### v1.2.21 — Wrap du sous-titre episode sur TV + refonte du degrade backdrop
 
 - **TV : le sous-titre wrap sur 3 lignes au lieu de deborder** — Sur Tizen / TV Samsung, en entrant dans un episode de serie, le `.subtitle` (ex. `S01E03 — Titre de l'episode`) sortait de l'ecran car seule la regle globale `white-space: nowrap` s'appliquait. Ajout d'un override `.layout-tv .subtitle` avec `display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; max-height: 4em;`. 3 lignes (contre 2 sur mobile) donnent plus d'aisance adapte a la distance de lecture TV, avec `max-height` en garde-fou pour les vieux WebKit Tizen si `-webkit-line-clamp` deconne.
-- **Desktop : degrade backdrop bascule du cote au bas (pattern Netflix)** — Le `--itemBackdropSideGradient` d'origine assombrissait la moitie GAUCHE du backdrop avec `linear-gradient(90deg, var(--darkerGradientPoint) 0%, transparent 50%)`, concu pour du contenu aligne a gauche. Mais Jellyfin 10.11.x centre logo / boutons / description, donc l'assombrissement lateral cachait la gauche de l'image sans but (ex. coupait des personnages dans Classroom of the Elite). Remplace par un degrade vertical bottom-up `rgba(0,0,0,0.85) → transparent` selon le pattern Netflix / Disney+ / Prime Video : sombre en bas pour le contraste des boutons, image entierement revelee en haut.
+- **Desktop : degrade backdrop bascule du cote au bas (pattern streaming)** — Le `--itemBackdropSideGradient` d'origine assombrissait la moitie GAUCHE du backdrop avec `linear-gradient(90deg, var(--darkerGradientPoint) 0%, transparent 50%)`, concu pour du contenu aligne a gauche. Mais Jellyfin 10.11.x centre logo / boutons / description, donc l'assombrissement lateral cachait la gauche de l'image sans but (ex. coupait des personnages dans Classroom of the Elite). Remplace par un degrade vertical bottom-up `rgba(0,0,0,0.85) → transparent` selon le pattern des grandes apps de streaming : sombre en bas pour le contraste des boutons, image entierement revelee en haut.
 
 ---
 
@@ -838,7 +838,7 @@ Plan derive de l'audit complet de l'ecosysteme (jellyfin-web, jellyfin-tizen, je
 - **iOS Safari : `text-size-adjust: 100%`** — Empeche iOS d'auto-zoomer le texte en cas de changement d'orientation. Sans ca, les iPhones zoomaient le texte de 10-20% en passant portrait → landscape, cassant les layouts CSS soigneusement designes. Tailles texte stables maintenant pour iPhone/iPad Safari.
 - **iOS : tap-highlight deja present** — Confirme ligne 203 (`-webkit-tap-highlight-color: transparent !important;`). Aucun changement necessaire.
 - **Mobile : support safe-area-inset (notches)** — iPhone X+ ont des notches/Dynamic Island en haut, Home Indicator en bas. Android avec gestures a une system bar en bas. Ajout de `padding-top: env(safe-area-inset-top)` sur `.layout-mobile .skinHeader`, `padding-bottom: env(safe-area-inset-bottom)` sur `.nowPlayingBar`. Landscape : gere aussi left/right safe areas pour notch lateral. `env()` fallback a 0 sur les appareils sans safe areas.
-- **TV : focus renforce pour navigation telecommande** — Cards a 3-5m de distance visionnage avaient seulement `0.15em` outline — a peine visible. Maintenant : `3px solid` outline + `box-shadow` glow + leger `scale(1.06)` pour distinction immediate. Pattern Netflix/Disney+ TV. Idem applique aux boutons (`.btnPlay`, `.detailButton`). Transition `0.15s` pour fluidite.
+- **TV : focus renforce pour navigation telecommande** — Cards a 3-5m de distance visionnage avaient seulement `0.15em` outline — a peine visible. Maintenant : `3px solid` outline + `box-shadow` glow + leger `scale(1.06)` pour distinction immediate. Pattern premium streaming TV. Idem applique aux boutons (`.btnPlay`, `.detailButton`). Transition `0.15s` pour fluidite.
 - **Fallback `:has()` vieux Tizen** — v1.2.32 utilise `:has(a)` pour overlay logo conditionnel. Tizen 2018-2021 (Chromium 76-79) ne supporte pas `:has()`. Ajout d'un bloc `@supports not (selector(:has(*)))` qui ramene le breadcrumb en texte cliquable visible sur ces vieux TVs. Utilisateurs Tizen 9.0+ non affectes (comportement overlay v1.2.32 preserve).
 
 ---
@@ -852,7 +852,7 @@ Plan derive de l'audit complet de l'ecosysteme (jellyfin-web, jellyfin-tizen, je
 
 #### v1.2.35 — Focus TV passe du violet au BLANC (coherence theme)
 
-- **Focus TV de `var(--uiAccentColor)` (violet) a blanc** — Le violet herite de l'upstream ElegantFin ne correspondait pas a l'identite Cinema Edition (bouton Lire blanc, degrades sombres, palette warm cinema). Passe a `rgba(255, 255, 255, 0.95)` pour bordure inset, `rgba(255, 255, 255, 0.3)` pour glow. Visible a distance TV + coherent avec le reste du theme (pattern Netflix/Disney+/Apple TV qui utilisent tous des focus clairs).
+- **Focus TV de `var(--uiAccentColor)` (violet) a blanc** — Le violet herite de l'upstream ElegantFin ne correspondait pas a l'identite Cinema Edition (bouton Lire blanc, degrades sombres, palette warm cinema). Passe a `rgba(255, 255, 255, 0.95)` pour bordure inset, `rgba(255, 255, 255, 0.3)` pour glow. Visible a distance TV + coherent avec le reste du theme (pattern des grandes apps de streaming qui utilisent tous des focus clairs).
 - Box-shadow inset conserve de v1.2.34 (jamais clipped sur cards en bord viewport).
 - Cards et boutons traites coherement (3px sur cards, 2px sur boutons).
 
@@ -941,7 +941,7 @@ Deux soucis TV remontes apres le passage au contour blanc de v1.2.44 :
 
 Suite du passage monochrome v1.2.44 — le focus des boutons de la page detail ne fonctionnait pas bien :
 
-- **🔴 Bug du bouton blanc Lire/Reprendre corrige** — La regle v1.2.44 `.show-focus:focus { background-color: transparent }` (prevue pour les onglets/nav) touchait aussi le bouton blanc `.btnPlay`, le rendant transparent au focus, laissant transparaitre le backdrop bleuté ("Reprendre devenait bleu"). Et un contour blanc sur un bouton blanc est invisible de toute facon. Le bouton garde maintenant son fond blanc et recoit une **lueur + un zoom (lift)** a la place — comme Apple TV, il s'illumine et grandit vers toi. Bien visible sans avoir besoin d'un contour (invisible).
+- **🔴 Bug du bouton blanc Lire/Reprendre corrige** — La regle v1.2.44 `.show-focus:focus { background-color: transparent }` (prevue pour les onglets/nav) touchait aussi le bouton blanc `.btnPlay`, le rendant transparent au focus, laissant transparaitre le backdrop bleuté ("Reprendre devenait bleu"). Et un contour blanc sur un bouton blanc est invisible de toute facon. Le bouton garde maintenant son fond blanc et recoit une **lueur + un zoom (lift)** a la place — comme une box premium, il s'illumine et grandit vers toi. Bien visible sans avoir besoin d'un contour (invisible).
 - **Icones action + header bien plus visibles** — Les boutons aleatoire/vu/favori/plus et les icones du header (cloche, cast, recherche) n'avaient qu'un fin contour 2px qui se perdait a distance TV. Ils recoivent maintenant un contour blanc **+ lueur renforcee + zoom 1.12** pour ressortir clairement au focus.
 - **Trois traitements de focus selon le type de bouton** — bouton blanc = lueur + lift (pas de contour, il serait invisible) ; boutons icone = contour + lueur + zoom ; boutons generiques liste/dialogue = contour + lueur (sans zoom, pour ne pas faire sauter la mise en page). Tout en blanc, tout sur `.layout-tv` uniquement — desktop/mobile inchanges.
 
@@ -961,29 +961,29 @@ Palette finale : base navy + texte gris, **blanc pour le focus**, **violet pour 
 
 ---
 
-#### v1.2.48 — Focus TV : pastille pleine Netflix/Disney+ (bien plus visible) + decouverte d'une regle perf
+#### v1.2.48 — Focus TV : pastille pleine streaming premium (bien plus visible) + decouverte d'une regle perf
 
-Le contour blanc fin sur les icones focus etait faible a distance TV. En fait aucune grande app streaming n'utilise de contour — Netflix/Disney+/Prime utilisent une **pastille pleine** (l'element se remplit en blanc, l'icone/texte passe en sombre), Apple TV utilise **zoom + lift + lueur**. Deux constats + le fix :
+Le contour blanc fin sur les icones focus etait faible a distance TV. En fait aucune grande app streaming n'utilise de contour — les grandes apps de streaming utilisent une **pastille pleine** (l'element se remplit en blanc, l'icone/texte passe en sombre), les box premium utilisent **zoom + lift + lueur**. Deux constats + le fix :
 
 - **🔎 Decouverte : une regle perf tuait silencieusement le zoom du focus sur TV** — `.layout-tv .show-focus:focus { transform: none !important }` (une optimisation "vieilles TV") ecrasait le `transform: scale()` ajoute en v1.2.46 — donc sur les vraies TV le focus ne montrait que le contour fin, pas de zoom. D'ou l'impression de faiblesse. L'approche fill contourne ca entierement (pas de transform necessaire).
-- **Boutons icone (action + header) → pastille blanche pleine, icone sombre** (pattern Netflix/Disney+). Imparable a distance, et immunise a la regle perf.
+- **Boutons icone (action + header) → pastille blanche pleine, icone sombre** (pattern streaming premium). Imparable a distance, et immunise a la regle perf.
 - **Rangees de liste + cellules du Guide LiveTV → fond blanc plein + texte sombre** — une rangee remplie au lieu d'un fin contour. Texte/icones enfants forces en sombre pour eviter le blanc-sur-blanc.
 - **Onglets date du Guide** — etaient quasi invisibles au focus (juste un changement de couleur de texte) ; maintenant fond blanc plein (focus) / violet (actif).
 - **Bouton Skip intro/generique** — contour → fond blanc plein, bien clair pendant la lecture.
-- **Bouton Lire/Reprendre** — comme son zoom est tue par la regle perf sur TV, sa **lueur a ete renforcee** (anneau 4px + halo 30px) pour ressortir sans dependre du zoom (lift Apple TV, axe sur la lueur).
+- **Bouton Lire/Reprendre** — comme son zoom est tue par la regle perf sur TV, sa **lueur a ete renforcee** (anneau 4px + halo 30px) pour ressortir sans dependre du zoom (lift premium TV, axe sur la lueur).
 
 Tout sur `.layout-tv` uniquement ; focus clavier desktop et mobile inchanges. Le focus reste blanc, l'actif reste violet — juste exprime en plein la ou un contour etait trop faible.
 
 ---
 
-#### v1.2.49 — Focus des cards : correction du "zoom bizarre" + dimming des voisines facon Netflix sur TV
+#### v1.2.49 — Focus des cards : correction du "zoom bizarre" + dimming des voisines facon streaming sur TV
 
 Deux soucis de focus des cards sur TV, tous deux strictement dans les couleurs du theme (focus blanc, aucune nouvelle couleur) :
 
 - **🔴 "Zoom bizarre" des cards corrige** — le focus scalait toute la `.cardBox` a 1.03, mais la telecommande declenche aussi le `:hover`, qui scalait l'enfant `.cardScalable` (l'image) a 1.06 **en plus**. Les transforms parent × enfant se multiplient (≈1.09 sur l'image, seulement 1.03 sur le titre) : l'affiche gonflait en decalage avec son cadre/titre. Le scale propre de l'image est maintenant neutralise sur TV — seule la card pop, **d'un seul tenant** (image + contour + titre ensemble) a un 1.05 propre. S'applique aux affiches comme aux cards rondes cast/realisateur.
-- **✨ Le dimming Netflix des voisines marche maintenant sur TV** — l'effet "spotlight" (la card ciblee reste vive, le reste de la rangee s'attenue) existait **sur PC uniquement** (pilote par `:hover`). Il est maintenant aussi pilote par le **focus** telecommande sur TV : les voisines passent a `opacity: 0.5` pour qu'on repere le curseur depuis le canape. Opacity seule — pas de `filter: saturate` (trop lourd GPU pour la TV, banni par la section perf). Scope a `.emby-scroller` pour ne pas toucher les grilles de bibliotheque, et conditionne au support de `:has()` pour que les vieilles TV n'aient simplement aucun effet (rien ne casse). Aucune couleur ajoutee.
+- **✨ Le dimming streaming des voisines marche maintenant sur TV** — l'effet "spotlight" (la card ciblee reste vive, le reste de la rangee s'attenue) existait **sur PC uniquement** (pilote par `:hover`). Il est maintenant aussi pilote par le **focus** telecommande sur TV : les voisines passent a `opacity: 0.5` pour qu'on repere le curseur depuis le canape. Opacity seule — pas de `filter: saturate` (trop lourd GPU pour la TV, banni par la section perf). Scope a `.emby-scroller` pour ne pas toucher les grilles de bibliotheque, et conditionne au support de `:has()` pour que les vieilles TV n'aient simplement aucun effet (rien ne casse). Aucune couleur ajoutee.
 
-Les cards ne peuvent pas utiliser la pastille pleine de v1.2.48 (ca cacherait l'affiche/le visage), donc le bon pattern pour les cards reste contour + pop propre — exactement ce que font Netflix/Disney+.
+Les cards ne peuvent pas utiliser la pastille pleine de v1.2.48 (ca cacherait l'affiche/le visage), donc le bon pattern pour les cards reste contour + pop propre — exactement ce que font les grandes apps de streaming.
 
 ---
 

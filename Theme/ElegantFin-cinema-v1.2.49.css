@@ -1,5 +1,5 @@
 /* ElegantFin Cinema Edition v1.2.49 */
-/* Enhanced with 27 cinematic modules — Netflix-inspired streaming experience */
+/* Enhanced with 27 cinematic modules — premium streaming experience */
 
 /* Inter Variable Font — self-hosted (v1.2.42, remplace l'@import Google Fonts).
    Servi depuis ce repo via jsDelivr : les URLs relatives se résolvent contre
@@ -126,7 +126,7 @@
 
     --shadow: 0.1em 0.1em 0.15em hsla(0, 0%, 0%, 0.3);
 
-    /* Netflix-inspired smooth transitions */
+    /* streaming-inspired smooth transitions */
     --transitionFast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     --transitionMedium: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transitionSlow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -140,7 +140,7 @@
     --progressBarColor: var(--btnMiniPlayColor);
     --progressBarHeight: 0.25em;
 
-    /* Netflix-style gradient overlays */
+    /* streaming-style gradient overlays */
     --itemBackdropMaskEnhanced: linear-gradient(
         180deg,
         rgba(0, 0, 0, 0.9) 0%,
@@ -343,7 +343,7 @@ body {
    Le violet hérité de l'upstream ElegantFin ne cohérent pas avec :
    - Le bouton "Lire" blanc (pattern principal du thème)
    - Les dégradés sombres cinéma
-   - L'identité chaude/dark Netflix/Disney+
+   - L'identité chaude/dark streaming premium
    Blanc 95% opacity = très visible à distance TV + cohérent avec le reste
    du thème. Box-shadow inset conservé de v1.2.34 (jamais clipped). */
 /* v1.2.45 : contour blanc du focus déplacé de .cardBox vers .cardScalable
@@ -385,7 +385,7 @@ body {
 
 /* 1) Bouton blanc Lire/Reprendre — reste BLANC, lueur RENFORCÉE (le zoom étant
    neutralisé sur TV par la règle perf `.layout-tv .show-focus:focus {transform:none}`,
-   c'est la lueur qui porte la visibilité). Pattern Apple TV : le bouton blanc flotte. */
+   c'est la lueur qui porte la visibilité). Pattern premium TV : le bouton blanc flotte. */
 .layout-tv .btnPlay:focus-visible,
 .layout-tv .btnPlay.show-focus:focus {
     background-color: #fff !important;
@@ -402,7 +402,7 @@ body {
 }
 
 /* 2) Icônes d'action (page détail) + icônes du header — PASTILLE BLANCHE PLEINE,
-   icône qui passe en sombre (pattern Netflix/Disney+). Un contour fin était trop
+   icône qui passe en sombre (pattern streaming premium). Un contour fin était trop
    faible à distance TV ; le remplissage est imparable ET ne dépend pas du zoom
    (donc immunisé à la règle perf qui tue les transform sur TV). */
 .layout-tv .detailButton:not(.btnPlay):focus-visible,
@@ -3291,7 +3291,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
 }
 
 /* v1.2.48 : rangée de liste au focus = fond blanc plein + texte/icônes sombres
-   (pattern Netflix). Bien plus visible qu'un contour fin sur une rangée.
+   (pattern streaming). Bien plus visible qu'un contour fin sur une rangée.
    Le forçage en #000 des enfants évite tout texte blanc-sur-blanc. */
 .listItem:focus {
     background: #fff !important;
@@ -3730,7 +3730,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
     max-width: calc(100vw - 8em);
 }
 
-/* v1.2.19: "See all →" chevron on row title hover (Netflix-pattern).
+/* v1.2.19: "See all →" chevron on row title hover (streaming-pattern).
    Previously unconditionally hidden; now collapsed by default and
    reveals on hover using max-width animation (display can't transition).
    Desktop-only — no purpose on TV remote / mobile tap. The native link
@@ -4276,7 +4276,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
 /* v1.2.44 : focus du Guide LiveTV (chaînes + programmes) — fond bleu plein
    remplacé par contour blanc, cohérent avec le reste du système monochrome. */
 /* v1.2.48 : focus des cellules du Guide = fond blanc plein + texte sombre
-   (pattern Netflix), bien plus visible que le contour fin. */
+   (pattern streaming), bien plus visible que le contour fin. */
 .guide-channelHeaderCell:focus {
     background-color: #fff !important;
     color: #000 !important;
@@ -4785,7 +4785,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     align-content: center;
 }
 
-/* v1.2.17: Netflix-style gradient header on item detail pages
+/* v1.2.17: streaming-style gradient header on item detail pages
    — replaces the old fully-transparent header which became invisible
    when the backdrop was dark/absent. Gradient guarantees icon legibility
    on any backdrop while preserving the cinematic full-bleed effect. */
@@ -5168,7 +5168,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     }
 }
 
-/* --- 2. Hover Preview Info (Netflix-style) --- */
+/* --- 2. Hover Preview Info (streaming-style) --- */
 .layout-desktop .card-hoverable .cardFooter {
     transition: max-height 0.3s var(--ease-smooth),
                 opacity 0.3s var(--ease-smooth),
@@ -5371,7 +5371,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     box-shadow: none;
 }
 
-/* --- 9. Spotlight Hover on Card Rows (Netflix-style) ---
+/* --- 9. Spotlight Hover on Card Rows (streaming-style) ---
    v1.2.18: when hovering a card in a horizontal scroller, sibling cards
    fade + desaturate so the focused card stands out. Desktop-only
    (hover is unreliable on touch/remote); scoped to .emby-scroller so
@@ -5396,7 +5396,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     }
 }
 
-/* v1.2.49 — Spotlight TV : même effet Netflix que sur desktop, mais piloté par le
+/* v1.2.49 — Spotlight TV : même effet streaming que sur desktop, mais piloté par le
    FOCUS télécommande (pas le hover). La carte ciblée reste vive, les voisines de la
    rangée s'atténuent → on repère le curseur à 3 m. opacity SEULE, sans filter:saturate
    (coûteux GPU, banni sur TV par la section perf). Scopé à .emby-scroller → les grilles
