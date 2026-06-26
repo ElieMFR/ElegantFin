@@ -1,2 +1,5 @@
 /tmp.txt
 /commits.csv
+
+# Claude Code local config
+.claude/
