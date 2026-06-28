@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.52 */
+/* ElegantFin Cinema Edition v1.2.53 */
 /* Enhanced with 27 cinematic modules — premium streaming experience */
 
 /* Inter Variable Font — self-hosted (v1.2.42, remplace l'@import Google Fonts).
@@ -26,7 +26,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.52";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.53";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -705,10 +705,10 @@ body {
 .cardOverlayContainer > .cardOverlayFab-primary,
 .listItemImageButton,
 .layout-mobile .cardOverlayButton-br:not([data-action="menu"]) > .cardOverlayButtonIcon {
-    background-color: var(--btnMiniPlayColor) !important;
-    color: white;
+    background-color: #fff !important;                 /* v1.2.53 : mini-Lire BLANC = identique au bouton Lire principal (était vert, hors palette) */
+    color: #111827;                                    /* icône sombre sur blanc */
     border: var(--defaultLighterBorder);
-    border-color: var(--btnMiniPlayBorderColor);
+    border-color: rgba(0, 0, 0, 0.12);                 /* anneau neutre (plus le vert) */
     font-size: 75%;
     box-shadow: var(--shadow);
     z-index: 2;

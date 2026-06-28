@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.52
+# ElegantFin Cinema Edition v1.2.53
 
 ## [English](#english) | [Francais](#francais)
 
@@ -522,6 +522,15 @@ Rather than keep fixing these one at a time, a systematic sweep of the two failu
 - **Two invariants are now documented directly in the CSS** so a future edit can't silently reintroduce either bug: any panel added to the TV blur-removal list must also get an opaque background; any white-fill-on-focus element must be excluded from the transparent-focus rule.
 
 `.layout-tv` only; no visible change unless you use the LiveTV Guide on a TV.
+
+---
+
+#### v1.2.53 — Colour consistency: green mini-Play button → white
+
+A design-review sweep of the whole TV interface flagged the one off-palette element: green. The theme is navy + violet (active/selected) + white (focus). Two greens existed — now reconciled:
+
+- **Mini-Play button on cards** (`.cardOverlayFab-primary`, `.listItemImageButton`) was green, clashing with the white main Play button on the detail page. It's now **white with a dark icon**, identical to the main Play.
+- **The "watched" indicator** (✓ on played episodes) stays green — it's the universal "watched" convention, and with the mini-Play no longer green it's now the only green, so the palette reads cleanly (navy / violet / white, plus green only for "watched").
 
 ---
 
@@ -1050,6 +1059,15 @@ Plutot que de corriger au cas par cas, balayage systematique des deux modes de d
 - **Deux invariants sont maintenant documentes directement dans le CSS** pour qu'une future modif ne reintroduise silencieusement aucun des deux bugs : tout panneau ajoute a la liste blur:none TV doit aussi recevoir un fond opaque ; tout element fill-blanc-au-focus doit etre exclu de la regle transparent-au-focus.
 
 `.layout-tv` uniquement ; aucun changement visible sauf si tu utilises le Guide LiveTV sur TV.
+
+---
+
+#### v1.2.53 — Coherence couleur : bouton mini-Lire vert → blanc
+
+Une revue design de toute l'interface TV a releve le seul element hors-palette : le vert. Le theme est navy + violet (actif/selectionne) + blanc (focus). Deux verts coexistaient — maintenant reconcilies :
+
+- **Le bouton mini-Lire des cartes** (`.cardOverlayFab-primary`, `.listItemImageButton`) etait vert, ce qui jurait avec le bouton Lire principal blanc de la page detail. Il est maintenant **blanc avec une icone sombre**, identique au Lire principal.
+- **L'indicateur « vu »** (✓ sur les episodes regardes) reste vert — c'est la convention universelle « regarde », et comme le mini-Lire n'est plus vert, c'est desormais le seul vert : la palette se lit proprement (navy / violet / blanc, plus vert uniquement pour « vu »).
 
 ---
 
