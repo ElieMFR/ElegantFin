@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.49
+# ElegantFin Cinema Edition v1.2.50
 
 ## [English](#english) | [Francais](#francais)
 
@@ -489,6 +489,16 @@ Two card-focus issues on TV, both kept strictly within the theme's colours (whit
 - **✨ streaming sibling-dimming now works on TV** — the "spotlight" effect (focused card stays bright, the rest of the row fades) previously existed on **desktop only** (driven by `:hover`). It's now also driven by remote **focus** on TV: siblings drop to `opacity: 0.5` so the cursor is obvious from across the room. Opacity only — no `filter: saturate` (too GPU-heavy for TV, banned by the perf section). Scoped to `.emby-scroller` so library grids aren't touched, and gated by `:has()` support so older TVs simply get no effect (nothing breaks). No colour added.
 
 Cards can't use the v1.2.48 solid fill (it would hide the poster/face), so the right pattern for cards stays outline + clean pop — exactly what the major streaming apps do.
+
+---
+
+#### v1.2.50 — TV readability: opaque backgrounds for "glass" panels over video
+
+The theme's glass panels (settings menu, dialogs, side menu, toasts…) rely on `backdrop-filter: blur()` for contrast, but the low-end-TV perf section disables that blur on `.layout-tv` — leaving the translucent (or, for the playback-settings menu, fully unstyled Jellyfin-default) background to let the bright video show straight through. Result on Tizen: menus and dialogs were unreadable during playback. The blur was never replaced by anything opaque.
+
+- **Opaque navy background restored on TV** for every panel that loses its blur: the **playback-settings menu** (`.actionSheetContent`), **dialogs** incl. the "Quit Jellyfin?" confirm (`.dialog`), the **"Up Next" card** over the video (`.upNextContainer`), the **side menu** (`.mainDrawer`), **toasts** (`.toast`), the **Now Playing bar** (`.nowPlayingBar`) and the **login card** (`#loginPage`). Same theme navy, just without transparency — no blur needed, so it stays perf-safe.
+- **Playback (OSD) header** — its title could look washed-out over a bright scene when its translucent background wasn't active (e.g. with the settings menu open). It now always sits on a dark backdrop on TV.
+- Desktop & mobile keep their blur — strictly `.layout-tv` only. The detail-page header was already correct (solid gradient, not blur-dependent) and is unchanged.
 
 ---
 
@@ -984,6 +994,16 @@ Deux soucis de focus des cards sur TV, tous deux strictement dans les couleurs d
 - **✨ Le dimming streaming des voisines marche maintenant sur TV** — l'effet "spotlight" (la card ciblee reste vive, le reste de la rangee s'attenue) existait **sur PC uniquement** (pilote par `:hover`). Il est maintenant aussi pilote par le **focus** telecommande sur TV : les voisines passent a `opacity: 0.5` pour qu'on repere le curseur depuis le canape. Opacity seule — pas de `filter: saturate` (trop lourd GPU pour la TV, banni par la section perf). Scope a `.emby-scroller` pour ne pas toucher les grilles de bibliotheque, et conditionne au support de `:has()` pour que les vieilles TV n'aient simplement aucun effet (rien ne casse). Aucune couleur ajoutee.
 
 Les cards ne peuvent pas utiliser la pastille pleine de v1.2.48 (ca cacherait l'affiche/le visage), donc le bon pattern pour les cards reste contour + pop propre — exactement ce que font les grandes apps de streaming.
+
+---
+
+#### v1.2.50 — Lisibilite TV : fonds opaques pour les panneaux "verre" sur la video
+
+Les panneaux verre du theme (menu reglages, dialogues, menu lateral, notifications…) comptent sur le `backdrop-filter: blur()` pour leur contraste, mais la section perf "vieilles TV" coupe ce flou sur `.layout-tv` — laissant le fond translucide (ou, pour le menu reglages, totalement par defaut cote Jellyfin) laisser passer la video vive. Resultat sur Tizen : menus et dialogues illisibles en lecture. Le flou n'etait remplace par rien d'opaque.
+
+- **Fond navy opaque restaure sur TV** pour chaque panneau qui perd son flou : le **menu reglages de lecture** (`.actionSheetContent`), les **dialogues** dont le "Quitter Jellyfin ?" (`.dialog`), la **carte "Episode suivant"** par-dessus la video (`.upNextContainer`), le **menu lateral** (`.mainDrawer`), les **notifications** (`.toast`), la **barre "lecture en cours"** (`.nowPlayingBar`) et la **carte de connexion** (`#loginPage`). Meme navy du theme, juste sans transparence — aucun flou requis, donc perf-safe.
+- **Header de lecture (OSD)** — son titre pouvait paraitre delave sur une scene vive quand son fond translucide n'etait pas actif (ex. menu reglages ouvert). Il est maintenant toujours sur fond sombre sur TV.
+- Desktop et mobile gardent leur flou — strictement `.layout-tv`. Le header de page detail etait deja correct (degrade solide, pas dependant du flou) et reste inchange.
 
 ---
 

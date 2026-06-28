@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.49 */
+/* ElegantFin Cinema Edition v1.2.50 */
 /* Enhanced with 27 cinematic modules — premium streaming experience */
 
 /* Inter Variable Font — self-hosted (v1.2.42, remplace l'@import Google Fonts).
@@ -26,7 +26,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.49";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.50";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -5096,6 +5096,39 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 .layout-tv #loginPage .padded-left.padded-right.padded-bottom-page {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+}
+
+/* v1.2.50 — TV : le blur des panneaux "verre" est coupé juste au-dessus (perf).
+   Sans flou, leur fond translucide (ou absent côté Jellyfin) laisse passer la
+   vidéo/le contenu → illisible en lecture (menu réglages, carte "épisode suivant",
+   dialogue "Quitter Jellyfin ?", etc.). On restaure le contraste avec un fond NAVY
+   OPAQUE (mêmes teintes que le thème, juste sans transparence) = perf-safe, no blur. */
+.layout-tv .actionSheetContent,
+.layout-tv .dialog:not(.dialog-fullscreen),
+.layout-tv .mainDrawer,
+.layout-tv .toast,
+.layout-tv .upNextContainer,
+.layout-tv .nowPlayingBar {
+    background-color: rgb(30, 40, 54) !important;   /* = --drawerColor/--headerColor opaque */
+}
+
+.layout-tv .actionSheetContent,
+.layout-tv .dialog:not(.dialog-fullscreen),
+.layout-tv .toast,
+.layout-tv .upNextContainer {
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.layout-tv #loginPage .padded-left.padded-right.padded-bottom-page {
+    background-color: var(--darkerGradientPoint) !important;   /* #111827 opaque */
+}
+
+/* v1.2.50 — TV : header de LECTURE (OSD) toujours sur fond sombre, pour que le
+   titre reste lisible même quand son fond translucide n'est pas actif (ex. menu
+   réglages ouvert) — c'est le titre qui paraissait délavé sur la vidéo. */
+.layout-tv .osdHeader,
+.layout-tv .skinHeader.osdHeader {
+    background: rgba(0, 0, 0, 0.85) !important;
 }
 
 /* TV : pas d'animations de page ni de shimmer */
