@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.51
+# ElegantFin Cinema Edition v1.2.52
 
 ## [English](#english) | [Francais](#francais)
 
@@ -510,6 +510,18 @@ Follow-up to v1.2.50: the playback-settings menu (Aspect ratio / Speed / Quality
 - **Panel background wasn't opaque** — v1.2.50 only targeted `.actionSheetContent`, but the visible container is the `.actionSheet` parent. Added it to the opaque-background list, so the whole sheet is solid navy on TV.
 
 `.layout-tv` only; desktop & mobile unchanged.
+
+---
+
+#### v1.2.52 — Hardening: global guard against the TV "unreadable panel" class of bug
+
+Rather than keep fixing these one at a time, a systematic sweep of the two failure modes behind v1.2.50/51:
+
+- **Glass panels that lose their blur on TV** (perf section) — verified every one already has an opaque fallback (dialog, action sheet, side menu, toast, Up-Next, Now-Playing, login). ✅ No gap.
+- **Elements given a white fill + forced-dark text on focus** — these break if the generic "transparent on focus" rule catches them (dark text on a transparent background). Beyond the menu rows fixed in v1.2.51, the **LiveTV Guide date tabs and channel-header cells** carried the same latent risk; both are now excluded from that rule so they keep their white fill. (Program cells were already safe — transparent by design, fill on the inner element.)
+- **Two invariants are now documented directly in the CSS** so a future edit can't silently reintroduce either bug: any panel added to the TV blur-removal list must also get an opaque background; any white-fill-on-focus element must be excluded from the transparent-focus rule.
+
+`.layout-tv` only; no visible change unless you use the LiveTV Guide on a TV.
 
 ---
 
@@ -1026,6 +1038,18 @@ Suite de v1.2.50 : le menu reglages de lecture (Format d'image / Vitesse / Quali
 - **Le fond du panneau n'etait pas opaque** — v1.2.50 ne ciblait que `.actionSheetContent`, mais le conteneur visible est le parent `.actionSheet`. Ajoute a la liste des fonds opaques → toute la feuille est en navy plein sur TV.
 
 `.layout-tv` uniquement ; desktop et mobile inchanges.
+
+---
+
+#### v1.2.52 — Durcissement : garde-fou global contre la classe de bug « panneau illisible sur TV »
+
+Plutot que de corriger au cas par cas, balayage systematique des deux modes de defaillance derriere v1.2.50/51 :
+
+- **Panneaux verre qui perdent leur flou sur TV** (section perf) — verifie que chacun a deja un fond opaque de secours (dialogue, menu reglages, menu lateral, notification, Episode suivant, lecture en cours, connexion). ✅ Aucun manque.
+- **Elements avec fill blanc + texte force sombre au focus** — ils cassent si la regle generique « transparent au focus » les attrape (texte sombre sur fond transparent). En plus des lignes de menu corrigees en v1.2.51, les **onglets de date et cellules d'en-tete de chaine du Guide LiveTV** avaient le meme risque latent ; les deux sont maintenant exclus de cette regle et gardent leur fill blanc. (Les cellules de programme etaient deja safe — transparentes par design, fill sur l'enfant.)
+- **Deux invariants sont maintenant documentes directement dans le CSS** pour qu'une future modif ne reintroduise silencieusement aucun des deux bugs : tout panneau ajoute a la liste blur:none TV doit aussi recevoir un fond opaque ; tout element fill-blanc-au-focus doit etre exclu de la regle transparent-au-focus.
+
+`.layout-tv` uniquement ; aucun changement visible sauf si tu utilises le Guide LiveTV sur TV.
 
 ---
 

@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.51 */
+/* ElegantFin Cinema Edition v1.2.52 */
 /* Enhanced with 27 cinematic modules — premium streaming experience */
 
 /* Inter Variable Font — self-hosted (v1.2.42, remplace l'@import Google Fonts).
@@ -26,7 +26,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.51";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.52";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -446,8 +446,13 @@ body {
    v1.2.51 : + :not(.listItem) — sinon les items du menu réglages lecture
    (.listItem.actionSheetMenuItem.emby-button) tombaient ici → fond transparent
    au focus (texte sombre sur la vidéo = illisible). Exclus, ils reprennent le
-   fill blanc de .listItem:focus. */
-.emby-button.show-focus:focus:not(.btnPlay):not(.detailButton):not(.headerButton):not(.paper-icon-button-light):not(.listItem),
+   fill blanc de .listItem:focus.
+   ⚠️ INVARIANT (contrôle global v1.2.52) : TOUT élément qui reçoit un FILL BLANC +
+   texte forcé sombre au focus DOIT figurer dans ce :not(...), sinon il devient
+   « texte sombre sur fond transparent » = illisible sur la vidéo. Membres actuels :
+   listItem (+ actionSheetMenuItem hérité), guide-date-tab-button, guide-channelHeaderCell.
+   (programCell reste transparent par design : son fill est sur l'enfant .guideProgramName.) */
+.emby-button.show-focus:focus:not(.btnPlay):not(.detailButton):not(.headerButton):not(.paper-icon-button-light):not(.listItem):not(.guide-date-tab-button):not(.guide-channelHeaderCell),
 .emby-tabs .emby-button.show-focus:focus {
     background-color: transparent !important;
     color: #fff !important;
@@ -5106,7 +5111,10 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    Sans flou, leur fond translucide (ou absent côté Jellyfin) laisse passer la
    vidéo/le contenu → illisible en lecture (menu réglages, carte "épisode suivant",
    dialogue "Quitter Jellyfin ?", etc.). On restaure le contraste avec un fond NAVY
-   OPAQUE (mêmes teintes que le thème, juste sans transparence) = perf-safe, no blur. */
+   OPAQUE (mêmes teintes que le thème, juste sans transparence) = perf-safe, no blur.
+   ⚠️ INVARIANT (contrôle global) : tout panneau ajouté à la liste « .layout-tv … backdrop-filter:
+   none » de la section perf DOIT aussi recevoir un fond opaque ici, sinon il laisse passer
+   la vidéo/le contenu sur TV. Liste à garder synchro avec la section perf. */
 .layout-tv .actionSheet,
 .layout-tv .actionSheetContent,
 .layout-tv .dialog:not(.dialog-fullscreen),
