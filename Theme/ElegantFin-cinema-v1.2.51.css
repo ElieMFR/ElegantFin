@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.50 */
+/* ElegantFin Cinema Edition v1.2.51 */
 /* Enhanced with 27 cinematic modules — premium streaming experience */
 
 /* Inter Variable Font — self-hosted (v1.2.42, remplace l'@import Google Fonts).
@@ -26,7 +26,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.50";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.51";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -442,8 +442,12 @@ body {
 /* v1.2.46 : focus onglets + boutons génériques (le bouton blanc, les icônes
    d'action et du header ont leur traitement dédié plus haut). Contour blanc +
    lueur, fond transparent. Le :not(.btnPlay) etc. évite que cette règle ré-
-   applique le fond transparent au bouton blanc (le bug du backdrop bleu). */
-.emby-button.show-focus:focus:not(.btnPlay):not(.detailButton):not(.headerButton):not(.paper-icon-button-light),
+   applique le fond transparent au bouton blanc (le bug du backdrop bleu).
+   v1.2.51 : + :not(.listItem) — sinon les items du menu réglages lecture
+   (.listItem.actionSheetMenuItem.emby-button) tombaient ici → fond transparent
+   au focus (texte sombre sur la vidéo = illisible). Exclus, ils reprennent le
+   fill blanc de .listItem:focus. */
+.emby-button.show-focus:focus:not(.btnPlay):not(.detailButton):not(.headerButton):not(.paper-icon-button-light):not(.listItem),
 .emby-tabs .emby-button.show-focus:focus {
     background-color: transparent !important;
     color: #fff !important;
@@ -5103,6 +5107,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    vidéo/le contenu → illisible en lecture (menu réglages, carte "épisode suivant",
    dialogue "Quitter Jellyfin ?", etc.). On restaure le contraste avec un fond NAVY
    OPAQUE (mêmes teintes que le thème, juste sans transparence) = perf-safe, no blur. */
+.layout-tv .actionSheet,
 .layout-tv .actionSheetContent,
 .layout-tv .dialog:not(.dialog-fullscreen),
 .layout-tv .mainDrawer,
@@ -5110,6 +5115,14 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 .layout-tv .upNextContainer,
 .layout-tv .nowPlayingBar {
     background-color: rgb(30, 40, 54) !important;   /* = --drawerColor/--headerColor opaque */
+}
+
+/* v1.2.51 — items du menu réglages lecture : fill blanc garanti au focus (la règle
+   générique transparent-au-focus les attrapait). Texte sombre déjà géré par v1.2.48. */
+.layout-tv .actionSheetMenuItem.show-focus:focus,
+.layout-tv .actionSheetMenuItem:focus {
+    background-color: #fff !important;
+    box-shadow: none !important;
 }
 
 .layout-tv .actionSheetContent,

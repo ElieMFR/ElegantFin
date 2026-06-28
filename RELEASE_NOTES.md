@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.50
+# ElegantFin Cinema Edition v1.2.51
 
 ## [English](#english) | [Francais](#francais)
 
@@ -499,6 +499,17 @@ The theme's glass panels (settings menu, dialogs, side menu, toasts…) rely on 
 - **Opaque navy background restored on TV** for every panel that loses its blur: the **playback-settings menu** (`.actionSheetContent`), **dialogs** incl. the "Quit Jellyfin?" confirm (`.dialog`), the **"Up Next" card** over the video (`.upNextContainer`), the **side menu** (`.mainDrawer`), **toasts** (`.toast`), the **Now Playing bar** (`.nowPlayingBar`) and the **login card** (`#loginPage`). Same theme navy, just without transparency — no blur needed, so it stays perf-safe.
 - **Playback (OSD) header** — its title could look washed-out over a bright scene when its translucent background wasn't active (e.g. with the settings menu open). It now always sits on a dark backdrop on TV.
 - Desktop & mobile keep their blur — strictly `.layout-tv` only. The detail-page header was already correct (solid gradient, not blur-dependent) and is unchanged.
+
+---
+
+#### v1.2.51 — TV fix: playback-settings menu was still unreadable (transparent focus + see-through panel)
+
+Follow-up to v1.2.50: the playback-settings menu (Aspect ratio / Speed / Quality / Subtitle offset…) was still unreadable on TV. Two precise causes:
+
+- **Focused row had a transparent background** — a generic "emby-button focus = transparent + white outline" rule (meant for tabs/nav, from v1.2.44) also matched the menu rows (`.listItem.actionSheetMenuItem.emby-button`). The v1.2.48 rule still forced their text dark → dark text on a transparent row over the video = invisible. Fixed by excluding `.listItem` from that rule, so the rows get the intended **white fill** on focus.
+- **Panel background wasn't opaque** — v1.2.50 only targeted `.actionSheetContent`, but the visible container is the `.actionSheet` parent. Added it to the opaque-background list, so the whole sheet is solid navy on TV.
+
+`.layout-tv` only; desktop & mobile unchanged.
 
 ---
 
@@ -1004,6 +1015,17 @@ Les panneaux verre du theme (menu reglages, dialogues, menu lateral, notificatio
 - **Fond navy opaque restaure sur TV** pour chaque panneau qui perd son flou : le **menu reglages de lecture** (`.actionSheetContent`), les **dialogues** dont le "Quitter Jellyfin ?" (`.dialog`), la **carte "Episode suivant"** par-dessus la video (`.upNextContainer`), le **menu lateral** (`.mainDrawer`), les **notifications** (`.toast`), la **barre "lecture en cours"** (`.nowPlayingBar`) et la **carte de connexion** (`#loginPage`). Meme navy du theme, juste sans transparence — aucun flou requis, donc perf-safe.
 - **Header de lecture (OSD)** — son titre pouvait paraitre delave sur une scene vive quand son fond translucide n'etait pas actif (ex. menu reglages ouvert). Il est maintenant toujours sur fond sombre sur TV.
 - Desktop et mobile gardent leur flou — strictement `.layout-tv`. Le header de page detail etait deja correct (degrade solide, pas dependant du flou) et reste inchange.
+
+---
+
+#### v1.2.51 — Fix TV : le menu reglages de lecture etait toujours illisible (focus transparent + panneau qui laisse passer)
+
+Suite de v1.2.50 : le menu reglages de lecture (Format d'image / Vitesse / Qualite / Decalage sous-titres…) restait illisible sur TV. Deux causes precises :
+
+- **La ligne ciblee avait un fond transparent** — une regle generique "emby-button focus = transparent + contour blanc" (prevue pour les onglets/nav, depuis v1.2.44) attrapait aussi les lignes du menu (`.listItem.actionSheetMenuItem.emby-button`). La regle v1.2.48 forcait quand meme leur texte en sombre → texte sombre sur ligne transparente par-dessus la video = invisible. Corrige en excluant `.listItem` de cette regle : les lignes reprennent le **fill blanc** au focus.
+- **Le fond du panneau n'etait pas opaque** — v1.2.50 ne ciblait que `.actionSheetContent`, mais le conteneur visible est le parent `.actionSheet`. Ajoute a la liste des fonds opaques → toute la feuille est en navy plein sur TV.
+
+`.layout-tv` uniquement ; desktop et mobile inchanges.
 
 ---
 
