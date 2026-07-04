@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.63
+# ElegantFin Cinema Edition v1.2.64
 
 ## [English](#english) | [Francais](#francais)
 
@@ -642,6 +642,12 @@ Two mistakes in v1.2.62, both fixed after field screenshots:
 
 - **Wrong reference** — v1.2.62 matched the series title to the big ultra-light page title; the request was to match the "Season X - Episode" line (the subtitle: 2em, semi-bold, upright). The series title now uses exactly that format — two twin lines.
 - **Missed code path** — v1.2.62 only restyled the TV rule, but on PC/mobile the series title is rendered by a different rule (the v1.2.40 clickable-breadcrumb one: small italic). That path is now harmonized too (desktop 2em, mobile 1.5em to match the mobile subtitle), still clickable with the hover underline.
+
+---
+
+#### v1.2.64 — Accessibility: the version badge was nearly unreadable
+
+Outcome of the WCAG contrast audit: every text in the theme passes AA except one — the "ElegantFin Cinema Edition vX.X.X" badge at the bottom of the Preferences page used the border colour, measuring **1.86:1** (the AA floor is 4.5:1). Ironically it's the text you read to check which version you're on. It now has its own colour at **~5.5:1**. One line; nothing else changes.
 
 ---
 
@@ -1290,6 +1296,12 @@ Deux erreurs en v1.2.62, corrigees grace aux captures terrain :
 
 - **Mauvais referent** — v1.2.62 avait aligne le titre de serie sur le grand titre ultra-fin ; la demande etait de l'aligner sur la ligne « Saison X - Episode » (le subtitle : 2em, semi-grasse, droite). Le titre de serie utilise maintenant exactement ce format — deux lignes jumelles.
 - **Chemin de code rate** — v1.2.62 ne restylait que la regle TV, mais sur PC/mobile le titre de serie passe par une autre regle (celle du fil d'Ariane cliquable v1.2.40 : petite italique). Ce chemin est maintenant harmonise aussi (PC 2em, mobile 1.5em pour coller au subtitle mobile), toujours cliquable avec le souligne au survol.
+
+---
+
+#### v1.2.64 — Accessibilite : le badge de version etait quasi illisible
+
+Resultat de l'audit de contraste WCAG : tous les textes du theme passent AA sauf un — le badge « ElegantFin Cinema Edition vX.X.X » en pied de la page Preferences utilisait la couleur des bordures, mesuree a **1.86:1** (le plancher AA est 4.5:1). Ironiquement, c'est le texte qu'on lit pour verifier sa version. Il a maintenant sa propre couleur a **~5.5:1**. Une ligne ; rien d'autre ne change.
 
 ---
 

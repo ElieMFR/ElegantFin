@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.63 */
+/* ElegantFin Cinema Edition v1.2.64 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -45,7 +45,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.63";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.64";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -320,7 +320,7 @@ body {
 .dashboardFooter::after {
     content: var(--elegantFinFooterText);
     font-size: 0.8em;
-    color: var(--borderColor);
+    color: rgba(255, 255, 255, 0.6);   /* v1.2.64 (audit WCAG) : var(--borderColor) donnait 1.86:1, quasi illisible — et c'est CE texte qu'on lit pour vérifier la version. ~5.5:1 maintenant. */
     display: inline-grid;
     width: 100%;
     width: -webkit-fill-available;

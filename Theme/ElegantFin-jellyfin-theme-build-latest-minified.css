@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.63 */
+/* ElegantFin Cinema Edition v1.2.64 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/InterVariable.woff2") format("woff2");
@@ -14,7 +14,7 @@
     font-display: swap;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.63";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.64";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -195,7 +195,7 @@ body {
 .dashboardFooter::after {
     content: var(--elegantFinFooterText);
     font-size: 0.8em;
-    color: var(--borderColor);
+    color: rgba(255, 255, 255, 0.6);
     display: inline-grid;
     width: 100%;
     width: -webkit-fill-available;
