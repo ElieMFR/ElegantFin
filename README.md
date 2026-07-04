@@ -1,5 +1,5 @@
 <!-- Image banniere -->
-<img src="https://github.com/lscambo13/ElegantFin/blob/main/Theme/assets/img/banner.png?raw=true" alt="ElegantFin Cinema Edition - Banner">
+<img src="Theme/assets/img/banner.png" alt="ElegantFin Cinema Edition - Banner">
 
 <div align="center">
 
