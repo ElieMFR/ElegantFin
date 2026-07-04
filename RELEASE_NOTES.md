@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.58
+# ElegantFin Cinema Edition v1.2.59
 
 ## [English](#english) | [Francais](#francais)
 
@@ -588,6 +588,16 @@ The v1.2.48 rule — a thin outline is unreadable at TV distance, fill wins — 
 - **"Who's watching?"** — the login profile picker becomes round centered avatars with a white focus ring (additive selectors: graceful no-op if the DOM differs).
 - **Full-height scroll arrows (desktop)** — gradient bands spanning the row height, revealed on section hover, instead of the small corner arrows.
 - **Row scroll-snap (desktop + mobile)** — rows settle aligned on a card, never cut between two. `proximity` so it never fights Jellyfin's own scrolling; not applied on TV.
+
+---
+
+#### v1.2.59 — Hotfix: three v1.2.58 white-pill cascade bugs on TV
+
+Field-tested on Tizen right after v1.2.58 — three pure CSS-cascade bugs in the generalized pill:
+
+- **Series-title link: white text inside the white pill (invisible)** — the TV breadcrumb rule (`color: inherit !important`, specificity 0,6,2) beat the pill's black text (0,4,0). Fixed with a higher-specificity focus-only override.
+- **"Season 1" pill clipped at the top** — the long-titles module puts `overflow: hidden` on title containers; the pill's 0.3em spread shadow overflowed the line box and got cut. Spread reduced to 0.15em.
+- **"Favorites" tab didn't react to focus** (while the active "Home" did) — the non-active-tab rule had the same specificity as the pill but sits later in the file, so it won on non-active tabs. It now excludes `:focus`.
 
 ---
 
@@ -1182,6 +1192,16 @@ La regle v1.2.48 — un contour fin est illisible a distance TV, le plein gagne 
 - **« Qui regarde ? »** — la selection de profil au login devient de grands avatars ronds centres avec anneau blanc au focus (selecteurs additifs : degrade gracieux si le DOM differe).
 - **Fleches de defilement pleine hauteur (PC)** — bandeaux degrades sur la hauteur de la rangee, reveles au survol de la section, au lieu des petites fleches de coin.
 - **Aimantation du defilement des rangees (PC + mobile)** — la rangee se pose toujours alignee sur une carte, jamais coupee entre deux. `proximity` pour ne jamais se battre avec le scroll de Jellyfin ; pas applique sur TV.
+
+---
+
+#### v1.2.59 — Hotfix : trois bugs de cascade de la pastille v1.2.58 sur TV
+
+Teste sur Tizen juste apres v1.2.58 — trois bugs de pure cascade CSS dans la pastille generalisee :
+
+- **Lien du titre de serie : texte blanc dans la pastille blanche (invisible)** — la regle TV du breadcrumb (`color: inherit !important`, specificite 0,6,2) battait le noir de la pastille (0,4,0). Corrige par un override focus a specificite superieure.
+- **Pastille « Saison 1 » rognee en haut** — le module titres longs met `overflow: hidden` sur les conteneurs de titre ; l'ombre etalee de 0.3em depassait la ligne et se faisait couper. Etalement reduit a 0.15em.
+- **L'onglet « Favoris » ne reagissait pas au focus** (alors qu'« Accueil », actif, oui) — la regle des onglets non-actifs avait la meme specificite que la pastille mais arrive plus tard dans le fichier, donc gagnait sur les onglets non-actifs. Elle exclut maintenant `:focus`.
 
 ---
 

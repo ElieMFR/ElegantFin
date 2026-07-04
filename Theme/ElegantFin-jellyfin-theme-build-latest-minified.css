@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.58 */
+/* ElegantFin Cinema Edition v1.2.59 */
 /* Enhanced with 27 cinematic modules — premium streaming experience */
 
 /* Inter Variable Font — self-hosted (v1.2.42, remplace l'@import Google Fonts).
@@ -26,7 +26,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.58";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.59";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -493,9 +493,19 @@ body {
     background-color: #fff !important;
     color: #000 !important;
     outline: none !important;
-    box-shadow: 0 0 0 0.3em #fff !important;
+    box-shadow: 0 0 0 0.15em #fff !important;   /* v1.2.59 : 0.3em dépassait la ligne → rogné par l'overflow:hidden du module titres longs */
     border-radius: 0.2em;
     text-decoration: none !important;
+}
+
+/* v1.2.59 : le texte des liens de titre restait BLANC dans la pastille — la règle
+   TV du breadcrumb série (`color: inherit !important`, spécificité 0,6,2) écrasait
+   le noir de la pastille (0,4,0). Override à spécificité supérieure, focus only. */
+.layout-tv .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName a:focus,
+.layout-tv .nameContainer h1.parentName a:focus,
+.layout-tv .nameContainer h3.itemName a:focus,
+.layout-tv h3.itemName a:focus {
+    color: #000 !important;
 }
 
 /* Onglets de section (Accueil / Films / Séries…) — mêmes règles que les onglets
@@ -4986,13 +4996,16 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     border-radius: var(--largeRadius);
 }
 
-.sectionTabs .emby-tab-button:not(.emby-tab-button-active) {
+/* v1.2.59 : + :not(:focus) — cette règle (même spécificité que la pastille focus
+   mais plus tard dans le fichier) gagnait sur les onglets NON-ACTIFS focus →
+   « Favoris » ne réagissait pas au focus alors qu'« Accueil » (actif) oui. */
+.sectionTabs .emby-tab-button:not(.emby-tab-button-active):not(:focus) {
     background-color: rgba(255, 255, 255, 0.06) !important;
     color: rgba(255, 255, 255, 0.7) !important;
     font-weight: 400;
 }
 
-.sectionTabs .emby-tab-button:not(.emby-tab-button-active):hover {
+.sectionTabs .emby-tab-button:not(.emby-tab-button-active):not(:focus):hover {
     background-color: rgba(255, 255, 255, 0.12) !important;
     color: #fff !important;
 }
