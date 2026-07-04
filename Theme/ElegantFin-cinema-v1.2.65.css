@@ -16,6 +16,9 @@
    10. PERFORMANCES — GPU + TV + Mobile (+ ⚠️ INVARIANT fonds opaques)
    11. Corrections mineures
    12. CINEMA FEATURES (modules) + finitions streaming (v1.2.58)
+   13. PORTAGE UPSTREAM — fixes additifs (v1.2.61)
+   14. FORMAT UNIQUE DU TITRE DE SÉRIE — règle ID (v1.2.65) ; les
+       chemins par-plateforme restent = fallback clients sans :has()
    NB : le fichier distribué (latest-minified) est généré par
    scripts/minify.py — commentaires retirés, règles identiques.
    ============================================================ */
