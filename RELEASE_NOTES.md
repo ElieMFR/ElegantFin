@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.55
+# ElegantFin Cinema Edition v1.2.56
 
 ## [English](#english) | [Francais](#francais)
 
@@ -549,6 +549,12 @@ Desktop & mobile keep the full spotlight, shadows and glass.
 #### v1.2.55 — TV fluidity, part 2: fast-scroll stutter — card focus zoom removed
 
 After v1.2.54 the leftover stutter showed up only when scrolling fast. The cause was the last per-focus animation: the focused card's `scale()` pop, which re-rasterises the card on every focus change — fine when stepping card by card, but it piles up during a fast scroll. On `.layout-tv` the focus zoom is now removed; focus is marked purely by the instant white outline, and card transitions are cut so nothing animates while scrolling. That's the last big theme-side lever — anything past this is mostly the TV's own image decoding, which CSS can't change. Desktop & mobile keep the zoom.
+
+---
+
+#### v1.2.56 — TV fluidity, part 3: one transition had survived the sweep
+
+Fast-scroll still stuttered a bit after v1.2.55 — and it wasn't the TV's ceiling yet. One animation had survived: the base `.cardScalable` rule declares its transition (border-color/transform/box-shadow) with `!important`, and the old TV perf rule only **shortened** it (`transition-duration: 0.05s`) instead of removing it. So the white↔grey border of the image frame still animated on **every focus move**, piling up during fast scrolls. The perf rule is now `transition: none` on TV — focus feedback is fully instantaneous. Desktop/mobile keep their smooth transitions.
 
 ---
 
@@ -1104,6 +1110,12 @@ Desktop et mobile gardent tout le spotlight, les ombres et le verre.
 #### v1.2.55 — Fluidite TV, partie 2 : saccade en defilement rapide — zoom au focus retire
 
 Apres v1.2.54 il ne restait de la saccade qu'en defilant vite. La cause etait la derniere animation par focus : le `scale()` de la carte ciblee, qui re-rasterise la carte a chaque changement de focus — ok en avancant carte par carte, mais ca s'empile en defilement rapide. Sur `.layout-tv` le zoom au focus est maintenant retire ; le focus est marque uniquement par le contour blanc instantane, et les transitions des cartes sont coupees pour que rien n'anime pendant le defilement. C'est le dernier gros levier cote theme — au-dela, c'est surtout le decodage d'images de la TV, hors CSS. Desktop et mobile gardent le zoom.
+
+---
+
+#### v1.2.56 — Fluidite TV, partie 3 : une transition avait survecu au balayage
+
+Le defilement rapide saccadait encore un peu apres v1.2.55 — et ce n'etait pas encore le plafond de la TV. Une animation avait survecu : la regle de base `.cardScalable` declare sa transition (border-color/transform/box-shadow) avec `!important`, et l'ancienne regle perf TV ne faisait que la **raccourcir** (`transition-duration: 0.05s`) au lieu de la supprimer. La bordure blanc↔gris du cadre de l'image s'animait donc encore a **chaque deplacement du focus**, et ca s'empilait en defilement rapide. La regle perf est maintenant `transition: none` sur TV — le retour visuel du focus est totalement instantane. Desktop/mobile gardent leurs transitions fluides.
 
 ---
 

@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.55 */
+/* ElegantFin Cinema Edition v1.2.56 */
 /* Enhanced with 27 cinematic modules — premium streaming experience */
 
 /* Inter Variable Font — self-hosted (v1.2.42, remplace l'@import Google Fonts).
@@ -26,7 +26,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.55";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.56";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -5094,9 +5094,13 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     background-color: transparent;
 }
 
-/* TV : pas de box-shadow, transitions minimales */
+/* TV : pas de box-shadow, AUCUNE transition.
+   v1.2.56 : "transition-duration: 0.05s" ne faisait que raccourcir la transition de
+   base de .cardScalable (déclarée !important, donc jamais coupée par la passe v1.2.55)
+   → la bordure blanc↔gris s'animait encore à CHAQUE déplacement du focus, et ça
+   s'empilait en défilement rapide. transition: none = focus 100% instantané. */
 .layout-tv .cardScalable {
-    transition-duration: 0.05s !important;
+    transition: none !important;
     box-shadow: none !important;
 }
 
