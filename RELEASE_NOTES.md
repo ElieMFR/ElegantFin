@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.56
+# ElegantFin Cinema Edition v1.2.57
 
 ## [English](#english) | [Francais](#francais)
 
@@ -555,6 +555,17 @@ After v1.2.54 the leftover stutter showed up only when scrolling fast. The cause
 #### v1.2.56 — TV fluidity, part 3: one transition had survived the sweep
 
 Fast-scroll still stuttered a bit after v1.2.55 — and it wasn't the TV's ceiling yet. One animation had survived: the base `.cardScalable` rule declares its transition (border-color/transform/box-shadow) with `!important`, and the old TV perf rule only **shortened** it (`transition-duration: 0.05s`) instead of removing it. So the white↔grey border of the image frame still animated on **every focus move**, piling up during fast scrolls. The perf rule is now `transition: none` on TV — focus feedback is fully instantaneous. Desktop/mobile keep their smooth transitions.
+
+---
+
+#### v1.2.57 — TV fluidity, part 4: episode lists (a code path the card passes never touched)
+
+Fast-browsing the episodes of a season still stuttered — because episode rows are **list items**, not cards, and every fluidity pass so far targeted cards. Two findings:
+
+- **The desktop hover blur was running on TV** — the remote also triggers `:hover` on Tizen (proven back in v1.2.49), so the desktop rule `.listItem:hover { backdrop-filter: var(--blurLargest) }` — the strongest blur in the theme — was applied to **every row you passed** while scrolling a season. That's the stutter. Blur is now stripped from list-row hover on TV (the white focus fill is untouched), and list-row transitions are cut like the cards'.
+- **Self-inflicted `:has()` removed** — the v1.2.54 blur-strip list included a `:has(> button:hover)` variant that was both redundant and itself a hover-dependent `:has()` re-evaluated on every keypress. Removed.
+
+`.layout-tv` only; desktop & mobile unchanged.
 
 ---
 
@@ -1116,6 +1127,17 @@ Apres v1.2.54 il ne restait de la saccade qu'en defilant vite. La cause etait la
 #### v1.2.56 — Fluidite TV, partie 3 : une transition avait survecu au balayage
 
 Le defilement rapide saccadait encore un peu apres v1.2.55 — et ce n'etait pas encore le plafond de la TV. Une animation avait survecu : la regle de base `.cardScalable` declare sa transition (border-color/transform/box-shadow) avec `!important`, et l'ancienne regle perf TV ne faisait que la **raccourcir** (`transition-duration: 0.05s`) au lieu de la supprimer. La bordure blanc↔gris du cadre de l'image s'animait donc encore a **chaque deplacement du focus**, et ca s'empilait en defilement rapide. La regle perf est maintenant `transition: none` sur TV — le retour visuel du focus est totalement instantane. Desktop/mobile gardent leurs transitions fluides.
+
+---
+
+#### v1.2.57 — Fluidite TV, partie 4 : les listes d'episodes (un chemin jamais couvert par les passes cartes)
+
+Parcourir vite les episodes d'une saison saccadait encore — parce que les rangees d'episodes sont des **list items**, pas des cartes, et toutes les passes fluidite visaient les cartes. Deux constats :
+
+- **Le flou hover desktop tournait sur TV** — la telecommande declenche aussi le `:hover` sur Tizen (prouve en v1.2.49), donc la regle desktop `.listItem:hover { backdrop-filter: var(--blurLargest) }` — le plus gros flou du theme — s'appliquait a **chaque rangee traversee** en parcourant une saison. C'etait ca la saccade. Le flou est maintenant retire du hover des rangees sur TV (le fill blanc du focus est intact), et les transitions des rangees sont coupees comme celles des cartes.
+- **`:has()` auto-inflige retire** — la liste anti-flou de v1.2.54 contenait une variante `:has(> button:hover)` a la fois redondante et elle-meme un `:has()` dependant du hover re-evalue a chaque appui. Retiree.
+
+`.layout-tv` uniquement ; desktop et mobile inchanges.
 
 ---
 

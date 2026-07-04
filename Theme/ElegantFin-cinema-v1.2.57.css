@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.56 */
+/* ElegantFin Cinema Edition v1.2.57 */
 /* Enhanced with 27 cinematic modules — premium streaming experience */
 
 /* Inter Variable Font — self-hosted (v1.2.42, remplace l'@import Google Fonts).
@@ -26,7 +26,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.56";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.57";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -5478,7 +5478,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    autres perdent juste l'effet verre sans perte de lisibilité (fond opaque/gradient
    déjà présent, ou élément mineur). */
 .layout-tv .cardOverlayContainer,
-.layout-tv .cardOverlayContainer:has(> button:hover),
 .layout-tv .appfooter,
 .layout-tv .selectionCommandsPanel,
 .layout-tv .formDialogHeader,
@@ -5490,6 +5489,28 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 .layout-tv .nowPlayingBar {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+}
+/* (v1.2.57 : la variante ":has(> button:hover)" retirée de la liste ci-dessus — elle
+   était redondante avec .cardOverlayContainer ET, étant un :has() dépendant du hover,
+   elle était elle-même réévaluée à chaque appui télécommande.) */
+
+/* v1.2.57 — TV FLUIDITÉ (page épisodes) : la télécommande déclenche AUSSI le :hover
+   sur Tizen (prouvé en v1.2.49), donc la règle desktop ".listItem:hover" (fond +
+   backdrop-filter --blurLargest, le plus gros flou du thème) s'appliquait à CHAQUE
+   rangée traversée en parcourant une saison → saccade. Les passes précédentes ne
+   couvraient que les cartes ; les rangées de liste sont un chemin distinct. */
+.layout-tv .listItem:hover {
+    /* pas de "background: unset" ici : ça écraserait le fill blanc du focus
+       (la rangée ciblée est hovered + focused ; la teinte hover est sans coût,
+       c'est le FLOU qui saccade). */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.layout-tv .listItem,
+.layout-tv .listItemImage,
+.layout-tv .listItemBodyText {
+    transition: none !important;
 }
 
 /* ============================================================
