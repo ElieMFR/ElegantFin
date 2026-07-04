@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.53 */
+/* ElegantFin Cinema Edition v1.2.54 */
 /* Enhanced with 27 cinematic modules — premium streaming experience */
 
 /* Inter Variable Font — self-hosted (v1.2.42, remplace l'@import Google Fonts).
@@ -26,7 +26,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.53";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.54";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -353,10 +353,10 @@ body {
 .layout-tv .card:focus-visible .cardBox,
 .layout-tv .card:focus .cardBox {
     outline: none !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);        /* profondeur seulement */
-    transform: scale(1.05);                            /* v1.2.49 : pop UNIQUE, tout le bloc */
+    box-shadow: none;                                  /* v1.2.54 : ombre retirée sur TV (repaint coûteux au défilement) */
+    transform: scale(1.05);                            /* pop léger (compositor) — le contour blanc porte le focus */
     transform-origin: center center;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    transition: transform 0.12s ease;
     z-index: 10;
     position: relative;
 }
@@ -5456,18 +5456,28 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    (coûteux GPU, banni sur TV par la section perf). Scopé à .emby-scroller → les grilles
    de bibliothèque ne sont PAS touchées. :has() n'existe que sur TV récentes → dégradé
    propre (aucun effet, rien ne casse) sur les anciennes. Aucune couleur ajoutée. */
-.layout-tv .emby-scroller .card {
-    transition: opacity 0.2s ease;
-}
+/* v1.2.54 — DÉSACTIVÉ SUR TV (fluidité). Le :has(.card:focus) était ré-évalué à
+   CHAQUE déplacement du focus + repeignait toutes les voisines → cause n°1 de
+   saccade au défilement sur Tizen (confirmé : fluide sans le thème). Le spotlight
+   reste sur PC (.layout-desktop, en :hover, sans coût au défilement télécommande). */
 
-.layout-tv .emby-scroller:has(.card:focus) .card:not(:focus) {
-    opacity: 0.5;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .layout-tv .emby-scroller:has(.card:focus) .card:not(:focus) {
-        opacity: 1 !important;
-    }
+/* v1.2.54 — TV FLUIDITÉ : coupe TOUT le flou restant sur TV (backdrop-filter = coût
+   GPU n°1 des webviews Tizen). Les panneaux ont déjà un fond opaque (v1.2.50) ; les
+   autres perdent juste l'effet verre sans perte de lisibilité (fond opaque/gradient
+   déjà présent, ou élément mineur). */
+.layout-tv .cardOverlayContainer,
+.layout-tv .cardOverlayContainer:has(> button:hover),
+.layout-tv .appfooter,
+.layout-tv .selectionCommandsPanel,
+.layout-tv .formDialogHeader,
+.layout-tv .MuiAppBar-root,
+.layout-tv .MuiDrawer-paper,
+.layout-tv .iconOsd,
+.layout-tv .skinHeader-blurred,
+.layout-tv .osdHeader,
+.layout-tv .nowPlayingBar {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
 }
 
 /* ============================================================

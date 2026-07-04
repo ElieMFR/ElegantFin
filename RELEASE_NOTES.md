@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.53
+# ElegantFin Cinema Edition v1.2.54
 
 ## [English](#english) | [Francais](#francais)
 
@@ -531,6 +531,18 @@ A design-review sweep of the whole TV interface flagged the one off-palette elem
 
 - **Mini-Play button on cards** (`.cardOverlayFab-primary`, `.listItemImageButton`) was green, clashing with the white main Play button on the detail page. It's now **white with a dark icon**, identical to the main Play.
 - **The "watched" indicator** (✓ on played episodes) stays green — it's the universal "watched" convention, and with the mini-Play no longer green it's now the only green, so the palette reads cleanly (navy / violet / white, plus green only for "watched").
+
+---
+
+#### v1.2.54 — TV fluidity: theme-side navigation jank on Tizen removed
+
+Confirmed via an A/B test (the UI was smooth with the Custom CSS emptied), so the theme itself was causing the navigation stutter on Tizen. Two per-keystroke costs were the culprits, both trimmed on `.layout-tv` only:
+
+- **Sibling-dimming disabled on TV** — the v1.2.49 "spotlight" used `:has(.card:focus)`, re-evaluated on every focus move, plus an opacity repaint of every other card in the row. On a TV webview that's the main source of scroll stutter. It's now off on TV (kept on desktop, where it runs on `:hover` and costs nothing during remote navigation).
+- **Card focus drop-shadow removed on TV** — the `box-shadow` behind a focused card is expensive to repaint while scrolling. Gone on TV; the white outline + light pop (compositor-only) still mark the focus clearly.
+- **All remaining blur stripped on TV** — `backdrop-filter: blur()` is the #1 GPU cost on Tizen webviews. The panels already have an opaque fallback (v1.2.50), so the rest just drop the glass effect with no readability loss.
+
+Desktop & mobile keep the full spotlight, shadows and glass.
 
 ---
 
@@ -1068,6 +1080,18 @@ Une revue design de toute l'interface TV a releve le seul element hors-palette :
 
 - **Le bouton mini-Lire des cartes** (`.cardOverlayFab-primary`, `.listItemImageButton`) etait vert, ce qui jurait avec le bouton Lire principal blanc de la page detail. Il est maintenant **blanc avec une icone sombre**, identique au Lire principal.
 - **L'indicateur « vu »** (✓ sur les episodes regardes) reste vert — c'est la convention universelle « regarde », et comme le mini-Lire n'est plus vert, c'est desormais le seul vert : la palette se lit proprement (navy / violet / blanc, plus vert uniquement pour « vu »).
+
+---
+
+#### v1.2.54 — Fluidite TV : suppression des saccades dues au theme sur Tizen
+
+Confirme par un test A/B (l'interface etait fluide avec le Custom CSS vide), donc c'etait bien le theme qui saccadait la navigation sur Tizen. Deux couts par appui de telecommande etaient en cause, tous deux alleges sur `.layout-tv` uniquement :
+
+- **Dimming des voisines desactive sur TV** — le « spotlight » de v1.2.49 utilisait `:has(.card:focus)` re-evalue a chaque deplacement du focus + un repaint d'opacite de toutes les autres cartes de la rangee. Sur un webview TV, c'est la cause principale de saccade au defilement. Desactive sur TV (garde sur PC, ou il tourne en `:hover` et ne coute rien a la navigation telecommande).
+- **Ombre portee du focus retiree sur TV** — le `box-shadow` derriere une carte ciblee est couteux a repeindre pendant le defilement. Retire sur TV ; le contour blanc + le leger pop (compositor) marquent toujours clairement le focus.
+- **Tout le flou restant coupe sur TV** — `backdrop-filter: blur()` est le cout GPU n°1 des webviews Tizen. Les panneaux ont deja un fond opaque (v1.2.50), donc le reste perd juste l'effet verre sans perte de lisibilite.
+
+Desktop et mobile gardent tout le spotlight, les ombres et le verre.
 
 ---
 
