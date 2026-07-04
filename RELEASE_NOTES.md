@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.57
+# ElegantFin Cinema Edition v1.2.58
 
 ## [English](#english) | [Francais](#francais)
 
@@ -566,6 +566,28 @@ Fast-browsing the episodes of a season still stuttered — because episode rows 
 - **Self-inflicted `:has()` removed** — the v1.2.54 blur-strip list included a `:has(> button:hover)` variant that was both redundant and itself a hover-dependent `:has()` re-evaluated on every keypress. Removed.
 
 `.layout-tv` only; desktop & mobile unchanged.
+
+---
+
+#### v1.2.58 — The big one: deferred TV effects, white-pill focus everywhere, streaming polish
+
+Four workstreams merged into one release, all audit-validated:
+
+**⚡ TV performance — the heavy effects come back, deferred ("intent" pattern)**
+- **Card pop + depth shadow are back** — carried by a transition with a ~280ms entry delay: during fast scrolling the focus leaves before the delay ends so the animation never starts (v1.2.55 fluidity preserved); when you rest on a card, it pops. Exit is immediate — nothing trails the cursor.
+- **Sibling-dimming (spotlight) is back on TV** — rebuilt on `:focus-within` (native, cheap) instead of the `:has()` that was re-evaluated per keypress (the v1.2.49 stutter), with the same ~350ms entry delay. Nothing moves while scrolling; the row fades around the focused card when you settle. The focused card brightens instantly.
+- **Three audit finds fixed** — the infinite skeleton pulse on loading thumbnails was never disabled on TV (now off); the upstream hover shadow on cards (12+30px, `!important`, global) repainted on every keypress since the remote fires `:hover` (now off on TV, the deferred shadow replaces it); the quality/source badges carried a **permanent** `blur(8px)` on every card during any scroll (now off on TV, translucent background kept).
+- **Mouse-only `:has(:hover)` overlay rules scoped to desktop** — no longer evaluated per keypress on TV.
+- **7 × `transition: all` replaced with explicit properties** (all platforms) — the browser stops watching every property on those elements. Zero visual change.
+- **Mobile: bottom bar blur reduced** — it carried the theme's strongest blur permanently over scrolling content; now 10px like mobile dialogs.
+
+**⚪ White-pill focus, generalized (consistency audit)**
+The v1.2.48 rule — a thin outline is unreadable at TV distance, fill wins — now covers the six elements that had slipped through: **metadata text links** (actors, director, writer, genres — the fill is drawn with a spread shadow so the layout never shifts), **section tabs** (Home/Movies/Shows — the Guide date tabs already had it: two tab types, now one treatment; active stays violet), **dialog buttons** (OK/Cancel/"Quit Jellyfin?" — the old brightness feedback was nearly invisible), **"Up Next" buttons** over the video, **A-Z picker letters** (whose zoom was dead anyway, killed by the perf rule), and **side-menu items** (which had no dedicated focus at all). The CSS `⚠️ INVARIANT` member list is updated accordingly.
+
+**🎬 Three streaming finishing touches**
+- **"Who's watching?"** — the login profile picker becomes round centered avatars with a white focus ring (additive selectors: graceful no-op if the DOM differs).
+- **Full-height scroll arrows (desktop)** — gradient bands spanning the row height, revealed on section hover, instead of the small corner arrows.
+- **Row scroll-snap (desktop + mobile)** — rows settle aligned on a card, never cut between two. `proximity` so it never fights Jellyfin's own scrolling; not applied on TV.
 
 ---
 
@@ -1138,6 +1160,28 @@ Parcourir vite les episodes d'une saison saccadait encore — parce que les rang
 - **`:has()` auto-inflige retire** — la liste anti-flou de v1.2.54 contenait une variante `:has(> button:hover)` a la fois redondante et elle-meme un `:has()` dependant du hover re-evalue a chaque appui. Retiree.
 
 `.layout-tv` uniquement ; desktop et mobile inchanges.
+
+---
+
+#### v1.2.58 — La grosse version : effets TV differes, pastille blanche partout, finitions streaming
+
+Quatre chantiers fusionnes en une release, tous valides par audit :
+
+**⚡ Performance TV — les effets gourmands reviennent, en differe (pattern « intent »)**
+- **Le pop des cartes + l'ombre de profondeur reviennent** — portes par une transition a delai d'entree (~280ms) : en defilement rapide le focus repart avant la fin du delai, l'animation ne demarre jamais (fluidite v1.2.55 conservee) ; a l'arret, la carte pop. La sortie est immediate — rien ne traine derriere le curseur.
+- **Le dimming des voisines (spotlight) revient sur TV** — reconstruit sur `:focus-within` (natif, leger) au lieu du `:has()` reevalue a chaque appui (la saccade de v1.2.49), avec le meme delai d'entree (~350ms). Rien ne bouge pendant le defilement ; a l'arret, la rangee s'estompe autour de la carte ciblee. La carte focus reprend son opacite instantanement.
+- **Trois trouvailles d'audit corrigees** — le pulse squelette des vignettes en chargement tournait en boucle infinie jamais desactivee sur TV (coupe) ; l'ombre hover upstream des cartes (12+30px, `!important`, globale) etait repeinte a chaque appui puisque la telecommande declenche le `:hover` (coupee sur TV, l'ombre differee la remplace) ; les badges qualite/source portaient un `blur(8px)` **permanent** sur chaque carte a chaque defilement (coupe sur TV, fond translucide conserve).
+- **Les regles overlay `:has(:hover)` (souris) scopees desktop** — plus evaluees a chaque appui sur TV.
+- **7 × `transition: all` remplacees par des proprietes explicites** (toutes plateformes) — le navigateur cesse de surveiller toutes les proprietes de ces elements. Zero changement visuel.
+- **Mobile : blur de la barre du bas reduit** — elle portait le blur le plus fort du theme en permanence au-dessus du contenu qui defile ; maintenant 10px comme les dialogues mobiles.
+
+**⚪ Pastille blanche generalisee (audit de coherence)**
+La regle v1.2.48 — un contour fin est illisible a distance TV, le plein gagne — couvre maintenant les six elements passes entre les mailles : **liens texte metadata** (acteurs, realisateur, scenariste, genres — la pastille est dessinee avec une ombre etalee, la mise en page ne bouge jamais), **onglets de section** (Accueil/Films/Series — les onglets de date du Guide l'avaient deja : deux types d'onglets, un seul traitement ; l'actif reste violet), **boutons de dialogue** (OK/Annuler/« Quitter Jellyfin ? » — l'ancien feedback brightness etait quasi invisible), **boutons « Episode suivant »** par-dessus la video, **lettres A-Z** (dont le zoom etait mort de toute facon, tue par la regle perf), et **items du menu lateral** (qui n'avaient aucun focus dedie). La liste des membres de l'`⚠️ INVARIANT` CSS est mise a jour.
+
+**🎬 Trois finitions streaming**
+- **« Qui regarde ? »** — la selection de profil au login devient de grands avatars ronds centres avec anneau blanc au focus (selecteurs additifs : degrade gracieux si le DOM differe).
+- **Fleches de defilement pleine hauteur (PC)** — bandeaux degrades sur la hauteur de la rangee, reveles au survol de la section, au lieu des petites fleches de coin.
+- **Aimantation du defilement des rangees (PC + mobile)** — la rangee se pose toujours alignee sur une carte, jamais coupee entre deux. `proximity` pour ne jamais se battre avec le scroll de Jellyfin ; pas applique sur TV.
 
 ---
 

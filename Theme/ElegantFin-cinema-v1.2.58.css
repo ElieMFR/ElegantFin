@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.57 */
+/* ElegantFin Cinema Edition v1.2.58 */
 /* Enhanced with 27 cinematic modules — premium streaming experience */
 
 /* Inter Variable Font — self-hosted (v1.2.42, remplace l'@import Google Fonts).
@@ -26,7 +26,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.57";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.58";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -350,21 +350,28 @@ body {
    (= la zone IMAGE uniquement). Avant, .cardBox englobait image + titre, donc
    le contour entourait aussi le texte sous la vignette. Le scale + l'ombre de
    profondeur restent sur .cardBox (toute la card s'agrandit ensemble). */
+/* v1.2.58 — POP DIFFÉRÉ (pattern « intent ») : le zoom + l'ombre reviennent, mais
+   portés par une transition à DÉLAI d'entrée (280ms). En défilement rapide, le focus
+   repart avant la fin du délai → l'animation ne démarre jamais (zéro re-raster,
+   fluidité v1.2.55 conservée). À l'arrêt, la carte pop + ombre de profondeur.
+   Le contour blanc (.cardScalable), lui, reste INSTANTANÉ = le curseur. */
 .layout-tv .card:focus-visible .cardBox,
 .layout-tv .card:focus .cardBox {
     outline: none !important;
-    box-shadow: none;                                  /* v1.2.54 : ombre retirée sur TV */
-    transform: none !important;                        /* v1.2.55 : plus de zoom au focus — re-raster coûteux en défilement rapide. Le contour blanc (border .cardScalable) porte le focus. */
-    transition: none !important;                       /* v1.2.55 : focus instantané, rien à animer/empiler en défilant vite */
+    transform: scale(1.05);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.5);
+    transition: transform 0.15s ease 0.28s, box-shadow 0.15s ease 0.28s !important;
     z-index: 10;
     position: relative;
 }
 
-/* v1.2.55 — TV : focus des cartes = contour blanc net, transitions coupées → défilement
-   rapide sans animation à empiler. C'est le dernier gros levier fluidité (au-delà, c'est
-   surtout le décodage d'images de la TV, hors CSS). */
+/* Sortie de focus : IMMÉDIATE et courte (la règle de base ci-dessous, sans délai) —
+   rien ne traîne derrière le curseur. */
+.layout-tv .cardBox {
+    transition: transform 0.1s ease, box-shadow 0.1s ease !important;
+}
+
 .layout-tv .card,
-.layout-tv .cardBox,
 .layout-tv .cardImageContainer {
     transition: none !important;
 }
@@ -458,16 +465,68 @@ body {
    ⚠️ INVARIANT (contrôle global v1.2.52) : TOUT élément qui reçoit un FILL BLANC +
    texte forcé sombre au focus DOIT figurer dans ce :not(...), sinon il devient
    « texte sombre sur fond transparent » = illisible sur la vidéo. Membres actuels :
-   listItem (+ actionSheetMenuItem hérité), guide-date-tab-button, guide-channelHeaderCell.
+   listItem (+ actionSheetMenuItem hérité), guide-date-tab-button, guide-channelHeaderCell,
+   et depuis v1.2.58 (pastille généralisée) : button-link (liens texte metadata),
+   emby-tab-button (onglets de section), raised (boutons de dialogue + Épisode suivant),
+   alphaPickerButton (A-Z), navMenuOption (menu latéral).
    (programCell reste transparent par design : son fill est sur l'enfant .guideProgramName.) */
-.emby-button.show-focus:focus:not(.btnPlay):not(.detailButton):not(.headerButton):not(.paper-icon-button-light):not(.listItem):not(.guide-date-tab-button):not(.guide-channelHeaderCell),
-.emby-tabs .emby-button.show-focus:focus {
+.emby-button.show-focus:focus:not(.btnPlay):not(.detailButton):not(.headerButton):not(.paper-icon-button-light):not(.listItem):not(.guide-date-tab-button):not(.guide-channelHeaderCell):not(.button-link):not(.emby-tab-button):not(.raised):not(.alphaPickerButton):not(.navMenuOption) {
     background-color: transparent !important;
     color: #fff !important;
     outline: none !important;
     box-shadow:
         inset 0 0 0 2px rgba(255, 255, 255, 0.95),
         0 0 12px rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================================
+   v1.2.58 — PASTILLE BLANCHE GÉNÉRALISÉE : les retardataires de
+   l'audit de cohérence rejoignent le système v1.2.48 (focus =
+   fond blanc + texte noir). L'ACTIF reste violet (v1.2.47). */
+
+/* Liens texte metadata (acteurs, réalisateur, scénariste, genres, studios).
+   La « pastille » est portée par un box-shadow étalé de la même couleur que le
+   fond → aucun décalage de mise en page quand le focus arrive. color !important
+   pour battre le hover violet (la télécommande déclenche aussi :hover sur Tizen). */
+.button-link.emby-button:focus-visible,
+.button-link.emby-button.show-focus:focus {
+    background-color: #fff !important;
+    color: #000 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 0.3em #fff !important;
+    border-radius: 0.2em;
+    text-decoration: none !important;
+}
+
+/* Onglets de section (Accueil / Films / Séries…) — mêmes règles que les onglets
+   de date du Guide (remplis depuis v1.2.48) : deux types d'onglets, UN traitement. */
+.emby-tab-button.show-focus:focus,
+.emby-tab-button:focus-visible {
+    background-color: #fff !important;
+    color: #000 !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Boutons de dialogue (OK / Annuler / « Quitter Jellyfin ? » / Épisode suivant).
+   L'ancien feedback (brightness 1.2) était quasi invisible à distance TV. */
+.raised:focus {
+    background: #fff !important;
+    color: #000 !important;
+    filter: none;
+    outline: none;
+}
+
+/* Items du menu latéral (drawer) — aucun traitement dédié avant v1.2.58. */
+.navMenuOption:focus,
+.navMenuOption.show-focus:focus {
+    background: #fff !important;
+    border-radius: 0.7em;
+}
+
+.navMenuOption:focus .navMenuOptionText,
+.navMenuOption:focus .navMenuOptionIcon {
+    color: #000 !important;
 }
 
 [dir="ltr"] .itemsContainer > .card > .cardBox {
@@ -606,7 +665,7 @@ body {
     transform: scale(1);
 }
 
-.cardScalable:has(.cardOverlayButton-hover:hover) > .cardImageContainer {
+.layout-desktop .cardScalable:has(.cardOverlayButton-hover:hover) > .cardImageContainer {
     transform: scale(1);
 }
 
@@ -769,7 +828,7 @@ body {
     text-shadow: 1px 1px 0.1em black;
 }
 
-.cardOverlayContainer:has(> button:hover) {
+.layout-desktop .cardOverlayContainer:has(> button:hover) {
     backdrop-filter: var(--blurDefault);
 }
 
@@ -2498,7 +2557,7 @@ progress + span {
     padding: 0.125em 0.5em;
     border-radius: var(--smallerRadius);
     margin-bottom: 0.5em;
-    transition: all 0.2s var(--ease-smooth);
+    transition: color 0.2s var(--ease-smooth), background-color 0.2s var(--ease-smooth), border-color 0.2s var(--ease-smooth);
     font-weight: 500;
 }
 
@@ -2847,7 +2906,7 @@ progress + span {
 .checkboxOutline:not(.multiSelectCheckboxOutline) {
     border: solid gray var(--borderWidth);
     background-color: white;
-    transition: all 0.125s;
+    transition: background-color 0.125s, border-color 0.125s;
 }
 
 .emby-checkbox:checked + span + .checkboxOutline:not(.multiSelectCheckboxOutline) {
@@ -2957,7 +3016,7 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
     border-radius: var(--smallRadius);
     background: var(--lighterGradientPoint);
     border: var(--defaultBorder);
-    transition: all 0.125s;
+    transition: background-color 0.125s, color 0.125s, border-color 0.125s;
 }
 
 .editItemMetadataForm > .metadataFormFields div:has(.formDialogFooterItem) {
@@ -2975,15 +3034,15 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
     border: var(--defaultBorder);
 }
 
+/* v1.2.58 : .fab rejoint la pastille (même logique que .raised ci-dessous). */
 .fab:focus {
-    background: var(--lighterGradientPoint) !important;
-    filter: brightness(1.2);
+    background: #fff !important;
+    color: #000 !important;
+    filter: none;
 }
 
-.raised:focus {
-    background: inherit;
-    filter: brightness(1.2);
-}
+/* v1.2.58 : l'ancien feedback focus des .raised (brightness 1.2) est remplacé par
+   la pastille blanche définie plus haut (section PASTILLE GÉNÉRALISÉE). */
 
 .raised:active,
 .fab:active,
@@ -3019,7 +3078,7 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
     border-radius: 50%;
     padding: 0.6em !important;
     background: transparent;
-    transition: all 0.2s var(--ease-smooth) !important;
+    transition: background-color 0.2s var(--ease-smooth), color 0.2s var(--ease-smooth), box-shadow 0.2s var(--ease-smooth) !important;
 }
 
 .layout-desktop .detailButton:not(.btnPlay):hover {
@@ -3043,7 +3102,7 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
     min-width: 10em;
     margin-right: 0.5em !important;
     flex-direction: row;
-    transition: all 0.2s var(--ease-smooth) !important;
+    transition: background-color 0.2s var(--ease-smooth), color 0.2s var(--ease-smooth), transform 0.2s var(--ease-smooth), box-shadow 0.2s var(--ease-smooth) !important;
 }
 
 /* Focus-visible (clavier) — v1.2.44 : violet → blanc pour cohérence monochrome */
@@ -3640,10 +3699,13 @@ div[data-role="controlgroup"] a.ui-btn-active {
     transition: transform 0.2s;
 }
 
+/* v1.2.58 : lettres A-Z = pastille blanche (le scale 1.75 était tué par la règle
+   perf TV de toute façon, et re-rasterisait chaque lettre en navigation rapide). */
 .alphaPickerButton-tv:focus {
-    background-color: transparent;
-    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.95);
-    transform: scale(1.75);
+    background-color: #fff !important;
+    color: #000 !important;
+    box-shadow: none;
+    transform: none;
 }
 
 .padded-right {
@@ -3895,7 +3957,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
     color: black;
     font-weight: 700 !important;
     letter-spacing: 0.03em;
-    transition: all 0.2s var(--ease-smooth);
+    transition: background-color 0.2s var(--ease-smooth), color 0.2s var(--ease-smooth), box-shadow 0.2s var(--ease-smooth);
 }
 
 /* this allows the skip button get focused correctly on TVs using remote navigation; needs 10.10.7*/
@@ -4497,7 +4559,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     border-color: var(--btnSubmitBorderColor) !important;
     font-weight: 600;
     letter-spacing: 0.03em;
-    transition: all 0.2s var(--ease-smooth);
+    transition: background-color 0.2s var(--ease-smooth), color 0.2s var(--ease-smooth), box-shadow 0.2s var(--ease-smooth);
 }
 
 #loginPage .button-submit:hover {
@@ -5181,9 +5243,12 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     will-change: auto !important;
 }
 
-/* Mobile : réduire le blur pour la perf */
+/* Mobile : réduire le blur pour la perf.
+   v1.2.58 : + .appfooter — la barre du bas portait le blur le PLUS FORT du thème
+   en permanence au-dessus du contenu qui défile (vrai coût sur téléphones moyens). */
 @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
-    .layout-mobile .dialog:not(.dialog-fullscreen) {
+    .layout-mobile .dialog:not(.dialog-fullscreen),
+    .layout-mobile .appfooter {
         backdrop-filter: blur(10px) !important;
         -webkit-backdrop-filter: blur(10px) !important;
     }
@@ -5382,7 +5447,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     transition: opacity 0.2s ease;
 }
 
-.card:has(.playedIndicator):hover .cardImageContainer::after {
+.layout-desktop .card:has(.playedIndicator):hover .cardImageContainer::after {
     opacity: 0.15;
 }
 
@@ -5468,10 +5533,119 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    (coûteux GPU, banni sur TV par la section perf). Scopé à .emby-scroller → les grilles
    de bibliothèque ne sont PAS touchées. :has() n'existe que sur TV récentes → dégradé
    propre (aucun effet, rien ne casse) sur les anciennes. Aucune couleur ajoutée. */
-/* v1.2.54 — DÉSACTIVÉ SUR TV (fluidité). Le :has(.card:focus) était ré-évalué à
-   CHAQUE déplacement du focus + repeignait toutes les voisines → cause n°1 de
-   saccade au défilement sur Tizen (confirmé : fluide sans le thème). Le spotlight
-   reste sur PC (.layout-desktop, en :hover, sans coût au défilement télécommande). */
+/* v1.2.58 — SPOTLIGHT TV RÉACTIVÉ, version différée. Deux différences avec la
+   v1.2.49 qui saccadait : (1) :focus-within (pseudo natif, optimisé) remplace le
+   :has() qui était réévalué à chaque appui ; (2) l'estompage est porté par une
+   transition à délai (350ms) → en défilement rapide les cibles changent avant le
+   délai, rien ne s'anime ; à l'arrêt la rangée s'estompe autour de la carte ciblée.
+   La carte focus reprend son opacité INSTANTANÉMENT (transition: none) — le curseur
+   ne traîne jamais. Scopé .emby-scroller : les grilles de bibliothèque sont intactes. */
+.layout-tv .emby-scroller .card {
+    transition: opacity 0.25s ease 0.35s !important;
+}
+
+.layout-tv .emby-scroller:focus-within .card:focus {
+    opacity: 1;
+    transition: none !important;
+}
+
+.layout-tv .emby-scroller:focus-within .card:not(:focus) {
+    opacity: 0.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .layout-tv .emby-scroller:focus-within .card:not(:focus) {
+        opacity: 1 !important;
+    }
+}
+
+/* ============================================================
+   v1.2.58 — TROIS FINITIONS STREAMING
+   ============================================================ */
+
+/* --- A. « Qui regarde ? » : sélection de profil façon TV — avatars RONDS,
+   grille centrée, focus = anneau blanc. Sélecteurs additifs uniquement :
+   si le DOM diffère (versions futures), dégradé gracieux, rien ne casse. */
+#loginPage #divUsers {
+    justify-content: center;
+}
+
+#loginPage #divUsers .cardScalable,
+#loginPage #divUsers .cardImageContainer {
+    border-radius: 50% !important;
+}
+
+#loginPage #divUsers .cardText {
+    text-align: center;
+}
+
+#loginPage #divUsers .card:focus .cardScalable,
+#loginPage #divUsers .card:focus-visible .cardScalable {
+    box-shadow:
+        inset 0 0 0 3px rgba(255, 255, 255, 0.95),
+        0 0 18px rgba(255, 255, 255, 0.35);
+    border-color: #fff !important;
+}
+
+/* --- B. Flèches de défilement pleine hauteur (PC) : bandeau dégradé sur la
+   hauteur de la rangée, révélé au survol de la section (pattern des grandes
+   apps). top ≈ hauteur du titre de section pour ne pas le recouvrir. */
+@media (hover: hover) and (pointer: fine) {
+    .layout-desktop .verticalSection {
+        position: relative;
+    }
+
+    .layout-desktop .emby-scrollbuttons {
+        position: absolute;
+        top: 3.2em;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 !important;
+        margin: 0;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        z-index: 5;
+    }
+
+    .layout-desktop .verticalSection:hover .emby-scrollbuttons {
+        opacity: 1;
+    }
+
+    .layout-desktop .emby-scrollbuttons-button {
+        pointer-events: auto;
+        height: 100%;
+        width: 3em;
+        margin: 0;
+        border-radius: 0;
+        background: linear-gradient(90deg, rgba(17, 24, 39, 0.8), transparent);
+    }
+
+    .layout-desktop .emby-scrollbuttons-button + .emby-scrollbuttons-button {
+        background: linear-gradient(270deg, rgba(17, 24, 39, 0.8), transparent);
+    }
+
+    .layout-desktop .emby-scrollbuttons-button > .material-icons {
+        font-size: 1.8em;
+    }
+}
+
+/* --- C. Aimantation du défilement des rangées (PC + mobile) : la rangée
+   relâche toujours alignée sur une carte, jamais coupée entre deux.
+   « proximity » (pas mandatory) pour ne pas se battre avec le scroll JS de
+   Jellyfin. PAS sur TV : la navigation focus y gère déjà le défilement. */
+.layout-desktop .emby-scroller,
+.layout-mobile .emby-scroller {
+    scroll-snap-type: x proximity;
+}
+
+.layout-desktop .emby-scroller .card,
+.layout-mobile .emby-scroller .card {
+    scroll-snap-align: start;
+}
 
 /* v1.2.54 — TV FLUIDITÉ : coupe TOUT le flou restant sur TV (backdrop-filter = coût
    GPU n°1 des webviews Tizen). Les panneaux ont déjà un fond opaque (v1.2.50) ; les
@@ -5511,6 +5685,31 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 .layout-tv .listItemImage,
 .layout-tv .listItemBodyText {
     transition: none !important;
+}
+
+/* v1.2.58 — TV : trois coûts débusqués par l'audit final. */
+
+/* 1) Pulse « squelette » des vignettes en chargement : boucle INFINIE jamais
+   désactivée sur TV (le strip d'animations ne couvrait que le shimmer). */
+.layout-tv .cardImageContainer:empty::after,
+.layout-tv .cardImageContainer .blurhash-canvas + .cardImage[src=""]::after {
+    animation: none !important;
+}
+
+/* 2) Ombre hover upstream des cartes (12px+30px, !important, GLOBALE) : le hover
+   suit la télécommande → repeinte à chaque appui. Le pop différé (plus haut) la
+   remplace en mieux, uniquement à l'arrêt. */
+.layout-tv .card-hoverable:hover .cardBox {
+    box-shadow: none !important;
+}
+
+/* 3) Badges qualité/source sur les cartes : blur(8px) PERMANENT sur chaque carte,
+   payé pendant tout défilement (pas seulement au focus). Fond semi-transparent
+   conservé, lisible sans le flou. */
+.layout-tv .mediaSourceIndicator,
+.layout-tv .videoIndicator {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
 }
 
 /* ============================================================
