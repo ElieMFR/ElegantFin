@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.54 */
+/* ElegantFin Cinema Edition v1.2.55 */
 /* Enhanced with 27 cinematic modules — premium streaming experience */
 
 /* Inter Variable Font — self-hosted (v1.2.42, remplace l'@import Google Fonts).
@@ -26,7 +26,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.54";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.55";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -353,12 +353,20 @@ body {
 .layout-tv .card:focus-visible .cardBox,
 .layout-tv .card:focus .cardBox {
     outline: none !important;
-    box-shadow: none;                                  /* v1.2.54 : ombre retirée sur TV (repaint coûteux au défilement) */
-    transform: scale(1.05);                            /* pop léger (compositor) — le contour blanc porte le focus */
-    transform-origin: center center;
-    transition: transform 0.12s ease;
+    box-shadow: none;                                  /* v1.2.54 : ombre retirée sur TV */
+    transform: none !important;                        /* v1.2.55 : plus de zoom au focus — re-raster coûteux en défilement rapide. Le contour blanc (border .cardScalable) porte le focus. */
+    transition: none !important;                       /* v1.2.55 : focus instantané, rien à animer/empiler en défilant vite */
     z-index: 10;
     position: relative;
+}
+
+/* v1.2.55 — TV : focus des cartes = contour blanc net, transitions coupées → défilement
+   rapide sans animation à empiler. C'est le dernier gros levier fluidité (au-delà, c'est
+   surtout le décodage d'images de la TV, hors CSS). */
+.layout-tv .card,
+.layout-tv .cardBox,
+.layout-tv .cardImageContainer {
+    transition: none !important;
 }
 
 .layout-tv .card:focus-visible .cardScalable,

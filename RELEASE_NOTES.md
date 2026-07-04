@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.54
+# ElegantFin Cinema Edition v1.2.55
 
 ## [English](#english) | [Francais](#francais)
 
@@ -543,6 +543,12 @@ Confirmed via an A/B test (the UI was smooth with the Custom CSS emptied), so th
 - **All remaining blur stripped on TV** — `backdrop-filter: blur()` is the #1 GPU cost on Tizen webviews. The panels already have an opaque fallback (v1.2.50), so the rest just drop the glass effect with no readability loss.
 
 Desktop & mobile keep the full spotlight, shadows and glass.
+
+---
+
+#### v1.2.55 — TV fluidity, part 2: fast-scroll stutter — card focus zoom removed
+
+After v1.2.54 the leftover stutter showed up only when scrolling fast. The cause was the last per-focus animation: the focused card's `scale()` pop, which re-rasterises the card on every focus change — fine when stepping card by card, but it piles up during a fast scroll. On `.layout-tv` the focus zoom is now removed; focus is marked purely by the instant white outline, and card transitions are cut so nothing animates while scrolling. That's the last big theme-side lever — anything past this is mostly the TV's own image decoding, which CSS can't change. Desktop & mobile keep the zoom.
 
 ---
 
@@ -1092,6 +1098,12 @@ Confirme par un test A/B (l'interface etait fluide avec le Custom CSS vide), don
 - **Tout le flou restant coupe sur TV** — `backdrop-filter: blur()` est le cout GPU n°1 des webviews Tizen. Les panneaux ont deja un fond opaque (v1.2.50), donc le reste perd juste l'effet verre sans perte de lisibilite.
 
 Desktop et mobile gardent tout le spotlight, les ombres et le verre.
+
+---
+
+#### v1.2.55 — Fluidite TV, partie 2 : saccade en defilement rapide — zoom au focus retire
+
+Apres v1.2.54 il ne restait de la saccade qu'en defilant vite. La cause etait la derniere animation par focus : le `scale()` de la carte ciblee, qui re-rasterise la carte a chaque changement de focus — ok en avancant carte par carte, mais ca s'empile en defilement rapide. Sur `.layout-tv` le zoom au focus est maintenant retire ; le focus est marque uniquement par le contour blanc instantane, et les transitions des cartes sont coupees pour que rien n'anime pendant le defilement. C'est le dernier gros levier cote theme — au-dela, c'est surtout le decodage d'images de la TV, hors CSS. Desktop et mobile gardent le zoom.
 
 ---
 
