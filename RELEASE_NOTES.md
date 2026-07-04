@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.60
+# ElegantFin Cinema Edition v1.2.61
 
 ## [English](#english) | [Francais](#francais)
 
@@ -610,6 +610,23 @@ Repository/quality release; the rendered theme is byte-for-byte identical in rul
 - **Version tags** — each release is now tagged (`v1.2.59`, `v1.2.60`, …), so you can pin `@v1.2.60` in your import URL instead of an unreadable commit hash, and roll back by just changing the tag. The README explains it.
 - **CI safety net** — a tiny GitHub Actions workflow validates the CSS syntax on every push (a syntax error makes browsers silently drop everything after it — on `@main` that would ship to every device instantly) and checks that the minified file matches the source.
 - **Table of contents** — a navigation summary at the top of the (5,800-line) source file.
+
+---
+
+#### v1.2.61 — Upstream port: 11 fixes from the original ElegantFin (54 commits reviewed)
+
+Systematic review of everything the original author shipped since this fork's base (54 commits). Eleven applicable fixes ported, adapted to this theme's systems; features and options were deliberately skipped.
+
+- **Three-dot menu button restored** (critical) — newer Jellyfin versions disable right-click, which made the context menu (mark watched, favorite, delete…) unreachable on desktop. The button is now always available on card hover and list rows.
+- **Jellyfin Enhanced supported properly** — the TMDB reviews section no longer overflows the detail page, and external links added by the plugin (Radarr/Sonarr, Letterboxd) now get the theme's link styling (selectors were too strict and missed them).
+- **Save button always in view** on settings pages — no more scrolling to the bottom to save.
+- **Firefox seek-bar parity** — the slider thumb now reacts to hover/drag/focus exactly like on Chromium (kept white, per the theme's White Progress Bars module).
+- **Hamburger menu covers the full screen height** on iPhones (dynamic-viewport units), and the app bar is sticky with proper stacking (fixes several drawer/menu glitches).
+- **Icon flash fixed** — Jellyfin's stock icon font is declared as fallback, so icons render instantly while the theme's icon font loads (no more flash of invisible text).
+- **Music polish** — vertical track lists no longer inherit the grid column gap; disc headings get a small indent; the cast row sits closer to its title on desktop.
+- **Material Symbols refreshed** — the self-hosted icon font is updated to Google's latest revision (newer Jellyfin icon names covered).
+
+Not ported, with reasons: the two Media Bar fixes address bugs in the author's separate add-on file that this theme's own Media Bar integration doesn't have; the checkbox-coverage fix repairs broken `calc()` expressions this theme never had; new features/options (covers add-on, theme videos, sizing variables) were declined.
 
 ---
 
@@ -1226,6 +1243,23 @@ Release depot/qualite ; le theme rendu est identique regle pour regle.
 - **Tags de version** — chaque release est desormais taguee (`v1.2.59`, `v1.2.60`, …) : vous pouvez pinner `@v1.2.60` dans votre URL d'import au lieu d'un hash illisible, et revenir en arriere en changeant juste le tag. Le README l'explique.
 - **Filet de securite CI** — un petit workflow GitHub Actions valide la syntaxe CSS a chaque push (une erreur de syntaxe fait ignorer silencieusement tout ce qui suit — sur `@main` ca partirait instantanement sur tous les appareils) et verifie que le fichier minifie correspond a la source.
 - **Sommaire** — un guide de navigation en tete du fichier source (5 800 lignes).
+
+---
+
+#### v1.2.61 — Portage upstream : 11 fixes du ElegantFin original (54 commits passes en revue)
+
+Revue systematique de tout ce que l'auteur original a publie depuis la base de ce fork (54 commits). Onze fixes applicables portes, adaptes aux systemes de ce theme ; les nouveautes et options ont ete volontairement ecartees.
+
+- **Bouton trois-points restaure** (critique) — les Jellyfin recents desactivent le clic droit, ce qui rendait le menu contextuel (marquer vu, favoris, supprimer…) inaccessible sur PC. Le bouton est de nouveau disponible au survol des cartes et sur les rangees de liste.
+- **Jellyfin Enhanced correctement supporte** — la section avis TMDB ne deborde plus de la page detail, et les liens externes ajoutes par le plugin (Radarr/Sonarr, Letterboxd) recoivent maintenant le style de liens du theme (les selecteurs trop stricts les rataient).
+- **Bouton Enregistrer toujours visible** dans les pages de parametres — fini de defiler jusqu'en bas pour sauvegarder.
+- **Parite Firefox sur la barre de lecture** — le curseur reagit au survol/glisser/focus exactement comme sur Chromium (reste blanc, conformement au module White Progress Bars).
+- **Le menu hamburger couvre toute la hauteur d'ecran** sur iPhone (unites de viewport dynamiques), et la barre d'application est sticky avec un empilement correct (corrige plusieurs bugs de menu/tiroir).
+- **Flash des icones corrige** — la police d'icones stock de Jellyfin est declaree en repli : les icones s'affichent instantanement pendant le chargement de la police du theme (fini le flash de texte invisible).
+- **Finitions musique** — les listes verticales de pistes n'heritent plus du gap de colonnes des grilles ; les en-tetes de disque ont un leger retrait ; la rangee du casting se rapproche de son titre sur PC.
+- **Material Symbols rafraichi** — la police d'icones auto-hebergee passe a la derniere revision de Google (nouvelles icones des Jellyfin recents couvertes).
+
+Non portes, avec raisons : les deux fixes Media Bar corrigent des bugs du fichier add-on separe de l'auteur, que l'integration Media Bar propre a ce theme n'a pas ; le fix des checkboxes repare des `calc()` casses que ce theme n'a jamais eus ; les nouveautes/options (add-on covers, theme videos, variables de taille) ont ete ecartees.
 
 ---
 

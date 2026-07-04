@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.60 */
+/* ElegantFin Cinema Edition v1.2.61 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -45,7 +45,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.60";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.61";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -288,7 +288,7 @@ body {
 }
 
 .material-icons {
-    font-family: var(--iconPack) !important;
+    font-family: var(--iconPack), "Material Icons" !important;   /* v1.2.61 : fallback = police d'icônes stock Jellyfin (toujours chargée) → plus de flash de texte invisible pendant le chargement de Material Symbols */
     font-weight: normal;
     font-style: normal;
     display: inline-block;
@@ -815,9 +815,12 @@ body {
     color: white;
 }
 
+/* v1.2.61 (portage upstream) : bouton trois-points RESTAURÉ en permanence — les
+   Jellyfin récents désactivent le clic droit, sans ce bouton le menu contextuel
+   (marquer vu, favoris, supprimer…) devenait inaccessible sur PC. */
 .cardOverlayButton-br .cardOverlayButton-hover[data-action="menu"],
 .layout-desktop .listItemButton[data-action="menu"] {
-    display: none;
+    display: block;
 }
 
 .layout-desktop .cardOverlayButton-br,
@@ -1461,7 +1464,9 @@ body {
     padding-left: 0;
 }
 
-.itemsContainer {
+/* v1.2.61 (portage upstream) : les listes verticales (musique : pistes/disques)
+   ne doivent pas recevoir le gap de colonnes des grilles. */
+.itemsContainer:not(.vertical-list) {
     column-gap: var(--itemColumnGap);
 }
 
@@ -2474,17 +2479,30 @@ progress + span {
     transform: scale(1) scaleY(1.25);
 }
 
+/* v1.2.61 (portage upstream) : parité Firefox — mêmes états hover/active/focus que
+   le thumb Chromium ci-dessus (le thumb Firefox ne réagissait pas correctement).
+   Blanc conservé (module White Progress Bars). Règles séparées des ::-webkit- :
+   les combiner casse l'effet sur Chrome. */
 .mdl-slider::-moz-range-thumb {
-    background: var(--osdSeekBarThumbColor);
-    width: 0.6em;
-    height: 0.6em;
+    background: #fff !important;
+    width: 4px !important;
+    height: 0.4em !important;
     border: none;
     border-radius: 2px;
-    transition: transform 0.15s var(--ease-smooth);
 }
 
-.mdl-slider:hover::-moz-range-thumb,
-.mdl-slider:active::-moz-range-thumb {
+.sliderContainer:hover .mdl-slider::-moz-range-thumb {
+    width: 0.2em !important;
+    height: 0.8em !important;
+    border-radius: 0.2em;
+    transform: scale(1);
+}
+
+.sliderContainer:active .mdl-slider::-moz-range-thumb,
+.mdl-slider.show-focus:focus::-moz-range-thumb {
+    width: 0.2em !important;
+    height: 0.8em !important;
+    border-radius: 0.2em;
     transform: scale(1) scaleY(1.25);
 }
 
@@ -2572,15 +2590,14 @@ progress + span {
     flex-direction: column-reverse;
 }
 
+/* v1.2.61 (portage upstream) : sélecteurs relâchés — Jellyfin Enhanced ajoute des
+   liens externes (Radarr/Sonarr, Letterboxd) SANS la classe .focuscontainer-x ;
+   avec l'ancien sélecteur strict, ces liens restaient bruts/invisibles. */
 .itemExternalLinks {
-    color: var(--textColor);
-}
-
-.itemExternalLinks.focuscontainer-x {
     color: transparent;
 }
 
-.itemExternalLinks.focuscontainer-x > .button-link {
+.itemExternalLinks >.button-link {
     color: var(--textColor);
     background-color: var(--selectorBackgroundColor);
     padding: 0.125em 0.5em;
@@ -2590,48 +2607,48 @@ progress + span {
     font-weight: 500;
 }
 
-.layout-mobile .itemExternalLinks.focuscontainer-x > .button-link:hover:not(:active) {
+.layout-mobile .itemExternalLinks >.button-link:hover:not(:active) {
     color: var(--textColor) !important;
 }
 
-.layout-desktop .itemExternalLinks.focuscontainer-x > a:hover,
-.itemExternalLinks.focuscontainer-x > a:active {
+.layout-desktop .itemExternalLinks >a:hover,
+.itemExternalLinks >a:active {
     background-color: var(--activeColor) !important;
     color: white !important;
 }
 
-.layout-desktop .itemExternalLinks.focuscontainer-x > a[href*="themoviedb.org"]:hover,
-.itemExternalLinks.focuscontainer-x > a[href*="themoviedb.org"]:active {
+.layout-desktop .itemExternalLinks >a[href*="themoviedb.org"]:hover,
+.itemExternalLinks >a[href*="themoviedb.org"]:active {
     background-color: rgb(26, 183, 216) !important;
     color: black !important;
 }
 
-.layout-desktop .itemExternalLinks.focuscontainer-x > a[href*="imdb.com"]:hover,
-.itemExternalLinks.focuscontainer-x > a[href*="imdb.com"]:active {
+.layout-desktop .itemExternalLinks >a[href*="imdb.com"]:hover,
+.itemExternalLinks >a[href*="imdb.com"]:active {
     background-color: rgb(226, 182, 22) !important;
     color: black !important;
 }
 
-.layout-desktop .itemExternalLinks.focuscontainer-x > a[href*="thetvdb.com"]:hover,
-.itemExternalLinks.focuscontainer-x > a[href*="thetvdb.com"]:active {
+.layout-desktop .itemExternalLinks >a[href*="thetvdb.com"]:hover,
+.itemExternalLinks >a[href*="thetvdb.com"]:active {
     background-color: rgb(108, 213, 145) !important;
     color: black !important;
 }
 
-.layout-desktop .itemExternalLinks.focuscontainer-x > a[href*="trakt.tv"]:hover,
-.itemExternalLinks.focuscontainer-x > a[href*="trakt.tv"]:active {
+.layout-desktop .itemExternalLinks >a[href*="trakt.tv"]:hover,
+.itemExternalLinks >a[href*="trakt.tv"]:active {
     background-color: rgb(171, 58, 173) !important;
     color: var(--textColor) !important;
 }
 
-.layout-desktop .itemExternalLinks.focuscontainer-x > a[href*="theaudiodb.com"]:hover,
-.itemExternalLinks.focuscontainer-x > a[href*="theaudiodb.com"]:active {
+.layout-desktop .itemExternalLinks >a[href*="theaudiodb.com"]:hover,
+.itemExternalLinks >a[href*="theaudiodb.com"]:active {
     background-color: rgb(99, 153, 204) !important;
     color: rgb(15, 22, 28) !important;
 }
 
-.layout-desktop .itemExternalLinks.focuscontainer-x > a[href*="musicbrainz.org"]:hover,
-.itemExternalLinks.focuscontainer-x > a[href*="musicbrainz.org"]:active {
+.layout-desktop .itemExternalLinks >a[href*="musicbrainz.org"]:hover,
+.itemExternalLinks >a[href*="musicbrainz.org"]:active {
     background-color: rgb(186, 71, 143) !important;
     color: var(--textColor) !important;
 }
@@ -5117,6 +5134,17 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     container-name: skinHeader;
     container-type: size;
     height: var(--appBarHeight);
+    position: sticky;      /* v1.2.61 (portage upstream) : corrige plusieurs bugs de barre/menu (#163/#192/#196/#262) */
+    top: 0;
+    z-index: 1099;
+}
+
+/* v1.2.61 (portage upstream) : le menu hamburger ne couvrait pas toute la hauteur
+   d'écran sur certains iPhones — 100dvh (unité dynamique) avec repli 100vh. */
+.touch-menu-la {
+    height: 100vh;
+    height: 100dvh;
+    z-index: 1099;
 }
 
 @container skinHeader (min-height: 4.9em) {
@@ -5742,6 +5770,36 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 .layout-tv .videoIndicator {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+}
+
+/* ============================================================
+   v1.2.61 — PORTAGE UPSTREAM (fixes additifs)
+   ============================================================ */
+
+/* Bouton Enregistrer toujours visible dans les pages de paramètres (fini de
+   défiler jusqu'en bas pour sauvegarder). L'ombre large fond le bouton dans la
+   page pendant le défilement. */
+.userPreferencesPage .button-submit {
+    position: sticky !important;
+    bottom: calc(1em + env(safe-area-inset-bottom, 0px));
+    box-shadow: 0 0.75em 2em 3em var(--darkerGradientPoint);
+    z-index: 2 !important;
+}
+
+/* Jellyfin Enhanced : la section avis TMDB débordait de la page détail. */
+.tmdb-review-swipe-container {
+    max-width: 93vw;
+}
+
+/* Musique : léger retrait des en-têtes de disque dans les listes de pistes. */
+.vertical-list > .listGroupHeader {
+    padding-left: 0.5ch;
+}
+
+/* PC : réduit l'écart entre les posters du casting et le titre de section. */
+.layout-desktop .detailRibbon:has(.person) {
+    min-height: 15vh;
+    align-content: flex-end;
 }
 
 /* ============================================================
