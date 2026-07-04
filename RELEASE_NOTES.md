@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.64
+# ElegantFin Cinema Edition v1.2.65
 
 ## [English](#english) | [Francais](#francais)
 
@@ -648,6 +648,12 @@ Two mistakes in v1.2.62, both fixed after field screenshots:
 #### v1.2.64 — Accessibility: the version badge was nearly unreadable
 
 Outcome of the WCAG contrast audit: every text in the theme passes AA except one — the "ElegantFin Cinema Edition vX.X.X" badge at the bottom of the Preferences page used the border colour, measuring **1.86:1** (the AA floor is 4.5:1). Ironically it's the text you read to check which version you're on. It now has its own colour at **~5.5:1**. One line; nothing else changes.
+
+---
+
+#### v1.2.65 — Series title: one unified rule ends the whack-a-mole
+
+Third and final round on the series-title harmonization: series without a clear logo took yet another code path (the base ultra-light rules), so "Mao" still rendered thin and small. Instead of patching a fourth spot, a single **ID-specificity rule** now forces the subtitle format (2em semi-bold, 1.5em on mobile) on **every** path — logo or not, TV/desktop/mobile. It's scoped to pages that have a "Season X - Episode" line, so the main title of logo-less series pages keeps its large display size. Clickability untouched.
 
 ---
 
@@ -1302,6 +1308,12 @@ Deux erreurs en v1.2.62, corrigees grace aux captures terrain :
 #### v1.2.64 — Accessibilite : le badge de version etait quasi illisible
 
 Resultat de l'audit de contraste WCAG : tous les textes du theme passent AA sauf un — le badge « ElegantFin Cinema Edition vX.X.X » en pied de la page Preferences utilisait la couleur des bordures, mesuree a **1.86:1** (le plancher AA est 4.5:1). Ironiquement, c'est le texte qu'on lit pour verifier sa version. Il a maintenant sa propre couleur a **~5.5:1**. Une ligne ; rien d'autre ne change.
+
+---
+
+#### v1.2.65 — Titre de serie : une regle unique met fin au chat-et-la-souris
+
+Troisieme et derniere passe sur l'harmonisation du titre de serie : les series SANS logo passaient par encore un autre chemin (les regles de base ultra-fines), donc « Mao » restait fin et petit. Plutot que de rustiner un quatrieme endroit, une seule **regle a specificite ID** force desormais le format du subtitle (2em semi-gras, 1.5em mobile) sur **tous** les chemins — avec ou sans logo, TV/PC/mobile. Elle est scopee aux pages qui ont une ligne « Saison X - Episode », donc le titre principal des pages Serie sans logo garde sa grande taille. Cliquabilite intacte.
 
 ---
 

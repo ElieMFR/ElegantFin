@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.64 */
+/* ElegantFin Cinema Edition v1.2.65 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -45,7 +45,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.64";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.65";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -5809,6 +5809,39 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 .layout-desktop .detailRibbon:has(.person) {
     min-height: 15vh;
     align-content: flex-end;
+}
+
+/* ============================================================
+   v1.2.65 — FORMAT UNIQUE DU TITRE DE SÉRIE (pages Saison/Épisode)
+   ============================================================
+   Fin du chat-et-la-souris : le breadcrumb série passait par TROIS chemins
+   (logo TV v1.2.26 / logo PC-mobile v1.2.40 / SANS logo = règles de base ou
+   1958) et il restait toujours un cas déformé (« Mao » fin et petit).
+   Cette règle à spécificité ID (1,x,x) bat TOUS les chemins précédents et
+   force le format de la ligne « Saison X - Épisode » (.subtitle) : 2em
+   semi-gras droit (1.5em mobile). Scopée :has(.subtitle) = uniquement les
+   pages Saison/Épisode — le titre principal des pages Série sans logo
+   (règle 1958, clamp géant) n'est PAS touché. Cliquabilité intacte. */
+#itemDetailPage .nameContainer:has(.subtitle) h1.parentName {
+    font-size: 2em !important;
+    font-weight: 600 !important;
+    font-style: normal !important;
+    letter-spacing: normal !important;
+    color: #fff !important;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4) !important;
+}
+
+#itemDetailPage .nameContainer:has(.subtitle) h1.parentName a,
+#itemDetailPage .nameContainer:has(.subtitle) h1.parentName bdi {
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    font-style: inherit !important;
+    letter-spacing: inherit !important;
+    color: inherit !important;
+}
+
+.layout-mobile #itemDetailPage .nameContainer:has(.subtitle) h1.parentName {
+    font-size: 1.5em !important;   /* = .layout-mobile .subtitle */
 }
 
 /* ============================================================
