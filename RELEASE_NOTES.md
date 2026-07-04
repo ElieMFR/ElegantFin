@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.59
+# ElegantFin Cinema Edition v1.2.60
 
 ## [English](#english) | [Francais](#francais)
 
@@ -598,6 +598,18 @@ Field-tested on Tizen right after v1.2.58 — three pure CSS-cascade bugs in the
 - **Series-title link: white text inside the white pill (invisible)** — the TV breadcrumb rule (`color: inherit !important`, specificity 0,6,2) beat the pill's black text (0,4,0). Fixed with a higher-specificity focus-only override.
 - **"Season 1" pill clipped at the top** — the long-titles module puts `overflow: hidden` on title containers; the pill's 0.3em spread shadow overflowed the line box and got cut. Spread reduced to 0.15em.
 - **"Favorites" tab didn't react to focus** (while the active "Home" did) — the non-active-tab rule had the same specificity as the pill but sits later in the file, so it won on non-active tabs. It now excludes `:focus`.
+
+---
+
+#### v1.2.60 — Infrastructure: real minification, font licenses, version tags, CI — zero visual change
+
+Repository/quality release; the rendered theme is byte-for-byte identical in rules.
+
+- **The distributed file is now actually minified** — `latest-minified.css` had always been a plain copy of the commented source (the name lied). ~40% of the file was comments that every TV/phone downloaded and parsed for nothing. A conservative minifier (`scripts/minify.py`, string-aware, keeps the version header line for CDN verification) now generates it at each deploy: **163 KB → 124 KB** (measured). The versioned file stays fully commented — that's the documentation.
+- **Font licenses included** — the theme redistributes Inter (SIL OFL 1.1) and Material Symbols Rounded (Apache 2.0) in `Theme/fonts/`; both licenses **require** their text to accompany redistribution. Canonical texts now sit next to the fonts.
+- **Version tags** — each release is now tagged (`v1.2.59`, `v1.2.60`, …), so you can pin `@v1.2.60` in your import URL instead of an unreadable commit hash, and roll back by just changing the tag. The README explains it.
+- **CI safety net** — a tiny GitHub Actions workflow validates the CSS syntax on every push (a syntax error makes browsers silently drop everything after it — on `@main` that would ship to every device instantly) and checks that the minified file matches the source.
+- **Table of contents** — a navigation summary at the top of the (5,800-line) source file.
 
 ---
 
@@ -1202,6 +1214,18 @@ Teste sur Tizen juste apres v1.2.58 — trois bugs de pure cascade CSS dans la p
 - **Lien du titre de serie : texte blanc dans la pastille blanche (invisible)** — la regle TV du breadcrumb (`color: inherit !important`, specificite 0,6,2) battait le noir de la pastille (0,4,0). Corrige par un override focus a specificite superieure.
 - **Pastille « Saison 1 » rognee en haut** — le module titres longs met `overflow: hidden` sur les conteneurs de titre ; l'ombre etalee de 0.3em depassait la ligne et se faisait couper. Etalement reduit a 0.15em.
 - **L'onglet « Favoris » ne reagissait pas au focus** (alors qu'« Accueil », actif, oui) — la regle des onglets non-actifs avait la meme specificite que la pastille mais arrive plus tard dans le fichier, donc gagnait sur les onglets non-actifs. Elle exclut maintenant `:focus`.
+
+---
+
+#### v1.2.60 — Infrastructure : vraie minification, licences des polices, tags de version, CI — zero changement visuel
+
+Release depot/qualite ; le theme rendu est identique regle pour regle.
+
+- **Le fichier distribue est maintenant vraiment minifie** — `latest-minified.css` avait toujours ete une simple copie de la source commentee (le nom mentait). ~40 % du fichier etait des commentaires que chaque TV/telephone telechargeait et parsait pour rien. Un minifieur conservateur (`scripts/minify.py`, respecte les chaines, garde la ligne d'en-tete de version pour la verification CDN) le genere a chaque deploiement : **163 Ko → 124 Ko** (mesure). Le fichier versionne reste entierement commente — c'est la documentation.
+- **Licences des polices incluses** — le theme redistribue Inter (SIL OFL 1.1) et Material Symbols Rounded (Apache 2.0) dans `Theme/fonts/` ; ces deux licences **exigent** que leur texte accompagne la redistribution. Les textes canoniques sont maintenant a cote des polices.
+- **Tags de version** — chaque release est desormais taguee (`v1.2.59`, `v1.2.60`, …) : vous pouvez pinner `@v1.2.60` dans votre URL d'import au lieu d'un hash illisible, et revenir en arriere en changeant juste le tag. Le README l'explique.
+- **Filet de securite CI** — un petit workflow GitHub Actions valide la syntaxe CSS a chaque push (une erreur de syntaxe fait ignorer silencieusement tout ce qui suit — sur `@main` ca partirait instantanement sur tous les appareils) et verifie que le fichier minifie correspond a la source.
+- **Sommaire** — un guide de navigation en tete du fichier source (5 800 lignes).
 
 ---
 

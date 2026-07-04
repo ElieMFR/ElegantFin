@@ -1,0 +1,30 @@
+name: CSS check
+
+on:
+  push:
+    paths:
+      - "Theme/**.css"
+      - "scripts/minify.py"
+      - ".github/workflows/css-check.yml"
+  pull_request:
+    paths:
+      - "Theme/**.css"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Parse-only syntax check (empty rules config): a CSS syntax error makes
+      # browsers silently drop everything after it — on @main that ships to
+      # every device instantly. This catches it before it does.
+      - name: Syntax check (parse only)
+        run: npx --yes stylelint "Theme/ElegantFin-cinema-*.css" --config .stylelintrc.json
+
+      # The distributed file must be exactly minify(versioned source).
+      - name: Minified file in sync
+        run: |
+          SRC=$(ls Theme/ElegantFin-cinema-*.css)
+          python3 scripts/minify.py "$SRC" /tmp/min.css
+          diff -q /tmp/min.css Theme/ElegantFin-jellyfin-theme-build-latest-minified.css

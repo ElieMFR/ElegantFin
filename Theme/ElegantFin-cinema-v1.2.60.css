@@ -1,5 +1,24 @@
-/* ElegantFin Cinema Edition v1.2.59 */
+/* ElegantFin Cinema Edition v1.2.60 */
 /* Enhanced with 27 cinematic modules — premium streaming experience */
+
+/* ============================================================
+   SOMMAIRE — repères de navigation (les numéros de ligne bougent :
+   chercher les bannières « ==== » ou les titres ci-dessous)
+    1. Polices self-hostées (@font-face Inter + Material Symbols)
+    2. Variables & palette (navy · violet=actif · blanc=focus · vert=vu)
+    3. Focus cartes TV (contour instantané + pop différé)
+    4. Focus boutons TV — 3 traitements (v1.2.46)
+    5. PASTILLE BLANCHE GÉNÉRALISÉE (v1.2.58/59) + ⚠️ INVARIANT
+    6. Header, backdrop & pages détail
+    7. Subtitle sous logo (v1.2.36) · Lien série (v1.2.40)
+    8. Listes, menus, guide TV, formulaires, OSD
+    9. Liens metadata hover (v1.2.32)
+   10. PERFORMANCES — GPU + TV + Mobile (+ ⚠️ INVARIANT fonds opaques)
+   11. Corrections mineures
+   12. CINEMA FEATURES (modules) + finitions streaming (v1.2.58)
+   NB : le fichier distribué (latest-minified) est généré par
+   scripts/minify.py — commentaires retirés, règles identiques.
+   ============================================================ */
 
 /* Inter Variable Font — self-hosted (v1.2.42, remplace l'@import Google Fonts).
    Servi depuis ce repo via jsDelivr : les URLs relatives se résolvent contre
@@ -26,7 +45,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.59";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.60";
 
     /* Base theme colors */
     color-scheme: dark;
