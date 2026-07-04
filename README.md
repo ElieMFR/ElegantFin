@@ -26,7 +26,7 @@
 
 ### What is this?
 
-This is a **Cinema Edition** of the ElegantFin theme by [lscambo13](https://github.com/lscambo13), enhanced with **27 cinematic modules** that transform your Jellyfin into a professional streaming experience inspired by the major streaming platforms.
+This is a **Cinema Edition** of the ElegantFin theme by [lscambo13](https://github.com/lscambo13), enhanced with **32 cinematic modules** that transform your Jellyfin into a professional streaming experience inspired by the major streaming platforms.
 
 Everything works on **desktop, mobile and TV** with a single CSS import.
 
@@ -48,7 +48,13 @@ Everything works on **desktop, mobile and TV** with a single CSS import.
 | **Modern OSD Player** | Soft gradient, reactive slider, glass footer |
 | **Section Titles** | Bolder (700), hidden chevrons, overflow ellipsis |
 | **Glass Dialogs** | Backdrop blur on dialogs, menus, drawer, toast, upNext |
-| **Navigation Tabs** | White active tab, subtle inactive with hover effect |
+| **Navigation Tabs** | Violet active tab, white-pill focus, subtle inactive tabs |
+| **TV Focus System** | White-pill focus on every control (buttons, rows, tabs, links) — readable from the couch |
+| **Deferred TV Effects** | Card pop + row spotlight fire only at rest — fast scrolling stays smooth |
+| **Opaque TV Panels** | Menus and dialogs stay readable over bright video |
+| **Who's Watching** | Round centered profile avatars on the login screen |
+| **Row Scroll-Snap** | Rows settle aligned on a card (desktop and mobile) |
+| **Full-Height Scroll Arrows** | Streaming-style gradient arrows on desktop rows |
 | **Typography Hierarchy** | Refined weights for body text, episode titles, subtitles |
 | **Long Titles Fix** | Responsive line-clamp (2 desktop, 3 mobile), word-break |
 | **Thin Scrollbars** | 4px cross-browser scrollbars, transparent track |
@@ -128,7 +134,7 @@ All original ElegantFin customization options are preserved. Add these overrides
 | Web browsers (Chrome, Edge, Firefox, Safari) | Fully supported |
 | Jellyfin Android App | Fully supported |
 | LG WebOS | Supported (may need icon pack fix) |
-| Samsung Tizen (Jellyfin community) | Supported (2022+ TVs fully compatible) |
+| Samsung Tizen (Jellyfin community) | Supported (extensively field-tested; graceful degrade on older models) |
 | Android TV native app | Not supported (no CSS support) |
 | Jellyfin Media Player (Qt 5.x) | Partial (outdated web engine) |
 
@@ -177,7 +183,7 @@ If a plugin isn't in this list, the theme just doesn't add overrides for it — 
 
 ### C'est quoi ?
 
-C'est une **Edition Cinema** du theme ElegantFin par [lscambo13](https://github.com/lscambo13), enrichie de **27 modules cinematiques** qui transforment votre Jellyfin en une experience de streaming professionnelle inspiree des grandes plateformes de streaming.
+C'est une **Edition Cinema** du theme ElegantFin par [lscambo13](https://github.com/lscambo13), enrichie de **32 modules cinematiques** qui transforment votre Jellyfin en une experience de streaming professionnelle inspiree des grandes plateformes de streaming.
 
 Tout fonctionne sur **bureau, mobile et TV** avec un seul import CSS.
 
@@ -199,7 +205,13 @@ Tout fonctionne sur **bureau, mobile et TV** avec un seul import CSS.
 | **Lecteur OSD moderne** | Degrade doux, slider reactif, pied de page en verre |
 | **Titres de sections** | Plus gras (700), chevrons masques, overflow ellipsis |
 | **Dialogues en verre** | Backdrop blur sur dialogues, menus, drawer, toast, upNext |
-| **Onglets de navigation** | Onglet actif blanc, inactifs subtils avec effet hover |
+| **Onglets de navigation** | Onglet actif violet, focus pastille blanche, inactifs subtils |
+| **Systeme de focus TV** | Pastille blanche sur chaque controle (boutons, rangees, onglets, liens) — lisible depuis le canape |
+| **Effets TV differes** | Pop des cartes + spotlight de rangee uniquement a l'arret — le defilement rapide reste fluide |
+| **Panneaux TV opaques** | Menus et dialogues lisibles par-dessus la video |
+| **Qui regarde ?** | Avatars de profil ronds et centres a la connexion |
+| **Aimantation des rangees** | Les rangees se posent alignees sur une carte (PC et mobile) |
+| **Fleches pleine hauteur** | Fleches degradees facon streaming sur les rangees PC |
 | **Hierarchie typographique** | Poids affines pour texte, titres d'episodes, sous-titres |
 | **Fix longs titres** | Line-clamp responsive (2 bureau, 3 mobile), word-break |
 | **Scrollbars fines** | Scrollbars 4px cross-browser, piste transparente |
@@ -279,7 +291,7 @@ Toutes les options de personnalisation originales d'ElegantFin sont preservees. 
 | Navigateurs web (Chrome, Edge, Firefox, Safari) | Entierement supporte |
 | Jellyfin Android App | Entierement supporte |
 | LG WebOS | Supporte (peut necessiter le fix icones) |
-| Samsung Tizen (Jellyfin community) | Supporte (TV 2022+ entierement compatible) |
+| Samsung Tizen (Jellyfin community) | Supporte (teste intensivement sur materiel reel ; degrade gracieux sur anciens modeles) |
 | Android TV app native | Non supporte (pas de support CSS) |
 | Jellyfin Media Player (Qt 5.x) | Partiel (moteur web obsolete) |
 
