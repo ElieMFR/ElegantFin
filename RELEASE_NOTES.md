@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.62
+# ElegantFin Cinema Edition v1.2.63
 
 ## [English](#english) | [Francais](#francais)
 
@@ -633,6 +633,15 @@ Not ported, with reasons: the two Media Bar fixes address bugs in the author's s
 #### v1.2.62 — Series title matches the episode title format on season/episode pages
 
 On season/episode pages, the series name (the clickable breadcrumb above the title) was rendered in a different style than the "Season X - Episode" line below it — regular weight vs the theme's ultra-light display type. They now share the exact same format (ultra-light 100, same size, same letter-spacing and shadow) on TV, with the old-client fallback harmonized too. The breadcrumb stays clickable, and the white-pill focus adapts to the new size.
+
+---
+
+#### v1.2.63 — Series title harmonization, corrected reference (and all platforms this time)
+
+Two mistakes in v1.2.62, both fixed after field screenshots:
+
+- **Wrong reference** — v1.2.62 matched the series title to the big ultra-light page title; the request was to match the "Season X - Episode" line (the subtitle: 2em, semi-bold, upright). The series title now uses exactly that format — two twin lines.
+- **Missed code path** — v1.2.62 only restyled the TV rule, but on PC/mobile the series title is rendered by a different rule (the v1.2.40 clickable-breadcrumb one: small italic). That path is now harmonized too (desktop 2em, mobile 1.5em to match the mobile subtitle), still clickable with the hover underline.
 
 ---
 
@@ -1272,6 +1281,15 @@ Non portes, avec raisons : les deux fixes Media Bar corrigent des bugs du fichie
 #### v1.2.62 — Le titre de serie adopte le format du titre d'episode sur les pages saison/episode
 
 Sur les pages saison/episode, le nom de la serie (le fil d'Ariane cliquable au-dessus du titre) etait rendu dans un style different de la ligne « Saison X - Episode » en dessous — graisse normale contre l'ultra-fine signature du theme. Ils partagent maintenant exactement le meme format (ultra-fine 100, meme taille, memes lettres et ombre) sur TV, avec le fallback vieux clients harmonise aussi. Le fil d'Ariane reste cliquable, et la pastille blanche du focus s'adapte a la nouvelle taille.
+
+---
+
+#### v1.2.63 — Harmonisation du titre de serie, bon referent cette fois (et toutes les plateformes)
+
+Deux erreurs en v1.2.62, corrigees grace aux captures terrain :
+
+- **Mauvais referent** — v1.2.62 avait aligne le titre de serie sur le grand titre ultra-fin ; la demande etait de l'aligner sur la ligne « Saison X - Episode » (le subtitle : 2em, semi-grasse, droite). Le titre de serie utilise maintenant exactement ce format — deux lignes jumelles.
+- **Chemin de code rate** — v1.2.62 ne restylait que la regle TV, mais sur PC/mobile le titre de serie passe par une autre regle (celle du fil d'Ariane cliquable v1.2.40 : petite italique). Ce chemin est maintenant harmonise aussi (PC 2em, mobile 1.5em pour coller au subtitle mobile), toujours cliquable avec le souligne au survol.
 
 ---
 
