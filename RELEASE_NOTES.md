@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.61
+# ElegantFin Cinema Edition v1.2.62
 
 ## [English](#english) | [Francais](#francais)
 
@@ -627,6 +627,12 @@ Systematic review of everything the original author shipped since this fork's ba
 - **Material Symbols refreshed** — the self-hosted icon font is updated to Google's latest revision (newer Jellyfin icon names covered).
 
 Not ported, with reasons: the two Media Bar fixes address bugs in the author's separate add-on file that this theme's own Media Bar integration doesn't have; the checkbox-coverage fix repairs broken `calc()` expressions this theme never had; new features/options (covers add-on, theme videos, sizing variables) were declined.
+
+---
+
+#### v1.2.62 — Series title matches the episode title format on season/episode pages
+
+On season/episode pages, the series name (the clickable breadcrumb above the title) was rendered in a different style than the "Season X - Episode" line below it — regular weight vs the theme's ultra-light display type. They now share the exact same format (ultra-light 100, same size, same letter-spacing and shadow) on TV, with the old-client fallback harmonized too. The breadcrumb stays clickable, and the white-pill focus adapts to the new size.
 
 ---
 
@@ -1260,6 +1266,12 @@ Revue systematique de tout ce que l'auteur original a publie depuis la base de c
 - **Material Symbols rafraichi** — la police d'icones auto-hebergee passe a la derniere revision de Google (nouvelles icones des Jellyfin recents couvertes).
 
 Non portes, avec raisons : les deux fixes Media Bar corrigent des bugs du fichier add-on separe de l'auteur, que l'integration Media Bar propre a ce theme n'a pas ; le fix des checkboxes repare des `calc()` casses que ce theme n'a jamais eus ; les nouveautes/options (add-on covers, theme videos, variables de taille) ont ete ecartees.
+
+---
+
+#### v1.2.62 — Le titre de serie adopte le format du titre d'episode sur les pages saison/episode
+
+Sur les pages saison/episode, le nom de la serie (le fil d'Ariane cliquable au-dessus du titre) etait rendu dans un style different de la ligne « Saison X - Episode » en dessous — graisse normale contre l'ultra-fine signature du theme. Ils partagent maintenant exactement le meme format (ultra-fine 100, meme taille, memes lettres et ombre) sur TV, avec le fallback vieux clients harmonise aussi. Le fil d'Ariane reste cliquable, et la pastille blanche du focus s'adapte a la nouvelle taille.
 
 ---
 

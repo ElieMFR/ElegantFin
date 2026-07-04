@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.61 */
+/* ElegantFin Cinema Edition v1.2.62 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -45,7 +45,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.61";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.62";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -1796,17 +1796,18 @@ body {
 }
 
 /* v1.2.26: re-expose parentName link when clearLogo is visible (TV ONLY now).
-   On TV (couch UX), the breadcrumb stays visible as a centered title text
-   (2em, weight 400, white) — keeps the rendering that worked well per
-   user testing. PC and Mobile use the v1.2.32 overlay-logo approach below. */
+   PC and Mobile use the v1.2.32 overlay-logo approach below.
+   v1.2.62 : le titre de série adopte le MÊME format que la ligne saison/épisode
+   (ultra-fine 100, même taille, mêmes lettres/ombre) — fini le mélange de deux
+   styles qui ne se répondaient pas. Demande utilisateur, option « identique ». */
 .layout-tv .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName {
     display: block !important;
-    font-size: 2em !important;
-    font-weight: 400 !important;
-    letter-spacing: normal !important;
+    font-size: clamp(2em, 5vw, 4em) !important;
+    font-weight: 100 !important;
+    letter-spacing: -0.02em !important;
     color: #fff !important;
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4) !important;
-    padding-bottom: 0.25em !important;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5) !important;
+    padding-bottom: 0.1em !important;
     text-align: center;
 }
 
@@ -1828,9 +1829,10 @@ body {
         display: block !important;
         position: static !important;
         color: #fff !important;
-        font-size: 1.5em !important;
-        font-weight: 400 !important;
-        text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4) !important;
+        font-size: 2em !important;       /* v1.2.62 : harmonisé avec le format des titres */
+        font-weight: 100 !important;
+        letter-spacing: -0.02em !important;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5) !important;
         text-align: center;
         padding: 0.5em 1em !important;
         pointer-events: auto;

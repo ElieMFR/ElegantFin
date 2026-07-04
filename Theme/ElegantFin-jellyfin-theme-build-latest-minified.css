@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.61 */
+/* ElegantFin Cinema Edition v1.2.62 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/InterVariable.woff2") format("woff2");
@@ -14,7 +14,7 @@
     font-display: swap;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.61";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.62";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -1314,12 +1314,12 @@ body {
 }
 .layout-tv .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName {
     display: block !important;
-    font-size: 2em !important;
-    font-weight: 400 !important;
-    letter-spacing: normal !important;
+    font-size: clamp(2em, 5vw, 4em) !important;
+    font-weight: 100 !important;
+    letter-spacing: -0.02em !important;
     color: #fff !important;
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4) !important;
-    padding-bottom: 0.25em !important;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5) !important;
+    padding-bottom: 0.1em !important;
     text-align: center;
 }
 .layout-tv .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName a {
@@ -1333,9 +1333,10 @@ body {
         display: block !important;
         position: static !important;
         color: #fff !important;
-        font-size: 1.5em !important;
-        font-weight: 400 !important;
-        text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4) !important;
+        font-size: 2em !important;
+        font-weight: 100 !important;
+        letter-spacing: -0.02em !important;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5) !important;
         text-align: center;
         padding: 0.5em 1em !important;
         pointer-events: auto;
