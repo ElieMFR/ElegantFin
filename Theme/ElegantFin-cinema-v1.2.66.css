@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.65 */
+/* ElegantFin Cinema Edition v1.2.66 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -48,7 +48,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.65";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.66";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -5841,6 +5841,15 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     font-style: inherit !important;
     letter-spacing: inherit !important;
     color: inherit !important;
+}
+
+/* v1.2.66 : EXCEPTION FOCUS — le `color: inherit` ci-dessus (spécificité ID)
+   écrasait le fix v1.2.59 « texte noir dans la pastille blanche » (spécificité
+   classe) → au focus, le titre redevenait blanc-sur-blanc. Le noir reprend la
+   main ici, à spécificité ID supérieure. Le bdi enfant suit par héritage. */
+#itemDetailPage .nameContainer:has(.subtitle) h1.parentName a:focus,
+#itemDetailPage .nameContainer:has(.subtitle) h1.parentName a:focus-visible {
+    color: #000 !important;
 }
 
 .layout-mobile #itemDetailPage .nameContainer:has(.subtitle) h1.parentName {

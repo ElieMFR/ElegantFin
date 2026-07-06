@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.65
+# ElegantFin Cinema Edition v1.2.66
 
 ## [English](#english) | [Francais](#francais)
 
@@ -654,6 +654,12 @@ Outcome of the WCAG contrast audit: every text in the theme passes AA except one
 #### v1.2.65 — Series title: one unified rule ends the whack-a-mole
 
 Third and final round on the series-title harmonization: series without a clear logo took yet another code path (the base ultra-light rules), so "Mao" still rendered thin and small. Instead of patching a fourth spot, a single **ID-specificity rule** now forces the subtitle format (2em semi-bold, 1.5em on mobile) on **every** path — logo or not, TV/desktop/mobile. It's scoped to pages that have a "Season X - Episode" line, so the main title of logo-less series pages keeps its large display size. Clickability untouched.
+
+---
+
+#### v1.2.66 — Hotfix: focused series title was white-on-white again (v1.2.65 regression)
+
+The v1.2.65 unified rule forces `color: inherit` on the series-title link at **ID specificity** — which silently outranked the v1.2.59 class-specificity fix ("black text inside the white focus pill"). On TV, focusing the series title showed white text in the white pill again. An ID-specificity focus exception restores the black text.
 
 ---
 
@@ -1314,6 +1320,12 @@ Resultat de l'audit de contraste WCAG : tous les textes du theme passent AA sauf
 #### v1.2.65 — Titre de serie : une regle unique met fin au chat-et-la-souris
 
 Troisieme et derniere passe sur l'harmonisation du titre de serie : les series SANS logo passaient par encore un autre chemin (les regles de base ultra-fines), donc « Mao » restait fin et petit. Plutot que de rustiner un quatrieme endroit, une seule **regle a specificite ID** force desormais le format du subtitle (2em semi-gras, 1.5em mobile) sur **tous** les chemins — avec ou sans logo, TV/PC/mobile. Elle est scopee aux pages qui ont une ligne « Saison X - Episode », donc le titre principal des pages Serie sans logo garde sa grande taille. Cliquabilite intacte.
+
+---
+
+#### v1.2.66 — Hotfix : le titre de serie focus etait redevenu blanc-sur-blanc (regression v1.2.65)
+
+La regle unifiee v1.2.65 force `color: inherit` sur le lien du titre de serie a **specificite ID** — ce qui ecrasait silencieusement le fix v1.2.59 en specificite classe (« texte noir dans la pastille blanche »). Sur TV, le focus sur le titre de serie raffichait du blanc dans la pastille blanche. Une exception focus a specificite ID retablit le texte noir.
 
 ---
 

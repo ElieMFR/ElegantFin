@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.65 */
+/* ElegantFin Cinema Edition v1.2.66 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/InterVariable.woff2") format("woff2");
@@ -14,7 +14,7 @@
     font-display: swap;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.65";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.66";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -4393,6 +4393,10 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     font-style: inherit !important;
     letter-spacing: inherit !important;
     color: inherit !important;
+}
+#itemDetailPage .nameContainer:has(.subtitle) h1.parentName a:focus,
+#itemDetailPage .nameContainer:has(.subtitle) h1.parentName a:focus-visible {
+    color: #000 !important;
 }
 .layout-mobile #itemDetailPage .nameContainer:has(.subtitle) h1.parentName {
     font-size: 1.5em !important;
