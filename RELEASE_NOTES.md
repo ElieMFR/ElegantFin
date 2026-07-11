@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.72
+# ElegantFin Cinema Edition v1.2.73
 
 ## [English](#english) | [Francais](#francais)
 
@@ -707,6 +707,17 @@ Field-tested and still broken — for two stacked reasons, both now fixed:
 
 - **The v1.2.71 exclusion never matched** — the plugin's `#editorsChoiceContainer` **is** the `verticalSection` itself, and `:has()` only tests descendants. The exclusion now also uses a direct `:not(#editorsChoiceContainer)`, so the full-height-arrows restyle truly skips the banner.
 - **The plugin's controls sat under the theme's header** — they're positioned at `z-index: 99` with no `top`; with the full-bleed transparent header (`z-index: 1099`) they ended up covered and unclickable. They're now lifted above it (1100) and offset below the bar.
+
+---
+
+#### v1.2.73 — Editor's Choice controls, actually fixed this time (verified on a local test bench)
+
+Third and final round, with a humbling discovery: `editorsChoiceContainer` is a **CSS class** in the plugin's template — not an id. Every previous exclusion (`#editorsChoiceContainer`, v1.2.71 **and** v1.2.72) could never match, and even the theme's own v1.2.23 spacing rule had silently never worked. This round was **rebuilt against the plugin's real markup and verified on a local reproduction** before shipping:
+
+- Exclusions switched to the class → the full-height row arrows truly skip the banner now.
+- The controls' `mix-blend-mode: difference` (which painted the "square" artifact once lifted above the header) is neutralized; the cramped 7em box is released.
+- The ‹ ❚❚ › controls render as **round navy pills below the nav bar, top-right**, always visible, clickable.
+- Bonus: the v1.2.23 banner bottom-margin fix finally applies.
 
 ---
 
@@ -1420,6 +1431,17 @@ Teste sur le terrain, toujours casse — pour deux raisons empilees, toutes deux
 
 - **L'exclusion v1.2.71 ne matchait jamais** — le `#editorsChoiceContainer` du plugin **est** la `verticalSection` elle-meme, et `:has()` ne teste que les descendants. L'exclusion utilise maintenant aussi un `:not(#editorsChoiceContainer)` direct : le restyle des fleches pleine-hauteur ignore vraiment la banniere.
 - **Les controles du plugin etaient sous le header du theme** — positionnes en `z-index: 99` sans `top` ; avec le header transparent full-bleed (`z-index: 1099`) ils finissaient recouverts et incliquables. Ils sont remontes au-dessus (1100) et decales sous la barre.
+
+---
+
+#### v1.2.73 — Controles Editor's Choice, vraiment corriges cette fois (verifies sur banc d'essai local)
+
+Troisieme et derniere passe, avec une decouverte humiliante : `editorsChoiceContainer` est une **classe CSS** dans le template du plugin — pas un id. Toutes les exclusions precedentes (`#editorsChoiceContainer`, v1.2.71 **et** v1.2.72) ne pouvaient jamais matcher, et meme la regle d'espacement v1.2.23 du theme n'avait silencieusement jamais fonctionne. Cette passe a ete **reconstruite sur le markup reel du plugin et verifiee sur une reproduction locale** avant publication :
+
+- Exclusions passees en classe → les fleches pleine-hauteur des rangees ignorent vraiment la banniere.
+- Le `mix-blend-mode: difference` des controles (qui peignait le « carre » une fois remonte au-dessus du header) est neutralise ; la boite de 7em qui les ecrasait est liberee.
+- Les controles ‹ ❚❚ › s'affichent en **pastilles rondes navy sous la barre de navigation, en haut a droite**, toujours visibles, cliquables.
+- Bonus : le fix de marge v1.2.23 sous la banniere s'applique enfin.
 
 ---
 

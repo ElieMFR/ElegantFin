@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.72 */
+/* ElegantFin Cinema Edition v1.2.73 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.72";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.73";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -5714,15 +5714,18 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    v1.2.71 : SCOPÉ aux rangées (.verticalSection) et EXCLUANT la bannière
    Editor's Choice — la v1.2.58 ciblait TOUS les .emby-scrollbuttons du desktop,
    et ceux de la bannière EC passaient en absolute + opacity 0 jamais révélés.
-   v1.2.72 : l'exclusion v1.2.71 était INEFFICACE — #editorsChoiceContainer EST
-   la verticalSection elle-même (client.js du plugin), or :has() ne teste que
-   les DESCENDANTS → ajout du :not(#editorsChoiceContainer) direct en plus. */
+   v1.2.72 : l'exclusion v1.2.71 était INEFFICACE — le conteneur EC EST la
+   verticalSection elle-même, or :has() ne teste que les DESCENDANTS.
+   v1.2.73 : … et v1.2.72 l'était AUSSI : `editorsChoiceContainer` est une
+   CLASSE dans le template du plugin, pas un id ! Vérifié dans client.js
+   (`<div class="verticalSection section-1 editorsChoiceContainer">`).
+   Exclusions passées en `.classe` — cette fois vérifié sur banc d'essai local. */
 @media (hover: hover) and (pointer: fine) {
     .layout-desktop .verticalSection {
         position: relative;
     }
 
-    .layout-desktop .verticalSection:not(#editorsChoiceContainer):not(:has(#editorsChoiceContainer)) .emby-scrollbuttons {
+    .layout-desktop .verticalSection:not(.editorsChoiceContainer):not(:has(.editorsChoiceContainer)) .emby-scrollbuttons {
         position: absolute;
         top: 3.2em;
         bottom: 0;
@@ -5738,11 +5741,11 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
         z-index: 5;
     }
 
-    .layout-desktop .verticalSection:not(#editorsChoiceContainer):not(:has(#editorsChoiceContainer)):hover .emby-scrollbuttons {
+    .layout-desktop .verticalSection:not(.editorsChoiceContainer):not(:has(.editorsChoiceContainer)):hover .emby-scrollbuttons {
         opacity: 1;
     }
 
-    .layout-desktop .verticalSection:not(#editorsChoiceContainer):not(:has(#editorsChoiceContainer)) .emby-scrollbuttons-button {
+    .layout-desktop .verticalSection:not(.editorsChoiceContainer):not(:has(.editorsChoiceContainer)) .emby-scrollbuttons-button {
         pointer-events: auto;
         height: 100%;
         width: 3em;
@@ -5751,11 +5754,11 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
         background: linear-gradient(90deg, rgba(17, 24, 39, 0.8), transparent);
     }
 
-    .layout-desktop .verticalSection:not(#editorsChoiceContainer):not(:has(#editorsChoiceContainer)) .emby-scrollbuttons-button + .emby-scrollbuttons-button {
+    .layout-desktop .verticalSection:not(.editorsChoiceContainer):not(:has(.editorsChoiceContainer)) .emby-scrollbuttons-button + .emby-scrollbuttons-button {
         background: linear-gradient(270deg, rgba(17, 24, 39, 0.8), transparent);
     }
 
-    .layout-desktop .verticalSection:not(#editorsChoiceContainer):not(:has(#editorsChoiceContainer)) .emby-scrollbuttons-button > .material-icons {
+    .layout-desktop .verticalSection:not(.editorsChoiceContainer):not(:has(.editorsChoiceContainer)) .emby-scrollbuttons-button > .material-icons {
         font-size: 1.8em;
     }
 }
@@ -5961,21 +5964,46 @@ for extended styling, use the add-on */
    With no margin under the banner, the button visually touches the next
    home section title (e.g. "Mes médias"). Tighter clamp + bottom margin. */
 
-#editorsChoiceContainer {
+/* v1.2.73 : `editorsChoiceContainer` est une CLASSE (pas un id) — la règle
+   v1.2.23 ci-dessous n'avait donc JAMAIS fonctionné. Corrigée. */
+.editorsChoiceContainer {
     margin-bottom: 2em;
 }
 
-/* v1.2.72 : contrôles du plugin (flèches ‹ › + pause) — le plugin les met en
-   z-index: 99 SANS top, donc avec notre bannière full-bleed ils se retrouvaient
-   sous le header transparent (z-index 1099) : recouverts et incliquables.
-   Remontés au-dessus (1100) et décalés sous la barre. */
-.layout-desktop .editorsChoiceScrollButtonsContainer {
-    top: calc(var(--appBarHeight, 4.6em) + 0.4em);
+/* v1.2.72/73 : contrôles du plugin (flèches ‹ › + pause) — leur position d'origine
+   (z-index 99, sans top) les mettait sous notre header full-bleed (z 1099) :
+   recouverts, incliquables. Et leur mix-blend-mode: difference, une fois le
+   z-index remonté, produisait un « carré » d'inversion sur le dégradé du header.
+   v1.2.73 (vérifié sur banc d'essai local) : blend neutralisé, boîte 7em libérée,
+   flèches en pastilles rondes navy sous la barre, à droite. */
+.layout-desktop .editorsChoiceScrollButtonsContainer,
+.layout-desktop .editorsChoicePlayPauseContainer {
+    mix-blend-mode: normal;
     z-index: 1100;
 }
 
-.layout-desktop .editorsChoicePlayPauseContainer {
-    z-index: 1100;
+.layout-desktop .editorsChoiceScrollButtonsContainer {
+    top: calc(var(--appBarHeight, 4.6em) + 0.4em);
+    right: 1.2em;
+    width: auto;
+}
+
+.layout-desktop .editorsChoiceScrollButtonsContainer .emby-scrollbuttons {
+    position: static;
+    padding: 0;
+    display: flex;
+    gap: 0.3em;
+}
+
+.layout-desktop .editorsChoiceScrollButtonsContainer .emby-scrollbuttons-button {
+    background: rgba(17, 24, 39, 0.55);
+    border-radius: 50%;
+    padding: 0.45em;
+    margin: 0;
+}
+
+.layout-desktop .editorsChoiceScrollButtonsContainer .emby-scrollbuttons-button:hover {
+    background: rgba(17, 24, 39, 0.85);
 }
 
 .layout-desktop .editorsChoiceItemOverview {
