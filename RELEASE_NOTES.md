@@ -729,6 +729,12 @@ Third and final round, with a humbling discovery: `editorsChoiceContainer` is a 
 
 ---
 
+#### v1.2.75 — Editor's Choice controls clear the header in fullscreen
+
+- On wide/fullscreen desktop, the carousel's ‹ ❚❚ › controls sat only ~6px below the top bar — right on its dark gradient band, so they looked faint and cramped ("in the bar"). They now clear it by ~32px, landing on the banner image where the navy pills read cleanly. Desktop-only, single-value change, verified on a local test bench.
+
+---
+
 ### Compatibility
 - Jellyfin **10.11.x**
 - Works on all web browsers (Chrome, Edge, Firefox, Safari), Android app, LG WebOS, Samsung Tizen
@@ -1458,6 +1464,12 @@ Troisieme et derniere passe, avec une decouverte humiliante : `editorsChoiceCont
 - **Bouton « passer le generique » repasse en navy.** Au repos il etait creme, ce qui faisait ressortir la jauge de compte a rebours violette native de Jellyfin en une lavande « bizarre ». Sur navy, cette meme jauge se lit comme une progression violette coherente avec la palette ; libelle blanc et fin lisere pour la lisibilite sur scenes sombres. Le focus clavier / TV l'inverse toujours en pastille blanche.
 - **Suppression d'un caret de texte clignotant parasite** qui apparaissait sur le bouton lecture/pause de l'OSD video en lecteur web PC. Le curseur d'insertion est desormais masque partout sauf dans les vrais champs de saisie (recherche, formulaires).
 - **Les traitements de focus atteignent maintenant la navigation clavier PC.** Parcourir l'interface au clavier (Tab) sur bureau affiche les memes reperes que la telecommande TV — pastille blanche sur les icones action/header, inversion navy sur le bouton Lecture, anneau blanc sur l'avatar du profil — tandis que les clics souris restent intacts (`:focus-visible`).
+
+---
+
+#### v1.2.75 — Les controles Editor's Choice degagent le header en plein ecran
+
+- Sur bureau large / plein ecran, les controles ‹ ❚❚ › du carrousel n'etaient qu'a ~6px sous la barre du haut — en plein sur son degrade sombre, donc ternes et a l'etroit (« dans la barre »). Ils s'en degagent maintenant de ~32px, poses sur l'image de la banniere ou les pastilles navy ressortent nettement. Bureau uniquement, changement d'une seule valeur, verifie sur banc d'essai local.
 
 ---
 

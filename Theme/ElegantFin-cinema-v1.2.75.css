@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.74 */
+/* ElegantFin Cinema Edition v1.2.75 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.74";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.75";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -6002,7 +6002,13 @@ for extended styling, use the add-on */
    recouverts, incliquables. Et leur mix-blend-mode: difference, une fois le
    z-index remonté, produisait un « carré » d'inversion sur le dégradé du header.
    v1.2.73 (vérifié sur banc d'essai local) : blend neutralisé, boîte 7em libérée,
-   flèches en pastilles rondes navy sous la barre, à droite. */
+   flèches en pastilles rondes navy sous la barre, à droite.
+   v1.2.75 : l'offset était +0.4em, soit ~6px sous le header (5em) → en plein écran
+   (barre sur une seule ligne, carrousel full-bleed à top:0) les pastilles tombaient
+   sur le dégradé sombre du header (« dans la barre »). Passé à +2em (~32px d'écart,
+   vérifié au banc d'essai) → posées sur l'image, lisibles. En fenêtre étroite les
+   onglets qui passent à la ligne poussent déjà le carrousel plus bas → sans effet
+   néfaste. Ne touche que .layout-desktop (PC), zéro impact TV/mobile. */
 .layout-desktop .editorsChoiceScrollButtonsContainer,
 .layout-desktop .editorsChoicePlayPauseContainer {
     mix-blend-mode: normal;
@@ -6010,7 +6016,7 @@ for extended styling, use the add-on */
 }
 
 .layout-desktop .editorsChoiceScrollButtonsContainer {
-    top: calc(var(--appBarHeight, 4.6em) + 0.4em);
+    top: calc(var(--appBarHeight, 4.6em) + 2em);
     right: 1.2em;
     width: auto;
 }
