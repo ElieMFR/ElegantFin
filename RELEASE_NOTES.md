@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.67
+# ElegantFin Cinema Edition v1.2.68
 
 ## [English](#english) | [Francais](#francais)
 
@@ -671,6 +671,12 @@ The self-hosted fonts were carrying worldwide coverage nobody used:
 - **Icons** — the file served under the "Material Icons Round" family name was actually the 5.2 MB Material Symbols variable font. It's now the **real static Material Icons Round** (169 KB, −97%): the complete classic set that Jellyfin and its plugins target (their stock font IS that set), so no glyph list to maintain and no raw-text risk. Filled/outlined states (favorite heart…) survive through distinct ligature names (`favorite` / `favorite_border`). The theme's `font-variation-settings` rules become inert on a static font and are kept in place, harmless, in case a variable font ever returns.
 - Everyday launches are unchanged (everything was already cached); first loads on a fresh device no longer show the icon-style swap, and the fonts survive TV cache eviction far better.
 - Rollback if the icon details bother you: pin `@v1.2.66` in your import URL.
+
+---
+
+#### v1.2.68 — Original (Japanese) title no longer clipped on the right on TV and mobile
+
+The original-title line (e.g. the Japanese title under the episode name) had its line-wrap fix applied **desktop-only** back in v1.2.32 — on Tizen it stayed `nowrap` and got clipped at the right edge of the screen. The wrap now applies on all three platforms, with `overflow-wrap: anywhere` as a safety net for long spaceless romaji runs.
 
 ---
 
@@ -1348,6 +1354,12 @@ Les polices auto-hebergees embarquaient une couverture mondiale que personne n'u
 - **Icones** — le fichier servi sous le nom de famille « Material Icons Round » etait en realite la police variable Material Symbols de 5,2 Mo. C'est desormais la **vraie statique Material Icons Round** (169 Ko, −97 %) : le set classique complet que Jellyfin et ses plugins ciblent (leur police stock EST ce set) → aucune liste de glyphes a maintenir, aucun risque de texte brut. Les etats plein/contour (coeur favori…) survivent via les noms de ligatures distincts (`favorite` / `favorite_border`). Les regles `font-variation-settings` du theme deviennent inertes sur une statique et restent en place, inoffensives, au cas ou une variable revienne un jour.
 - Les lancements quotidiens ne changent pas (tout etait deja en cache) ; les premiers chargements d'un appareil neuf n'affichent plus la bascule de style des icones, et les polices survivent bien mieux a l'eviction du cache TV.
 - Retour arriere si les details d'icones te genent : pinner `@v1.2.66` dans l'URL d'import.
+
+---
+
+#### v1.2.68 — Le titre original (japonais) n'est plus coupe a droite sur TV et mobile
+
+La ligne du titre original (ex. le titre japonais sous le nom d'episode) avait recu son correctif de retour a la ligne **uniquement sur desktop** en v1.2.32 — sur Tizen elle restait en `nowrap` et se faisait couper au bord droit de l'ecran. Le retour a la ligne s'applique maintenant sur les trois plateformes, avec `overflow-wrap: anywhere` en filet pour les longues suites romaji sans espaces.
 
 ---
 

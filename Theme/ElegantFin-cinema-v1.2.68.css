@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.67 */
+/* ElegantFin Cinema Edition v1.2.68 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.67";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.68";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4378,12 +4378,19 @@ div[data-role="controlgroup"] a.ui-btn-active {
     max-width: 100%;
 }
 
-/* Wrap autorisé sur PC pour les longs titres VO (anime romaji + traduction) */
-.layout-desktop .itemName.originalTitle {
+/* Wrap des longs titres VO (anime romaji + traduction).
+   v1.2.68 : étendu à TV et mobile — la v1.2.32 ne l'appliquait QU'AU desktop,
+   donc sur Tizen le titre japonais restait en nowrap et se faisait couper au
+   bord droit de l'écran. overflow-wrap: anywhere en ceinture-bretelles pour
+   les longues suites romaji sans espaces. */
+.layout-desktop .itemName.originalTitle,
+.layout-tv .itemName.originalTitle,
+.layout-mobile .itemName.originalTitle {
     white-space: normal;
     text-overflow: clip;
     text-align: center;
     line-height: 1.3;
+    overflow-wrap: anywhere;
 }
 
 .channelPrograms,
