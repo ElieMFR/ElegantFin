@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.71
+# ElegantFin Cinema Edition v1.2.72
 
 ## [English](#english) | [Francais](#francais)
 
@@ -698,6 +698,15 @@ Two elements where the white pill can't work, now given their proper exception p
 #### v1.2.71 — Editor's Choice banner gets its scroll arrows back on desktop (v1.2.58 regression)
 
 The v1.2.58 full-height scroll arrows restyled **every** `.emby-scrollbuttons` on desktop (absolute-positioned, hidden until you hover the row's section). The Editor's Choice banner has a different structure, so its arrows ended up absolutely positioned with `opacity: 0` and no section-hover to ever reveal them — gone. The full-height treatment is now scoped to regular row sections and explicitly excludes the Editor's Choice container, whose stock arrows are back.
+
+---
+
+#### v1.2.72 — Editor's Choice arrows, the real fix (v1.2.71 was ineffective)
+
+Field-tested and still broken — for two stacked reasons, both now fixed:
+
+- **The v1.2.71 exclusion never matched** — the plugin's `#editorsChoiceContainer` **is** the `verticalSection` itself, and `:has()` only tests descendants. The exclusion now also uses a direct `:not(#editorsChoiceContainer)`, so the full-height-arrows restyle truly skips the banner.
+- **The plugin's controls sat under the theme's header** — they're positioned at `z-index: 99` with no `top`; with the full-bleed transparent header (`z-index: 1099`) they ended up covered and unclickable. They're now lifted above it (1100) and offset below the bar.
 
 ---
 
@@ -1402,6 +1411,15 @@ Deux elements ou la pastille blanche ne peut pas fonctionner, dotes de leurs pat
 #### v1.2.71 — La banniere Editor's Choice retrouve ses fleches de defilement sur PC (regression v1.2.58)
 
 Les fleches pleine hauteur de la v1.2.58 restylaient **tous** les `.emby-scrollbuttons` du desktop (positionnes en absolu, caches jusqu'au survol de la section de rangee). La banniere Editor's Choice a une structure differente : ses fleches se retrouvaient en absolu avec `opacity: 0` sans aucun survol-de-section pour les reveler — disparues. Le traitement pleine-hauteur est maintenant scope aux sections de rangees classiques et exclut explicitement le conteneur Editor's Choice, dont les fleches d'origine sont de retour.
+
+---
+
+#### v1.2.72 — Fleches Editor's Choice, le vrai fix (la v1.2.71 etait inefficace)
+
+Teste sur le terrain, toujours casse — pour deux raisons empilees, toutes deux corrigees :
+
+- **L'exclusion v1.2.71 ne matchait jamais** — le `#editorsChoiceContainer` du plugin **est** la `verticalSection` elle-meme, et `:has()` ne teste que les descendants. L'exclusion utilise maintenant aussi un `:not(#editorsChoiceContainer)` direct : le restyle des fleches pleine-hauteur ignore vraiment la banniere.
+- **Les controles du plugin etaient sous le header du theme** — positionnes en `z-index: 99` sans `top` ; avec le header transparent full-bleed (`z-index: 1099`) ils finissaient recouverts et incliquables. Ils sont remontes au-dessus (1100) et decales sous la barre.
 
 ---
 

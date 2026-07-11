@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.71 */
+/* ElegantFin Cinema Edition v1.2.72 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.71";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.72";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -5713,15 +5713,16 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    apps). top ≈ hauteur du titre de section pour ne pas le recouvrir.
    v1.2.71 : SCOPÉ aux rangées (.verticalSection) et EXCLUANT la bannière
    Editor's Choice — la v1.2.58 ciblait TOUS les .emby-scrollbuttons du desktop,
-   et ceux de la bannière EC (#editorsChoiceContainer, structure différente)
-   passaient en absolute + opacity 0 sans jamais être révélés → ses flèches de
-   défilement avaient disparu. EC retrouve ses flèches d'origine. */
+   et ceux de la bannière EC passaient en absolute + opacity 0 jamais révélés.
+   v1.2.72 : l'exclusion v1.2.71 était INEFFICACE — #editorsChoiceContainer EST
+   la verticalSection elle-même (client.js du plugin), or :has() ne teste que
+   les DESCENDANTS → ajout du :not(#editorsChoiceContainer) direct en plus. */
 @media (hover: hover) and (pointer: fine) {
     .layout-desktop .verticalSection {
         position: relative;
     }
 
-    .layout-desktop .verticalSection:not(:has(#editorsChoiceContainer)) .emby-scrollbuttons {
+    .layout-desktop .verticalSection:not(#editorsChoiceContainer):not(:has(#editorsChoiceContainer)) .emby-scrollbuttons {
         position: absolute;
         top: 3.2em;
         bottom: 0;
@@ -5737,11 +5738,11 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
         z-index: 5;
     }
 
-    .layout-desktop .verticalSection:not(:has(#editorsChoiceContainer)):hover .emby-scrollbuttons {
+    .layout-desktop .verticalSection:not(#editorsChoiceContainer):not(:has(#editorsChoiceContainer)):hover .emby-scrollbuttons {
         opacity: 1;
     }
 
-    .layout-desktop .verticalSection:not(:has(#editorsChoiceContainer)) .emby-scrollbuttons-button {
+    .layout-desktop .verticalSection:not(#editorsChoiceContainer):not(:has(#editorsChoiceContainer)) .emby-scrollbuttons-button {
         pointer-events: auto;
         height: 100%;
         width: 3em;
@@ -5750,11 +5751,11 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
         background: linear-gradient(90deg, rgba(17, 24, 39, 0.8), transparent);
     }
 
-    .layout-desktop .verticalSection:not(:has(#editorsChoiceContainer)) .emby-scrollbuttons-button + .emby-scrollbuttons-button {
+    .layout-desktop .verticalSection:not(#editorsChoiceContainer):not(:has(#editorsChoiceContainer)) .emby-scrollbuttons-button + .emby-scrollbuttons-button {
         background: linear-gradient(270deg, rgba(17, 24, 39, 0.8), transparent);
     }
 
-    .layout-desktop .verticalSection:not(:has(#editorsChoiceContainer)) .emby-scrollbuttons-button > .material-icons {
+    .layout-desktop .verticalSection:not(#editorsChoiceContainer):not(:has(#editorsChoiceContainer)) .emby-scrollbuttons-button > .material-icons {
         font-size: 1.8em;
     }
 }
@@ -5962,6 +5963,19 @@ for extended styling, use the add-on */
 
 #editorsChoiceContainer {
     margin-bottom: 2em;
+}
+
+/* v1.2.72 : contrôles du plugin (flèches ‹ › + pause) — le plugin les met en
+   z-index: 99 SANS top, donc avec notre bannière full-bleed ils se retrouvaient
+   sous le header transparent (z-index 1099) : recouverts et incliquables.
+   Remontés au-dessus (1100) et décalés sous la barre. */
+.layout-desktop .editorsChoiceScrollButtonsContainer {
+    top: calc(var(--appBarHeight, 4.6em) + 0.4em);
+    z-index: 1100;
+}
+
+.layout-desktop .editorsChoicePlayPauseContainer {
+    z-index: 1100;
 }
 
 .layout-desktop .editorsChoiceItemOverview {
