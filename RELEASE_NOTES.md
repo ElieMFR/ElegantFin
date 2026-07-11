@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.69
+# ElegantFin Cinema Edition v1.2.70
 
 ## [English](#english) | [Francais](#francais)
 
@@ -683,6 +683,15 @@ The original-title line (e.g. the Japanese title under the episode name) had its
 #### v1.2.69 — Skip-intro button finally gets its white pill on focus
 
 Embarrassing archaeology: the skip button was a **founding member** of the white-pill focus system (v1.2.48)… but was never added to the generic rule's exclusion list — the very list whose `⚠️ INVARIANT` comment exists to prevent exactly this. Its dedicated white-fill rule has been dead code, outranked in specificity since day one; focusing "Skip Intro" showed the generic thin outline over the video (barely visible on bright scenes). Now excluded: focus = solid white pill + dark text, like everything else.
+
+---
+
+#### v1.2.70 — Focus completes its logic: dark inversion for the Play button, ring for the avatar
+
+Two elements where the white pill can't work, now given their proper exception patterns (TV):
+
+- **Play/Resume button** — it's permanently white, so only a glow marked its focus (weak on bright scenes, and you couldn't always tell focused from idle). On focus it now **inverts**: navy fill, white text, white ring — the exact negative of the pill. The system reads as one rule: *on focus, everything inverts* (dark elements fill white; the white element fills dark). Smooth transition already in place; no transform, so no perf-rule conflict (the old scale was dead code anyway).
+- **Profile avatar (header)** — it's an image: the v1.2.48 white fill was hidden behind the photo, leaving a barely-visible halo. It now gets a **thick white ring + halo**, the same treatment as the "Who's watching?" profiles — consistent with the images-get-rings doctrine (cards, posters, profiles).
 
 ---
 
@@ -1372,6 +1381,15 @@ La ligne du titre original (ex. le titre japonais sous le nom d'episode) avait r
 #### v1.2.69 — Le bouton Passer Generique recoit enfin sa pastille blanche au focus
 
 Archeologie genante : le bouton skip etait un **membre fondateur** du systeme pastille blanche (v1.2.48)… mais n'a jamais ete ajoute a la liste d'exclusion de la regle generique — celle-la meme dont le commentaire `⚠️ INVARIANT` existe pour empecher exactement ca. Sa pastille dediee etait du code mort, battue en specificite depuis le premier jour ; au focus, « Passer Generique » n'affichait que le contour fin generique par-dessus la video (peu visible sur les scenes claires). Desormais exclu : focus = pastille blanche pleine + texte sombre, comme tout le reste.
+
+---
+
+#### v1.2.70 — Le focus boucle sa logique : inversion sombre pour le bouton Lire, anneau pour l'avatar
+
+Deux elements ou la pastille blanche ne peut pas fonctionner, dotes de leurs patterns d'exception (TV) :
+
+- **Bouton Lire/Reprendre** — blanc en permanence, seule une lueur marquait son focus (faible sur scenes claires, et on ne distinguait pas toujours focus et repos). Au focus il s'**inverse** desormais : fond navy, texte blanc, anneau blanc — le negatif exact de la pastille. Le systeme se lit d'une seule regle : *au focus, tout s'inverse* (les elements sombres se remplissent de blanc ; l'element blanc se remplit de sombre). Transition douce deja en place ; aucun transform, donc aucun conflit avec la regle perf (l'ancien scale etait du code mort).
+- **Avatar du profil (header)** — c'est une image : le fill blanc v1.2.48 etait cache derriere la photo, ne laissant qu'un halo a peine visible. Il recoit maintenant un **anneau blanc epais + halo**, le meme traitement que les profils « Qui regarde ? » — coherent avec la doctrine « les images recoivent un anneau » (cartes, affiches, profils).
 
 ---
 

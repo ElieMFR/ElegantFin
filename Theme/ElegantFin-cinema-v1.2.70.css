@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.69 */
+/* ElegantFin Cinema Edition v1.2.70 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.69";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.70";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -446,22 +446,36 @@ body {
    v1.2.46 — Focus boutons TV : 3 traitements selon le type
    (un contour blanc est invisible sur un bouton déjà blanc) */
 
-/* 1) Bouton blanc Lire/Reprendre — reste BLANC, lueur RENFORCÉE (le zoom étant
-   neutralisé sur TV par la règle perf `.layout-tv .show-focus:focus {transform:none}`,
-   c'est la lueur qui porte la visibilité). Pattern premium TV : le bouton blanc flotte. */
+/* 1) Bouton blanc Lire/Reprendre — v1.2.70 : INVERSION SOMBRE au focus. Le négatif
+   de la pastille : les éléments sombres se remplissent de blanc, l'élément blanc se
+   remplit de navy + anneau blanc. La lueur seule (v1.2.48) restait peu visible sur
+   les scènes claires ; l'inversion garantit le contraste sur tout fond. Transition
+   douce déjà portée par la règle de base (background/color 0.2s). Aucun transform
+   → zéro conflit avec la règle perf TV (l'ancien scale était du code mort). */
 .layout-tv .btnPlay:focus-visible,
 .layout-tv .btnPlay.show-focus:focus {
-    background-color: #fff !important;
-    color: #000 !important;
+    background-color: #111827 !important;
+    color: #fff !important;
     outline: none !important;
-    transform: scale(1.06);
     box-shadow:
-        0 0 0 4px rgba(255, 255, 255, 0.7),
-        0 0 30px rgba(255, 255, 255, 0.6),
-        0 6px 20px rgba(0, 0, 0, 0.55);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+        0 0 0 3px #fff,
+        0 0 22px rgba(255, 255, 255, 0.45);
     z-index: 10;
     position: relative;
+}
+
+/* v1.2.70 : avatar du profil (header) = une IMAGE → doctrine des images : ANNEAU,
+   jamais de fill (la pastille blanche v1.2.48 était masquée par la photo → halo à
+   peine perceptible). Même traitement que les profils « Qui regarde ? ». Déclaré
+   après la règle .headerButton fill (même spécificité) pour la surcharger. */
+.layout-tv .headerUserButton:focus-visible,
+.layout-tv .headerUserButton.show-focus:focus {
+    background-color: transparent !important;
+    outline: none !important;
+    border-color: transparent !important;
+    box-shadow:
+        0 0 0 3px #fff,
+        0 0 18px rgba(255, 255, 255, 0.5) !important;
 }
 
 /* 2) Icônes d'action (page détail) + icônes du header — PASTILLE BLANCHE PLEINE,

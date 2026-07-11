@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.69 */
+/* ElegantFin Cinema Edition v1.2.70 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.69";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.70";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -273,17 +273,23 @@ body {
 }
 .layout-tv .btnPlay:focus-visible,
 .layout-tv .btnPlay.show-focus:focus {
-    background-color: #fff !important;
-    color: #000 !important;
+    background-color: #111827 !important;
+    color: #fff !important;
     outline: none !important;
-    transform: scale(1.06);
     box-shadow:
-        0 0 0 4px rgba(255, 255, 255, 0.7),
-        0 0 30px rgba(255, 255, 255, 0.6),
-        0 6px 20px rgba(0, 0, 0, 0.55);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+        0 0 0 3px #fff,
+        0 0 22px rgba(255, 255, 255, 0.45);
     z-index: 10;
     position: relative;
+}
+.layout-tv .headerUserButton:focus-visible,
+.layout-tv .headerUserButton.show-focus:focus {
+    background-color: transparent !important;
+    outline: none !important;
+    border-color: transparent !important;
+    box-shadow:
+        0 0 0 3px #fff,
+        0 0 18px rgba(255, 255, 255, 0.5) !important;
 }
 .layout-tv .detailButton:not(.btnPlay):focus-visible,
 .layout-tv .detailButton:not(.btnPlay).show-focus:focus,
