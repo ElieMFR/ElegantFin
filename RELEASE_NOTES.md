@@ -721,6 +721,14 @@ Third and final round, with a humbling discovery: `editorsChoiceContainer` is a 
 
 ---
 
+#### v1.2.74 — Legible skip button, no stray text caret, and PC keyboard focus parity
+
+- **Skip-intro button recolored to navy.** At rest it was cream, which made Jellyfin's violet countdown gauge read as an odd lavender smear. On navy that same native gauge now reads as an on-palette violet progress fill; a white label and a hairline outline keep it legible over dark scenes. Keyboard/TV focus still inverts it to the white pill.
+- **Removed a stray blinking text caret** that appeared on the video OSD play/pause button in the PC web player. The insertion caret is now hidden everywhere except real text fields (search, forms).
+- **Focus treatments now reach PC keyboard navigation.** Tabbing through the interface on desktop shows the same indicators as the TV remote — white pill on action/header icons, navy inversion on the Play button, white ring on the profile avatar — while mouse clicks stay untouched (`:focus-visible`).
+
+---
+
 ### Compatibility
 - Jellyfin **10.11.x**
 - Works on all web browsers (Chrome, Edge, Firefox, Safari), Android app, LG WebOS, Samsung Tizen
@@ -1442,6 +1450,14 @@ Troisieme et derniere passe, avec une decouverte humiliante : `editorsChoiceCont
 - Le `mix-blend-mode: difference` des controles (qui peignait le « carre » une fois remonte au-dessus du header) est neutralise ; la boite de 7em qui les ecrasait est liberee.
 - Les controles ‹ ❚❚ › s'affichent en **pastilles rondes navy sous la barre de navigation, en haut a droite**, toujours visibles, cliquables.
 - Bonus : le fix de marge v1.2.23 sous la banniere s'applique enfin.
+
+---
+
+#### v1.2.74 — Bouton passer lisible, plus de caret texte parasite, parite du focus clavier PC
+
+- **Bouton « passer le generique » repasse en navy.** Au repos il etait creme, ce qui faisait ressortir la jauge de compte a rebours violette native de Jellyfin en une lavande « bizarre ». Sur navy, cette meme jauge se lit comme une progression violette coherente avec la palette ; libelle blanc et fin lisere pour la lisibilite sur scenes sombres. Le focus clavier / TV l'inverse toujours en pastille blanche.
+- **Suppression d'un caret de texte clignotant parasite** qui apparaissait sur le bouton lecture/pause de l'OSD video en lecteur web PC. Le curseur d'insertion est desormais masque partout sauf dans les vrais champs de saisie (recherche, formulaires).
+- **Les traitements de focus atteignent maintenant la navigation clavier PC.** Parcourir l'interface au clavier (Tab) sur bureau affiche les memes reperes que la telecommande TV — pastille blanche sur les icones action/header, inversion navy sur le bouton Lecture, anneau blanc sur l'avatar du profil — tandis que les clics souris restent intacts (`:focus-visible`).
 
 ---
 
