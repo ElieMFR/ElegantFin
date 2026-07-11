@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.66
+# ElegantFin Cinema Edition v1.2.67
 
 ## [English](#english) | [Francais](#francais)
 
@@ -660,6 +660,17 @@ Third and final round on the series-title harmonization: series without a clear 
 #### v1.2.66 — Hotfix: focused series title was white-on-white again (v1.2.65 regression)
 
 The v1.2.65 unified rule forces `color: inherit` on the series-title link at **ID specificity** — which silently outranked the v1.2.59 class-specificity fix ("black text inside the white focus pill"). On TV, focusing the series title showed white text in the white pill again. An ID-specificity focus exception restores the black text.
+
+---
+
+#### v1.2.67 — Fonts: 7.4 MB → 590 KB (−92%), same look
+
+The self-hosted fonts were carrying worldwide coverage nobody used:
+
+- **Text (Inter)** — replaced the global builds (723 KB) with Google's official **latin + latin-extended subset builds** (421 KB total, and the latin-extended blocks lazy-load via `unicode-range` only when a page actually contains rōmaji macrons — Shōnen, Jūjutsu…). French is fully covered by the latin block; **Japanese (kana/kanji) was never covered by Inter** and keeps falling back to the system font exactly as before. The wght+opsz axes are kept (`font-weight: 425`, `font-optical-sizing` intact). Pixel-identical rendering.
+- **Icons** — the file served under the "Material Icons Round" family name was actually the 5.2 MB Material Symbols variable font. It's now the **real static Material Icons Round** (169 KB, −97%): the complete classic set that Jellyfin and its plugins target (their stock font IS that set), so no glyph list to maintain and no raw-text risk. Filled/outlined states (favorite heart…) survive through distinct ligature names (`favorite` / `favorite_border`). The theme's `font-variation-settings` rules become inert on a static font and are kept in place, harmless, in case a variable font ever returns.
+- Everyday launches are unchanged (everything was already cached); first loads on a fresh device no longer show the icon-style swap, and the fonts survive TV cache eviction far better.
+- Rollback if the icon details bother you: pin `@v1.2.66` in your import URL.
 
 ---
 
@@ -1326,6 +1337,17 @@ Troisieme et derniere passe sur l'harmonisation du titre de serie : les series S
 #### v1.2.66 — Hotfix : le titre de serie focus etait redevenu blanc-sur-blanc (regression v1.2.65)
 
 La regle unifiee v1.2.65 force `color: inherit` sur le lien du titre de serie a **specificite ID** — ce qui ecrasait silencieusement le fix v1.2.59 en specificite classe (« texte noir dans la pastille blanche »). Sur TV, le focus sur le titre de serie raffichait du blanc dans la pastille blanche. Une exception focus a specificite ID retablit le texte noir.
+
+---
+
+#### v1.2.67 — Polices : 7,4 Mo → 590 Ko (−92 %), meme rendu
+
+Les polices auto-hebergees embarquaient une couverture mondiale que personne n'utilisait :
+
+- **Texte (Inter)** — les builds mondiaux (723 Ko) sont remplaces par les **builds subset officiels Google latin + latin-etendu** (421 Ko au total, et les blocs latin-etendu se chargent PARESSEUSEMENT via `unicode-range`, uniquement quand une page contient des macrons romaji — Shonen, Jujutsu…). Le francais est entierement couvert par le bloc latin ; **le japonais (kana/kanji) n'a jamais ete couvert par Inter** et continue de retomber sur la police systeme, exactement comme avant. Les axes wght+opsz sont conserves (`font-weight: 425`, `font-optical-sizing` intacts). Rendu identique au pixel.
+- **Icones** — le fichier servi sous le nom de famille « Material Icons Round » etait en realite la police variable Material Symbols de 5,2 Mo. C'est desormais la **vraie statique Material Icons Round** (169 Ko, −97 %) : le set classique complet que Jellyfin et ses plugins ciblent (leur police stock EST ce set) → aucune liste de glyphes a maintenir, aucun risque de texte brut. Les etats plein/contour (coeur favori…) survivent via les noms de ligatures distincts (`favorite` / `favorite_border`). Les regles `font-variation-settings` du theme deviennent inertes sur une statique et restent en place, inoffensives, au cas ou une variable revienne un jour.
+- Les lancements quotidiens ne changent pas (tout etait deja en cache) ; les premiers chargements d'un appareil neuf n'affichent plus la bascule de style des icones, et les polices survivent bien mieux a l'eviction du cache TV.
+- Retour arriere si les details d'icones te genent : pinner `@v1.2.66` dans l'URL d'import.
 
 ---
 
