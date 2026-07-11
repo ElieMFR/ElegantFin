@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.68 */
+/* ElegantFin Cinema Edition v1.2.69 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.68";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.69";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -516,9 +516,11 @@ body {
    listItem (+ actionSheetMenuItem hérité), guide-date-tab-button, guide-channelHeaderCell,
    et depuis v1.2.58 (pastille généralisée) : button-link (liens texte metadata),
    emby-tab-button (onglets de section), raised (boutons de dialogue + Épisode suivant),
-   alphaPickerButton (A-Z), navMenuOption (menu latéral).
+   alphaPickerButton (A-Z), navMenuOption (menu latéral), et v1.2.69 : skip-button
+   (⚠️ membre FONDATEUR de la pastille en v1.2.48… jamais ajouté à cette liste —
+   sa pastille dédiée était du code mort, battue en spécificité depuis le début).
    (programCell reste transparent par design : son fill est sur l'enfant .guideProgramName.) */
-.emby-button.show-focus:focus:not(.btnPlay):not(.detailButton):not(.headerButton):not(.paper-icon-button-light):not(.listItem):not(.guide-date-tab-button):not(.guide-channelHeaderCell):not(.button-link):not(.emby-tab-button):not(.raised):not(.alphaPickerButton):not(.navMenuOption) {
+.emby-button.show-focus:focus:not(.btnPlay):not(.detailButton):not(.headerButton):not(.paper-icon-button-light):not(.listItem):not(.guide-date-tab-button):not(.guide-channelHeaderCell):not(.button-link):not(.emby-tab-button):not(.raised):not(.alphaPickerButton):not(.navMenuOption):not(.skip-button) {
     background-color: transparent !important;
     color: #fff !important;
     outline: none !important;

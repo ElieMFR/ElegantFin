@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.68
+# ElegantFin Cinema Edition v1.2.69
 
 ## [English](#english) | [Francais](#francais)
 
@@ -677,6 +677,12 @@ The self-hosted fonts were carrying worldwide coverage nobody used:
 #### v1.2.68 — Original (Japanese) title no longer clipped on the right on TV and mobile
 
 The original-title line (e.g. the Japanese title under the episode name) had its line-wrap fix applied **desktop-only** back in v1.2.32 — on Tizen it stayed `nowrap` and got clipped at the right edge of the screen. The wrap now applies on all three platforms, with `overflow-wrap: anywhere` as a safety net for long spaceless romaji runs.
+
+---
+
+#### v1.2.69 — Skip-intro button finally gets its white pill on focus
+
+Embarrassing archaeology: the skip button was a **founding member** of the white-pill focus system (v1.2.48)… but was never added to the generic rule's exclusion list — the very list whose `⚠️ INVARIANT` comment exists to prevent exactly this. Its dedicated white-fill rule has been dead code, outranked in specificity since day one; focusing "Skip Intro" showed the generic thin outline over the video (barely visible on bright scenes). Now excluded: focus = solid white pill + dark text, like everything else.
 
 ---
 
@@ -1360,6 +1366,12 @@ Les polices auto-hebergees embarquaient une couverture mondiale que personne n'u
 #### v1.2.68 — Le titre original (japonais) n'est plus coupe a droite sur TV et mobile
 
 La ligne du titre original (ex. le titre japonais sous le nom d'episode) avait recu son correctif de retour a la ligne **uniquement sur desktop** en v1.2.32 — sur Tizen elle restait en `nowrap` et se faisait couper au bord droit de l'ecran. Le retour a la ligne s'applique maintenant sur les trois plateformes, avec `overflow-wrap: anywhere` en filet pour les longues suites romaji sans espaces.
+
+---
+
+#### v1.2.69 — Le bouton Passer Generique recoit enfin sa pastille blanche au focus
+
+Archeologie genante : le bouton skip etait un **membre fondateur** du systeme pastille blanche (v1.2.48)… mais n'a jamais ete ajoute a la liste d'exclusion de la regle generique — celle-la meme dont le commentaire `⚠️ INVARIANT` existe pour empecher exactement ca. Sa pastille dediee etait du code mort, battue en specificite depuis le premier jour ; au focus, « Passer Generique » n'affichait que le contour fin generique par-dessus la video (peu visible sur les scenes claires). Desormais exclu : focus = pastille blanche pleine + texte sombre, comme tout le reste.
 
 ---
 
