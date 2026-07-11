@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.70 */
+/* ElegantFin Cinema Edition v1.2.71 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.70";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.71";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -5710,13 +5710,18 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 
 /* --- B. Flèches de défilement pleine hauteur (PC) : bandeau dégradé sur la
    hauteur de la rangée, révélé au survol de la section (pattern des grandes
-   apps). top ≈ hauteur du titre de section pour ne pas le recouvrir. */
+   apps). top ≈ hauteur du titre de section pour ne pas le recouvrir.
+   v1.2.71 : SCOPÉ aux rangées (.verticalSection) et EXCLUANT la bannière
+   Editor's Choice — la v1.2.58 ciblait TOUS les .emby-scrollbuttons du desktop,
+   et ceux de la bannière EC (#editorsChoiceContainer, structure différente)
+   passaient en absolute + opacity 0 sans jamais être révélés → ses flèches de
+   défilement avaient disparu. EC retrouve ses flèches d'origine. */
 @media (hover: hover) and (pointer: fine) {
     .layout-desktop .verticalSection {
         position: relative;
     }
 
-    .layout-desktop .emby-scrollbuttons {
+    .layout-desktop .verticalSection:not(:has(#editorsChoiceContainer)) .emby-scrollbuttons {
         position: absolute;
         top: 3.2em;
         bottom: 0;
@@ -5732,11 +5737,11 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
         z-index: 5;
     }
 
-    .layout-desktop .verticalSection:hover .emby-scrollbuttons {
+    .layout-desktop .verticalSection:not(:has(#editorsChoiceContainer)):hover .emby-scrollbuttons {
         opacity: 1;
     }
 
-    .layout-desktop .emby-scrollbuttons-button {
+    .layout-desktop .verticalSection:not(:has(#editorsChoiceContainer)) .emby-scrollbuttons-button {
         pointer-events: auto;
         height: 100%;
         width: 3em;
@@ -5745,11 +5750,11 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
         background: linear-gradient(90deg, rgba(17, 24, 39, 0.8), transparent);
     }
 
-    .layout-desktop .emby-scrollbuttons-button + .emby-scrollbuttons-button {
+    .layout-desktop .verticalSection:not(:has(#editorsChoiceContainer)) .emby-scrollbuttons-button + .emby-scrollbuttons-button {
         background: linear-gradient(270deg, rgba(17, 24, 39, 0.8), transparent);
     }
 
-    .layout-desktop .emby-scrollbuttons-button > .material-icons {
+    .layout-desktop .verticalSection:not(:has(#editorsChoiceContainer)) .emby-scrollbuttons-button > .material-icons {
         font-size: 1.8em;
     }
 }

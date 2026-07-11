@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.70
+# ElegantFin Cinema Edition v1.2.71
 
 ## [English](#english) | [Francais](#francais)
 
@@ -692,6 +692,12 @@ Two elements where the white pill can't work, now given their proper exception p
 
 - **Play/Resume button** — it's permanently white, so only a glow marked its focus (weak on bright scenes, and you couldn't always tell focused from idle). On focus it now **inverts**: navy fill, white text, white ring — the exact negative of the pill. The system reads as one rule: *on focus, everything inverts* (dark elements fill white; the white element fills dark). Smooth transition already in place; no transform, so no perf-rule conflict (the old scale was dead code anyway).
 - **Profile avatar (header)** — it's an image: the v1.2.48 white fill was hidden behind the photo, leaving a barely-visible halo. It now gets a **thick white ring + halo**, the same treatment as the "Who's watching?" profiles — consistent with the images-get-rings doctrine (cards, posters, profiles).
+
+---
+
+#### v1.2.71 — Editor's Choice banner gets its scroll arrows back on desktop (v1.2.58 regression)
+
+The v1.2.58 full-height scroll arrows restyled **every** `.emby-scrollbuttons` on desktop (absolute-positioned, hidden until you hover the row's section). The Editor's Choice banner has a different structure, so its arrows ended up absolutely positioned with `opacity: 0` and no section-hover to ever reveal them — gone. The full-height treatment is now scoped to regular row sections and explicitly excludes the Editor's Choice container, whose stock arrows are back.
 
 ---
 
@@ -1390,6 +1396,12 @@ Deux elements ou la pastille blanche ne peut pas fonctionner, dotes de leurs pat
 
 - **Bouton Lire/Reprendre** — blanc en permanence, seule une lueur marquait son focus (faible sur scenes claires, et on ne distinguait pas toujours focus et repos). Au focus il s'**inverse** desormais : fond navy, texte blanc, anneau blanc — le negatif exact de la pastille. Le systeme se lit d'une seule regle : *au focus, tout s'inverse* (les elements sombres se remplissent de blanc ; l'element blanc se remplit de sombre). Transition douce deja en place ; aucun transform, donc aucun conflit avec la regle perf (l'ancien scale etait du code mort).
 - **Avatar du profil (header)** — c'est une image : le fill blanc v1.2.48 etait cache derriere la photo, ne laissant qu'un halo a peine visible. Il recoit maintenant un **anneau blanc epais + halo**, le meme traitement que les profils « Qui regarde ? » — coherent avec la doctrine « les images recoivent un anneau » (cartes, affiches, profils).
+
+---
+
+#### v1.2.71 — La banniere Editor's Choice retrouve ses fleches de defilement sur PC (regression v1.2.58)
+
+Les fleches pleine hauteur de la v1.2.58 restylaient **tous** les `.emby-scrollbuttons` du desktop (positionnes en absolu, caches jusqu'au survol de la section de rangee). La banniere Editor's Choice a une structure differente : ses fleches se retrouvaient en absolu avec `opacity: 0` sans aucun survol-de-section pour les reveler — disparues. Le traitement pleine-hauteur est maintenant scope aux sections de rangees classiques et exclut explicitement le conteneur Editor's Choice, dont les fleches d'origine sont de retour.
 
 ---
 
