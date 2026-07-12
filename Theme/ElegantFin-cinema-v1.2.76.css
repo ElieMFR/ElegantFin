@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.75 */
+/* ElegantFin Cinema Edition v1.2.76 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.75";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.76";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -5997,18 +5997,30 @@ for extended styling, use the add-on */
     margin-bottom: 2em;
 }
 
+/* v1.2.76 : header PC affiné. Diagnostic console sur la vraie page d'accueil :
+   .skinHeader rendait 97px alors que le contenu (icônes + onglets Accueil/Favoris)
+   ne descend qu'à ~74px — les ~23px du bas venaient d'un padding-bottom de 1.5em
+   (vide pur) sur .headerTabs. Retiré sur desktop → header ~74px, rien ne bouge ni
+   ne se coupe (espace mort). Épaisseur validée à l'écran par l'utilisateur. TV et
+   mobile gardent leurs grandes cibles (non touchés). */
+.layout-desktop .headerTabs {
+    padding-bottom: 0 !important;
+}
+
 /* v1.2.72/73 : contrôles du plugin (flèches ‹ › + pause) — leur position d'origine
    (z-index 99, sans top) les mettait sous notre header full-bleed (z 1099) :
    recouverts, incliquables. Et leur mix-blend-mode: difference, une fois le
    z-index remonté, produisait un « carré » d'inversion sur le dégradé du header.
    v1.2.73 (vérifié sur banc d'essai local) : blend neutralisé, boîte 7em libérée,
    flèches en pastilles rondes navy sous la barre, à droite.
-   v1.2.75 : l'offset était +0.4em, soit ~6px sous le header (5em) → en plein écran
-   (barre sur une seule ligne, carrousel full-bleed à top:0) les pastilles tombaient
-   sur le dégradé sombre du header (« dans la barre »). Passé à +2em (~32px d'écart,
-   vérifié au banc d'essai) → posées sur l'image, lisibles. En fenêtre étroite les
-   onglets qui passent à la ligne poussent déjà le carrousel plus bas → sans effet
-   néfaste. Ne touche que .layout-desktop (PC), zéro impact TV/mobile. */
+   v1.2.75→76 : +0.4em puis +2em restaient insuffisants. Mesure console sur la vraie
+   page : header d'accueil réel = 97px (pas 80), ET le carrousel .splide démarre à
+   −38px (full-bleed derrière le header) → l'offset est compté depuis −38, pas 0.
+   v1.2.76 : header affiné à ~74px (règle .headerTabs ci-dessus) + offset porté à
+   +3em → pastilles calées juste sous le header affiné en plein écran (validé en
+   direct). NB : en fenêtre étroite les pastilles suivent la bannière qui descend
+   (onglets qui passent à la ligne) = comportement responsive normal, pas un bug.
+   Ne touche que .layout-desktop (PC), zéro impact TV/mobile. */
 .layout-desktop .editorsChoiceScrollButtonsContainer,
 .layout-desktop .editorsChoicePlayPauseContainer {
     mix-blend-mode: normal;
@@ -6016,7 +6028,7 @@ for extended styling, use the add-on */
 }
 
 .layout-desktop .editorsChoiceScrollButtonsContainer {
-    top: calc(var(--appBarHeight, 4.6em) + 2em);
+    top: calc(var(--appBarHeight, 4.6em) + 3em);
     right: 1.2em;
     width: auto;
 }

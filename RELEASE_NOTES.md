@@ -735,6 +735,13 @@ Third and final round, with a humbling discovery: `editorsChoiceContainer` is a 
 
 ---
 
+#### v1.2.76 — Slimmer PC header, Editor's Choice controls retuned to match
+
+- **The desktop header is slimmer.** On the home page it rendered ~97px tall, but ~23px of that was pure empty padding below the Accueil/Favoris tab row. Trimmed on desktop → ~74px, with nothing shifting or clipping (it was dead space). Diagnosed and validated with live on-page measurements. TV and mobile keep their larger touch targets untouched.
+- **Editor's Choice carousel controls retuned** to sit just under the slimmer header — the offset was measured against the real header height and carousel position rather than assumed. Desktop-only.
+
+---
+
 ### Compatibility
 - Jellyfin **10.11.x**
 - Works on all web browsers (Chrome, Edge, Firefox, Safari), Android app, LG WebOS, Samsung Tizen
@@ -1470,6 +1477,13 @@ Troisieme et derniere passe, avec une decouverte humiliante : `editorsChoiceCont
 #### v1.2.75 — Les controles Editor's Choice degagent le header en plein ecran
 
 - Sur bureau large / plein ecran, les controles ‹ ❚❚ › du carrousel n'etaient qu'a ~6px sous la barre du haut — en plein sur son degrade sombre, donc ternes et a l'etroit (« dans la barre »). Ils s'en degagent maintenant de ~32px, poses sur l'image de la banniere ou les pastilles navy ressortent nettement. Bureau uniquement, changement d'une seule valeur, verifie sur banc d'essai local.
+
+---
+
+#### v1.2.76 — Header PC affine, controles Editor's Choice recales en consequence
+
+- **Le header du bureau est affine.** Sur l'accueil il rendait ~97px, mais ~23px etaient du padding vide sous la rangee d'onglets Accueil/Favoris. Retire sur desktop → ~74px, sans que rien ne bouge ni ne se coupe (espace mort). Diagnostique et valide par mesure en direct sur la page. TV et mobile gardent leurs grandes cibles, intacts.
+- **Controles du carrousel Editor's Choice recales** pour se poser juste sous le header affine — l'offset a ete mesure sur la vraie hauteur du header et la position du carrousel, plutot que suppose. Bureau uniquement.
 
 ---
 
