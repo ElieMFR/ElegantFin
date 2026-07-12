@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.78 */
+/* ElegantFin Cinema Edition v1.2.79 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.78";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.79";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -1734,9 +1734,6 @@ html,
 .buttonActive {
     color: var(--activeColor) !important;
 }
-#divRunningTasks progress {
-    width: calc(100% - 7em);
-}
 .listItemImage .itemProgressBar {
     position: absolute;
     margin: 8%;
@@ -2473,7 +2470,6 @@ div[data-role="controlgroup"] a.ui-btn-active {
 }
 #btnDeleteImage,
 .button-delete,
-.btnRevoke,
 #btnShutdown {
     background: var(--btnDeleteColor);
     border: solid var(--btnDeleteBorderColor) var(--borderWidth);
@@ -2506,10 +2502,6 @@ div[data-role="controlgroup"] a.ui-btn-active {
 .listItemIcon:not(.listItemIcon-transparent) {
     background-color: var(--lighterGradientPoint) !important;
 }
-.listItemIcon.notification_important {
-    background-color: var(--btnDeleteColor) !important;
-    border: solid var(--btnDeleteBorderColor) var(--borderWidth);
-}
 .listItemIcon.notifications:not(.listItemIcon-transparent),
 .listItemIcon.schedule:not(.listItemIcon-transparent),
 .listItemIcon.person:not(.listItemIcon-transparent),
@@ -2536,11 +2528,11 @@ div[data-role="controlgroup"] a.ui-btn-active {
     margin-right: 0.75em !important;
     border: var(--defaultBorder);
 }
-[dir="ltr"] .listItem:not(.actionSheetMenuItem, .childrenItemsContainer .listItem, .activityLogListWidget .listItem) {
+[dir="ltr"] .listItem:not(.actionSheetMenuItem, .childrenItemsContainer .listItem) {
     padding: 0.375em !important;
 }
 [dir="ltr"]
-    .listItem:not(.actionSheetMenuItem, .childrenItemsContainer .listItem, .activityLogListWidget .listItem):not(
+    .listItem:not(.actionSheetMenuItem, .childrenItemsContainer .listItem):not(
         :last-child
     ) {
     margin-bottom: 0.5em;
@@ -3586,9 +3578,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     align-items: center;
     justify-content: center;
 }
-#txtLoginDisclaimer {
-    resize: none;
-}
 .startTimeText,
 .endTimeText,
 .positionTime,
@@ -3758,9 +3747,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
         color: white;
         background-color: transparent;
     }
-}
-#viewPanel .ui-panel-inner {
-    margin-top: 4em;
 }
 .videoOsdBottom.videoOsdBottom-maincontrols {
     background: linear-gradient(
@@ -4172,9 +4158,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 }
 .layout-desktop .emby-scroller-container:hover::before {
     opacity: 1;
-}
-.layout-desktop .emby-scroller-container .emby-scroller[style*="scroll-snap"] + .emby-scrollbuttons-scroller:last-child::after {
-    opacity: 0;
 }
 .mediaInfoItem:not(.endsAt) {
     border-radius: 0.3em;

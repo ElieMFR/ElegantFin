@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.78 */
+/* ElegantFin Cinema Edition v1.2.79 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.78";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.79";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -2395,10 +2395,6 @@ html,
     color: var(--activeColor) !important;
 }
 
-#divRunningTasks progress {
-    width: calc(100% - 7em);
-}
-
 .listItemImage .itemProgressBar {
     position: absolute;
     margin: 8%;
@@ -3323,7 +3319,6 @@ div[data-role="controlgroup"] a.ui-btn-active {
 
 #btnDeleteImage,
 .button-delete,
-.btnRevoke,
 #btnShutdown {
     background: var(--btnDeleteColor);
     border: solid var(--btnDeleteBorderColor) var(--borderWidth);
@@ -3364,11 +3359,6 @@ div[data-role="controlgroup"] a.ui-btn-active {
     background-color: var(--lighterGradientPoint) !important;
 }
 
-.listItemIcon.notification_important {
-    background-color: var(--btnDeleteColor) !important;
-    border: solid var(--btnDeleteBorderColor) var(--borderWidth);
-}
-
 .listItemIcon.notifications:not(.listItemIcon-transparent),
 .listItemIcon.schedule:not(.listItemIcon-transparent),
 .listItemIcon.person:not(.listItemIcon-transparent),
@@ -3400,12 +3390,12 @@ div[data-role="controlgroup"] a.ui-btn-active {
     border: var(--defaultBorder);
 }
 
-[dir="ltr"] .listItem:not(.actionSheetMenuItem, .childrenItemsContainer .listItem, .activityLogListWidget .listItem) {
+[dir="ltr"] .listItem:not(.actionSheetMenuItem, .childrenItemsContainer .listItem) {
     padding: 0.375em !important;
 }
 
 [dir="ltr"]
-    .listItem:not(.actionSheetMenuItem, .childrenItemsContainer .listItem, .activityLogListWidget .listItem):not(
+    .listItem:not(.actionSheetMenuItem, .childrenItemsContainer .listItem):not(
         :last-child
     ) {
     margin-bottom: 0.5em;
@@ -4739,10 +4729,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     justify-content: center;
 }
 
-#txtLoginDisclaimer {
-    resize: none;
-}
-
 .startTimeText,
 .endTimeText,
 .positionTime,
@@ -4947,10 +4933,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
         color: white;
         background-color: transparent;
     }
-}
-
-#viewPanel .ui-panel-inner {
-    margin-top: 4em;
 }
 
 .videoOsdBottom.videoOsdBottom-maincontrols {
@@ -5521,11 +5503,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 
 .layout-desktop .emby-scroller-container:hover::before {
     opacity: 1;
-}
-
-/* Hide right fade when fully scrolled */
-.layout-desktop .emby-scroller-container .emby-scroller[style*="scroll-snap"] + .emby-scrollbuttons-scroller:last-child::after {
-    opacity: 0;
 }
 
 /* --- 4. Media Info Badges (polished) ---

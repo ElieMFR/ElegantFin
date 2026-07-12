@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.78
+# ElegantFin Cinema Edition v1.2.79
 
 ## [English](#english) | [Francais](#francais)
 
@@ -756,6 +756,12 @@ Outcome of a systematic 3-platform pass over the theme:
 - **The Skip focus halo actually shows now** — it was silently losing to the resting border (an `!important` the redesign added).
 - **No more hover zoom on TV** for the skip button: Tizen remotes trigger `:hover` and match the pointer media query, so the desktop `scale(1.03)` was running on TV — the last remaining transform exception in the TV performance doctrine.
 - **The dead padding under the header tab row is now trimmed on mobile as well** (same lever as desktop in v1.2.76). Tab touch-target height is unchanged; TV untouched.
+
+---
+
+#### v1.2.79 — Housekeeping: seven dead rules removed (verified against the jellyfin-web 10.11 source)
+
+- A systematic audit checked all 454 theme selectors against the real `release-10.11.z` source of jellyfin-web. Seven rules inherited from the original theme targeted UI that no longer exists — old dashboard tasks/devices/branding elements, a jQuery-Mobile-era panel, and a scroller-fade rule that could never match — and were removed (~25 lines, zero visual change). Everything else was confirmed alive, including MUI runtime classes, dynamically built section names, and plugin integrations.
 
 ---
 
@@ -1518,6 +1524,12 @@ Resultat d'une passe systematique du theme sur les 3 plateformes :
 - **Le halo du focus Passer s'affiche vraiment** — il perdait silencieusement contre le lisere de repos (un `!important` ajoute par la refonte).
 - **Plus de zoom au survol sur TV** pour le bouton Passer : la telecommande Tizen declenche `:hover` et matche la media query pointeur, donc le `scale(1.03)` bureau tournait sur TV — la derniere exception transform restante dans la doctrine perf TV.
 - **Le padding mort sous la rangee d'onglets du header est maintenant retire aussi sur mobile** (meme levier que le bureau en v1.2.76). La hauteur des cibles tactiles des onglets est inchangee ; TV non touchee.
+
+---
+
+#### v1.2.79 — Menage : sept regles mortes supprimees (verifiees contre le source jellyfin-web 10.11)
+
+- Un audit systematique a confronte les 454 selecteurs du theme au vrai source `release-10.11.z` de jellyfin-web. Sept regles heritees du theme original visaient une interface qui n'existe plus — anciens elements taches/appareils/branding du dashboard, un panneau de l'ere jQuery Mobile, et une regle de fondu de scroller qui ne pouvait jamais matcher — et ont ete retirees (~25 lignes, zero changement visuel). Tout le reste est confirme vivant, y compris les classes MUI generees au runtime, les noms de sections construits dynamiquement, et les integrations de plugins.
 
 ---
 
