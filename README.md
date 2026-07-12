@@ -79,7 +79,7 @@ Everything works on **desktop, mobile and TV** with a single CSS import.
 @import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
-> 📌 `@main` always follows the latest version. To pin a release (and upgrade on your own schedule), replace `@main` with a version tag, e.g. `@v1.2.60` — see [Releases](https://github.com/peterdu1109/ElegantFin/releases).
+> 📌 `@main` always follows the latest version. To pin a release (and upgrade on your own schedule), replace `@main` with a version tag, e.g. `@v1.2.77` — see [Releases](https://github.com/peterdu1109/ElegantFin/releases).
 
 <details>
 <summary><b>Server-side installation</b></summary>
@@ -154,7 +154,7 @@ Cinema Edition has dedicated styling for these popular Jellyfin plugins:
 
 | Plugin | What it does | Cinema styling |
 |--------|--------------|----------------|
-| [**Editor's Choice**](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | Curated editorial picks on home page | Banner spacing fix, button/section collision resolved, 3-line description on desktop |
+| [**Editor's Choice**](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | Curated editorial picks on home page | Banner spacing fix, button/section collision resolved, 3-line description on desktop, working scroll/pause controls as navy pills below the header, aspect-ratio-safe title logo |
 | [**Media Bar**](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) | Auto-cycling slideshow at top of home | Glassmorphism overlay, gradient backdrop, polished button states |
 | [**NotifySync**](https://github.com/peterdu1109/NotifySync) | Real-time notification bell | Native integration with theme's accent color and styling |
 
@@ -236,7 +236,7 @@ Tout fonctionne sur **bureau, mobile et TV** avec un seul import CSS.
 @import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
-> 📌 `@main` suit toujours la derniere version. Pour figer une version (et mettre a jour quand VOUS le decidez), remplacez `@main` par un tag, ex. `@v1.2.60` — voir les [Releases](https://github.com/peterdu1109/ElegantFin/releases).
+> 📌 `@main` suit toujours la derniere version. Pour figer une version (et mettre a jour quand VOUS le decidez), remplacez `@main` par un tag, ex. `@v1.2.77` — voir les [Releases](https://github.com/peterdu1109/ElegantFin/releases).
 
 <details>
 <summary><b>Installation cote serveur</b></summary>
@@ -311,7 +311,7 @@ Cinema Edition a un styling dedie pour ces plugins Jellyfin populaires :
 
 | Plugin | Ce qu'il fait | Styling Cinema |
 |--------|---------------|----------------|
-| [**Editor's Choice**](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | Selection editoriale curatee sur la home | Fix espacement banner, collision bouton/section resolue, description 3 lignes desktop |
+| [**Editor's Choice**](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | Selection editoriale curatee sur la home | Fix espacement banner, collision bouton/section resolue, description 3 lignes desktop, controles scroll/pause fonctionnels en pastilles navy sous le header, logo de titre au ratio preserve |
 | [**Media Bar**](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) | Slideshow auto-cycling en haut de la home | Overlay glassmorphism, backdrop gradient, etats boutons polish |
 | [**NotifySync**](https://github.com/peterdu1109/NotifySync) | Cloche notifications temps reel | Integration native avec la couleur accent et le styling du theme |
 
