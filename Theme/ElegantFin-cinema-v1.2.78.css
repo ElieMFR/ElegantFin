@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.77 */
+/* ElegantFin Cinema Edition v1.2.78 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.77";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.78";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -3236,7 +3236,9 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
     outline: none !important;
     background-color: #fff !important;
     color: #000 !important;
-    box-shadow: 0 0 18px rgba(255, 255, 255, 0.45);
+    /* v1.2.78 : !important requis — la box-shadow de repos (liseré v1.2.74) en
+       porte un ; sans lui le halo du focus était silencieusement battu. */
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.45) !important;
 }
 
 #loginPage .button-submit:focus-visible {
@@ -4093,21 +4095,33 @@ textarea,
     margin-left: var(--sidePadding);
 }
 
-.skip-button:active {
-    background-color: rgba(245, 245, 245, 0.7);
-    box-shadow: none;
-}
-
-/* Hover states — scoped to pointer devices only (TV has no cursor) */
+/* v1.2.78 : états hover/active du Skip réalignés sur le fond navy (v1.2.74) —
+   l'ancien hover blanc gardait le texte blanc de base (libellé invisible au
+   survol souris), et l'active traînait le crème translucide de l'ère #f5f5f5.
+   Les deux rejoignent la pastille blanche du focus (texte noir). L'active est
+   déclaré APRÈS le bloc hover : même spécificité, l'ordre le garde visible
+   pendant l'appui. ⚠️ La Tizen matche (hover:hover)(pointer:fine) — la
+   télécommande déclenche :hover — d'où l'override TV sans transform dessous. */
 @media (hover: hover) and (pointer: fine) {
     .skip-button:hover {
         background-color: white;
+        color: #000;
         transform: scale(1.03);
     }
 
     .emby-tab-button:hover {
         color: whitesmoke;
     }
+}
+
+.skip-button:active {
+    background-color: rgba(255, 255, 255, 0.85);
+    color: #000;
+    box-shadow: none;
+}
+
+.layout-tv .skip-button:hover {
+    transform: none;
 }
 
 .activeSession {
@@ -6012,9 +6026,11 @@ for extended styling, use the add-on */
    .skinHeader rendait 97px alors que le contenu (icônes + onglets Accueil/Favoris)
    ne descend qu'à ~74px — les ~23px du bas venaient d'un padding-bottom de 1.5em
    (vide pur) sur .headerTabs. Retiré sur desktop → header ~74px, rien ne bouge ni
-   ne se coupe (espace mort). Épaisseur validée à l'écran par l'utilisateur. TV et
-   mobile gardent leurs grandes cibles (non touchés). */
-.layout-desktop .headerTabs {
+   ne se coupe (espace mort). Épaisseur validée à l'écran par l'utilisateur.
+   v1.2.78 : étendu au mobile — même vide mort sous la rangée d'onglets ; les
+   cibles tactiles (hauteur des onglets) sont inchangées. TV non touchée. */
+.layout-desktop .headerTabs,
+.layout-mobile .headerTabs {
     padding-bottom: 0 !important;
 }
 

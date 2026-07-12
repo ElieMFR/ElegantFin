@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.77
+# ElegantFin Cinema Edition v1.2.78
 
 ## [English](#english) | [Francais](#francais)
 
@@ -745,6 +745,17 @@ Third and final round, with a humbling discovery: `editorsChoiceContainer` is a 
 #### v1.2.77 — Editor's Choice title logo no longer stretches on small screens
 
 - The carousel's title logo used `object-fit: fill`, so on very narrow windows (and on phones) it was stretched out of shape. It now keeps its aspect ratio at every width — diagnosed from the live logo's natural-vs-rendered ratio, fixed for both desktop and mobile.
+
+---
+
+#### v1.2.78 — Skip button states finished, slimmer header on mobile too (cross-platform audit)
+
+Outcome of a systematic 3-platform pass over the theme:
+
+- **Skip Intro hover no longer erases its own label.** The hover state still painted the cream-era white background while the navy redesign (v1.2.74) had turned the text white → white-on-white on mouse hover. Hover and pressed states now use the same white pill as focus (black text), and the pressed state no longer flashes the old translucent cream.
+- **The Skip focus halo actually shows now** — it was silently losing to the resting border (an `!important` the redesign added).
+- **No more hover zoom on TV** for the skip button: Tizen remotes trigger `:hover` and match the pointer media query, so the desktop `scale(1.03)` was running on TV — the last remaining transform exception in the TV performance doctrine.
+- **The dead padding under the header tab row is now trimmed on mobile as well** (same lever as desktop in v1.2.76). Tab touch-target height is unchanged; TV untouched.
 
 ---
 
@@ -1496,6 +1507,17 @@ Troisieme et derniere passe, avec une decouverte humiliante : `editorsChoiceCont
 #### v1.2.77 — Le logo de titre Editor's Choice ne s'etire plus sur petit ecran
 
 - Le logo du carrousel etait en `object-fit: fill`, donc sur fenetre tres etroite (et sur telephone) il s'etirait hors de sa forme. Il garde maintenant son ratio a toutes les largeurs — diagnostique via le rapport naturel/affiche du logo en direct, corrige pour le bureau ET le mobile.
+
+---
+
+#### v1.2.78 — Etats du bouton Passer termines, header affine aussi sur mobile (audit cross-plateforme)
+
+Resultat d'une passe systematique du theme sur les 3 plateformes :
+
+- **Le survol du bouton Passer Generique n'efface plus son propre libelle.** L'etat hover peignait encore le fond blanc de l'ere creme alors que la refonte navy (v1.2.74) avait passe le texte en blanc → blanc sur blanc au survol souris. Les etats survol et appui utilisent maintenant la meme pastille blanche que le focus (texte noir), et l'appui ne flashe plus l'ancien creme translucide.
+- **Le halo du focus Passer s'affiche vraiment** — il perdait silencieusement contre le lisere de repos (un `!important` ajoute par la refonte).
+- **Plus de zoom au survol sur TV** pour le bouton Passer : la telecommande Tizen declenche `:hover` et matche la media query pointeur, donc le `scale(1.03)` bureau tournait sur TV — la derniere exception transform restante dans la doctrine perf TV.
+- **Le padding mort sous la rangee d'onglets du header est maintenant retire aussi sur mobile** (meme levier que le bureau en v1.2.76). La hauteur des cibles tactiles des onglets est inchangee ; TV non touchee.
 
 ---
 

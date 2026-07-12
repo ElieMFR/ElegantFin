@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.77 */
+/* ElegantFin Cinema Edition v1.2.78 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.77";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.78";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -2405,7 +2405,7 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
     outline: none !important;
     background-color: #fff !important;
     color: #000 !important;
-    box-shadow: 0 0 18px rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.45) !important;
 }
 #loginPage .button-submit:focus-visible {
     outline: 2px solid #fff;
@@ -3082,18 +3082,23 @@ textarea,
     margin-right: auto;
     margin-left: var(--sidePadding);
 }
-.skip-button:active {
-    background-color: rgba(245, 245, 245, 0.7);
-    box-shadow: none;
-}
 @media (hover: hover) and (pointer: fine) {
     .skip-button:hover {
         background-color: white;
+        color: #000;
         transform: scale(1.03);
     }
     .emby-tab-button:hover {
         color: whitesmoke;
     }
+}
+.skip-button:active {
+    background-color: rgba(255, 255, 255, 0.85);
+    color: #000;
+    box-shadow: none;
+}
+.layout-tv .skip-button:hover {
+    transform: none;
 }
 .activeSession {
     width: 98% !important;
@@ -4470,7 +4475,8 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     height: auto !important;
     object-fit: contain !important;
 }
-.layout-desktop .headerTabs {
+.layout-desktop .headerTabs,
+.layout-mobile .headerTabs {
     padding-bottom: 0 !important;
 }
 .layout-desktop .editorsChoiceScrollButtonsContainer,
