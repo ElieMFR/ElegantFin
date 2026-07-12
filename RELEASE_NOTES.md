@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.73
+# ElegantFin Cinema Edition v1.2.77
 
 ## [English](#english) | [Francais](#francais)
 
