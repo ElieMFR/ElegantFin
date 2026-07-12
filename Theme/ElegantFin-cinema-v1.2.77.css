@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.76 */
+/* ElegantFin Cinema Edition v1.2.77 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.76";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.77";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -5995,6 +5995,17 @@ for extended styling, use the add-on */
    v1.2.23 ci-dessous n'avait donc JAMAIS fonctionné. Corrigée. */
 .editorsChoiceContainer {
     margin-bottom: 2em;
+}
+
+/* v1.2.77 : logo du titre (Editor's Choice) déformé quand la fenêtre rétrécit fort
+   (et sur mobile). Cause diagnostiquée en console sur la vraie page : le plugin met
+   `object-fit: fill` (= étire pour remplir la boîte, ratio ignoré) + `width: 467px;
+   max-width: 100%` — sur petit écran la largeur est bridée à 100% mais la hauteur
+   ne suit pas → boîte au mauvais rapport → le logo s'étire. Fix : ratio préservé
+   partout (PC + mobile), jamais étiré (contain + hauteur qui suit la largeur). */
+.editorsChoiceItemLogo {
+    height: auto !important;
+    object-fit: contain !important;
 }
 
 /* v1.2.76 : header PC affiné. Diagnostic console sur la vraie page d'accueil :

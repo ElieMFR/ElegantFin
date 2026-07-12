@@ -742,6 +742,12 @@ Third and final round, with a humbling discovery: `editorsChoiceContainer` is a 
 
 ---
 
+#### v1.2.77 — Editor's Choice title logo no longer stretches on small screens
+
+- The carousel's title logo used `object-fit: fill`, so on very narrow windows (and on phones) it was stretched out of shape. It now keeps its aspect ratio at every width — diagnosed from the live logo's natural-vs-rendered ratio, fixed for both desktop and mobile.
+
+---
+
 ### Compatibility
 - Jellyfin **10.11.x**
 - Works on all web browsers (Chrome, Edge, Firefox, Safari), Android app, LG WebOS, Samsung Tizen
@@ -1484,6 +1490,12 @@ Troisieme et derniere passe, avec une decouverte humiliante : `editorsChoiceCont
 
 - **Le header du bureau est affine.** Sur l'accueil il rendait ~97px, mais ~23px etaient du padding vide sous la rangee d'onglets Accueil/Favoris. Retire sur desktop → ~74px, sans que rien ne bouge ni ne se coupe (espace mort). Diagnostique et valide par mesure en direct sur la page. TV et mobile gardent leurs grandes cibles, intacts.
 - **Controles du carrousel Editor's Choice recales** pour se poser juste sous le header affine — l'offset a ete mesure sur la vraie hauteur du header et la position du carrousel, plutot que suppose. Bureau uniquement.
+
+---
+
+#### v1.2.77 — Le logo de titre Editor's Choice ne s'etire plus sur petit ecran
+
+- Le logo du carrousel etait en `object-fit: fill`, donc sur fenetre tres etroite (et sur telephone) il s'etirait hors de sa forme. Il garde maintenant son ratio a toutes les largeurs — diagnostique via le rapport naturel/affiche du logo en direct, corrige pour le bureau ET le mobile.
 
 ---
 
