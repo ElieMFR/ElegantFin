@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.79 */
+/* ElegantFin Cinema Edition v1.2.80 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.79";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.80";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -5087,6 +5087,18 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 .headroom--unpinned {
     -webkit-transform: translateY(calc(-1 * var(--appBarHeight) - var(--borderWidth)));
     transform: translateY(calc(-1 * var(--appBarHeight) - var(--borderWidth)));
+}
+
+/* v1.2.80 : TV — neutralise le masquage headroom. Le header TV est in-flow
+   (position: relative depuis v1.2.29) : il défile naturellement avec la page,
+   le translateY ci-dessus n'y apportait rien… sauf matérialiser un bug natif
+   Jellyfin : le détecteur de scroll rate parfois le ré-épinglage (surtout en
+   défilement programmatique télécommande) → barre figée hors écran même
+   revenu tout en haut. Avec translateY(0), le raté devient invisible.
+   PC et mobile gardent le masquage au scroll standard. */
+.layout-tv .headroom--unpinned {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
 }
 
 .noHomeButtonHeader .emby-tab-button[data-index="1"]:before {

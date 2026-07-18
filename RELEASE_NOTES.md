@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.79
+# ElegantFin Cinema Edition v1.2.80
 
 ## [English](#english) | [Francais](#francais)
 
@@ -762,6 +762,12 @@ Outcome of a systematic 3-platform pass over the theme:
 #### v1.2.79 — Housekeeping: seven dead rules removed (verified against the jellyfin-web 10.11 source)
 
 - A systematic audit checked all 454 theme selectors against the real `release-10.11.z` source of jellyfin-web. Seven rules inherited from the original theme targeted UI that no longer exists — old dashboard tasks/devices/branding elements, a jQuery-Mobile-era panel, and a scroller-fade rule that could never match — and were removed (~25 lines, zero visual change). Everything else was confirmed alive, including MUI runtime classes, dynamically built section names, and plugin integrations.
+
+---
+
+#### v1.2.80 — TV: the top bar can no longer get stuck hidden
+
+- Jellyfin's scroll detector sometimes misses the "re-pin" event when returning to the top of a page — mostly on TV, where scrolling is driven by remote focus rather than real scroll gestures — leaving the top bar stranded off-screen. On TV the theme's header already scrolls naturally with the page, so the hide-on-scroll translation brought nothing there; it is now neutralized on TV. If Jellyfin's detector misfires, the bar simply stays where it belongs. PC and mobile keep the standard hide-on-scroll behavior.
 
 ---
 
@@ -1530,6 +1536,12 @@ Resultat d'une passe systematique du theme sur les 3 plateformes :
 #### v1.2.79 — Menage : sept regles mortes supprimees (verifiees contre le source jellyfin-web 10.11)
 
 - Un audit systematique a confronte les 454 selecteurs du theme au vrai source `release-10.11.z` de jellyfin-web. Sept regles heritees du theme original visaient une interface qui n'existe plus — anciens elements taches/appareils/branding du dashboard, un panneau de l'ere jQuery Mobile, et une regle de fondu de scroller qui ne pouvait jamais matcher — et ont ete retirees (~25 lignes, zero changement visuel). Tout le reste est confirme vivant, y compris les classes MUI generees au runtime, les noms de sections construits dynamiquement, et les integrations de plugins.
+
+---
+
+#### v1.2.80 — TV : la barre du haut ne peut plus rester coincee cachee
+
+- Le detecteur de scroll de Jellyfin rate parfois l'evenement de re-epinglage en revenant tout en haut d'une page — surtout sur TV, ou le defilement est pilote par le focus telecommande plutot que par de vrais gestes de scroll — laissant la barre du haut figee hors ecran. Sur TV, le header du theme defile deja naturellement avec la page : la translation de masquage au scroll n'y apportait rien ; elle est desormais neutralisee sur TV. Si le detecteur de Jellyfin se coince, la barre reste simplement a sa place. PC et mobile gardent le masquage au defilement standard.
 
 ---
 
