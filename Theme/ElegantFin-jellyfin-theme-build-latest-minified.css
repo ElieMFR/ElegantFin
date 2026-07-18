@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.80 */
+/* ElegantFin Cinema Edition v1.2.81 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.80";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.81";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -167,7 +167,7 @@ body {
     --primaryItemPageNegativeSpace: calc(14vh + 5em);
     --secondaryItemPageNegativeSpace: calc(60vh + 5em);
 }
-.layout-mobile {
+:root.layout-mobile {
     --itemColumnGap: 0;
     --headerColorGradient: var(--headerColorGradientAlt);
     --blurLargest: blur(12px);
@@ -1798,8 +1798,14 @@ progress + span {
 .mdl-slider {
     height: unset;
 }
+.sliderContainer {
+    --thumb: 4px;
+}
 .mdl-slider-background-flex-container {
-    padding: 0;
+    padding: 0 calc(var(--thumb) / 2);
+}
+.sliderBubbleTrack {
+    margin: 0 calc(var(--thumb) / 2);
 }
 .mdl-slider-background-flex {
     border-radius: var(--smallRadius);
@@ -1864,6 +1870,16 @@ progress + span {
     height: 0.8em !important;
     border-radius: 0.2em;
     transform: scale(1) scaleY(1.25);
+}
+.layout-mobile .mdl-slider::-webkit-slider-thumb {
+    width: 0.2em !important;
+    height: 0.8em !important;
+    border-radius: 0.2em;
+}
+.layout-mobile .mdl-slider::-moz-range-thumb {
+    width: 0.2em !important;
+    height: 0.8em !important;
+    border-radius: 0.2em;
 }
 .sliderMarkerContainer {
     margin: 0 0.1em;

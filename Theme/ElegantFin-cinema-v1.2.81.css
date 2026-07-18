@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.80 */
+/* ElegantFin Cinema Edition v1.2.81 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.80";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.81";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -287,7 +287,11 @@ body {
     --secondaryItemPageNegativeSpace: calc(60vh + 5em);
 }
 
-.layout-mobile {
+/* v1.2.81 : :root.layout-mobile (blindage porté d'upstream) — la classe est posée
+   sur <html> (layoutManager.js : documentElement), donc :root.layout-mobile bat
+   toujours le :root de base en spécificité ; en simple .layout-mobile, ces vars ne
+   gagnaient que par ordre d'apparition (fragile aux réorganisations du fichier). */
+:root.layout-mobile {
     --itemColumnGap: 0;
     --headerColorGradient: var(--headerColorGradientAlt);
     --blurLargest: blur(12px);
@@ -2476,8 +2480,23 @@ progress + span {
     height: unset;
 }
 
+/* v1.2.81 : précision de la seekbar (porté du fix #274 upstream, adapté à nos
+   mesures). La piste visuelle s'étendait sur toute la largeur alors que la course
+   réelle du curseur s'arrête un demi-curseur avant chaque bord → clics et bulle de
+   preview décalés aux extrémités, curseur jamais collé au bout. Vérifié dans le
+   source 10.11 : emby-slider.js calcule la position de la bulle ET la fraction de
+   seek depuis le rect de .sliderBubbleTrack → la marge le recale exactement.
+   --thumb = 4px = la largeur réelle de NOTRE curseur (pas le 0.4em upstream). */
+.sliderContainer {
+    --thumb: 4px;
+}
+
 .mdl-slider-background-flex-container {
-    padding: 0;
+    padding: 0 calc(var(--thumb) / 2);
+}
+
+.sliderBubbleTrack {
+    margin: 0 calc(var(--thumb) / 2);
 }
 
 /* this is the osd player slider */
@@ -2560,6 +2579,20 @@ progress + span {
     height: 0.8em !important;
     border-radius: 0.2em;
     transform: scale(1) scaleY(1.25);
+}
+
+/* v1.2.81 : téléphone — pas de hover fiable au doigt → le curseur reste en état
+   étendu en permanence (la géométrie de notre état hover). Webkit + Firefox. */
+.layout-mobile .mdl-slider::-webkit-slider-thumb {
+    width: 0.2em !important;
+    height: 0.8em !important;
+    border-radius: 0.2em;
+}
+
+.layout-mobile .mdl-slider::-moz-range-thumb {
+    width: 0.2em !important;
+    height: 0.8em !important;
+    border-radius: 0.2em;
 }
 
 .sliderMarkerContainer {

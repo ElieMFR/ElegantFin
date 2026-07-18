@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.80
+# ElegantFin Cinema Edition v1.2.81
 
 ## [English](#english) | [Francais](#francais)
 
@@ -768,6 +768,16 @@ Outcome of a systematic 3-platform pass over the theme:
 #### v1.2.80 — TV: the top bar can no longer get stuck hidden
 
 - Jellyfin's scroll detector sometimes misses the "re-pin" event when returning to the top of a page — mostly on TV, where scrolling is driven by remote focus rather than real scroll gestures — leaving the top bar stranded off-screen. On TV the theme's header already scrolls naturally with the page, so the hide-on-scroll translation brought nothing there; it is now neutralized on TV. If Jellyfin's detector misfires, the bar simply stays where it belongs. PC and mobile keep the standard hide-on-scroll behavior.
+
+---
+
+#### v1.2.81 — Accurate seekbar (upstream port), expanded thumb on phones, mobile-vars hardening
+
+Upstream catch-up (6 new commits reviewed; 1 real fix applied, adapted to this fork's look — the rest were either already present, inert with our static icon font, or declined as cosmetic):
+
+- **The playback bar is now pixel-accurate.** The visual track ran the full width while the thumb's real travel stops half a thumb before each edge — so clicks near the start/end seeked slightly off-target, the hover preview bubble was misaligned, and the thumb never quite touched the ends. The track and the bubble's reference element are now inset to match the real travel (verified against `emby-slider.js` in the 10.11 source: both the bubble position and the seek fraction are computed from that element's box). The volume slider benefits too.
+- **On phones, the seekbar thumb stays in its expanded state** — touch has no reliable hover, so the enlarged grab target is now permanent there.
+- **Mobile variables hardened** (`:root.layout-mobile`): the fork's mobile overrides now win by specificity rather than by file order — the same cascade accident that silently broke them upstream can no longer happen here. No visual change.
 
 ---
 
@@ -1542,6 +1552,16 @@ Resultat d'une passe systematique du theme sur les 3 plateformes :
 #### v1.2.80 — TV : la barre du haut ne peut plus rester coincee cachee
 
 - Le detecteur de scroll de Jellyfin rate parfois l'evenement de re-epinglage en revenant tout en haut d'une page — surtout sur TV, ou le defilement est pilote par le focus telecommande plutot que par de vrais gestes de scroll — laissant la barre du haut figee hors ecran. Sur TV, le header du theme defile deja naturellement avec la page : la translation de masquage au scroll n'y apportait rien ; elle est desormais neutralisee sur TV. Si le detecteur de Jellyfin se coince, la barre reste simplement a sa place. PC et mobile gardent le masquage au defilement standard.
+
+---
+
+#### v1.2.81 — Seekbar precise (portage upstream), curseur etendu sur telephone, blindage des vars mobiles
+
+Rattrapage upstream (6 nouveaux commits passes en revue ; 1 vrai fix applique, adapte au look de ce fork — le reste etait deja present, inerte avec notre police d'icones statique, ou decline comme cosmetique) :
+
+- **La barre de lecture est maintenant precise au pixel.** La piste visuelle courait sur toute la largeur alors que la course reelle du curseur s'arrete un demi-curseur avant chaque bord — donc les clics pres du debut/fin sautaient legerement a cote, la bulle de preview etait decalee, et le curseur ne touchait jamais vraiment les extremites. La piste et l'element de reference de la bulle sont desormais ajustes a la course reelle (verifie dans le source 10.11 d'`emby-slider.js` : la position de la bulle ET la fraction de seek sont calculees depuis la boite de cet element). Le slider de volume en profite aussi.
+- **Sur telephone, le curseur de la seekbar reste en etat etendu** — le tactile n'a pas de survol fiable, la prise agrandie y est donc permanente.
+- **Variables mobiles blindees** (`:root.layout-mobile`) : les overrides mobiles du fork gagnent desormais par specificite plutot que par ordre dans le fichier — l'accident de cascade qui les a silencieusement casses upstream ne peut plus arriver ici. Aucun changement visuel.
 
 ---
 
