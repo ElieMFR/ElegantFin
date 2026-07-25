@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.84 */
+/* ElegantFin Cinema Edition v1.2.85 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.84";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.85";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -3482,6 +3482,21 @@ div[data-role="controlgroup"] a.ui-btn-active {
     color: var(--activeColor) !important;
 }
 
+/* v1.2.85 — bouton d'action principal de la coque moderne (« Tout lire », etc.).
+   Constaté sur JF12 : bleu Jellyfin #00a4dc avec un texte SOMBRE imposé par MUI,
+   donc peu lisible. Passé en blanc, ce qui prolonge la convention déjà établie du
+   thème pour les actions de lecture (le bouton « Lire » des pages détail est blanc
+   depuis le module Cinema). Les variantes SÉMANTIQUES ont leurs propres classes
+   (containedError rouge, containedSuccess vert) et ne sont pas touchées. */
+.MuiButton-containedPrimary {
+    background-color: #fff !important;
+    color: #111827 !important;
+}
+
+.MuiButton-containedPrimary:hover {
+    background-color: #e8e8e8 !important;
+}
+
 .listItemImage {
     border-radius: var(--smallRadius);
     margin-right: 0.75em !important;
@@ -5255,6 +5270,16 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 /* this increases page top padding when section tabs are expanded */
 .libraryPage:not(.noSecondaryNavPage) {
     padding-top: calc(var(--appBarHeight) * 2 + 0.5em) !important;
+}
+
+/* v1.2.85 — page Profil : la photo touchait la barre du haut. Cause : la page
+   porte la classe `noSecondaryNavPage`, que la règle de marge ci-dessus exclut —
+   elle ne recevait donc aucun espace sous le header. Ça ne se voyait pas dans la
+   disposition d'origine de Jellyfin (photo à gauche, en ligne) ; ça se voit avec
+   la disposition centrée que produit notre règle `.readOnlyContent` (colonne),
+   volontairement conservée car préférée. Valeur validée à l'écran. */
+#userProfilePage .readOnlyContent {
+    padding-top: 2em !important;
 }
 
 @media (min-width: 75em) {

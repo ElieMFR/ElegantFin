@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.84
+# ElegantFin Cinema Edition v1.2.85
 
 ## [English](#english) | [Francais](#francais)
 
@@ -804,6 +804,13 @@ Checked against a real Jellyfin 12 server rather than assumed. Jellyfin 12 split
 - Also verified and deliberately *not* shipped: Jellyfin does not inject custom CSS into the **dashboard** (neither in 10.11 nor in 12.0), so styling its Save buttons and checkboxes would have been dead code.
 
 This is a first pass — Jellyfin 12 is not released yet and its modern shell still changes daily, so these rules will be re-checked when it ships. Nothing here affects 10.11: these elements only exist in the modern shell.
+
+---
+
+#### v1.2.85 — Readable primary button, and the profile picture stops touching the top bar
+
+- **The modern shell's primary action button** (e.g. "Play all") was Jellyfin blue with dark text forced by Material UI — poor contrast. It is now **white**, extending the theme's long-standing treatment of playback actions (the detail page's Play button has been white since the Cinema module). Semantic variants keep their own colours: red for destructive actions, green for success.
+- **Profile page: the picture no longer touches the top bar.** The page carries the `noSecondaryNavPage` class, which the theme's top-padding rule explicitly excludes — so it received no clearance under the header. Invisible in Jellyfin's own side-by-side layout, but plain to see in the centred layout this theme produces, which is kept because it looks better. Spacing validated on screen.
 
 ---
 
@@ -1614,6 +1621,13 @@ Verifie sur un vrai serveur Jellyfin 12, et non suppose. La 12.0 scinde l'applic
 - Egalement verifie et volontairement *non* livre : Jellyfin n'injecte pas de CSS personnalise dans le **tableau de bord** (ni en 10.11 ni en 12.0) ; styliser ses boutons Enregistrer et ses cases a cocher aurait donc ete du code mort.
 
 Il s'agit d'une premiere passe — Jellyfin 12 n'est pas encore sortie et sa coque moderne evolue tous les jours ; ces regles seront revalidees a sa sortie. Rien n'affecte la 10.11 : ces elements n'existent que dans la coque moderne.
+
+---
+
+#### v1.2.85 — Bouton principal lisible, et la photo de profil ne touche plus la barre du haut
+
+- **Le bouton d'action principal de la coque moderne** (« Tout lire », par exemple) etait en bleu Jellyfin avec un texte sombre impose par Material UI — contraste mediocre. Il passe en **blanc**, ce qui prolonge le traitement etabli de longue date par le theme pour les actions de lecture (le bouton Lire des pages de detail est blanc depuis le module Cinema). Les variantes semantiques gardent leurs couleurs : rouge pour les actions destructives, vert pour le succes.
+- **Page Profil : la photo ne touche plus la barre du haut.** Cette page porte la classe `noSecondaryNavPage`, que la regle de marge haute du theme exclut explicitement — elle ne recevait donc aucun degagement sous le header. Invisible dans la disposition cote-a-cote d'origine de Jellyfin, mais bien visible dans la disposition centree que produit ce theme, conservee car jugee plus jolie. Espacement valide a l'ecran.
 
 ---
 
