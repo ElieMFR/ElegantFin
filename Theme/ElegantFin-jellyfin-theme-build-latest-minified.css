@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.81 */
+/* ElegantFin Cinema Edition v1.2.82 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.81";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.82";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -66,18 +66,13 @@
     --textColor: rgb(209, 213, 219);
     --dimTextColor: rgb(156, 163, 175);
     --backgroundGradient: linear-gradient(0deg, var(--darkerGradientPoint) 35%, var(--lighterGradientPoint));
-    --cardBackgroundGradient: linear-gradient(0deg, var(--darkerGradientPoint), 25%, var(--lighterGradientPoint));
-    --headerColorGradient: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0.75) 0%,
-        rgba(0, 0, 0, 0.35) 45%,
-        transparent 100%
-    );
-    --headerColorGradientAlt: linear-gradient(180deg, rgba(30, 40, 54, 1), 70%, transparent);
+    --cardBackgroundGradient: linear-gradient(0deg, var(--darkerGradientPoint) 0%, var(--lighterGradientPoint) 100%);
+    --headerColorGradient: linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+    --headerColorGradientAlt: linear-gradient(180deg, rgba(30, 40, 54, 1) 0%, rgba(30, 40, 54, 0) 100%);
     --headerBlurMask: linear-gradient(180deg, white 50%, 85%, transparent);
-    --cardFooterGradient: linear-gradient(0deg, rgb(0 0 0 / 90%), 40%, transparent);
-    --topOSDGradient: linear-gradient(180deg, hsla(0, 0%, 0%, 0.8), 45%, hsla(0, 0%, 0%, 0));
-    --bottomOSDGradient: linear-gradient(0deg, hsla(0, 0%, 0%, 0.8), 45%, hsla(0, 0%, 0%, 0));
+    --cardFooterGradient: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 75%);
+    --topOSDGradient: linear-gradient(180deg, hsla(0, 0%, 0%, 0.8) 0%, hsla(0, 0%, 0%, 0) 85%);
+    --bottomOSDGradient: linear-gradient(0deg, hsla(0, 0%, 0%, 0.8) 0%, hsla(0, 0%, 0%, 0) 85%);
     --hoverGradientV: linear-gradient(
         0deg,
         transparent,

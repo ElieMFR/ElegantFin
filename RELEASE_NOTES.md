@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.81
+# ElegantFin Cinema Edition v1.2.82
 
 ## [English](#english) | [Francais](#francais)
 
@@ -778,6 +778,13 @@ Upstream catch-up (6 new commits reviewed; 1 real fix applied, adapted to this f
 - **The playback bar is now pixel-accurate.** The visual track ran the full width while the thumb's real travel stops half a thumb before each edge — so clicks near the start/end seeked slightly off-target, the hover preview bubble was misaligned, and the thumb never quite touched the ends. The track and the bubble's reference element are now inset to match the real travel (verified against `emby-slider.js` in the 10.11 source: both the bubble position and the seek fraction are computed from that element's box). The volume slider benefits too.
 - **On phones, the seekbar thumb stays in its expanded state** — touch has no reliable hover, so the enlarged grab target is now permanent there.
 - **Mobile variables hardened** (`:root.layout-mobile`): the fork's mobile overrides now win by specificity rather than by file order — the same cascade accident that silently broke them upstream can no longer happen here. No visual change.
+
+---
+
+#### v1.2.82 — Firefox: no more banding lines across card and player gradients
+
+- On Firefox only, thin horizontal lines were drawn across card thumbnails (and, less visibly, over the player and header gradients). Live bisection on Firefox pinned it down: **Firefox leaves a visible seam at every intermediate colour stop of a gradient painted over an image** — including a bare colour hint. Confirmed by experiment: the original gradient (one hint) striped the thumbnails, a six-stop rewrite striped at exactly 20/40/60/80%, and a two-stop version came out clean. Chrome, TV and mobile were already smoothing these.
+- The six overlay gradients (card footer, player top/bottom, header ×2, card background) are now **two-stop**, with the fade shaped by the second stop's position instead of by extra steps — so the look is preserved. Fades to transparent are written as same-hue `rgba()` to avoid any colour drift mid-fade.
 
 ---
 
@@ -1562,6 +1569,13 @@ Rattrapage upstream (6 nouveaux commits passes en revue ; 1 vrai fix applique, a
 - **La barre de lecture est maintenant precise au pixel.** La piste visuelle courait sur toute la largeur alors que la course reelle du curseur s'arrete un demi-curseur avant chaque bord — donc les clics pres du debut/fin sautaient legerement a cote, la bulle de preview etait decalee, et le curseur ne touchait jamais vraiment les extremites. La piste et l'element de reference de la bulle sont desormais ajustes a la course reelle (verifie dans le source 10.11 d'`emby-slider.js` : la position de la bulle ET la fraction de seek sont calculees depuis la boite de cet element). Le slider de volume en profite aussi.
 - **Sur telephone, le curseur de la seekbar reste en etat etendu** — le tactile n'a pas de survol fiable, la prise agrandie y est donc permanente.
 - **Variables mobiles blindees** (`:root.layout-mobile`) : les overrides mobiles du fork gagnent desormais par specificite plutot que par ordre dans le fichier — l'accident de cascade qui les a silencieusement casses upstream ne peut plus arriver ici. Aucun changement visuel.
+
+---
+
+#### v1.2.82 — Firefox : fini les traits de banding sur les degrades des cartes et du lecteur
+
+- Sur Firefox uniquement, de fins traits horizontaux barraient les vignettes des cartes (et, plus discretement, les degrades du lecteur et de l'en-tete). Une bissection en direct sur Firefox a tranche : **Firefox laisse une couture visible a chaque arret de couleur intermediaire d'un degrade pose au-dessus d'une image** — y compris une simple indication de couleur. Verifie par l'experience : la version d'origine (un hint) rayait les vignettes, une reecriture a six arrets rayait exactement a 20/40/60/80 %, et une version a deux arrets est ressortie propre. Chrome, TV et mobile lissaient deja.
+- Les six degrades de superposition (pied de carte, haut/bas du lecteur, en-tete ×2, fond de carte) sont desormais a **deux arrets**, l'allure du fondu etant reglee par la position du second arret plutot que par des paliers supplementaires — le rendu est donc preserve. Les fondus vers transparent sont ecrits en `rgba()` de meme teinte pour eviter toute derive de couleur.
 
 ---
 

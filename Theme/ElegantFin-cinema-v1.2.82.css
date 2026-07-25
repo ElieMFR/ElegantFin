@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.81 */
+/* ElegantFin Cinema Edition v1.2.82 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.81";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.82";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -116,20 +116,26 @@
     --dimTextColor: rgb(156, 163, 175);
 
     /* textures */
+    /* ⚠️ v1.2.82 — INVARIANT « deux arrêts » : sur Firefox, tout dégradé posé
+       AU-DESSUS d'une image laisse une couture visible (trait net) à CHAQUE arrêt
+       de couleur intermédiaire — y compris une simple indication de couleur
+       (« color hint », le `40%` isolé qu'on utilisait). Diagnostiqué en direct
+       sur Firefox : la version d'origine (1 hint) rayait les vignettes ; une
+       version à 6 arrêts explicites rayait exactement à 20/40/60/80 % ; une
+       version à DEUX arrêts est propre. Chrome, TV et mobile lissaient déjà.
+       → Tout dégradé de superposition doit rester à deux arrêts ; on règle
+       l'allure via la POSITION du second arrêt (75 %, 85 %…), jamais en ajoutant
+       des paliers. Les fondus vers `transparent` sont écrits en rgba() de même
+       teinte pour éviter toute dérive de couleur en cours de fondu. */
     --backgroundGradient: linear-gradient(0deg, var(--darkerGradientPoint) 35%, var(--lighterGradientPoint));
-    --cardBackgroundGradient: linear-gradient(0deg, var(--darkerGradientPoint), 25%, var(--lighterGradientPoint));
-    --headerColorGradient: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0.75) 0%,
-        rgba(0, 0, 0, 0.35) 45%,
-        transparent 100%
-    );
-    --headerColorGradientAlt: linear-gradient(180deg, rgba(30, 40, 54, 1), 70%, transparent);
+    --cardBackgroundGradient: linear-gradient(0deg, var(--darkerGradientPoint) 0%, var(--lighterGradientPoint) 100%);
+    --headerColorGradient: linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+    --headerColorGradientAlt: linear-gradient(180deg, rgba(30, 40, 54, 1) 0%, rgba(30, 40, 54, 0) 100%);
     --headerBlurMask: linear-gradient(180deg, white 50%, 85%, transparent);
 
-    --cardFooterGradient: linear-gradient(0deg, rgb(0 0 0 / 90%), 40%, transparent);
-    --topOSDGradient: linear-gradient(180deg, hsla(0, 0%, 0%, 0.8), 45%, hsla(0, 0%, 0%, 0));
-    --bottomOSDGradient: linear-gradient(0deg, hsla(0, 0%, 0%, 0.8), 45%, hsla(0, 0%, 0%, 0));
+    --cardFooterGradient: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 75%);
+    --topOSDGradient: linear-gradient(180deg, hsla(0, 0%, 0%, 0.8) 0%, hsla(0, 0%, 0%, 0) 85%);
+    --bottomOSDGradient: linear-gradient(0deg, hsla(0, 0%, 0%, 0.8) 0%, hsla(0, 0%, 0%, 0) 85%);
 
     --hoverGradientV: linear-gradient(
         0deg,
