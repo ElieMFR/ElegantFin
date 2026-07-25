@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.86
+# ElegantFin Cinema Edition v1.2.87
 
 ## [English](#english) | [Francais](#francais)
 
@@ -817,6 +817,17 @@ This is a first pass — Jellyfin 12 is not released yet and its modern shell st
 #### v1.2.86 — No more hairline under the top bar (modern shell)
 
 - The modern shell's top bar drew a crisp line across the screen. It came from a border this theme had written back when the rule targeted the dashboard — where custom CSS is never injected, so it had no effect. Removed: the bar now blends into the page, in keeping with the legacy header that fades out in a gradient. Modern shell only.
+
+---
+
+#### v1.2.87 — Housekeeping: Material UI rules that could never match
+
+Follow-up to the discovery that Jellyfin never injects custom CSS into the dashboard. Every Material UI rule in the theme was checked against where its component actually appears in the Jellyfin source — ten rules turned out to be unreachable and were removed (zero visual change):
+
+- The four `Tabs` rules and the activity-log table rules targeted **dashboard-only** components.
+- Two selectors in the TV blur-stripping rule targeted Material UI panels, but **TV always runs the legacy app**, so none are ever rendered there.
+
+The rest were confirmed live — including two happy accidents: the rule written for the dashboard's app bar is what already paints Jellyfin 12's modern header navy, and the toggle-group rule now styles that version's A-Z library picker.
 
 ---
 
@@ -1640,6 +1651,17 @@ Il s'agit d'une premiere passe — Jellyfin 12 n'est pas encore sortie et sa coq
 #### v1.2.86 — Plus de lisere sous la barre du haut (coque moderne)
 
 - La barre du haut de la coque moderne tracait une ligne nette en travers de l'ecran. Elle venait d'une bordure ecrite a l'epoque ou cette regle visait le tableau de bord — ou le CSS personnalise n'est jamais injecte, donc sans effet. Retiree : la barre se fond desormais dans la page, dans l'esprit du header legacy qui s'estompe en degrade. Coque moderne uniquement.
+
+---
+
+#### v1.2.87 — Menage : des regles Material UI qui ne pouvaient jamais matcher
+
+Suite de la decouverte que Jellyfin n'injecte jamais de CSS personnalise dans le tableau de bord. Chaque regle Material UI du theme a ete confrontee a l'endroit ou son composant apparait reellement dans le source de Jellyfin — dix regles se sont revelees inatteignables et ont ete retirees (zero changement visuel) :
+
+- Les quatre regles `Tabs` et celles du tableau du journal d'activite visaient des composants **exclusifs au tableau de bord**.
+- Deux selecteurs de la regle TV qui coupe le flou visaient des panneaux Material UI, alors que **la TV tourne toujours sur l'app legacy** : aucun n'y est jamais rendu.
+
+Le reste est confirme actif — dont deux heureux hasards : la regle ecrite pour la barre du tableau de bord est justement celle qui peint deja en navy le header moderne de Jellyfin 12, et la regle des groupes de boutons habille desormais le selecteur A-Z des bibliotheques de cette version.
 
 ---
 

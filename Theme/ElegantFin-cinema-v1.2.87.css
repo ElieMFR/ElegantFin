@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.86 */
+/* ElegantFin Cinema Edition v1.2.87 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.86";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.87";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4672,24 +4672,15 @@ table:not(.MuiTable-root.MuiTable-stickyHeader) {
     vertical-align: middle;
 }
 
-#serverActivityPage .MuiPaper-elevation2 {
-    border: var(--defaultBorder) !important;
-    box-shadow: unset !important;
-}
-
-#serverActivityPage .MuiPaper-elevation2,
-#serverActivityPage .MuiPaper-elevation2 > .MuiBox-root,
-#serverActivityPage .MuiTableRow-root.MuiTableRow-head {
-    background-color: var(--tableBodyColor);
-}
-
-.detailTableBodyRow-shaded:nth-child(odd),
-#serverActivityPage .MuiTableBody-root .MuiTableRow-root:nth-child(odd) {
+/* v1.2.87 : les sélecteurs #serverActivityPage (journal d'activité) ont été
+   retirés d'ici — c'est une page du TABLEAU DE BORD, où Jellyfin n'injecte pas
+   le Custom CSS (vérifié en 10.11 et en 12.0) : ils n'ont jamais rien stylé.
+   Les sélecteurs .detailTableBodyRow-shaded, eux, sont bien actifs et restent. */
+.detailTableBodyRow-shaded:nth-child(odd) {
     background: var(--darkerGradientPointAlpha) !important;
 }
 
-.detailTableBodyRow-shaded:nth-child(even),
-#serverActivityPage .MuiTableBody-root .MuiTableRow-root:nth-child(even) {
+.detailTableBodyRow-shaded:nth-child(even) {
     background: var(--lighterGradientPointAlpha) !important;
 }
 
@@ -5023,25 +5014,11 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     font-family: "Inter", sans-serif;
 }
 
-.MuiTabs-indicator {
-    display: none;
-}
-
-.MuiTabs-root > .MuiTabs-scroller {
-    align-content: center;
-}
-
-.MuiTabs-flexContainer > .MuiButtonBase-root {
-    border-radius: var(--largeRadius);
-    min-height: 40px;
-    min-width: 72px;
-}
-
-.MuiTabs-flexContainer > .MuiButtonBase-root.Mui-selected {
-    color: white;
-    background-color: transparent !important;
-}
-
+/* v1.2.87 : les quatre règles .MuiTabs-* ont été retirées — le composant Tabs de
+   Material UI n'existe QUE dans le tableau de bord (vérifié dans le source de la
+   10.11 et de la 12.0), où le Custom CSS n'est pas injecté : elles n'ont jamais
+   rien stylé. La règle ToggleButtonGroup ci-dessous, elle, est bien active : la
+   12.0 s'en sert pour le sélecteur A-Z des bibliothèques (AlphabetPicker). */
 .MuiToggleButtonGroup-grouped.Mui-selected {
     color: white;
 }
@@ -5938,13 +5915,14 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 /* v1.2.54 — TV FLUIDITÉ : coupe TOUT le flou restant sur TV (backdrop-filter = coût
    GPU n°1 des webviews Tizen). Les panneaux ont déjà un fond opaque (v1.2.50) ; les
    autres perdent juste l'effet verre sans perte de lisibilité (fond opaque/gradient
-   déjà présent, ou élément mineur). */
+   déjà présent, ou élément mineur).
+   v1.2.87 : .MuiAppBar-root et .MuiDrawer-paper retirés de cette liste — le mode TV
+   tourne TOUJOURS sur l'app legacy (en 12.0, `tv` fait partie des LegacyLayoutModes),
+   donc aucun composant Material UI n'y est jamais rendu. */
 .layout-tv .cardOverlayContainer,
 .layout-tv .appfooter,
 .layout-tv .selectionCommandsPanel,
 .layout-tv .formDialogHeader,
-.layout-tv .MuiAppBar-root,
-.layout-tv .MuiDrawer-paper,
 .layout-tv .iconOsd,
 .layout-tv .skinHeader-blurred,
 .layout-tv .osdHeader,

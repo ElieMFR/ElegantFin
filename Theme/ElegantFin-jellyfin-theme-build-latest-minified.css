@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.86 */
+/* ElegantFin Cinema Edition v1.2.87 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.86";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.87";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -3475,21 +3475,10 @@ table:not(.MuiTable-root.MuiTable-stickyHeader) {
 .detailTableHeaderCell {
     vertical-align: middle;
 }
-#serverActivityPage .MuiPaper-elevation2 {
-    border: var(--defaultBorder) !important;
-    box-shadow: unset !important;
-}
-#serverActivityPage .MuiPaper-elevation2,
-#serverActivityPage .MuiPaper-elevation2 > .MuiBox-root,
-#serverActivityPage .MuiTableRow-root.MuiTableRow-head {
-    background-color: var(--tableBodyColor);
-}
-.detailTableBodyRow-shaded:nth-child(odd),
-#serverActivityPage .MuiTableBody-root .MuiTableRow-root:nth-child(odd) {
+.detailTableBodyRow-shaded:nth-child(odd) {
     background: var(--darkerGradientPointAlpha) !important;
 }
-.detailTableBodyRow-shaded:nth-child(even),
-#serverActivityPage .MuiTableBody-root .MuiTableRow-root:nth-child(even) {
+.detailTableBodyRow-shaded:nth-child(even) {
     background: var(--lighterGradientPointAlpha) !important;
 }
 .MuiList-root.MuiMenu-list {
@@ -3765,21 +3754,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     list-style-type: circle;
     margin-bottom: 0.5em;
     font-family: "Inter", sans-serif;
-}
-.MuiTabs-indicator {
-    display: none;
-}
-.MuiTabs-root > .MuiTabs-scroller {
-    align-content: center;
-}
-.MuiTabs-flexContainer > .MuiButtonBase-root {
-    border-radius: var(--largeRadius);
-    min-height: 40px;
-    min-width: 72px;
-}
-.MuiTabs-flexContainer > .MuiButtonBase-root.Mui-selected {
-    color: white;
-    background-color: transparent !important;
 }
 .MuiToggleButtonGroup-grouped.Mui-selected {
     color: white;
@@ -4404,8 +4378,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 .layout-tv .appfooter,
 .layout-tv .selectionCommandsPanel,
 .layout-tv .formDialogHeader,
-.layout-tv .MuiAppBar-root,
-.layout-tv .MuiDrawer-paper,
 .layout-tv .iconOsd,
 .layout-tv .skinHeader-blurred,
 .layout-tv .osdHeader,
