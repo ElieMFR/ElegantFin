@@ -131,12 +131,15 @@ All original ElegantFin customization options are preserved. Add these overrides
 | Platform | Status |
 |----------|--------|
 | Jellyfin Server 10.11.x | Fully supported |
+| Jellyfin Server 12.0 (preview) | Works — see note below |
 | Web browsers (Chrome, Edge, Firefox, Safari) | Fully supported |
 | Jellyfin Android App | Fully supported |
 | LG WebOS | Supported (may need icon pack fix) |
 | Samsung Tizen (Jellyfin community) | Supported (extensively field-tested; graceful degrade on older models) |
 | Android TV native app | Not supported (no CSS support) |
 | Jellyfin Media Player (Qt 5.x) | Partial (outdated web engine) |
+
+> **Jellyfin 12 (preview).** Jellyfin 12 splits the web app in two: **TV keeps the current app**, so the theme applies there unchanged. Desktop and mobile default to a new React shell, where the theme already covers cards, detail pages, the player and menus — and its accent colour is applied to the new top bar. That shell is still evolving, so compatibility will be re-checked when 12.0 is released.
 
 ---
 
@@ -288,12 +291,15 @@ Toutes les options de personnalisation originales d'ElegantFin sont preservees. 
 | Plateforme | Statut |
 |------------|--------|
 | Jellyfin Server 10.11.x | Entierement supporte |
+| Jellyfin Server 12.0 (preview) | Fonctionne — voir la note ci-dessous |
 | Navigateurs web (Chrome, Edge, Firefox, Safari) | Entierement supporte |
 | Jellyfin Android App | Entierement supporte |
 | LG WebOS | Supporte (peut necessiter le fix icones) |
 | Samsung Tizen (Jellyfin community) | Supporte (teste intensivement sur materiel reel ; degrade gracieux sur anciens modeles) |
 | Android TV app native | Non supporte (pas de support CSS) |
 | Jellyfin Media Player (Qt 5.x) | Partiel (moteur web obsolete) |
+
+> **Jellyfin 12 (preview).** Jellyfin 12 scinde l'application web en deux : la **TV reste sur l'application actuelle**, le theme s'y applique donc a l'identique. Bureau et mobile passent par defaut sur une nouvelle coque React, ou le theme couvre deja les cartes, les pages de detail, le lecteur et les menus — et ou sa couleur d'accent habille la nouvelle barre du haut. Cette coque evolue encore : la compatibilite sera revalidee a la sortie de la 12.0.
 
 ---
 
