@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.82
+# ElegantFin Cinema Edition v1.2.83
 
 ## [English](#english) | [Francais](#francais)
 
@@ -785,6 +785,13 @@ Upstream catch-up (6 new commits reviewed; 1 real fix applied, adapted to this f
 
 - On Firefox only, thin horizontal lines were drawn across card thumbnails (and, less visibly, over the player and header gradients). Live bisection on Firefox pinned it down: **Firefox leaves a visible seam at every intermediate colour stop of a gradient painted over an image** — including a bare colour hint. Confirmed by experiment: the original gradient (one hint) striped the thumbnails, a six-stop rewrite striped at exactly 20/40/60/80%, and a two-stop version came out clean. Chrome, TV and mobile were already smoothing these.
 - The six overlay gradients (card footer, player top/bottom, header ×2, card background) are now **two-stop**, with the fade shaped by the second stop's position instead of by extra steps — so the look is preserved. Fades to transparent are written as same-hue `rgba()` to avoid any colour drift mid-fade.
+
+---
+
+#### v1.2.83 — TV: no more dark band sweeping the background during page transitions
+
+- On TV, opening an episode briefly showed a dark band across the backdrop, which vanished once the page finished loading. The cause: the title block's dark veil was a gradient expressed **in percentages of its container's height** — and that height jumps from roughly 46vh (page still loading, no content) to ~2600px once filled. Loaded, the dark part sits far below the screen and only its fade shows; while loading, those same percentages land right in the visible area, painting a dark rectangle.
+- The veil is now a **fixed pseudo-element anchored to the bottom of the screen**, so its geometry no longer depends on a height that changes mid-flight — identical before and after loading. TV-scoped, no blur (TV performance doctrine), desktop and mobile untouched. Both other suspects (the gradient's colour hint, and `min-height`) were tested and cleared before landing on this.
 
 ---
 
@@ -1576,6 +1583,13 @@ Rattrapage upstream (6 nouveaux commits passes en revue ; 1 vrai fix applique, a
 
 - Sur Firefox uniquement, de fins traits horizontaux barraient les vignettes des cartes (et, plus discretement, les degrades du lecteur et de l'en-tete). Une bissection en direct sur Firefox a tranche : **Firefox laisse une couture visible a chaque arret de couleur intermediaire d'un degrade pose au-dessus d'une image** — y compris une simple indication de couleur. Verifie par l'experience : la version d'origine (un hint) rayait les vignettes, une reecriture a six arrets rayait exactement a 20/40/60/80 %, et une version a deux arrets est ressortie propre. Chrome, TV et mobile lissaient deja.
 - Les six degrades de superposition (pied de carte, haut/bas du lecteur, en-tete ×2, fond de carte) sont desormais a **deux arrets**, l'allure du fondu etant reglee par la position du second arret plutot que par des paliers supplementaires — le rendu est donc preserve. Les fondus vers transparent sont ecrits en `rgba()` de meme teinte pour eviter toute derive de couleur.
+
+---
+
+#### v1.2.83 — TV : plus de bande sombre en travers du fond pendant les changements de page
+
+- Sur TV, ouvrir un episode faisait apparaitre brievement une bande sombre en travers de l'image de fond, qui disparaissait une fois la page chargee. La cause : le voile sombre du bloc titre etait un degrade exprime **en pourcentages de la hauteur de son conteneur** — or celle-ci passe d'environ 46vh (page en cours de chargement, sans contenu) a ~2600 px une fois remplie. Chargee, la zone sombre se situe donc tres en dessous de l'ecran et seul son fondu se voit ; pendant le chargement, ces memes pourcentages retombent en pleine zone visible et peignent un rectangle sombre.
+- Le voile est desormais un **pseudo-element fixe ancre au bas de l'ecran** : sa geometrie ne depend plus d'une hauteur qui change en cours de route, donc rendu identique avant et apres chargement. Scope TV, sans flou (doctrine perf TV), bureau et mobile intacts. Les deux autres suspects (l'indication de couleur du degrade, et `min-height`) ont ete testes et ecartes avant d'aboutir a celui-ci.
 
 ---
 

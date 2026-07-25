@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.82 */
+/* ElegantFin Cinema Edition v1.2.83 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.82";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.83";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -1377,10 +1377,38 @@ body {
     background: linear-gradient(180deg, transparent, 17vh, var(--darkerGradientPointAlpha) 50vh);
 }
 
+/* v1.2.83 — TV : le voile sombre du bloc titre est passé du CONTENEUR à l'ÉCRAN.
+   Symptôme : en cliquant un épisode, une bande sombre traversait le fond pendant
+   la bascule, puis disparaissait une fois la fiche affichée. Diagnostiqué en
+   direct (contours de couleur sur les suspects + relevé du DOM pendant la
+   transition) : le voile était un dégradé exprimé en POURCENTAGES de la hauteur
+   de .detailPageWrapperContainer — or celle-ci passe d'environ 46vh (page en
+   cours de chargement, contenu absent) à ~2600px une fois remplie. Chargée, la
+   zone sombre (70 % du bas) est donc très en dessous de l'écran et seul le fondu
+   se voit ; pendant le chargement, ces mêmes 70 % retombent en plein dans la zone
+   visible = un rectangle sombre. Ni le color hint ni min-height n'étaient en
+   cause (tous deux testés et écartés).
+   Fix : le voile devient un pseudo-élément FIXE ancré au bas de l'écran → sa
+   géométrie ne dépend plus d'une hauteur qui change en cours de route, donc
+   rendu identique avant et après chargement. Aucun blur (doctrine perf TV).
+   Scopé .layout-tv : PC et mobile gardent leur propre voile, inchangé. */
 .layout-tv .detailPageWrapperContainer {
     padding-left: 30vw;
     min-height: 46vh;
-    background: linear-gradient(0deg, var(--darkerGradientPointAlpha) 70%, 85%, transparent);
+    position: relative;
+    z-index: 1;
+}
+
+.layout-tv .itemDetailPage::after {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 70vh;
+    background: linear-gradient(0deg, var(--darkerGradientPointAlpha) 25%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
 }
 
 .detailPagePrimaryContainer {
