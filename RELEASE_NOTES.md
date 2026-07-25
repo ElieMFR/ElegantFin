@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.85
+# ElegantFin Cinema Edition v1.2.86
 
 ## [English](#english) | [Francais](#francais)
 
@@ -811,6 +811,12 @@ This is a first pass — Jellyfin 12 is not released yet and its modern shell st
 
 - **The modern shell's primary action button** (e.g. "Play all") was Jellyfin blue with dark text forced by Material UI — poor contrast. It is now **white**, extending the theme's long-standing treatment of playback actions (the detail page's Play button has been white since the Cinema module). Semantic variants keep their own colours: red for destructive actions, green for success.
 - **Profile page: the picture no longer touches the top bar.** The page carries the `noSecondaryNavPage` class, which the theme's top-padding rule explicitly excludes — so it received no clearance under the header. Invisible in Jellyfin's own side-by-side layout, but plain to see in the centred layout this theme produces, which is kept because it looks better. Spacing validated on screen.
+
+---
+
+#### v1.2.86 — No more hairline under the top bar (modern shell)
+
+- The modern shell's top bar drew a crisp line across the screen. It came from a border this theme had written back when the rule targeted the dashboard — where custom CSS is never injected, so it had no effect. Removed: the bar now blends into the page, in keeping with the legacy header that fades out in a gradient. Modern shell only.
 
 ---
 
@@ -1628,6 +1634,12 @@ Il s'agit d'une premiere passe — Jellyfin 12 n'est pas encore sortie et sa coq
 
 - **Le bouton d'action principal de la coque moderne** (« Tout lire », par exemple) etait en bleu Jellyfin avec un texte sombre impose par Material UI — contraste mediocre. Il passe en **blanc**, ce qui prolonge le traitement etabli de longue date par le theme pour les actions de lecture (le bouton Lire des pages de detail est blanc depuis le module Cinema). Les variantes semantiques gardent leurs couleurs : rouge pour les actions destructives, vert pour le succes.
 - **Page Profil : la photo ne touche plus la barre du haut.** Cette page porte la classe `noSecondaryNavPage`, que la regle de marge haute du theme exclut explicitement — elle ne recevait donc aucun degagement sous le header. Invisible dans la disposition cote-a-cote d'origine de Jellyfin, mais bien visible dans la disposition centree que produit ce theme, conservee car jugee plus jolie. Espacement valide a l'ecran.
+
+---
+
+#### v1.2.86 — Plus de lisere sous la barre du haut (coque moderne)
+
+- La barre du haut de la coque moderne tracait une ligne nette en travers de l'ecran. Elle venait d'une bordure ecrite a l'epoque ou cette regle visait le tableau de bord — ou le CSS personnalise n'est jamais injecte, donc sans effet. Retiree : la barre se fond desormais dans la page, dans l'esprit du header legacy qui s'estompe en degrade. Coque moderne uniquement.
 
 ---
 

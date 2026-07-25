@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.85 */
+/* ElegantFin Cinema Edition v1.2.86 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.85";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.86";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -3438,10 +3438,15 @@ div[data-role="controlgroup"] a.ui-btn-active {
     flex-direction: column !important;
 }
 
+/* v1.2.86 : plus de liseré sous la barre du haut. Cette règle datait de l'époque
+   où elle visait le tableau de bord (où le Custom CSS n'est jamais injecté, donc
+   sans effet) ; elle habille aujourd'hui la coque moderne de Jellyfin 12, et son
+   border-bottom y traçait une ligne nette en travers de l'écran. Retirée : le
+   header se fond dans la page, dans l'esprit du header legacy qui s'estompe en
+   dégradé. Ne concerne que le mode moderne (JF12). */
 .MuiAppBar-root {
     background: var(--headerColor);
     backdrop-filter: var(--blurDefault);
-    border-bottom: var(--defaultBorder);
 }
 
 .MuiDrawer-paper {
