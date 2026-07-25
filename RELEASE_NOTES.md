@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.83
+# ElegantFin Cinema Edition v1.2.84
 
 ## [English](#english) | [Francais](#francais)
 
@@ -792,6 +792,18 @@ Upstream catch-up (6 new commits reviewed; 1 real fix applied, adapted to this f
 
 - On TV, opening an episode briefly showed a dark band across the backdrop, which vanished once the page finished loading. The cause: the title block's dark veil was a gradient expressed **in percentages of its container's height** — and that height jumps from roughly 46vh (page still loading, no content) to ~2600px once filled. Loaded, the dark part sits far below the screen and only its fade shows; while loading, those same percentages land right in the visible area, painting a dark rectangle.
 - The veil is now a **fixed pseudo-element anchored to the bottom of the screen**, so its geometry no longer depends on a height that changes mid-flight — identical before and after loading. TV-scoped, no blur (TV performance doctrine), desktop and mobile untouched. Both other suspects (the gradient's colour hint, and `min-height`) were tested and cleared before landing on this.
+
+---
+
+#### v1.2.84 — First pass for Jellyfin 12: the theme's accent reaches the new "modern" shell
+
+Checked against a real Jellyfin 12 server rather than assumed. Jellyfin 12 splits the web app in two: **TV keeps the legacy app** (theme unchanged there), while desktop and mobile default to a new React + Material UI shell. The theme already covers about **95%** of it — cards, detail pages, the player, menus — and the top bar even comes out navy already, thanks to a Material UI rule this fork had written for the 10.11 dashboard.
+
+- Four elements were still stuck on Jellyfin's own palette and now follow the theme's accent: the **active tab**, the **profile avatar**, the **library badge** and **links**.
+- **Semantic colours are deliberately left alone**: red for destructive actions, green for progress bars, and the activity-log avatar colours that encode severity — hence the avatar rule being scoped to the top bar only.
+- Also verified and deliberately *not* shipped: Jellyfin does not inject custom CSS into the **dashboard** (neither in 10.11 nor in 12.0), so styling its Save buttons and checkboxes would have been dead code.
+
+This is a first pass — Jellyfin 12 is not released yet and its modern shell still changes daily, so these rules will be re-checked when it ships. Nothing here affects 10.11: these elements only exist in the modern shell.
 
 ---
 
@@ -1590,6 +1602,18 @@ Rattrapage upstream (6 nouveaux commits passes en revue ; 1 vrai fix applique, a
 
 - Sur TV, ouvrir un episode faisait apparaitre brievement une bande sombre en travers de l'image de fond, qui disparaissait une fois la page chargee. La cause : le voile sombre du bloc titre etait un degrade exprime **en pourcentages de la hauteur de son conteneur** — or celle-ci passe d'environ 46vh (page en cours de chargement, sans contenu) a ~2600 px une fois remplie. Chargee, la zone sombre se situe donc tres en dessous de l'ecran et seul son fondu se voit ; pendant le chargement, ces memes pourcentages retombent en pleine zone visible et peignent un rectangle sombre.
 - Le voile est desormais un **pseudo-element fixe ancre au bas de l'ecran** : sa geometrie ne depend plus d'une hauteur qui change en cours de route, donc rendu identique avant et apres chargement. Scope TV, sans flou (doctrine perf TV), bureau et mobile intacts. Les deux autres suspects (l'indication de couleur du degrade, et `min-height`) ont ete testes et ecartes avant d'aboutir a celui-ci.
+
+---
+
+#### v1.2.84 — Premiere passe Jellyfin 12 : l'accent du theme atteint la nouvelle coque « moderne »
+
+Verifie sur un vrai serveur Jellyfin 12, et non suppose. La 12.0 scinde l'application web en deux : **la TV reste sur l'app legacy** (theme inchange), tandis que bureau et mobile passent par defaut sur une nouvelle coque React + Material UI. Le theme y fonctionne deja a environ **95 %** — cartes, pages de detail, lecteur, menus — et la barre du haut en ressort meme deja en navy, grace a une regle Material UI que ce fork avait ecrite pour le tableau de bord de la 10.11.
+
+- Quatre elements restaient figes sur la palette de Jellyfin et suivent desormais l'accent du theme : l'**onglet actif**, l'**avatar du profil**, le **badge de bibliotheque** et les **liens**.
+- **Les couleurs semantiques sont volontairement preservees** : rouge des actions destructives, vert des barres de progression, et couleurs des avatars du journal d'activite qui encodent la gravite — d'ou la regle de l'avatar limitee a la barre du haut.
+- Egalement verifie et volontairement *non* livre : Jellyfin n'injecte pas de CSS personnalise dans le **tableau de bord** (ni en 10.11 ni en 12.0) ; styliser ses boutons Enregistrer et ses cases a cocher aurait donc ete du code mort.
+
+Il s'agit d'une premiere passe — Jellyfin 12 n'est pas encore sortie et sa coque moderne evolue tous les jours ; ces regles seront revalidees a sa sortie. Rien n'affecte la 10.11 : ces elements n'existent que dans la coque moderne.
 
 ---
 

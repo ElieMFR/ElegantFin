@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.83 */
+/* ElegantFin Cinema Edition v1.2.84 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.83";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.84";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -3449,6 +3449,37 @@ div[data-role="controlgroup"] a.ui-btn-active {
     backdrop-filter: var(--blurLarge);
     border-right: var(--defaultBorder);
     padding: 0.25em;
+}
+
+/* v1.2.84 — Jellyfin 12 : accent du thème sur la coque « moderne ».
+   Contexte vérifié sur un serveur JF12 réel : la 12.0 scinde l'app en deux
+   (apps/legacy et apps/modern) ; le mode TV reste sur l'app legacy (thème inchangé),
+   tandis que PC et mobile passent par défaut sur l'app moderne, en React + Material UI.
+   Le thème s'y applique déjà à ~95 % (cartes, fiches, lecteur, menus), et le header
+   y est même déjà navy grâce à la règle .MuiAppBar-root ci-dessus. Restaient quatre
+   éléments figés sur la palette Jellyfin (mesurés : #00a4dc, #00729a, #66BB6A).
+   ⚠️ Ne PAS élargir aux boutons/cases du tableau de bord : vérifié, Jellyfin
+   n'injecte pas le Custom CSS dans cette partie (ni en 10.11 ni en 12.0) — ce
+   serait du code mort. Et surtout ne pas toucher aux couleurs SÉMANTIQUES :
+   rouge des actions destructives (containedError), vert des barres de progression
+   (barColorSuccess), et couleur des avatars du journal d'activité qui encode la
+   gravité — d'où le scope .MuiAppBar-root sur l'avatar, limité à celui du header.
+   Sans effet sur la 10.11 : ces éléments n'existent que dans la coque moderne. */
+.MuiAppBar-root .MuiButton-colorPrimary {
+    color: var(--activeColor) !important;
+}
+
+.MuiAppBar-root .MuiAvatar-root {
+    background-color: var(--activeColor) !important;
+}
+
+.MuiAppBar-root .MuiBadge-badge {
+    background-color: var(--activeColor) !important;
+    color: #fff !important;
+}
+
+.MuiLink-root {
+    color: var(--activeColor) !important;
 }
 
 .listItemImage {
