@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.87 */
+/* ElegantFin Cinema Edition v1.2.88 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.87";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.88";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -345,8 +345,12 @@ body {
     font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 
+/* v1.2.88 : \e88e vaut "info" PLEIN dans Material Icons Round. L'état contour ne
+   peut pas venir de "FILL" 0 — inerte sur une police statique (cf. le bloc
+   @font-face ci-dessus) : il faut le NOM de la ligature contour, exactement
+   comme favorite / favorite_border. */
 .material-icons.info_outline:before {
-    content: "\e88e";
+    content: "info_outline";
     font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 
@@ -3162,17 +3166,24 @@ progress + span {
     background: var(--cardBackgroundGradient);
 }
 
+/* v1.2.88 : icônes désignées par NOM de ligature, plus par codepoint. Ces codes
+   dataient de la v1.1.0, quand le thème chargeait Material Symbols ; depuis le
+   passage à Material Icons Round (v1.2.67) ils ne pointent plus sur les mêmes
+   glyphes — \f1c6 donnait text_snippet, \e5d0 fullscreen, \e8eb view_carousel.
+   Les noms, eux, sont indépendants de la police : ils résolvent aussi bien dans
+   la nôtre que dans la police stock Jellyfin déclarée en fallback sur
+   .material-icons. Ne jamais revenir à des codepoints ici. */
 div[data-type="Book"] .play_arrow:before {
-    content: "\f1c6";
+    content: "book";
     font-size: 85%;
 }
 
 div[data-type="Photo"] .play_arrow:before {
-    content: "\e5d0";
+    content: "photo";
 }
 
 div[data-type="PhotoAlbum"] .play_arrow:before {
-    content: "\e8eb";
+    content: "photo_album";
 }
 
 .emby-button.block,
@@ -3338,7 +3349,7 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
 }
 
 .mainDetailButtons:has(.detailButton[data-type="Book"]) .btnPlay .material-icons.play_arrow:before {
-    content: "\f1c6";
+    content: "book";
     padding-inline-end: 1ch;
 }
 
@@ -4228,8 +4239,33 @@ textarea,
     box-shadow: none;
 }
 
-.layout-tv .skip-button:hover {
-    transform: none;
+/* v1.2.88 : sur TV, AUCUN état visuel ne doit repeindre le bouton. Deux règles
+   le passaient en blanc : le focus (v1.2.48, plus haut) — la TV donne le focus
+   au bouton dès qu'il apparaît, d'où la classe show-focus — ET le :hover du
+   media query ci-dessus, que la télécommande Tizen déclenche (avertissement
+   déjà écrit en v1.2.78, mais l'override TV n'annulait que le transform).
+   Le bouton naissait donc blanc, et la jauge de compte à rebours de Jellyfin,
+   qui se composite par-dessus, sortait délavée : violet → lavande, fond → gris.
+   Le focus se lit désormais à l'anneau blanc, comme sur le reste du thème.
+   `background` en raccourci (pas background-color) pour écraser aussi un
+   éventuel dégradé posé par Jellyfin. PC et mobile inchangés : l'inversion
+   blanche au survol y garde son sens, il y a un vrai pointeur. */
+.layout-tv .skip-button,
+.layout-tv .skip-button:hover,
+.layout-tv .skip-button:active,
+.layout-tv .skip-button:focus,
+.layout-tv .skip-button.show-focus:focus,
+.layout-tv .skip-button:focus-visible {
+    background: #111827 !important;
+    color: #fff !important;
+    transform: none !important;
+}
+
+.layout-tv .skip-button.show-focus:focus,
+.layout-tv .skip-button:focus-visible {
+    box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.95),
+        0 0 18px rgba(255, 255, 255, 0.45) !important;
 }
 
 .activeSession {

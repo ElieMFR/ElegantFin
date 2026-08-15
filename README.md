@@ -7,7 +7,7 @@
 
 **A cinematic fork of [ElegantFin](https://github.com/lscambo13/ElegantFin) — streaming-inspired Jellyfin theme**
 
-[![Version](https://img.shields.io/badge/Cinema%20Edition-v1.2.87-red?style=flat&logo=github)](https://github.com/peterdu1109/ElegantFin/releases)
+[![Version](https://img.shields.io/badge/Cinema%20Edition-v1.2.88-red?style=flat&logo=github)](https://github.com/peterdu1109/ElegantFin/releases)
 [![Based on](https://img.shields.io/badge/Based%20on-ElegantFin%20v26.04.07-blue?style=flat&logo=github)](https://github.com/lscambo13/ElegantFin)
 [![Jellyfin](https://img.shields.io/badge/Jellyfin-10.11.x-00A4DC?style=flat&logo=jellyfin&logoColor=white)](https://jellyfin.org)
 [![Platform](https://img.shields.io/badge/Platform-Desktop%20%7C%20Mobile%20%7C%20TV-green?style=flat)]()
@@ -79,7 +79,7 @@ Everything works on **desktop, mobile and TV** with a single CSS import.
 @import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
-> 📌 `@main` always follows the latest version. To pin a release (and upgrade on your own schedule), replace `@main` with a version tag, e.g. `@v1.2.87` — see [Releases](https://github.com/peterdu1109/ElegantFin/releases).
+> 📌 `@main` always follows the latest version. To pin a release (and upgrade on your own schedule), replace `@main` with a version tag, e.g. `@v1.2.88` — see [Releases](https://github.com/peterdu1109/ElegantFin/releases).
 
 <details>
 <summary><b>Server-side installation</b></summary>
@@ -239,7 +239,7 @@ Tout fonctionne sur **bureau, mobile et TV** avec un seul import CSS.
 @import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
-> 📌 `@main` suit toujours la derniere version. Pour figer une version (et mettre a jour quand VOUS le decidez), remplacez `@main` par un tag, ex. `@v1.2.87` — voir les [Releases](https://github.com/peterdu1109/ElegantFin/releases).
+> 📌 `@main` suit toujours la derniere version. Pour figer une version (et mettre a jour quand VOUS le decidez), remplacez `@main` par un tag, ex. `@v1.2.88` — voir les [Releases](https://github.com/peterdu1109/ElegantFin/releases).
 
 <details>
 <summary><b>Installation cote serveur</b></summary>

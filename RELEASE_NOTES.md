@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.87
+# ElegantFin Cinema Edition v1.2.88
 
 ## [English](#english) | [Francais](#francais)
 
@@ -828,6 +828,13 @@ Follow-up to the discovery that Jellyfin never injects custom CSS into the dashb
 - Two selectors in the TV blur-stripping rule targeted Material UI panels, but **TV always runs the legacy app**, so none are ever rendered there.
 
 The rest were confirmed live — including two happy accidents: the rule written for the dashboard's app bar is what already paints Jellyfin 12's modern header navy, and the toggle-group rule now styles that version's A-Z library picker.
+
+---
+
+#### v1.2.88 — The right icons, and the Skip button keeps its colours on TV
+
+- **Four icons were pointing at the wrong glyph.** The Book, Photo and Photo-album play icons, plus the outlined info icon, were still designated by Material Symbols codepoints inherited from v1.1.0. Since the move to a self-hosted Material Icons Round build in v1.2.67 those codes resolve to entirely different glyphs — `text_snippet`, `fullscreen`, `view_carousel`, and a filled `info`. They now use ligature **names**, which resolve identically in the theme's font and in Jellyfin's stock fallback, so the drift cannot happen again. Checked against the shipped font's own tables.
+- **Skip Intro on TV: the button now appears in its final colours.** On TV the button takes focus the moment it shows up, and the remote also fires `:hover` — two separate rules painted it white. Jellyfin's countdown gauge composites over that white, so the purple bar washed out to lavender and the navy body to grey. Every visual state is now neutralised on TV, focus being carried by the white ring instead. Desktop and mobile keep the white hover inversion, which makes sense where there is a real pointer.
 
 ---
 
@@ -1662,6 +1669,13 @@ Suite de la decouverte que Jellyfin n'injecte jamais de CSS personnalise dans le
 - Deux selecteurs de la regle TV qui coupe le flou visaient des panneaux Material UI, alors que **la TV tourne toujours sur l'app legacy** : aucun n'y est jamais rendu.
 
 Le reste est confirme actif — dont deux heureux hasards : la regle ecrite pour la barre du tableau de bord est justement celle qui peint deja en navy le header moderne de Jellyfin 12, et la regle des groupes de boutons habille desormais le selecteur A-Z des bibliotheques de cette version.
+
+---
+
+#### v1.2.88 — Les bonnes icones, et le bouton Passer garde ses couleurs sur TV
+
+- **Quatre icones pointaient sur le mauvais glyphe.** Les icones de lecture Livre, Photo et Album photo, ainsi que l'icone info en contour, etaient encore designees par des codepoints Material Symbols herites de la v1.1.0. Depuis le passage a une police Material Icons Round auto-hebergee en v1.2.67, ces codes designent de tout autres glyphes — `text_snippet`, `fullscreen`, `view_carousel` et un `info` plein. Elles passent aux **noms** de ligature, qui resolvent aussi bien dans la police du theme que dans celle de Jellyfin declaree en fallback : la derive ne peut plus se reproduire. Verifie contre les tables de la police distribuee.
+- **Passer Generique sur TV : le bouton nait dans ses couleurs finales.** Sur TV le bouton prend le focus des son apparition, et la telecommande declenche aussi le `:hover` — deux regles distinctes le peignaient en blanc. La jauge de compte a rebours de Jellyfin se composite par-dessus ce blanc : la barre violette virait au lavande et le fond navy au gris. Tous les etats visuels sont desormais neutralises sur TV, le focus se lisant a l'anneau blanc. Bureau et mobile conservent l'inversion blanche au survol, qui a du sens la ou il y a un vrai pointeur.
 
 ---
 

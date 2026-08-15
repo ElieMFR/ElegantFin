@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.87 */
+/* ElegantFin Cinema Edition v1.2.88 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.87";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.88";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -197,7 +197,7 @@ body {
     font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 .material-icons.info_outline:before {
-    content: "\e88e";
+    content: "info_outline";
     font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 .dashboardFooter {
@@ -2317,14 +2317,14 @@ progress + span {
     background: var(--cardBackgroundGradient);
 }
 div[data-type="Book"] .play_arrow:before {
-    content: "\f1c6";
+    content: "book";
     font-size: 85%;
 }
 div[data-type="Photo"] .play_arrow:before {
-    content: "\e5d0";
+    content: "photo";
 }
 div[data-type="PhotoAlbum"] .play_arrow:before {
-    content: "\e8eb";
+    content: "photo_album";
 }
 .emby-button.block,
 .button-alt,
@@ -2455,7 +2455,7 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
     content: "Read";
 }
 .mainDetailButtons:has(.detailButton[data-type="Book"]) .btnPlay .material-icons.play_arrow:before {
-    content: "\f1c6";
+    content: "book";
     padding-inline-end: 1ch;
 }
 .mainDetailButtons {
@@ -3131,8 +3131,21 @@ textarea,
     color: #000;
     box-shadow: none;
 }
-.layout-tv .skip-button:hover {
-    transform: none;
+.layout-tv .skip-button,
+.layout-tv .skip-button:hover,
+.layout-tv .skip-button:active,
+.layout-tv .skip-button:focus,
+.layout-tv .skip-button.show-focus:focus,
+.layout-tv .skip-button:focus-visible {
+    background: #111827 !important;
+    color: #fff !important;
+    transform: none !important;
+}
+.layout-tv .skip-button.show-focus:focus,
+.layout-tv .skip-button:focus-visible {
+    box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.95),
+        0 0 18px rgba(255, 255, 255, 0.45) !important;
 }
 .activeSession {
     width: 98% !important;
