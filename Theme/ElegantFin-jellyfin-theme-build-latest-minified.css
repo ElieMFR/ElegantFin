@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.88 */
+/* ElegantFin Cinema Edition v1.2.89 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.88";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.89";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -2420,8 +2420,7 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
     outline: 2px solid rgba(255, 255, 255, 0.95);
     outline-offset: 2px;
 }
-.skip-button:focus-visible,
-.layout-tv .skip-button.show-focus:focus {
+:root:not(.layout-tv) .skip-button:focus-visible {
     outline: none !important;
     background-color: #fff !important;
     color: #000 !important;
@@ -3117,7 +3116,7 @@ textarea,
     margin-left: var(--sidePadding);
 }
 @media (hover: hover) and (pointer: fine) {
-    .skip-button:hover {
+    :root:not(.layout-tv) .skip-button:hover {
         background-color: white;
         color: #000;
         transform: scale(1.03);
@@ -3131,21 +3130,8 @@ textarea,
     color: #000;
     box-shadow: none;
 }
-.layout-tv .skip-button,
-.layout-tv .skip-button:hover,
-.layout-tv .skip-button:active,
-.layout-tv .skip-button:focus,
-.layout-tv .skip-button.show-focus:focus,
-.layout-tv .skip-button:focus-visible {
-    background: #111827 !important;
-    color: #fff !important;
-    transform: none !important;
-}
-.layout-tv .skip-button.show-focus:focus,
-.layout-tv .skip-button:focus-visible {
-    box-shadow:
-        0 0 0 2px rgba(255, 255, 255, 0.95),
-        0 0 18px rgba(255, 255, 255, 0.45) !important;
+.layout-tv .skip-button:hover {
+    transform: none;
 }
 .activeSession {
     width: 98% !important;

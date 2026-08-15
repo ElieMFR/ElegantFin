@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.88 */
+/* ElegantFin Cinema Edition v1.2.89 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.88";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.89";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -3305,8 +3305,12 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
 
 /* v1.2.48 : bouton Skip intro/générique au focus = fond blanc plein + texte
    sombre (au lieu d'un contour fin peu visible pendant la lecture). */
-.skip-button:focus-visible,
-.layout-tv .skip-button.show-focus:focus {
+/* v1.2.89 : la TV est RETIRÉE de cette règle. Sur TV le bouton reçoit le focus
+   dès son apparition, donc ce fond blanc s'appliquait en permanence et la jauge
+   de compte à rebours de Jellyfin se compositait dessus. Sur TV le bouton reste
+   désormais sur sa règle de base, exactement comme sur PC au repos — où tout a
+   toujours fonctionné. Clavier PC inchangé. */
+:root:not(.layout-tv) .skip-button:focus-visible {
     outline: none !important;
     background-color: #fff !important;
     color: #000 !important;
@@ -4222,7 +4226,10 @@ textarea,
    pendant l'appui. ⚠️ La Tizen matche (hover:hover)(pointer:fine) — la
    télécommande déclenche :hover — d'où l'override TV sans transform dessous. */
 @media (hover: hover) and (pointer: fine) {
-    .skip-button:hover {
+    /* v1.2.89 : exclu sur TV — la télécommande Tizen déclenche :hover, donc ce
+       fond blanc s'appliquait aussi là-bas (avertissement écrit en v1.2.78 sans
+       en tirer la conséquence : l'override TV n'annulait que le transform). */
+    :root:not(.layout-tv) .skip-button:hover {
         background-color: white;
         color: #000;
         transform: scale(1.03);
@@ -4239,33 +4246,14 @@ textarea,
     box-shadow: none;
 }
 
-/* v1.2.88 : sur TV, AUCUN état visuel ne doit repeindre le bouton. Deux règles
-   le passaient en blanc : le focus (v1.2.48, plus haut) — la TV donne le focus
-   au bouton dès qu'il apparaît, d'où la classe show-focus — ET le :hover du
-   media query ci-dessus, que la télécommande Tizen déclenche (avertissement
-   déjà écrit en v1.2.78, mais l'override TV n'annulait que le transform).
-   Le bouton naissait donc blanc, et la jauge de compte à rebours de Jellyfin,
-   qui se composite par-dessus, sortait délavée : violet → lavande, fond → gris.
-   Le focus se lit désormais à l'anneau blanc, comme sur le reste du thème.
-   `background` en raccourci (pas background-color) pour écraser aussi un
-   éventuel dégradé posé par Jellyfin. PC et mobile inchangés : l'inversion
-   blanche au survol y garde son sens, il y a un vrai pointeur. */
-.layout-tv .skip-button,
-.layout-tv .skip-button:hover,
-.layout-tv .skip-button:active,
-.layout-tv .skip-button:focus,
-.layout-tv .skip-button.show-focus:focus,
-.layout-tv .skip-button:focus-visible {
-    background: #111827 !important;
-    color: #fff !important;
-    transform: none !important;
-}
-
-.layout-tv .skip-button.show-focus:focus,
-.layout-tv .skip-button:focus-visible {
-    box-shadow:
-        0 0 0 2px rgba(255, 255, 255, 0.95),
-        0 0 18px rgba(255, 255, 255, 0.45) !important;
+/* ⚠️ INVARIANT — bouton skip sur TV : NE RIEN DÉCLARER ICI qui touche au fond.
+   Jellyfin peint sa jauge de compte à rebours (10 s) sur ce bouton ; toute règle
+   du thème qui repeint le fond sur TV se retrouve SOUS la jauge et la fausse
+   (v1.2.88 : `background` en raccourci = `background-image: none !important` =
+   jauge effacée). Le bouton doit rester sur sa seule règle de base, comme sur
+   PC et mobile où il a toujours été correct. Seul le placement est spécifique. */
+.layout-tv .skip-button:hover {
+    transform: none;
 }
 
 .activeSession {

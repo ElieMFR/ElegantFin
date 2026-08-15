@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.88
+# ElegantFin Cinema Edition v1.2.89
 
 ## [English](#english) | [Francais](#francais)
 
@@ -835,6 +835,14 @@ The rest were confirmed live — including two happy accidents: the rule written
 
 - **Books, photos and photo albums showed the wrong icon**, and the outlined "info" icon came out filled. They were designated by numeric character codes inherited from the theme's original icon font; moving to a self-hosted font in v1.2.67 changed what those codes point to. They now use icon **names**, which mean the same thing in the theme's font and in Jellyfin's own — so the mismatch cannot come back.
 - **Skip Intro on TV: the button now appears in its final colours.** It used to show up washed out — purple countdown bar turned lavender, dark background turned grey — until you moved the mouse or pressed a key. On TV the button takes focus the instant it appears, and the remote also counts as a mouse-over: two separate rules were painting it white underneath Jellyfin's countdown bar. Focus is now carried by the white ring instead. Desktop and mobile are unchanged.
+
+---
+
+#### v1.2.89 — Skip button: the countdown gauge is back
+
+The TV fix shipped in v1.2.88 used the `background` shorthand, which also resets `background-image` — and that is exactly what Jellyfin draws its 10-second countdown gauge with. The purple bar disappeared on TV.
+
+This release takes the opposite approach: instead of adding an override, the two rules that were repainting the button on TV are excluded from it — the white focus fill (which applied permanently there, since the button takes focus the moment it appears) and the white hover fill (the remote fires `:hover` on Tizen). The button now computes exactly the same style as on desktop and mobile, where it had always been correct, and nothing in the theme paints its background on TV any more. An `⚠️ INVARIANT` comment marks the spot.
 
 ---
 
@@ -1676,6 +1684,14 @@ Le reste est confirme actif — dont deux heureux hasards : la regle ecrite pour
 
 - **Livres, photos et albums photo affichaient la mauvaise icone**, et l'icone « info » en contour sortait pleine. Elles etaient designees par des codes numeriques herites de la police d'icones d'origine ; le passage a une police auto-hebergee en v1.2.67 a change ce que ces codes designent. Elles utilisent desormais les **noms** des icones, qui veulent dire la meme chose dans la police du theme et dans celle de Jellyfin : l'ecart ne peut plus revenir.
 - **Passer Generique sur TV : le bouton nait dans ses couleurs finales.** Il apparaissait delave — barre violette virant au lavande, fond sombre virant au gris — jusqu'a ce qu'on bouge la souris ou appuie sur une touche. Sur TV le bouton prend le focus des son apparition, et la telecommande compte aussi comme un survol souris : deux regles distinctes le peignaient en blanc sous la barre de compte a rebours de Jellyfin. Le focus se lit desormais a l'anneau blanc. Bureau et mobile inchanges.
+
+---
+
+#### v1.2.89 — Bouton Passer : la jauge de compte a rebours est revenue
+
+Le correctif TV livre en v1.2.88 utilisait le raccourci `background`, qui remet aussi `background-image` a zero — or c'est precisement avec ca que Jellyfin dessine sa jauge des 10 secondes. La barre violette avait disparu sur TV.
+
+Cette version prend le chemin inverse : au lieu d'ajouter une surcharge, les deux regles qui repeignaient le bouton sur TV en sont exclues — le fond blanc du focus (qui s'y appliquait en permanence, le bouton recevant le focus des son apparition) et le fond blanc du survol (la telecommande Tizen declenche `:hover`). Le bouton calcule desormais exactement le meme style que sur PC et mobile, ou il avait toujours ete correct, et plus aucune regle du theme ne peint son fond sur TV. Un commentaire `⚠️ INVARIANT` marque l'endroit.
 
 ---
 
