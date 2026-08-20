@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.89
+# ElegantFin Cinema Edition v1.2.90
 
 ## [English](#english) | [Francais](#francais)
 
@@ -843,6 +843,12 @@ The rest were confirmed live — including two happy accidents: the rule written
 The TV fix shipped in v1.2.88 used the `background` shorthand, which also resets `background-image` — and that is exactly what Jellyfin draws its 10-second countdown gauge with. The purple bar disappeared on TV.
 
 This release takes the opposite approach: instead of adding an override, the two rules that were repainting the button on TV are excluded from it — the white focus fill (which applied permanently there, since the button takes focus the moment it appears) and the white hover fill (the remote fires `:hover` on Tizen). The button now computes exactly the same style as on desktop and mobile, where it had always been correct, and nothing in the theme paints its background on TV any more. An `⚠️ INVARIANT` comment marks the spot.
+
+---
+
+#### v1.2.90 — Home Screen Sections: a readable Top 10, and French Discover badges
+
+The Home Screen Sections plugin draws its giant Top 10 rank numbers with the theme's darkest gradient point — near-black — over a near-black background, so the ranking was all but invisible here. The numbers are now a hollow outline in the theme accent, so the ranking reads at a glance. The plugin's Discover row also hard-codes its `Movie` and `Series` badges in blue and purple; they now take the accent and read `Film` and `Série`. Theme-side only — the plugin itself is not touched.
 
 ---
 
@@ -1692,6 +1698,12 @@ Le reste est confirme actif — dont deux heureux hasards : la regle ecrite pour
 Le correctif TV livre en v1.2.88 utilisait le raccourci `background`, qui remet aussi `background-image` a zero — or c'est precisement avec ca que Jellyfin dessine sa jauge des 10 secondes. La barre violette avait disparu sur TV.
 
 Cette version prend le chemin inverse : au lieu d'ajouter une surcharge, les deux regles qui repeignaient le bouton sur TV en sont exclues — le fond blanc du focus (qui s'y appliquait en permanence, le bouton recevant le focus des son apparition) et le fond blanc du survol (la telecommande Tizen declenche `:hover`). Le bouton calcule desormais exactement le meme style que sur PC et mobile, ou il avait toujours ete correct, et plus aucune regle du theme ne peint son fond sur TV. Un commentaire `⚠️ INVARIANT` marque l'endroit.
+
+---
+
+#### v1.2.90 — Home Screen Sections : un Top 10 lisible, et des badges Decouvrir en francais
+
+Le plugin Home Screen Sections dessine ses grands numeros de Top 10 avec le point le plus sombre du degrade du theme — quasi noir — sur un fond lui aussi quasi noir : le classement etait donc a peine visible. Les chiffres sont desormais un contour evide a la couleur d'accent du theme, et le classement se lit d'un coup d'oeil. La rangee Decouvrir du plugin code aussi ses badges `Movie` et `Series` en bleu et violet ; ils prennent maintenant l'accent et affichent `Film` et `Serie`. Cote theme uniquement — le plugin lui-meme n'est pas modifie.
 
 ---
 

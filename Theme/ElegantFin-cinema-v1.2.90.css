@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.89 */
+/* ElegantFin Cinema Edition v1.2.90 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.89";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.90";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -6203,3 +6203,34 @@ for extended styling, use the add-on */
 }
 
 /* === Editor's Choice Plugin overrides — end === */
+
+/* === Home Screen Sections (HSS) overrides — start ===
+   Plugin : fork FR de IAmParadox27/jellyfin-plugin-home-sections
+   1) Top 10 — le chiffre géant est colorié par défaut en --darkerGradientPoint
+      (#111827, quasi noir) avec un contour --borderColor terne, donc invisible
+      sur le fond sombre du thème. On le passe en contour d'accent, remplissage
+      transparent, pour qu'il ressorte.
+   2) Rangée Découvrir — les badges sont codés 'Movie'/'Series' en bleu/violet en
+      dur dans le plugin. On les met à l'accent du thème et en français. Sélecteur
+      volontairement plus spécifique (.discover-card ...) pour battre le plugin
+      quel que soit l'ordre de chargement. */
+
+.top-ten .card:before {
+    color: transparent;
+    -webkit-text-stroke: 3px var(--uiAccentColor);
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+}
+
+.discover-card .discoverCard-movie:before {
+    content: 'Film';
+    background-color: var(--uiAccentColor);
+    border-color: var(--uiAccentColor);
+}
+
+.discover-card .discoverCard-tv:before {
+    content: 'Série';
+    background-color: var(--uiAccentColor);
+    border-color: var(--uiAccentColor);
+}
+
+/* === Home Screen Sections (HSS) overrides — end === */
