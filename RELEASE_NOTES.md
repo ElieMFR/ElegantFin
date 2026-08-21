@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.91
+# ElegantFin Cinema Edition v1.2.92
 
 ## [English](#english) | [Francais](#francais)
 
@@ -857,6 +857,16 @@ The Home Screen Sections plugin draws its giant Top 10 rank numbers with the the
 The series or movie logo was positioned in screen units — `top: 45vh` on phones, `calc(100vh - 6em …)` on season pages — while the title below it sat in normal document flow. Two independent coordinate systems, so their relative position depended on the height of the screen: on some devices the logo landed on the title, on others it was cut off inside the top bar. Measured on a real page, the logo's rectangle started at **-91 px** — entirely above the window.
 
 It is now a block in normal flow. The DOM already places it before the title, so it ends up above it by construction, with no coordinate to tune. Its top margin is the height of the app bar, so it can never enter it again, and its size is expressed in `em` rather than screen units, so it no longer changes with the window. The two `padding-top` band-aids that used to push the title down (23vh on desktop, 20vh on mobile) are removed — they were what left the large empty gap. TV is untouched: its own placement was tuned separately and stays as it is.
+
+---
+
+#### v1.2.92 — Housekeeping: fourteen inert declarations removed
+
+A full dead-code pass against the real Jellyfin 10.11.11 source (1,067 files) found **no dead selector** — everything the theme targets exists. What it did find was inert declarations: CSS variables and animations that nothing reads, neither the theme nor Jellyfin.
+
+Nine variables and two animations are gone, along with three redundancies found in an earlier audit: a `backdrop-filter` declared twice on the side menu with conflicting values (the first was dead, the menu renders with the second), a `max-width` duplicated on mobile, and a `left` overwritten inside its own rule. Zero visual change.
+
+Eight declarations that look inert were deliberately kept — the OSD gradients, the mini-play colours, the highlight outline and two animations. Nothing in this fork reads them, but the original ElegantFin does, so keeping them makes the next upstream diff readable. A comment in the file now says so, to stop a future pass from "fixing" a variable that drives nothing — which is exactly what the v1.2.82 Firefox campaign did to the two OSD gradients, rewriting them for no effect at all.
 
 ---
 
@@ -1720,6 +1730,16 @@ Le plugin Home Screen Sections dessine ses grands numeros de Top 10 avec le poin
 Le logo de la serie ou du film etait place en unites d'ecran — `top: 45vh` sur telephone, `calc(100vh - 6em …)` sur les pages Saison — alors que le titre, lui, restait dans le flux normal du document. Deux systemes de coordonnees independants : leur position relative dependait donc de la hauteur de l'ecran, et le logo tombait sur le titre sur certains appareils, ou se retrouvait coupe dans la barre du haut sur d'autres. Mesure sur une vraie page : le rectangle du logo commencait a **-91 px**, soit entierement au-dessus de la fenetre.
 
 Il est desormais un bloc dans le flux. Le DOM le place deja avant le titre : il se retrouve donc au-dessus par construction, sans aucune coordonnee a regler. Sa marge haute vaut la hauteur de la barre d'application, il ne peut donc plus y entrer, et sa taille est exprimee en `em` plutot qu'en unites d'ecran, donc elle ne varie plus avec la fenetre. Les deux `padding-top` qui poussaient le titre vers le bas (23vh sur PC, 20vh sur mobile) sont supprimes : c'est eux qui creaient le grand vide. La TV n'est pas touchee, son placement ayant ete regle separement.
+
+---
+
+#### v1.2.92 — Menage : quatorze declarations inertes retirees
+
+Une passe complete de code mort contre le vrai source de Jellyfin 10.11.11 (1 067 fichiers) n'a trouve **aucun selecteur mort** : tout ce que le theme cible existe bien. En revanche elle a trouve des declarations inertes — des variables CSS et des animations que personne ne lit, ni le theme ni Jellyfin.
+
+Neuf variables et deux animations disparaissent, avec trois redondances reperees lors d'un audit precedent : un `backdrop-filter` declare deux fois sur le menu lateral avec des valeurs differentes (la premiere etait morte, le menu rend avec la seconde), un `max-width` duplique sur mobile, et un `left` ecrase a l'interieur de sa propre regle. Zero changement visuel.
+
+Huit declarations d'apparence inerte sont volontairement conservees — les degrades de l'OSD, les couleurs du bouton mini-lecture, le contour de surbrillance et deux animations. Rien dans ce fork ne les lit, mais l'ElegantFin d'origine si : les garder rend le prochain diff amont lisible. Un commentaire le dit desormais dans le fichier, pour qu'une future passe ne « corrige » pas une variable qui ne pilote rien — c'est exactement ce qu'a fait la campagne Firefox de la v1.2.82 sur les deux degrades de l'OSD, reecrits sans le moindre effet.
 
 ---
 
