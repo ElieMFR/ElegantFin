@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.92 */
+/* ElegantFin Cinema Edition v1.2.93 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.92";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.93";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -232,9 +232,13 @@
        none: makes the clear logo always hidden */
     --clearLogoVisibility: block;
 
-    /* none: dynamically hides the main title of Movie/TV if its logo is available [default]; 
+    /* none: dynamically hides the main title of Movie/TV if its logo is available [default];
        block: makes the title always visible */
     --itemTitleVisibility: none;
+
+    /* none: hides the critics rating on phones, to unclutter the info line [default];
+       block: keeps it visible there. Phones only — desktop and TV always show it. */
+    --criticsRatingVisibility: none;
 
     /* block: shows the mini play or three-dot button on cards only on mobile [default]; 
     none: makes them always hidden only on mobile */
@@ -1647,6 +1651,16 @@ body {
 
 [dir="ltr"] .mediaInfoCriticRating::after {
     content: "%";
+}
+
+/* v1.2.93 : note des critiques masquée sur téléphone (choix utilisateur), pour
+   désencombrer la ligne d'infos sous le titre là où la largeur manque. Idée
+   reprise d'upstream (6c40255), mais scopée `.layout-mobile` comme le reste du
+   thème plutôt qu'à une largeur en em, et livrée dans le sens voulu ici —
+   upstream expédie l'inverse de ce que ses propres commentaires annoncent.
+   Mettre `--criticsRatingVisibility: block` pour la réafficher. */
+.layout-mobile .mediaInfoCriticRating {
+    display: var(--criticsRatingVisibility);
 }
 
 .detailRibbon:has(.portraitCard .folder) {

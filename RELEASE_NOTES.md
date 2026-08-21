@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.92
+# ElegantFin Cinema Edition v1.2.93
 
 ## [English](#english) | [Francais](#francais)
 
@@ -867,6 +867,14 @@ A full dead-code pass against the real Jellyfin 10.11.11 source (1,067 files) fo
 Nine variables and two animations are gone, along with three redundancies found in an earlier audit: a `backdrop-filter` declared twice on the side menu with conflicting values (the first was dead, the menu renders with the second), a `max-width` duplicated on mobile, and a `left` overwritten inside its own rule. Zero visual change.
 
 Eight declarations that look inert were deliberately kept — the OSD gradients, the mini-play colours, the highlight outline and two animations. Nothing in this fork reads them, but the original ElegantFin does, so keeping them makes the next upstream diff readable. A comment in the file now says so, to stop a future pass from "fixing" a variable that drives nothing — which is exactly what the v1.2.82 Firefox campaign did to the two OSD gradients, rewriting them for no effect at all.
+
+---
+
+#### v1.2.93 — Critics rating hidden on phones
+
+The info line under a title on a phone — year, runtime, rating, critics score — is cramped on a narrow screen. The critics score is now hidden there, and there only: desktop and TV are unchanged. Set `--criticsRatingVisibility: block` to bring it back.
+
+The idea comes from the original ElegantFin, but scoped to the theme's own `.layout-mobile` rather than a width threshold, and shipped in the direction actually wanted here — upstream ships the opposite of what its own comments describe.
 
 ---
 
@@ -1740,6 +1748,14 @@ Une passe complete de code mort contre le vrai source de Jellyfin 10.11.11 (1 06
 Neuf variables et deux animations disparaissent, avec trois redondances reperees lors d'un audit precedent : un `backdrop-filter` declare deux fois sur le menu lateral avec des valeurs differentes (la premiere etait morte, le menu rend avec la seconde), un `max-width` duplique sur mobile, et un `left` ecrase a l'interieur de sa propre regle. Zero changement visuel.
 
 Huit declarations d'apparence inerte sont volontairement conservees — les degrades de l'OSD, les couleurs du bouton mini-lecture, le contour de surbrillance et deux animations. Rien dans ce fork ne les lit, mais l'ElegantFin d'origine si : les garder rend le prochain diff amont lisible. Un commentaire le dit desormais dans le fichier, pour qu'une future passe ne « corrige » pas une variable qui ne pilote rien — c'est exactement ce qu'a fait la campagne Firefox de la v1.2.82 sur les deux degrades de l'OSD, reecrits sans le moindre effet.
+
+---
+
+#### v1.2.93 — Note des critiques masquee sur telephone
+
+La ligne d'infos sous un titre sur telephone — annee, duree, classification, note des critiques — est a l'etroit sur un ecran fin. La note des critiques y est desormais masquee, et uniquement la : PC et TV sont inchanges. Mettre `--criticsRatingVisibility: block` pour la reafficher.
+
+L'idee vient de l'ElegantFin d'origine, mais scopee au `.layout-mobile` du theme plutot qu'a un seuil de largeur, et livree dans le sens reellement voulu ici — upstream expedie l'inverse de ce que ses propres commentaires annoncent.
 
 ---
 
