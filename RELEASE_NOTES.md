@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.90
+# ElegantFin Cinema Edition v1.2.91
 
 ## [English](#english) | [Francais](#francais)
 
@@ -849,6 +849,14 @@ This release takes the opposite approach: instead of adding an override, the two
 #### v1.2.90 — Home Screen Sections: a readable Top 10, and French Discover badges
 
 The Home Screen Sections plugin draws its giant Top 10 rank numbers with the theme's darkest gradient point — near-black — over a near-black background, so the ranking was all but invisible here. The numbers are now a hollow outline in the theme accent, so the ranking reads at a glance. The plugin's Discover row also hard-codes its `Movie` and `Series` badges in blue and purple; they now take the accent and read `Film` and `Série`. Theme-side only — the plugin itself is not touched.
+
+---
+
+#### v1.2.91 — The logo now sits above the title, on desktop and mobile
+
+The series or movie logo was positioned in screen units — `top: 45vh` on phones, `calc(100vh - 6em …)` on season pages — while the title below it sat in normal document flow. Two independent coordinate systems, so their relative position depended on the height of the screen: on some devices the logo landed on the title, on others it was cut off inside the top bar. Measured on a real page, the logo's rectangle started at **-91 px** — entirely above the window.
+
+It is now a block in normal flow. The DOM already places it before the title, so it ends up above it by construction, with no coordinate to tune. Its top margin is the height of the app bar, so it can never enter it again, and its size is expressed in `em` rather than screen units, so it no longer changes with the window. The two `padding-top` band-aids that used to push the title down (23vh on desktop, 20vh on mobile) are removed — they were what left the large empty gap. TV is untouched: its own placement was tuned separately and stays as it is.
 
 ---
 
@@ -1704,6 +1712,14 @@ Cette version prend le chemin inverse : au lieu d'ajouter une surcharge, les deu
 #### v1.2.90 — Home Screen Sections : un Top 10 lisible, et des badges Decouvrir en francais
 
 Le plugin Home Screen Sections dessine ses grands numeros de Top 10 avec le point le plus sombre du degrade du theme — quasi noir — sur un fond lui aussi quasi noir : le classement etait donc a peine visible. Les chiffres sont desormais un contour evide a la couleur d'accent du theme, et le classement se lit d'un coup d'oeil. La rangee Decouvrir du plugin code aussi ses badges `Movie` et `Series` en bleu et violet ; ils prennent maintenant l'accent et affichent `Film` et `Serie`. Cote theme uniquement — le plugin lui-meme n'est pas modifie.
+
+---
+
+#### v1.2.91 — Le logo passe au-dessus du titre, sur PC et mobile
+
+Le logo de la serie ou du film etait place en unites d'ecran — `top: 45vh` sur telephone, `calc(100vh - 6em …)` sur les pages Saison — alors que le titre, lui, restait dans le flux normal du document. Deux systemes de coordonnees independants : leur position relative dependait donc de la hauteur de l'ecran, et le logo tombait sur le titre sur certains appareils, ou se retrouvait coupe dans la barre du haut sur d'autres. Mesure sur une vraie page : le rectangle du logo commencait a **-91 px**, soit entierement au-dessus de la fenetre.
+
+Il est desormais un bloc dans le flux. Le DOM le place deja avant le titre : il se retrouve donc au-dessus par construction, sans aucune coordonnee a regler. Sa marge haute vaut la hauteur de la barre d'application, il ne peut donc plus y entrer, et sa taille est exprimee en `em` plutot qu'en unites d'ecran, donc elle ne varie plus avec la fenetre. Les deux `padding-top` qui poussaient le titre vers le bas (23vh sur PC, 20vh sur mobile) sont supprimes : c'est eux qui creaient le grand vide. La TV n'est pas touchee, son placement ayant ete regle separement.
 
 ---
 

@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.90 */
+/* ElegantFin Cinema Edition v1.2.91 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.90";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.91";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -1247,16 +1247,24 @@ body {
     height: 25vh;
     background-position: bottom;
 }
-.layout-mobile .detailLogo {
-    display: var(--clearLogoVisibility);
-    z-index: 1;
-    position: absolute;
-    left: 1em;
-    top: 45vh;
-    margin: auto 0%;
-    width: calc(100vw - 2em);
-    max-height: 17vh;
-    animation: animMoveUp 1s ease-out forwards;
+html.layout-desktop #itemDetailPage .detailLogo:not(.hide),
+html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
+    display: var(--clearLogoVisibility, block) !important;
+    position: static !important;
+    float: none !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    margin: calc(var(--appBarHeight, 4.6em) + 0.8em) auto 0.4em !important;
+    width: min(70%, 33em) !important;
+    height: 11em !important;
+    max-height: 11em !important;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    animation: none !important;
 }
 .layout-tv .detailLogo {
     display: var(--clearLogoVisibility);
@@ -1268,9 +1276,6 @@ body {
 }
 #itemDetailPage:has(.subtitle) .detailLogo {
     top: calc(100vh - 6em - var(--secondaryItemPageNegativeSpace));
-}
-.layout-mobile #itemDetailPage:has(.subtitle) .detailLogo {
-    top: calc(100vh - 11em - var(--secondaryItemPageNegativeSpace));
 }
 .layout-desktop .detailImageContainer .card {
     position: relative !important;
@@ -1385,12 +1390,6 @@ body {
         width: auto !important;
         height: auto !important;
     }
-}
-.layout-desktop #itemDetailPage:has(.subtitle:not(.focuscontainer-x)) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer {
-    padding-top: 23vh !important;
-}
-.layout-mobile #itemDetailPage:has(.subtitle:not(.focuscontainer-x)) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer {
-    padding-top: 20vh !important;
 }
 .layout-desktop .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a),
 .layout-mobile .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1.parentName:has(a) {

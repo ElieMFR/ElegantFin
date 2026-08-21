@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.90 */
+/* ElegantFin Cinema Edition v1.2.91 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.90";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.91";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -1770,16 +1770,39 @@ body {
     background-position: bottom;
 }
 
-.layout-mobile .detailLogo {
-    display: var(--clearLogoVisibility);
-    z-index: 1;
-    position: absolute;
-    left: 1em;
-    top: 45vh;
-    margin: auto 0%;
-    width: calc(100vw - 2em);
-    max-height: 17vh;
-    animation: animMoveUp 1s ease-out forwards;
+/* v1.2.91 — LOGO DANS LE FLUX, au-dessus du titre (PC + mobile).
+   Avant : le logo était en `position: absolute`, placé par des unités d'écran
+   (`top: 45vh` sur mobile, `calc(100vh - 6em …)` sur les pages Saison/Épisode),
+   PENDANT que le titre restait en flux normal. Deux systèmes de coordonnées →
+   leur position relative dépendait de la hauteur de l'écran, donc dérivait d'un
+   appareil à l'autre : logo sur le titre, ou coupé dans la barre du haut.
+   MESURÉ sur la vraie page : `top: 29,5px` + `transform: translateY(-100%)`
+   (hauteur 121px) donnait un rectangle à **-91px**, soit hors écran par le haut.
+   Depuis, le logo est un bloc en flux : le DOM le place déjà avant
+   `.detailPageWrapperContainer` (cf. les sélecteurs `~` de ce fichier), il se
+   retrouve donc au-dessus du titre PAR CONSTRUCTION, sans coordonnée à régler.
+   La marge haute vaut `--appBarHeight` → il ne peut plus entrer dans la barre.
+   Hauteur en `em` et non en `vh` → il ne change plus de taille avec la fenêtre.
+   ⚠️ TV NON CONCERNÉE : elle garde son placement absolu (règle plus bas), réglé
+   séparément et validé. Ne pas dé-scoper sans le retester sur la TV. */
+html.layout-desktop #itemDetailPage .detailLogo:not(.hide),
+html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
+    display: var(--clearLogoVisibility, block) !important;
+    position: static !important;
+    float: none !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    margin: calc(var(--appBarHeight, 4.6em) + 0.8em) auto 0.4em !important;
+    width: min(70%, 33em) !important;
+    height: 11em !important;
+    max-height: 11em !important;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    animation: none !important;
 }
 
 .layout-tv .detailLogo {
@@ -1795,9 +1818,6 @@ body {
     top: calc(100vh - 6em - var(--secondaryItemPageNegativeSpace));
 }
 
-.layout-mobile #itemDetailPage:has(.subtitle) .detailLogo {
-    top: calc(100vh - 11em - var(--secondaryItemPageNegativeSpace));
-}
 
 .layout-desktop .detailImageContainer .card {
     position: relative !important;
@@ -1965,13 +1985,11 @@ body {
    et où le subtitle est "Saison X - N. Episode Title", pas juste "Saison X").
    SDK confirmé : sur Saison page, subtitle n'a PAS .focuscontainer-x ;
    sur Episode page, subtitle.focuscontainer-x (contient un <a Season>). */
-.layout-desktop #itemDetailPage:has(.subtitle:not(.focuscontainer-x)) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer {
-    padding-top: 23vh !important;
-}
-
-.layout-mobile #itemDetailPage:has(.subtitle:not(.focuscontainer-x)) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer {
-    padding-top: 20vh !important;
-}
+/* v1.2.91 : les deux `padding-top` (23vh PC / 20vh mobile) sont SUPPRIMÉS.
+   Ils poussaient le titre sous un logo alors en position absolue ; le logo étant
+   désormais dans le flux, ils ne servaient plus qu'à creuser un trou — mesuré à
+   141,9 px sur une fenêtre de 617 px, soit exactement les 23vh. Une règle en
+   moins plutôt qu'une surcharge de plus. La TV n'en a jamais eu. */
 
 /* ============================================================
    v1.2.40 — CONSOLIDATION : lien série visible cliquable (remplace overlay v1.2.32)
