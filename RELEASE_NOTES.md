@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.93
+# ElegantFin Cinema Edition v1.2.94
 
 ## [English](#english) | [Francais](#francais)
 
@@ -875,6 +875,14 @@ Eight declarations that look inert were deliberately kept — the OSD gradients,
 The info line under a title on a phone — year, runtime, rating, critics score — is cramped on a narrow screen. The critics score is now hidden there, and there only: desktop and TV are unchanged. Set `--criticsRatingVisibility: block` to bring it back.
 
 The idea comes from the original ElegantFin, but scoped to the theme's own `.layout-mobile` rather than a width threshold, and shipped in the direction actually wanted here — upstream ships the opposite of what its own comments describe.
+
+---
+
+#### v1.2.94 — Jellyfin 12: the credits block is styled again
+
+Ported from the original ElegantFin. In Jellyfin 12's legacy interface the credits block — Genres, Director, Writers, Studios — lost the `.content` class the theme was targeting, so those lines fell back to unstyled: left-aligned, full-strength text, no separators. They now also match `.focuscontainer-x`, which that markup kept, and the separator rule covers the group's direct children as well.
+
+Verified against Jellyfin 10.11's own markup, where the element carries `class="genres content focuscontainer-x"` — both classes — so 10.11 is unaffected. Upstream replaced the old selector; this fork adds the new one alongside instead, in case a 10.11 variant lacks it.
 
 ---
 
@@ -1756,6 +1764,14 @@ Huit declarations d'apparence inerte sont volontairement conservees — les degr
 La ligne d'infos sous un titre sur telephone — annee, duree, classification, note des critiques — est a l'etroit sur un ecran fin. La note des critiques y est desormais masquee, et uniquement la : PC et TV sont inchanges. Mettre `--criticsRatingVisibility: block` pour la reafficher.
 
 L'idee vient de l'ElegantFin d'origine, mais scopee au `.layout-mobile` du theme plutot qu'a un seuil de largeur, et livree dans le sens reellement voulu ici — upstream expedie l'inverse de ce que ses propres commentaires annoncent.
+
+---
+
+#### v1.2.94 — Jellyfin 12 : le bloc des credits retrouve son style
+
+Porte depuis l'ElegantFin d'origine. Dans l'interface legacy de Jellyfin 12, le bloc des credits — Genres, Realisateur, Scenariste, Studios — a perdu la classe `.content` que le theme ciblait : ces lignes retombaient donc sans style, alignees a gauche, en texte plein et sans separateurs. Elles repondent desormais aussi a `.focuscontainer-x`, que ce balisage a conservee, et la regle de separation couvre egalement les enfants directs du groupe.
+
+Verifie contre le balisage de Jellyfin 10.11, ou l'element porte `class="genres content focuscontainer-x"` — les deux classes — donc la 10.11 n'est pas affectee. Upstream a remplace l'ancien selecteur ; ce fork ajoute le nouveau a cote, au cas ou une variante 10.11 ne le porterait pas.
 
 ---
 

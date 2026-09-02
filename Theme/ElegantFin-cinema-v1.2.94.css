@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.93 */
+/* ElegantFin Cinema Edition v1.2.94 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.93";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.94";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -3810,10 +3810,23 @@ div[data-role="controlgroup"] a.ui-btn-active {
     align-items: baseline;
 }
 
-.detailsGroupItem:not(:last-child) {
+/* v1.2.94 — compatibilité Jellyfin 12 Legacy, porté d'upstream d26a8e4.
+   En 12, le bloc des crédits (Genres, Réalisateur, Scénariste, Studios) perd la
+   classe `.content` mais conserve `.focuscontainer-x`, et ses lignes ne sont plus
+   toutes des `.detailsGroupItem`. VÉRIFIÉ dans le source 10.11 : l'élément y porte
+   `class="genres content focuscontainer-x"` — les DEUX classes — donc ajouter la
+   seconde ne change strictement rien en 10.11. Upstream a REMPLACÉ `.content` ;
+   on préfère AJOUTER, au cas où une variante 10.11 n'aurait pas `focuscontainer-x`. */
+.detailsGroupItem:not(:last-child),
+.itemDetailsGroup > div:not(:last-child) {
     border-bottom-color: rgba(255, 255, 255, 0.06) !important;
     border-bottom-style: solid;
     border-bottom-width: var(--borderWidth);
+}
+
+/* Pas de trait sous une ligne vide : en 12 un groupe sans contenu reste dans le DOM. */
+.itemDetailsGroup > div:empty {
+    border-bottom: none;
 }
 
 .detailsGroupItem > .label {
@@ -3822,12 +3835,14 @@ div[data-role="controlgroup"] a.ui-btn-active {
     color: var(--textColor);
 }
 
-.detailsGroupItem > .content > a {
+.detailsGroupItem > .content > a,
+.detailsGroupItem > .focuscontainer-x a {
     font-weight: 400;
     text-align: end;
 }
 
-.detailsGroupItem > .content {
+.detailsGroupItem > .content,
+.detailsGroupItem > .focuscontainer-x {
     text-align: end;
     color: var(--dimTextColor);
     word-break: break-word;
