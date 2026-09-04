@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.94
+# ElegantFin Cinema Edition v1.2.95
 
 ## [English](#english) | [Francais](#francais)
 
@@ -883,6 +883,14 @@ The idea comes from the original ElegantFin, but scoped to the theme's own `.lay
 Ported from the original ElegantFin. In Jellyfin 12's legacy interface the credits block — Genres, Director, Writers, Studios — lost the `.content` class the theme was targeting, so those lines fell back to unstyled: left-aligned, full-strength text, no separators. They now also match `.focuscontainer-x`, which that markup kept, and the separator rule covers the group's direct children as well.
 
 Verified against Jellyfin 10.11's own markup, where the element carries `class="genres content focuscontainer-x"` — both classes — so 10.11 is unaffected. Upstream replaced the old selector; this fork adds the new one alongside instead, in case a 10.11 variant lacks it.
+
+---
+
+#### v1.2.95 — The top bar can no longer get stuck hidden on phones
+
+After a long session on a phone, the top bar sometimes stayed off-screen until the page was reloaded. Jellyfin's scroll detector occasionally misses the "re-pin" event and leaves its `headroom--unpinned` class on the header — and Jellyfin itself never styles that class on the header, only on the footer and the now-playing bar. The theme's own rule was therefore the one thing turning that stuck class into a bar pushed off-screen.
+
+It is now neutralised on phones, as it already was on TV since v1.2.80 and above 1200 px wide. The trade-off is deliberate: the header no longer slides away while scrolling on a phone, so a little screen height is lost, in exchange for a bar that cannot disappear. Desktop below that width keeps the hide-on-scroll, no symptom having been observed there.
 
 ---
 
@@ -1772,6 +1780,14 @@ L'idee vient de l'ElegantFin d'origine, mais scopee au `.layout-mobile` du theme
 Porte depuis l'ElegantFin d'origine. Dans l'interface legacy de Jellyfin 12, le bloc des credits — Genres, Realisateur, Scenariste, Studios — a perdu la classe `.content` que le theme ciblait : ces lignes retombaient donc sans style, alignees a gauche, en texte plein et sans separateurs. Elles repondent desormais aussi a `.focuscontainer-x`, que ce balisage a conservee, et la regle de separation couvre egalement les enfants directs du groupe.
 
 Verifie contre le balisage de Jellyfin 10.11, ou l'element porte `class="genres content focuscontainer-x"` — les deux classes — donc la 10.11 n'est pas affectee. Upstream a remplace l'ancien selecteur ; ce fork ajoute le nouveau a cote, au cas ou une variante 10.11 ne le porterait pas.
+
+---
+
+#### v1.2.95 — La barre du haut ne peut plus rester coincee sur telephone
+
+Apres une longue session sur telephone, la barre du haut restait parfois hors ecran jusqu'au rechargement de la page. Le detecteur de defilement de Jellyfin rate parfois le reepinglage et laisse sa classe `headroom--unpinned` sur l'en-tete — et Jellyfin lui-meme ne style jamais cette classe sur l'en-tete, seulement sur le pied de page et la barre de lecture en cours. La regle du theme etait donc la seule a traduire cette classe coincee en barre poussee hors ecran.
+
+Elle est desormais neutralisee sur telephone, comme elle l'etait deja sur TV depuis la v1.2.80 et au-dela de 1200 px de large. L'arbitrage est assume : l'en-tete ne s'efface plus au defilement sur telephone, on y perd un peu de hauteur d'ecran, en echange d'une barre qui ne peut plus disparaitre. Le bureau en dessous de cette largeur conserve le masquage, faute de symptome constate.
 
 ---
 

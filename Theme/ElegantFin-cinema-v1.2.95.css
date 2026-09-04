@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.94 */
+/* ElegantFin Cinema Edition v1.2.95 */
 /* Enhanced with 32 cinematic modules — premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.94";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.95";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -5222,7 +5222,21 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    défilement programmatique télécommande) → barre figée hors écran même
    revenu tout en haut. Avec translateY(0), le raté devient invisible.
    PC et mobile gardent le masquage au scroll standard. */
-.layout-tv .headroom--unpinned {
+/* v1.2.95 : le mobile rejoint la TV, sur constat utilisateur — après une longue
+   session sur téléphone, la barre du haut restait coincée hors écran jusqu'au
+   rechargement de la page.
+   ⚠️ FAIT ÉTABLI, qui justifie de neutraliser plutôt que de contourner :
+   Jellyfin 10.11 ne style JAMAIS `headroom--unpinned` sur l'en-tête — dans son
+   source, cette classe ne sert que pour `.appfooter` et la barre de lecture en
+   cours. La règle ci-dessus est donc la SEULE à traduire la classe en « barre
+   hors écran ». Quand le détecteur de Jellyfin rate le ré-épinglage, c'est nous
+   qui rendons le raté visible ; sans transformation, il ne se voit plus.
+   Arbitrage assumé : on perd le gain de hauteur au défilement sur téléphone, on
+   gagne une barre qui ne peut plus disparaître. Au-dessus de 75em le masquage
+   était déjà neutralisé (media query plus bas) ; le bureau en dessous de cette
+   largeur le conserve, faute de symptôme constaté là. */
+.layout-tv .headroom--unpinned,
+.layout-mobile .headroom--unpinned {
     -webkit-transform: translateY(0);
     transform: translateY(0);
 }
