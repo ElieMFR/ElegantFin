@@ -182,7 +182,7 @@ If a plugin isn't in this list, the theme just doesn't add overrides for it — 
 ### Credits
 
 - **Original theme:** [ElegantFin](https://github.com/lscambo13/ElegantFin) by [lscambo13](https://github.com/lscambo13)
-- **Cinema Edition:** Enhanced by [peterdu1109](https://github.com/peterdu1109)
+- **Cinema Edition:** Enhanced by [ElieMFR](https://github.com/ElieMFR)
 
 ---
 
