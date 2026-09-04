@@ -77,6 +77,16 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.2.96 — On phones, the backdrop no longer paints over the text
+
+On a film or series page the theme pins the backdrop image with `position: sticky`. That makes it a *positioned* element, and a positioned element paints above the in-flow text of its siblings — and `.itemBackdrop` sits alongside `.detailPageWrapperContainer`, which holds the title, the subtitle and the overview. The image was therefore composited on top of the text instead of behind it, washing out whatever scrolled through it.
+
+Measured at 375×812: pinned at `top: -30%` with `height: 45vh`, the image leaves 15vh permanently stuck to the top of the screen; minus the top bar, that is a band of roughly 50 px where `elementFromPoint` returned `itemBackdrop` rather than the text. The `-30%` resolves against the viewport and not the page, so the length of the page changes nothing — identical results on a 1,329 px page and a 6,818 px one. The band grows with screen height, vanishes in landscape, and never existed on episode or season pages, whose 28vh backdrop ends up pinned off-screen. Hence a defect that dimmed the text rather than hiding it, and went unreported for a long time.
+
+The text container now takes its own stacking context and moves back in front — exactly what the TV layout already does. The image stays visible in the background and no effect is lost. Desktop was never affected: its backdrop is not sticky, therefore not positioned.
+
+---
+
 #### v1.2.95 — The top bar can no longer get stuck hidden on phones
 
 After a long session on a phone, the top bar sometimes stayed off-screen until the page was reloaded. Jellyfin's scroll detector occasionally misses the "re-pin" event and leaves its `headroom--unpinned` class on the header — and Jellyfin itself never styles that class on the header, only on the footer and the now-playing bar. The theme's own rule was therefore the one thing turning that stuck class into a bar pushed off-screen.
@@ -451,6 +461,16 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.2.96 — Sur telephone, l'image de fond ne recouvre plus le texte
+
+Sur une fiche film ou serie, le theme epingle l'image de fond en `position: sticky`. Cela en fait un element *positionne*, et un element positionne se peint au-dessus du texte en flux de ses freres — or `.itemBackdrop` est frere de `.detailPageWrapperContainer`, qui porte le titre, le sous-titre et le resume. L'image etait donc composee par-dessus le texte au lieu d'etre derriere, et delavait tout ce qui defilait dessous.
+
+Mesure en 375×812 : epinglee a `top: -30%` pour `height: 45vh`, elle laisse en permanence 15vh colles en haut de l'ecran ; moins la barre du haut, il reste une bande d'environ 50 px ou `elementFromPoint` renvoyait `itemBackdrop` plutot que le texte. Le `-30%` se resout sur la fenetre et non sur la page : la longueur de la fiche n'y change rien, resultat identique sur 1 329 px et sur 6 818 px. La bande grandit avec la hauteur d'ecran, disparait en paysage, et n'a jamais existe sur les fiches episode ou saison, dont l'image de 28vh se retrouve epinglee hors ecran. D'ou un defaut qui ternissait le texte au lieu de le masquer, et qui n'avait jamais ete signale.
+
+Le conteneur de texte prend desormais son propre contexte d'empilement et repasse devant — exactement ce que fait deja la disposition TV. L'image reste visible en fond, aucun effet n'est perdu. Le PC n'a jamais ete concerne : son image de fond n'est pas collante, donc pas positionnee.
 
 ---
 

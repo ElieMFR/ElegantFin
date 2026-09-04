@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.95 */
+/* ElegantFin Cinema Edition v1.2.96 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.95";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.96";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -1887,9 +1887,29 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
     margin-top: -150%;
 }
 
+/* v1.2.96 — mobile : le texte repasse AU-DESSUS de l'image de fond.
+   `.layout-mobile .itemBackdrop` (ligne 1733) est en `position: sticky`, donc
+   c'est un élément POSITIONNÉ — et un élément positionné se peint au-dessus du
+   texte en flux de ses frères. Or `.itemBackdrop` et `.detailPageWrapperContainer`
+   (titre, sous-titre, résumé : tout le texte de la fiche) sont frères, les
+   sélecteurs `~` de ce fichier l'attestent. L'image recouvrait donc le texte.
+   MESURÉ à 375×812 : épinglée à `top: -30%` pour `height: 45vh`, elle laisse en
+   permanence 15vh collés en haut de l'écran ; moins la barre du haut, il reste
+   ~50 px où `elementFromPoint` renvoyait `itemBackdrop` (y = 80, 95, 110) au lieu
+   du texte. Le `-30%` se résout sur la FENÊTRE et non sur la page : la hauteur de
+   la fiche n'y change rien (identique sur 1 329 px et 6 818 px). Le bandeau croît
+   avec la hauteur d'écran, disparaît en paysage, et n'existe pas sur les fiches
+   épisode/saison (backdrop à 28vh → épinglé hors écran) — d'où un défaut discret,
+   qui délavait le texte au lieu de le masquer franchement.
+   Correctif : le conteneur de texte prend son propre contexte d'empilement et
+   repasse devant — exactement ce que la TV fait déjà ligne 1388. L'image reste
+   visible en fond, aucun effet perdu. Sans objet sur PC : le backdrop n'y est pas
+   collant, donc pas positionné. */
 .layout-mobile .detailPageWrapperContainer {
     padding-top: 0;
     margin-top: 0.5em;
+    position: relative;
+    z-index: 1;
 }
 
 /* this hides the detail logo  when media card is visible */
