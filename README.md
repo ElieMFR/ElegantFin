@@ -17,7 +17,11 @@
 
 ---
 
+<div align="center">
+
 ## [English](#english) | [Francais](#francais)
+
+</div>
 
 ---
 
