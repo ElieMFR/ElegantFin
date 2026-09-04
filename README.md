@@ -12,7 +12,6 @@
 [![Jellyfin](https://img.shields.io/badge/Jellyfin-10.11.x-00A4DC?style=flat&logo=jellyfin&logoColor=white)](https://jellyfin.org)
 [![Platform](https://img.shields.io/badge/Platform-Desktop%20%7C%20Mobile%20%7C%20TV-green?style=flat)]()
 [![jsDelivr](https://img.shields.io/jsdelivr/gh/hm/peterdu1109/ElegantFin?style=flat&label=CDN&color=orange)](https://www.jsdelivr.com/package/gh/peterdu1109/ElegantFin)
-[![Stars](https://img.shields.io/github/stars/peterdu1109/ElegantFin?style=flat&color=yellow)](https://github.com/peterdu1109/ElegantFin/stargazers)
 
 </div>
 
