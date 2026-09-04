@@ -7,7 +7,7 @@
 
 **A cinematic fork of [ElegantFin](https://github.com/lscambo13/ElegantFin) — streaming-inspired Jellyfin theme**
 
-[![Version](https://img.shields.io/badge/Cinema%20Edition-v1.2.96-red?style=flat&logo=github)](https://github.com/peterdu1109/ElegantFin/releases)
+[![Version](https://img.shields.io/badge/Cinema%20Edition-v1.2.97-red?style=flat&logo=github)](https://github.com/peterdu1109/ElegantFin/releases)
 [![Based on](https://img.shields.io/badge/Based%20on-ElegantFin%20v26.06.06-blue?style=flat&logo=github)](https://github.com/lscambo13/ElegantFin)
 [![Jellyfin](https://img.shields.io/badge/Jellyfin-10.11.x-00A4DC?style=flat&logo=jellyfin&logoColor=white)](https://jellyfin.org)
 [![Platform](https://img.shields.io/badge/Platform-Desktop%20%7C%20Mobile%20%7C%20TV-green?style=flat)]()
@@ -69,7 +69,6 @@ Everything works on **desktop, mobile and TV** with a single CSS import.
 | **Mobile Optimizations** | Reduced blur intensity for better performance |
 | **Skeleton Loading** | Animated pulse placeholder while card images load |
 | **Hover Preview Info** | Secondary text and gradient reveal on card hover (desktop) |
-| **Scroller Edge Fade** | Gradient edges on horizontal scroll rows for depth |
 | **Now Playing Glass** | Glassmorphism on the Now Playing bar |
 | **Watched Overlay** | Subtle dark overlay on already-watched items |
 | **Sidebar Glass** | Enhanced sidebar with glass effect, styled nav items |
@@ -84,7 +83,7 @@ Everything works on **desktop, mobile and TV** with a single CSS import.
 @import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
-> 📌 `@main` always follows the latest version. To pin a release (and upgrade on your own schedule), replace `@main` with a version tag, e.g. `@v1.2.96` — see [Releases](https://github.com/peterdu1109/ElegantFin/releases).
+> 📌 `@main` always follows the latest version. To pin a release (and upgrade on your own schedule), replace `@main` with a version tag, e.g. `@v1.2.97` — see [Releases](https://github.com/peterdu1109/ElegantFin/releases).
 
 <details>
 <summary><b>Server-side installation</b></summary>
@@ -230,7 +229,6 @@ Tout fonctionne sur **PC, mobile et TV** avec un seul import CSS.
 | **Optimisations mobile** | Intensité de flou réduite pour de meilleures performances |
 | **Chargement en silhouette** | Forme animée le temps que l'image de la carte arrive |
 | **Aperçu au survol** | Texte secondaire et dégradé révélés au survol des cartes (PC) |
-| **Fondu des bords** | Dégradés latéraux sur les listes horizontales, pour la profondeur |
 | **Lecture en cours en verre** | Effet verre dépoli sur la barre de lecture |
 | **Voile sur les éléments vus** | Voile sombre discret sur ce qui est déjà visionné |
 | **Menu latéral en verre** | Menu latéral en verre dépoli, entrées de navigation habillées |
@@ -245,7 +243,7 @@ Tout fonctionne sur **PC, mobile et TV** avec un seul import CSS.
 @import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
-> 📌 `@main` suit toujours la dernière version. Pour figer une version et mettre à jour quand VOUS le décidez, remplacez `@main` par un tag, par exemple `@v1.2.96` — voir les [Releases](https://github.com/peterdu1109/ElegantFin/releases).
+> 📌 `@main` suit toujours la dernière version. Pour figer une version et mettre à jour quand VOUS le décidez, remplacez `@main` par un tag, par exemple `@v1.2.97` — voir les [Releases](https://github.com/peterdu1109/ElegantFin/releases).
 
 <details>
 <summary><b>Installation côté serveur</b></summary>

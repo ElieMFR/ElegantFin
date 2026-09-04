@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.96 */
+/* ElegantFin Cinema Edition v1.2.97 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.96";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.97";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -1326,7 +1326,6 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
 #itemDetailPage:has(.detailImageContainer .backdropCard) .detailLogo,
 #itemDetailPage:has(.detailImageContainer .album) .detailLogo,
 #itemDetailPage:has(.detailImageContainer .person) .detailLogo {
-    z-index: 2;
     display: none;
 }
 .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1 {
@@ -1654,6 +1653,7 @@ html,
     .verticalSection,
     .section0 .cardImageContainer::before,
     .backdropImageFadeIn,
+    .layout-mobile .itemBackdrop,
     #loginPage .padded-left.padded-right.padded-bottom-page {
         animation: none !important;
     }
@@ -2091,8 +2091,6 @@ progress + span {
     .actionSheetContent {
         backdrop-filter: blur(15px) !important;
         -webkit-backdrop-filter: blur(15px) !important;
-    }
-    .mainDrawer {
     }
     .toast {
         backdrop-filter: blur(15px) !important;
@@ -4000,7 +3998,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 .layout-tv .focuscontainer,
 .layout-tv .backdropImage {
     animation-duration: 0s !important;
-    backdrop-filter: none;
 }
 .card.show-animation .cardBox {
     transition: transform 0.05s ease-out, -webkit-transform 0.05s ease-out;
@@ -4064,6 +4061,11 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 .layout-tv .cardScalable {
     will-change: auto !important;
 }
+.layout-tv .backdropImage::before {
+    filter: none !important;
+    -webkit-filter: none !important;
+    transform: none !important;
+}
 @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
     .layout-mobile .dialog:not(.dialog-fullscreen),
     .layout-mobile .appfooter {
@@ -4093,11 +4095,9 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     border-radius: inherit;
     z-index: 0;
 }
-.layout-tv .cardImageContainer:empty::after {
-    animation: none !important;
-}
 @media (prefers-reduced-motion: reduce) {
-    .cardImageContainer:empty::after {
+    .cardImageContainer:empty::after,
+    .cardImageContainer .blurhash-canvas + .cardImage[src=""]::after {
         animation: none !important;
     }
 }
@@ -4124,33 +4124,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
         rgba(0, 0, 0, 0.5) 70%,
         transparent 100%
     );
-}
-.layout-desktop .emby-scroller-container {
-    position: relative;
-}
-.layout-desktop .emby-scroller-container::before,
-.layout-desktop .emby-scroller-container::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 3em;
-    z-index: 2;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-.layout-desktop .emby-scroller-container::before {
-    left: 0;
-    background: linear-gradient(to right, var(--backgroundForAppBar), transparent);
-}
-.layout-desktop .emby-scroller-container::after {
-    right: 0;
-    background: linear-gradient(to left, var(--backgroundForAppBar), transparent);
-    opacity: 1;
-}
-.layout-desktop .emby-scroller-container:hover::before {
-    opacity: 1;
 }
 .mediaInfoItem:not(.endsAt) {
     border-radius: 0.3em;

@@ -17,7 +17,6 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 - **Skeleton loading** — Animated pulse placeholder while card images load, with subtle gradient shimmer. Disabled on TV and reduced-motion.
 - **Hover preview info** — Secondary text (year, rating, genres) smoothly reveals on card hover with a cinematic bottom gradient overlay (desktop only)
-- **Scroller edge fade** — Left/right gradient edges on horizontal scroll rows, indicating scrollable content. Uses `--backgroundForAppBar` for seamless blending.
 - **Scroll-to-top glass** — Glass-effect button with `backdrop-filter: blur(15px)`, border glow, and hover lift animation
 - **Resolution badges** — Color-coded media info badges: 4K (gold), HDR (green), Dolby Vision (purple), Atmos (cyan) with matching borders and subtle backgrounds
 - **Now Playing bar glass** — Glassmorphism on the Now Playing bar with `blur(20px) saturate(1.4)`, dark border-top, and shadow. Disabled on TV.
@@ -74,6 +73,22 @@ This release transforms the ElegantFin theme into a professional, premium stream
 - **Reactive slider** — Expands to `0.5em` on hover, white thumb with `border-radius: 2px`, glow on progress bar
 - **Firefox slider** — Full `::-moz-range-thumb` styling matching WebKit (size, border, radius, transitions)
 - **Skip button** — Bold (700), `letter-spacing: 0.03em`, `scale(1.03)` on hover
+
+---
+
+#### v1.2.97 — Full audit: a dead feature removed, reduced-motion completed, the last TV blur gone
+
+**The "scroller edge fade" is removed, not repaired.** Its two rules read `var(--backgroundForAppBar)` with no fallback, and that variable has never been defined — not here, not upstream, not in Jellyfin; `git log -S` finds it missing from the entire history since it shipped in v1.2.0. An undefined `var()` without a fallback invalidates the declaration, so `background-image` fell back to `none`: the fade never painted anything, across every release since.
+
+It was deleted rather than fixed because it duplicates the scroll arrows: same 3 em width, same gradient to transparent, same hover trigger. The duplication is structural, not accidental — the class it targeted, `.emby-scroller-container`, is added by the scroll-buttons component itself, so the fade could only ever have appeared exactly where the arrows already are. Its two differences both went the wrong way: its right-hand band stayed lit permanently, and starting at `top: 0` it would have covered the section title, which the arrows deliberately avoid. Its `position: relative` went too — Jellyfin declares it on that same class.
+
+**`prefers-reduced-motion` now covers every animation.** Three escaped it: the mobile backdrop, animated in two places, and the blurhash half of the skeleton placeholder — an infinite loop, the worst kind to leave running for someone who asked for less motion. The accessibility claim in the README now holds.
+
+**TV: the last full-screen blur is gone.** `.backdropImage:before` carried `filter: blur(10px)` plus a 1.1× scale across the whole viewport, with no platform scope. The TV block only stripped its `will-change`, and a `backdrop-filter: none` cannot touch a `filter`. It only showed with Jellyfin's "Backdrops" option enabled — off by default — which is why it went unnoticed.
+
+**Four inert declarations removed:** a `z-index` next to a `display: none`, an empty `.mainDrawer` rule, a `backdrop-filter: none` on two elements that never carried one, and a duplicated TV skeleton rule.
+
+The audit also found nothing wrong in several places worth naming: no dead selectors (446 tokens checked against both Jellyfin 10.11 and master), no conflicting redeclarations, all ten documented options wired, and no external resource of any kind — no `@import`, no remote `url()`, fonts served locally. Six unread variables were left alone on purpose: upstream consumes them, and keeping them keeps the next upstream diff readable.
 
 ---
 
@@ -404,7 +419,6 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 
 - **Skeleton loading** — Placeholder anime avec effet de pulsation pendant le chargement des images, avec degrade subtil. Desactive sur TV et mouvement reduit.
 - **Info au survol** — Texte secondaire (annee, note, genres) apparait en douceur au survol des cartes avec un degrade cinematique (bureau uniquement)
-- **Fondu bords scroller** — Degrades lateraux sur les rangees de defilement horizontal, indiquant le contenu defilable. Utilise `--backgroundForAppBar` pour une integration fluide.
 - **Scroll-to-top verre** — Bouton avec `backdrop-filter: blur(15px)`, bordure lumineuse, et animation de levitation au survol
 - **Badges resolution** — Badges media colores : 4K (dore), HDR (vert), Dolby Vision (violet), Atmos (cyan) avec bordures assorties et fonds subtils
 - **Barre Now Playing verre** — Glassmorphism sur la barre de lecture en cours avec `blur(20px) saturate(1.4)`, bordure sombre et ombre. Desactive sur TV.
@@ -461,6 +475,22 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.2.97 — Audit complet : une fonctionnalite morte retiree, mouvement reduit complete, dernier flou TV supprime
+
+**Le « fondu des bords » des rangees est supprime, pas repare.** Ses deux regles lisaient `var(--backgroundForAppBar)` sans valeur de repli, et cette variable n'a jamais ete definie — ni ici, ni chez upstream, ni chez Jellyfin ; `git log -S` la donne absente de tout l'historique depuis son introduction en v1.2.0. Une `var()` indefinie sans repli invalide la declaration : `background-image` retombait a `none`. Le fondu n'a donc jamais rien peint, dans toutes les versions parues depuis.
+
+Il a ete supprime plutot que repare parce qu'il fait double emploi avec les fleches de defilement : memes 3 em, meme degrade vers transparent, meme declenchement au survol. Le doublon est structurel, pas fortuit — la classe qu'il ciblait, `.emby-scroller-container`, est posee par le composant des boutons lui-meme : le fondu ne pouvait apparaitre QUE la ou les fleches existent deja. Ses deux differences allaient toutes deux dans le mauvais sens : sa bande droite restait allumee en permanence, et partant de `top: 0` elle aurait mordu sur le titre de section, que les fleches evitent expres. Son `position: relative` part avec — Jellyfin le declare deja sur cette meme classe.
+
+**`prefers-reduced-motion` couvre desormais toutes les animations.** Trois lui echappaient : l'image de fond mobile, animee a deux endroits, et la moitie blurhash du squelette de chargement — une boucle infinie, la pire chose a laisser tourner pour quelqu'un qui a demande moins de mouvement. La promesse d'accessibilite du README est enfin tenue.
+
+**TV : le dernier flou plein ecran tombe.** `.backdropImage:before` portait un `filter: blur(10px)` et un agrandissement de 1,1x sur toute la fenetre, sans scope de plateforme. Le bloc TV ne lui retirait que son `will-change`, et un `backdrop-filter: none` ne peut rien contre un `filter`. Il ne se manifestait qu'avec l'option « Arriere-plans » de Jellyfin activee — desactivee par defaut — d'ou son passage inapercu.
+
+**Quatre declarations inertes retirees :** un `z-index` pose a cote d'un `display: none`, une regle `.mainDrawer` vide, un `backdrop-filter: none` sur deux elements qui n'en portaient aucun, et une regle TV du squelette declaree deux fois.
+
+L'audit n'a rien trouve a redire ailleurs, et cela merite d'etre dit : aucun selecteur mort (446 jetons verifies contre Jellyfin 10.11 et master), aucune redeclaration en conflit, les dix options documentees toutes cablees, et aucune ressource externe d'aucune sorte — pas d'`@import`, pas d'`url()` distante, polices servies en local. Six variables non lues ont ete laissees en place volontairement : upstream les consomme, et les garder rend le prochain diff amont lisible.
 
 ---
 
