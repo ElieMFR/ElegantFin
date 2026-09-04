@@ -165,7 +165,7 @@ Cinema Edition has dedicated styling for these popular Jellyfin plugins:
 |--------|--------------|----------------|
 | [**Editor's Choice**](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | Curated editorial picks on home page | Banner spacing fix, button/section collision resolved, 3-line description on desktop, working scroll/pause controls as navy pills below the header, aspect-ratio-safe title logo |
 | [**Media Bar**](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) | Auto-cycling slideshow at top of home | Glassmorphism overlay, gradient backdrop, polished button states |
-| [**NotifySync**](https://github.com/peterdu1109/NotifySync) | Real-time notification bell | Native integration with theme's accent color and styling |
+| [**Home Screen Sections**](https://github.com/IAmParadox27/jellyfin-plugin-home-sections) | Extra curated rows on the home page | Readable Top 10 rank numbers (they were near-black on near-black), Discover badges in the theme accent and in French |
 
 If a plugin isn't in this list, the theme just doesn't add overrides for it — it'll work with default styling.
 
@@ -326,7 +326,7 @@ Cinema Edition a un styling dedie pour ces plugins Jellyfin populaires :
 |--------|---------------|----------------|
 | [**Editor's Choice**](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | Selection editoriale curatee sur la home | Fix espacement banner, collision bouton/section resolue, description 3 lignes desktop, controles scroll/pause fonctionnels en pastilles navy sous le header, logo de titre au ratio preserve |
 | [**Media Bar**](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) | Slideshow auto-cycling en haut de la home | Overlay glassmorphism, backdrop gradient, etats boutons polish |
-| [**NotifySync**](https://github.com/peterdu1109/NotifySync) | Cloche notifications temps reel | Integration native avec la couleur accent et le styling du theme |
+| [**Home Screen Sections**](https://github.com/IAmParadox27/jellyfin-plugin-home-sections) | Rangees curatees supplementaires sur la home | Numeros du Top 10 lisibles (ils etaient quasi noirs sur fond quasi noir), badges Decouvrir a la couleur du theme et en francais |
 
 Si un plugin n'est pas dans cette liste, le theme ne lui applique aucun override — il fonctionne avec son styling par defaut.
 
