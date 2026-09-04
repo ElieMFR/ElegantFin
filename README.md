@@ -31,7 +31,7 @@
 
 ### What is this?
 
-This is a **Cinema Edition** of the ElegantFin theme by [lscambo13](https://github.com/lscambo13), enhanced with **32 cinematic modules** that transform your Jellyfin into a professional streaming experience inspired by the major streaming platforms.
+This is a **Cinema Edition** of the ElegantFin theme by [lscambo13](https://github.com/lscambo13), enhanced with **cinematic modules** that transform your Jellyfin into a professional streaming experience inspired by the major streaming platforms.
 
 Everything works on **desktop, mobile and TV** with a single CSS import.
 
@@ -192,7 +192,7 @@ If a plugin isn't in this list, the theme just doesn't add overrides for it — 
 
 ### C'est quoi ?
 
-C'est une **Edition Cinema** du theme ElegantFin par [lscambo13](https://github.com/lscambo13), enrichie de **32 modules cinematiques** qui transforment votre Jellyfin en une experience de streaming professionnelle inspiree des grandes plateformes de streaming.
+C'est une **Edition Cinema** du theme ElegantFin par [lscambo13](https://github.com/lscambo13), enrichie de **modules cinematiques** qui transforment votre Jellyfin en une experience de streaming professionnelle inspiree des grandes plateformes de streaming.
 
 Tout fonctionne sur **bureau, mobile et TV** avec un seul import CSS.
 

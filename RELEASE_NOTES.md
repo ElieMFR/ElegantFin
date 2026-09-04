@@ -7,7 +7,7 @@
 <a name="english"></a>
 ## English
 
-### Cinema Edition — 28 cinematic modules on top of ElegantFin v26.04.07
+### Cinema Edition — cinematic modules on top of ElegantFin
 
 This release transforms the ElegantFin theme into a professional, premium streaming experience while keeping full compatibility with desktop, mobile, and TV platforms.
 
@@ -904,7 +904,7 @@ Bundle of 4 fixes addressing real user-reported issues across all platforms:
 <a name="francais"></a>
 ## Francais
 
-### Edition Cinema — 28 modules cinematiques par-dessus ElegantFin v26.04.07
+### Edition Cinema — modules cinematiques par-dessus ElegantFin
 
 Cette version transforme le theme ElegantFin en une experience de streaming professionnelle inspiree des grandes apps de streaming, tout en gardant la compatibilite complete avec bureau, mobile et TV.
 
