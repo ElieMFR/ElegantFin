@@ -76,6 +76,22 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.2.99 — Four rules that were being silently overruled
+
+An audit crossed every declaration in the theme against every other one, and against Jellyfin's 475 `!important` declarations, looking for one case only: a declaration whose competitor covers a superset of the same elements, so it can never win anywhere. Each survivor was then confirmed by loading the real file in a browser and reading the computed values.
+
+**Media type badges show their colours again.** The small corner badge Jellyfin puts on folders, photo albums, photos and home videos was meant to be amber, blue or red. The base rule sets `background: var(--headerColor) !important` three lines above, so all four rendered the same grey — measured identical to the badge that has no colour rule at all. Only affects photo libraries, home-video libraries and folder views; never films or series.
+
+**The OSD title lays out on two lines.** The player block imposes `height: 3em !important`, `line-height: 1.2 !important` and `font-size: 1em !important`, so the long-episode-title rules never applied: measured 16 px / 48 px / 19.2 px instead of 14.4 px / auto / 20.8 px. The two-line clamp was set but the box stayed locked at 48 px with visible overflow, so a long title spilled out instead of fitting. Now 14.4 px and a box that grows.
+
+**The phone's mini Play button is back to its intended size.** Its `font-size: 75%` was losing to Jellyfin's `.cardOverlayButtonIcon { font-size: 1.66956…em !important }`. Fixed with a dedicated rule rather than an `!important` on the whole group, so the two other selectors sharing it are untouched.
+
+**Three dead declarations removed**, with no visual change: six of the seven declarations in a duplicated `.mediaInfoItem` block, a `border-radius` on multi-select checkboxes that Jellyfin pins to 0, and the `border-radius` written for `.navMenuOption` in four places while another rule pins it with `!important`. The sidebar keeps the rounding it has today — a deliberate choice, the difference being three pixels on a corner.
+
+**Left alone on purpose.** The frosted glass on collapsible blocks is cancelled by a rule carrying `!important`; both rules come from upstream's initial commit, so that effect has never once been visible. Turning it on would be a new design decision, not a repair. And two focus indicators are deduced dead but could not be measured — `:focus-visible` cannot be simulated reliably — so they stay untouched rather than removed on a conviction.
+
+---
+
 #### v1.2.98 — Phones: a way back to Home from a film or series page
 
 On a phone, opening a film or series left you with no route home. That comes from Jellyfin, not the theme: `libraryMenu.js` sets `enableLibraryNavDrawer = layoutManager.desktop`, so the hamburger menu exists on desktop everywhere but on a phone only on the home screen. On a detail page you were left with the back arrow and an edge swipe nobody guesses.
@@ -487,6 +503,22 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.2.99 — Quatre regles qui se faisaient battre en silence
+
+Un audit a croise chaque declaration du theme avec toutes les autres, et avec les 475 declarations `!important` de Jellyfin, en ne cherchant qu'un seul cas : une declaration dont la concurrente couvre un sur-ensemble des memes elements, donc qui ne peut gagner nulle part. Chaque survivante a ensuite ete confirmee en chargeant le vrai fichier dans un navigateur et en lisant les valeurs calculees.
+
+**Les pastilles de type retrouvent leurs couleurs.** La petite pastille que Jellyfin pose dans le coin des dossiers, albums photo, photos et videos personnelles devait etre ambre, bleue ou rouge. La regle de base pose `background: var(--headerColor) !important` trois lignes plus haut : les quatre rendaient le meme gris, mesure identique a celui de la pastille qui n'a aucune regle de couleur. Ne concerne que les bibliotheques Photos, Videos personnelles et la navigation par dossiers ; jamais un film ni une serie.
+
+**Le titre de l'OSD tient sur deux lignes.** Le bloc du lecteur impose `height: 3em !important`, `line-height: 1.2 !important` et `font-size: 1em !important` : les reglages prevus pour les titres d'episodes longs ne s'appliquaient pas. Mesure : 16 px / 48 px / 19,2 px au lieu de 14,4 px / auto / 20,8 px. La decoupe sur deux lignes etait bien posee, mais la boite restait figee a 48 px avec debordement visible, si bien qu'un titre long sortait de son cadre au lieu d'y tenir.
+
+**Le mini-bouton Lire du telephone retrouve sa taille.** Son `font-size: 75%` perdait contre `.cardOverlayButtonIcon { font-size: 1,66956…em !important }` de Jellyfin. Corrige par une regle dediee plutot qu'un `!important` pose sur tout le groupe, pour ne rien changer aux deux autres selecteurs qui le partagent.
+
+**Trois declarations mortes retirees**, sans changement visuel : six des sept declarations d'un bloc `.mediaInfoItem` duplique, un `border-radius` sur les cases de multi-selection que Jellyfin fixe a 0, et le `border-radius` ecrit pour `.navMenuOption` a quatre endroits alors qu'une autre regle le fixe en `!important`. Le menu lateral garde l'arrondi qu'il a aujourd'hui — choix assume, l'ecart valant trois pixels sur un coin.
+
+**Volontairement laisse en place.** Le verre depoli des blocs repliables est annule par une regle en `!important` ; les deux regles viennent du commit initial d'upstream, cet effet n'a donc jamais ete visible une seule fois. L'allumer serait une decision esthetique neuve, pas une reparation. Et deux indicateurs de focus sont deduits morts sans avoir pu etre mesures — `:focus-visible` ne se simule pas de facon fiable — ils restent donc intacts plutot que supprimes sur une conviction.
 
 ---
 

@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.98 */
+/* ElegantFin Cinema Edition v1.2.99 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.98";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.99";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -336,7 +336,6 @@ body {
 .navMenuOption:focus,
 .navMenuOption.show-focus:focus {
     background: #fff !important;
-    border-radius: 0.7em;
 }
 .navMenuOption:focus .navMenuOptionText,
 .navMenuOption:focus .navMenuOptionIcon {
@@ -548,6 +547,9 @@ body {
     font-size: 75%;
     box-shadow: var(--shadow);
     z-index: 2;
+}
+.layout-mobile .cardOverlayButton-br:not([data-action="menu"]) > .cardOverlayButtonIcon {
+    font-size: 75% !important;
 }
 .cardOverlayContainer > .cardOverlayFab-primary:hover,
 .listItemImageButton:hover {
@@ -1023,17 +1025,17 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
 .layout-tv .osdHeader .headerLeft .pageTitle {
     -webkit-line-clamp: 2;
     line-clamp: 2;
-    height: auto;
+    height: auto !important;
     max-height: 3em;
-    line-height: 1.3;
-    font-size: 0.9em;
+    line-height: 1.3 !important;
+    font-size: 0.9em !important;
 }
 .layout-mobile .osdHeader .headerLeft .pageTitle {
     -webkit-line-clamp: 2;
     line-clamp: 2;
-    height: auto;
+    height: auto !important;
     max-height: 3em;
-    line-height: 1.3;
+    line-height: 1.3 !important;
     max-width: calc(100vw - 7em);
 }
 .paper-icon-button-light > .material-icons {
@@ -2196,7 +2198,6 @@ progress + span {
     height: 100%;
 }
 .checkboxOutline.multiSelectCheckboxOutline {
-    border-radius: var(--largeRadius);
     border-width: 0;
     width: 100%;
     height: 100%;
@@ -2266,13 +2267,13 @@ progress + span {
 }
 .videoIndicator:has(.photo_album),
 .videoIndicator:has(.folder) {
-    background: rgb(180, 130, 70);
+    background: rgb(180, 130, 70) !important;
 }
 .videoIndicator:has(.photo) {
-    background: rgb(80, 130, 170);
+    background: rgb(80, 130, 170) !important;
 }
 .videoIndicator:has(.videocam) {
-    background: rgb(170, 80, 80);
+    background: rgb(170, 80, 80) !important;
 }
 .defaultCardBackground,
 .cardScalable {
@@ -2462,7 +2463,6 @@ div[data-role="controlgroup"] a.ui-btn-active {
     background: var(--btnSubmitColor) !important;
     border: solid var(--btnSubmitBorderColor) var(--borderWidth) !important;
 }
-.collapseContent,
 .formDialogFooter:not(.formDialogFooter-clear),
 .formDialogHeader:not(.formDialogHeader-clear) {
     background-color: var(--headerColor);
@@ -2583,14 +2583,12 @@ div[data-role="controlgroup"] a.ui-btn-active {
     margin-top: 0.75em;
     margin-bottom: 0em;
 }
-.listItem,
-.navMenuOption {
+.listItem {
     border-radius: 0.7em;
 }
 .listItem:hover,
 .navMenuOption:hover {
     background: unset;
-    border-radius: 0.7em;
 }
 .listItem:focus {
     background: #fff !important;
@@ -4126,12 +4124,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     );
 }
 .mediaInfoItem:not(.endsAt) {
-    border-radius: 0.3em;
-    padding: 0.15em 0.5em;
-    font-size: 0.75em;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    border: 1px solid rgba(255, 255, 255, 0.15);
     transition: border-color 0.2s ease;
 }
 .nowPlayingBar {
@@ -4198,8 +4190,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     }
 }
 .mainDrawer-scrollContainer .navMenuOption {
-    border-radius: var(--smallRadius);
-    margin: 0.15em 0.5em;
     padding: 0.6em 0.8em;
     transition: background-color 0.15s ease, color 0.15s ease;
 }

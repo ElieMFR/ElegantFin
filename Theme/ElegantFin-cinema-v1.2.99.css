@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.98 */
+/* ElegantFin Cinema Edition v1.2.99 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.98";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.99";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -602,10 +602,14 @@ body {
 }
 
 /* Items du menu latéral (drawer) — aucun traitement dédié avant v1.2.58. */
+/* v1.2.99 : `border-radius` retiré ici et dans les trois autres règles qui le
+   posaient sur `.navMenuOption` — l'arrondi de cet élément est fixé plus bas par
+   `.navMenuOption { border-radius: var(--smallRadius) !important }`, aucune de ces
+   déclarations ne s'appliquait. Mesuré : 8 px rendus, 11,2 px demandés. Le rendu
+   ne change pas ; on garde le 0,5 em actuel, sur décision utilisateur. */
 .navMenuOption:focus,
 .navMenuOption.show-focus:focus {
     background: #fff !important;
-    border-radius: 0.7em;
 }
 
 .navMenuOption:focus .navMenuOptionText,
@@ -856,12 +860,24 @@ body {
 .listItemImageButton,
 .layout-mobile .cardOverlayButton-br:not([data-action="menu"]) > .cardOverlayButtonIcon {
     background-color: #fff !important;                 /* v1.2.53 : mini-Lire BLANC = identique au bouton Lire principal (était vert, hors palette) */
+    /* le font-size: 75% de ce groupe n'atteignait pas cette pastille — voir la règle dédiée juste après */
     color: #111827;                                    /* icône sombre sur blanc */
     border: var(--defaultLighterBorder);
     border-color: rgba(0, 0, 0, 0.12);                 /* anneau neutre (plus le vert) */
     font-size: 75%;
     box-shadow: var(--shadow);
     z-index: 2;
+}
+
+/* v1.2.99 — le mini-Lire du téléphone retrouve sa taille prévue. Le `font-size:
+   75%` du groupe ci-dessus ne l'atteignait pas : Jellyfin pose
+   `.cardOverlayButtonIcon { font-size: 1.66956…em !important }` (card.scss, règle
+   de premier niveau), qu'aucune déclaration sans `!important` ne bat. Mesuré au
+   navigateur : la pastille rendait exactement 1,6695 × la taille de son parent.
+   Règle séparée et non un `!important` posé sur le groupe entier, pour ne rien
+   changer aux deux autres sélecteurs qui, eux, obtiennent déjà leurs 75 %. */
+.layout-mobile .cardOverlayButton-br:not([data-action="menu"]) > .cardOverlayButtonIcon {
+    font-size: 75% !important;
 }
 
 .cardOverlayContainer > .cardOverlayFab-primary:hover,
@@ -1521,23 +1537,30 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
     max-width: calc(100vw - 25em);
 }
 
-/* OSD: allow 2-line titles on TV for long episode names */
+/* OSD: allow 2-line titles on TV for long episode names.
+   v1.2.99 — `!important` sur les trois propriétés de géométrie : le bloc OSD plus
+   bas dans ce fichier (`.osdHeader .pageTitle`, section lecteur) impose
+   `height: 3em !important`, `line-height: 1.2 !important` et `font-size: 1em
+   !important`. Ces réglages-ci ne s'appliquaient donc pas : mesuré 16 px / 48 px /
+   19,2 px au lieu de 14,4 px / auto / 20,8 px. La découpe sur deux lignes était
+   bien posée mais la boîte restait figée à 48 px avec `overflow: visible`, si
+   bien qu'un titre long débordait au lieu de tenir. */
 .layout-tv .osdHeader .headerLeft .pageTitle {
     -webkit-line-clamp: 2;
     line-clamp: 2;
-    height: auto;
+    height: auto !important;
     max-height: 3em;
-    line-height: 1.3;
-    font-size: 0.9em;
+    line-height: 1.3 !important;
+    font-size: 0.9em !important;
 }
 
-/* OSD: allow 2-line titles on mobile for long episode names */
+/* OSD: allow 2-line titles on mobile for long episode names (même cause, v1.2.99) */
 .layout-mobile .osdHeader .headerLeft .pageTitle {
     -webkit-line-clamp: 2;
     line-clamp: 2;
-    height: auto;
+    height: auto !important;
     max-height: 3em;
-    line-height: 1.3;
+    line-height: 1.3 !important;
     max-width: calc(100vw - 7em);
 }
 
@@ -3104,8 +3127,9 @@ progress + span {
     height: 100%;
 }
 
+/* v1.2.99 : `border-radius` retiré — Jellyfin pose `.multiSelectCheckboxOutline
+   { border-radius: 0 !important }` (multiSelect.scss), il ne s'appliquait pas. */
 .checkboxOutline.multiSelectCheckboxOutline {
-    border-radius: var(--largeRadius);
     border-width: 0;
     width: 100%;
     height: 100%;
@@ -3188,17 +3212,25 @@ progress + span {
     letter-spacing: 0.05em;
 }
 
+/* v1.2.99 — `!important` ajouté : sans lui ces trois couleurs ne s'affichaient
+   PAS. La règle de base `.videoIndicator` ci-dessus pose `background:
+   var(--headerColor) !important`, qu'aucune déclaration sans `!important` ne peut
+   battre, quelle que soit sa spécificité. Mesuré au navigateur sur le vrai
+   fichier : les trois variantes calculaient `rgba(30, 40, 54, 0.8)`, exactement
+   la même valeur que l'indicateur sans couleur. Pastille de type posée par
+   `indicators.js` (getTypeIndicator) sur quatre types seulement : Folder,
+   PhotoAlbum, Photo, Video — jamais sur un film ni une série. */
 .videoIndicator:has(.photo_album),
 .videoIndicator:has(.folder) {
-    background: rgb(180, 130, 70);
+    background: rgb(180, 130, 70) !important;
 }
 
 .videoIndicator:has(.photo) {
-    background: rgb(80, 130, 170);
+    background: rgb(80, 130, 170) !important;
 }
 
 .videoIndicator:has(.videocam) {
-    background: rgb(170, 80, 80);
+    background: rgb(170, 80, 80) !important;
 }
 
 .defaultCardBackground,
@@ -3451,7 +3483,13 @@ div[data-role="controlgroup"] a.ui-btn-active {
     border: solid var(--btnSubmitBorderColor) var(--borderWidth) !important;
 }
 
-.collapseContent,
+/* v1.2.99 — `.collapseContent` retiré de ce groupe : il n'y servait à rien. Plus
+   haut dans le fichier, `.collapseContent { background-color: unset !important;
+   backdrop-filter: unset !important }` annule les deux propriétés. Les deux
+   règles viennent d'upstream, présentes dès son commit initial : le verre dépoli
+   n'a donc JAMAIS été visible sur les blocs repliables, ni ici ni chez eux.
+   On enlève la branche morte sans toucher à l'apparence — la rétablir serait un
+   choix esthétique neuf, pas une correction. Les dialogues gardent l'effet. */
 .formDialogFooter:not(.formDialogFooter-clear),
 .formDialogHeader:not(.formDialogHeader-clear) {
     background-color: var(--headerColor);
@@ -3626,15 +3664,13 @@ div[data-role="controlgroup"] a.ui-btn-active {
     margin-bottom: 0em;
 }
 
-.listItem,
-.navMenuOption {
-    border-radius: 0.7em;
+.listItem {
+    border-radius: 0.7em;   /* v1.2.99 : `.navMenuOption` retiré du sélecteur (déclaration morte) */
 }
 
 .listItem:hover,
 .navMenuOption:hover {
-    background: unset;
-    border-radius: 0.7em;
+    background: unset;   /* v1.2.99 : `border-radius` retiré — mort, et de toute façon identique au repos */
 }
 
 /* v1.2.48 : rangée de liste au focus = fond blanc plein + texte/icônes sombres
@@ -5722,13 +5758,13 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 /* --- 4. Media Info Badges (polished) ---
    Note: pure CSS cannot color-code badges by type (4K/HDR/DV/Atmos) in Jellyfin 10.11.x
    because the text is in textContent, not in a title/data attribute. Generic styling only. */
+/* v1.2.99 — bloc réduit à sa seule déclaration vivante. Les six autres
+   (border-radius, padding, font-size, font-weight, letter-spacing, border)
+   redéclaraient ce que la règle `.mediaInfoItem:not(.endsAt), .mediaInfoOfficialRating`
+   pose déjà en `!important` bien plus haut : elles ne s'appliquaient pas. Cinq
+   reprenaient d'ailleurs la même valeur ; seul `padding` divergeait, et c'est la
+   valeur d'en haut (`0 0.6em`) qui a toujours été rendue. */
 .mediaInfoItem:not(.endsAt) {
-    border-radius: 0.3em;
-    padding: 0.15em 0.5em;
-    font-size: 0.75em;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    border: 1px solid rgba(255, 255, 255, 0.15);
     transition: border-color 0.2s ease;
 }
 
@@ -5823,9 +5859,9 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     }
 }
 
+/* v1.2.99 : `border-radius` (valeur déjà imposée ailleurs) et `margin` (écrasée
+   par le `margin: 0em 1em !important` de `.navMenuOption`) retirés — morts. */
 .mainDrawer-scrollContainer .navMenuOption {
-    border-radius: var(--smallRadius);
-    margin: 0.15em 0.5em;
     padding: 0.6em 0.8em;
     transition: background-color 0.15s ease, color 0.15s ease;
 }
