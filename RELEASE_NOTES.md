@@ -76,6 +76,18 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.2.98 — Phones: a way back to Home from a film or series page
+
+On a phone, opening a film or series left you with no route home. That comes from Jellyfin, not the theme: `libraryMenu.js` sets `enableLibraryNavDrawer = layoutManager.desktop`, so the hamburger menu exists on desktop everywhere but on a phone only on the home screen. On a detail page you were left with the back arrow and an edge swipe nobody guesses.
+
+The original ElegantFin had written a fix for exactly this — put the Home button back in the header on phone detail pages — but it never took effect: `display: block` with no `!important`, losing to the rule three lines above it that hides the button on every page with a solid header. Confirmed on a real phone: the button was absent, and a test rule with `!important` brought it straight back.
+
+It now wins, and stays scoped: `html` prefix plus `!important` so nothing outranks it, and `inline-flex` rather than `block` — that is what Jellyfin gives `.paper-icon-button-light`, with centred items, so `block` would knock the icon off-centre. The `:has(#itemDetailPage:not(.hide))` guard is what keeps it contained: Jellyfin leaves old pages in the DOM with a `hide` class, so off a detail page the rule stops applying. Without it, `!important` would spill onto the home screen, where Jellyfin hides the button with matching specificity and importance — and custom CSS, injected last, would win the tie.
+
+Checked on a phone: present on a film or series page, absent on the home screen, absent in libraries. Desktop and TV untouched.
+
+---
+
 #### v1.2.97 — Full audit: a dead feature removed, reduced-motion completed, the last TV blur gone
 
 **The "scroller edge fade" is removed, not repaired.** Its two rules read `var(--backgroundForAppBar)` with no fallback, and that variable has never been defined — not here, not upstream, not in Jellyfin; `git log -S` finds it missing from the entire history since it shipped in v1.2.0. An undefined `var()` without a fallback invalidates the declaration, so `background-image` fell back to `none`: the fade never painted anything, across every release since.
@@ -475,6 +487,18 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.2.98 — Telephone : un chemin vers l'accueil depuis une fiche film ou serie
+
+Sur telephone, ouvrir un film ou une serie ne laissait plus aucun moyen de rentrer a l'accueil. Cela vient de Jellyfin, pas du theme : `libraryMenu.js` pose `enableLibraryNavDrawer = layoutManager.desktop`, si bien que le menu hamburger existe partout sur PC mais, sur telephone, uniquement sur l'accueil. Sur une fiche il ne restait que la fleche retour et un glissement depuis le bord que personne ne devine.
+
+L'ElegantFin d'origine avait ecrit le correctif pour exactement ce cas — remettre le bouton Accueil dans l'en-tete des fiches sur telephone — mais il ne prenait jamais effet : `display: block` sans `!important`, battu par la regle situee trois lignes plus haut qui cache ce bouton sur toute page a en-tete opaque. Constate sur un vrai telephone : le bouton etait absent, et une regle de test en `!important` le ramenait aussitot.
+
+Il l'emporte desormais, sans deborder : prefixe `html` et `!important` pour que plus rien ne le batte, et `inline-flex` plutot que `block` — c'est ce que Jellyfin donne a `.paper-icon-button-light`, avec centrage des elements, donc `block` decentrait l'icone. Le garde-fou `:has(#itemDetailPage:not(.hide))` est ce qui le contient : Jellyfin laisse les anciennes pages dans le DOM avec une classe `hide`, donc hors fiche la regle cesse de s'appliquer. Sans lui, le `!important` deborderait sur l'accueil, ou Jellyfin cache le bouton a specificite et importance egales — et le CSS personnalise, injecte en dernier, remporterait l'egalite.
+
+Verifie sur telephone : present sur une fiche film ou serie, absent sur l'accueil, absent dans les bibliotheques. PC et TV inchanges.
 
 ---
 

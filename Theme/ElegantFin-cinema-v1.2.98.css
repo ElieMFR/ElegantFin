@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.97 */
+/* ElegantFin Cinema Edition v1.2.98 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.97";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.98";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -1464,9 +1464,29 @@ body {
     display: none;
 }
 
-/* workaround to show the header home button on the main media page on phones*/
-.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
-    display: block;
+/* v1.2.98 — TÉLÉPHONE : le bouton Accueil des fiches revient pour de bon.
+   Le besoin est réel et vient de Jellyfin, pas du thème : `libraryMenu.js` pose
+   `const enableLibraryNavDrawer = layoutManager.desktop`, puis n'ôte la classe
+   `hide` du hamburger que si `enableLibraryNavDrawer || (isHomePage && …)`. Sur
+   téléphone, les trois tirets n'existent donc QUE sur l'accueil : sur une fiche
+   il ne reste que la flèche retour, et plus aucun chemin vers l'accueil (hormis
+   le glissement depuis le bord, que personne ne devine).
+   Upstream avait écrit ce correctif — en `display: block` sans `!important` —
+   mais il ne gagnait pas : constaté sur un vrai téléphone, le bouton restait
+   absent, et une règle de test en `!important` le faisait réapparaître aussitôt.
+   Trois changements : `!important` + préfixe `html` pour qu'aucune règle ne le
+   batte ; `inline-flex` et non `block`, parce que c'est ce que Jellyfin donne à
+   `.paper-icon-button-light` avec `align-items: center` (en `block`, l'icône se
+   décentre) ; portée inchangée.
+   Le `:has(#itemDetailPage:not(.hide))` est ce qui contient la règle : Jellyfin
+   garde les anciennes pages dans le DOM en leur posant `.hide`, donc hors fiche
+   elle cesse de s'appliquer. Sans lui, `!important` déborderait sur l'accueil, où
+   Jellyfin cache le bouton avec `.noHomeButtonHeader` — même spécificité, même
+   `!important` que notre règle, et le Custom CSS étant injecté en dernier, c'est
+   nous qui l'emporterions. Vérifié sur téléphone : présent sur une fiche, absent
+   sur l'accueil, absent sur les bibliothèques. */
+html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
+    display: inline-flex !important;
 }
 
 .pageTitle {
