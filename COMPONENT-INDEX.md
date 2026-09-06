@@ -1,4 +1,4 @@
-# Index des composants — ElegantFin Cinema Edition v1.2.99
+# Index des composants — ElegantFin Cinema Edition v1.3.0
 
 Généré par `python scripts/component-index.py`. **Ne pas éditer à la main.**
 
@@ -9,7 +9,7 @@ sinon on en corrige une pendant qu'une autre, ailleurs, continue de gagner.
 C'est exactement ce qui a produit la régression v1.2.88 sur le bouton skip,
 dont les huit règles s'étalaient sur 3 700 lignes.
 
-Source indexée : `ElegantFin-cinema-v1.2.99.css` — 6346 lignes.
+Source indexée : `ElegantFin-cinema-v1.3.0.css` — 6346 lignes.
 
 | Composant | Règles | Zones | Lignes |
 |---|---:|---:|---|
@@ -43,7 +43,7 @@ Source indexée : `ElegantFin-cinema-v1.2.99.css` — 6346 lignes.
 | `portraitCard` | 5 | 5 | 921, 999, 1716, 1931, 2531 |
 | `detailImageContainer` | 19 | 4 | 1797–1807, 1871–1935, 1966, 2206–2261 |
 | `btnPlay` | 14 | 4 | 449, 488–529, 3325–3367, 3400–3427 |
-| `cardOverlayContainer` | 12 | 4 | 774–806, 851–883, 933, 6048–6066 |
+| `cardOverlayContainer` | 12 | 4 | 774–806, 851–873, 933, 6048–6066 |
 | `itemName` | 11 | 4 | 575, 2037, 4507–4553, 4644–4661 |
 | `backdropImage` | 10 | 4 | 2333–2360, 2387–2391, 5529, 5629–5637 |
 | `upNextContainer` | 10 | 4 | 4196–4215, 4241–4267, 5565–5575, 5601 |
@@ -95,7 +95,7 @@ Source indexée : `ElegantFin-cinema-v1.2.99.css` — 6346 lignes.
 | `itemsContainer` | 3 | 3 | 620, 1599, 4055 |
 | `live_tv` | 3 | 3 | 1797, 2241, 3522 |
 | `myPreferencesMenuPage` | 3 | 3 | 352, 3769, 4063 |
-| `scss` | 3 | 3 | 874, 3131, 5738 |
+| `scss` | 3 | 3 | 873, 3131, 5738 |
 | `sectionTitle-cards` | 3 | 3 | 1571, 4114, 4164 |
 | `x` | 3 | 3 | 2037, 4609, 5738 |
 | `itemExternalLinks` | 11 | 2 | 2788–2845, 2922 |
@@ -103,6 +103,7 @@ Source indexée : `ElegantFin-cinema-v1.2.99.css` — 6346 lignes.
 | `listItemIcon` | 8 | 2 | 3518–3522, 3739–3769 |
 | `sectionTitleTextButton` | 8 | 2 | 4097–4134, 4168–4178 |
 | `sliderContainer` | 8 | 2 | 2589, 2617–2682 |
+| `cardOverlayButton-br` | 7 | 2 | 859, 888–926 |
 | `detail-clamp-text` | 7 | 2 | 2858–2884, 2910–2914 |
 | `backgroundContainer` | 6 | 2 | 2323, 2365–2383 |
 | `detailPagePrimaryContainer` | 6 | 2 | 1423–1469, 2171 |
@@ -120,7 +121,6 @@ Source indexée : `ElegantFin-cinema-v1.2.99.css` — 6346 lignes.
 | `videoIndicator` | 5 | 2 | 3204–3232, 6105 |
 | `withSectionTabs` | 5 | 2 | 2374–2391, 5193 |
 | `album` | 4 | 2 | 1966, 2224–2241 |
-| `cardOverlayButtonIcon` | 4 | 2 | 859–874, 926 |
 | `emby-tab-button-active` | 4 | 2 | 3460, 5355–5369 |
 | `play_arrow` | 4 | 2 | 3241–3257, 3427 |
 | `playlistIndexIndicatorImage` | 4 | 2 | 3625–3630, 5108–5114 |
@@ -130,6 +130,7 @@ Source indexée : `ElegantFin-cinema-v1.2.99.css` — 6346 lignes.
 | `visualLoginForm` | 4 | 2 | 4886–4903, 4944 |
 | `alphaPickerButton` | 3 | 2 | 529, 4000–4007 |
 | `cardFooter` | 3 | 2 | 3125, 5710–5729 |
+| `cardOverlayButtonIcon` | 3 | 2 | 859–871, 926 |
 | `castCollapsible` | 3 | 2 | 670, 3106–3115 |
 | `detailPageContent` | 3 | 2 | 3791, 4042–4049 |
 | `emby-scrollbuttons-button` | 3 | 2 | 1626, 6298–6305 |
@@ -145,6 +146,7 @@ Source indexée : `ElegantFin-cinema-v1.2.99.css` — 6346 lignes.
 | `btnDeleteImage` | 2 | 2 | 3261, 3474 |
 | `cardContent` | 2 | 2 | 670, 702 |
 | `cardImage` | 2 | 2 | 5682, 6091 |
+| `cardOverlayButton` | 2 | 2 | 873, 909 |
 | `cardOverlayButton-hover` | 2 | 2 | 756, 888 |
 | `chevron_right` | 2 | 2 | 4134, 4178 |
 | `collapseContent` | 2 | 2 | 3045, 3486 |
@@ -178,7 +180,6 @@ Source indexée : `ElegantFin-cinema-v1.2.99.css` — 6346 lignes.
 | `videoOsdBottom` | 2 | 2 | 2771, 5148 |
 | `videoOsdBottom-maincontrols` | 2 | 2 | 2771, 5148 |
 | `checkboxOutline` | 10 | 1 | 3065–3161 |
-| `cardOverlayButton-br` | 8 | 1 | 859–926 |
 | `itemDetailsGroup` | 7 | 1 | 3874–3961 |
 | `multiSelectCheckboxOutline` | 7 | 1 | 3102–3149 |
 | `checkboxContainer` | 6 | 1 | 3094–3125 |
@@ -196,7 +197,7 @@ Source indexée : `ElegantFin-cinema-v1.2.99.css` — 6346 lignes.
 | `startTimeText` | 4 | 1 | 4956–4979 |
 | `button-flat` | 3 | 1 | 2752–2762 |
 | `cardIndicators` | 3 | 1 | 3178–3188 |
-| `cardOverlayFab-primary` | 3 | 1 | 851–883 |
+| `cardOverlayFab-primary` | 3 | 1 | 851–873 |
 | `com` | 3 | 1 | 2821–2839 |
 | `content` | 3 | 1 | 3897–3928 |
 | `discover-card` | 3 | 1 | 6316–6339 |

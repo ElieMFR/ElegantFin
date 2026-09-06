@@ -76,6 +76,16 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.0 — The phone's mini Play button goes back to the size it had
+
+v1.2.99 revived a `font-size: 75%` that had never applied to this badge, on the grounds that it was a dead declaration. It was dead — and it was protecting a good result. On a phone the containing button is already reduced to 60 %, so 75 % of that lands at 45 % of base size: the icon went from 16.0 px to 7.2 px, a 55 % cut. That `75 %` was written for the two other selectors sharing the rule, whose parent is not reduced; on this badge it never made sense.
+
+The rule is removed and Jellyfin's size stands again, exactly as before v1.2.99. A comment now marks the trap so no future audit revives it: a declaration being inert does not mean it should be brought back to life.
+
+**Versioning from here.** `1.3.x` for fixes and adjustments; the minor number moves when a batch of work closes, or rather than letting the patch number reach 100. The rule is written in the README so it survives. The v1.2 line ends on the audit arc of v1.2.96 to v1.2.99.
+
+---
+
 #### v1.2.99 — Four rules that were being silently overruled
 
 An audit crossed every declaration in the theme against every other one, and against Jellyfin's 475 `!important` declarations, looking for one case only: a declaration whose competitor covers a superset of the same elements, so it can never win anywhere. Each survivor was then confirmed by loading the real file in a browser and reading the computed values.
@@ -503,6 +513,16 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.0 — Le mini-bouton Lire du telephone retrouve la taille qu'il avait
+
+La v1.2.99 avait reveille un `font-size: 75%` qui n'avait jamais atteint cette pastille, au motif qu'il s'agissait d'une declaration morte. Elle l'etait — et elle protegeait un bon rendu. Sur telephone, le bouton conteneur est deja reduit a 60 % : 75 % de cela tombe a 45 % de la taille de base, et l'icone passait de 16,0 px a 7,2 px, soit −55 %. Ce `75 %` avait ete ecrit pour les deux autres selecteurs de la meme regle, dont le parent n'est pas reduit ; sur cette pastille il n'a jamais eu de sens.
+
+La regle est retiree, la taille de Jellyfin reprend sa place, exactement comme avant la v1.2.99. Un commentaire signale desormais le piege pour qu'aucun audit futur ne la ressuscite : qu'une declaration soit inerte ne veut pas dire qu'il faille la faire revivre.
+
+**Numerotation a partir d'ici.** `1.3.x` pour les correctifs et ajustements ; le numero mineur change quand un ensemble de travaux se referme, ou plutot que de laisser le numero de correctif atteindre 100. La regle est ecrite dans le README pour qu'elle survive. La ligne v1.2 se referme sur l'arc d'audit des v1.2.96 a v1.2.99.
 
 ---
 

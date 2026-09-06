@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.2.99 */
+/* ElegantFin Cinema Edition v1.3.0 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.2.99";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.0";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -860,7 +860,6 @@ body {
 .listItemImageButton,
 .layout-mobile .cardOverlayButton-br:not([data-action="menu"]) > .cardOverlayButtonIcon {
     background-color: #fff !important;                 /* v1.2.53 : mini-Lire BLANC = identique au bouton Lire principal (était vert, hors palette) */
-    /* le font-size: 75% de ce groupe n'atteignait pas cette pastille — voir la règle dédiée juste après */
     color: #111827;                                    /* icône sombre sur blanc */
     border: var(--defaultLighterBorder);
     border-color: rgba(0, 0, 0, 0.12);                 /* anneau neutre (plus le vert) */
@@ -869,16 +868,17 @@ body {
     z-index: 2;
 }
 
-/* v1.2.99 — le mini-Lire du téléphone retrouve sa taille prévue. Le `font-size:
-   75%` du groupe ci-dessus ne l'atteignait pas : Jellyfin pose
-   `.cardOverlayButtonIcon { font-size: 1.66956…em !important }` (card.scss, règle
-   de premier niveau), qu'aucune déclaration sans `!important` ne bat. Mesuré au
-   navigateur : la pastille rendait exactement 1,6695 × la taille de son parent.
-   Règle séparée et non un `!important` posé sur le groupe entier, pour ne rien
-   changer aux deux autres sélecteurs qui, eux, obtiennent déjà leurs 75 %. */
-.layout-mobile .cardOverlayButton-br:not([data-action="menu"]) > .cardOverlayButtonIcon {
-    font-size: 75% !important;
-}
+/* ⚠️ v1.3.0 — NE PAS « RÉVEILLER » LE font-size: 75% CI-DESSUS SUR CETTE PASTILLE.
+   Il ne l'atteint pas : Jellyfin pose `.cardOverlayButtonIcon { font-size:
+   1.66956…em !important }` (card.scss, règle de premier niveau) et gagne. La
+   v1.2.99 a cru corriger un défaut en le forçant en `!important` — le résultat
+   était inutilisable : sur téléphone le bouton conteneur est DÉJÀ réduit à 60 %
+   (règle `.layout-mobile .cardOverlayButton` plus bas), donc 60 % × 75 % = 45 %
+   de la taille de base. Mesuré : l'icône passait de 16,0 px à 7,2 px, soit −55 %.
+   Retiré en v1.3.0, retour à la taille de Jellyfin. Ce `75 %` a été écrit pour
+   les DEUX AUTRES sélecteurs du groupe, dont le parent n'est pas réduit ; sur
+   cette pastille-ci il n'a jamais eu de sens. La déclaration morte protégeait en
+   fait un bon rendu — « inerte » ne veut pas dire « à faire revivre ». */
 
 .cardOverlayContainer > .cardOverlayFab-primary:hover,
 .listItemImageButton:hover {
