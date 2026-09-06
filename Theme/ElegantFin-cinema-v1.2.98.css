@@ -1472,8 +1472,15 @@ body {
    il ne reste que la flèche retour, et plus aucun chemin vers l'accueil (hormis
    le glissement depuis le bord, que personne ne devine).
    Upstream avait écrit ce correctif — en `display: block` sans `!important` —
-   mais il ne gagnait pas : constaté sur un vrai téléphone, le bouton restait
-   absent, et une règle de test en `!important` le faisait réapparaître aussitôt.
+   mais il ne prenait jamais effet : constaté sur un vrai téléphone, le bouton
+   restait absent, et une règle de test en `!important` le ramenait aussitôt.
+   ⚠️ CAUSE RÉELLE, établie en rejouant la cascade exacte dans un navigateur : ce
+   n'est PAS la règle de masquage trois lignes plus haut. Sans la classe `hide`,
+   la règle d'upstream calcule bien `display: block` — elle gagne, sa spécificité
+   (1,3,0) battant celle de l'autre (0,3,0). Ce qui la bat, c'est la classe `hide`
+   que Jellyfin laisse sur le bouton : `.hide { display: none !important }` est
+   déclaré EN LIGNE dans `index.html` (d'où l'échec des recherches dans
+   `src/styles`), et aucune déclaration sans `!important` ne peut le battre.
    Trois changements : `!important` + préfixe `html` pour qu'aucune règle ne le
    batte ; `inline-flex` et non `block`, parce que c'est ce que Jellyfin donne à
    `.paper-icon-button-light` avec `align-items: center` (en `block`, l'icône se
