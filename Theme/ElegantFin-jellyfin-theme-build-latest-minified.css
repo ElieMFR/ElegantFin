@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.0 */
+/* ElegantFin Cinema Edition v1.3.1 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.0";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.1";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -1484,7 +1484,12 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
 .detailImageContainer .card.backdropCard:has(.cardImageIcon.album) .cardScalable {
     aspect-ratio: 1 / 1;
 }
-#childrenContent:has(.listItem[data-type="Audio"]),
+#childrenContent:has(.listItem[data-type="Audio"]) {
+    border: var(--defaultBorder);
+    border-radius: var(--largeRadius);
+    padding: 0.5em;
+    background-color: var(--lighterGradientPointAlpha);
+}
 .programGuideSection {
     border: var(--defaultBorder);
     border-radius: var(--largeRadius);
@@ -1492,7 +1497,9 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
     background-color: var(--lighterGradientPointAlpha);
 }
 .detailImageContainer > .backdropCard,
-.detailImageContainer > .squareCard,
+.detailImageContainer > .squareCard {
+    display: block;
+}
 .detailImageContainer > .card:has(.book),
 .detailImageContainer > .card:has(.person),
 .detailImageContainer > .card:has(.album),
@@ -4332,9 +4339,24 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     box-shadow: none !important;
 }
 .layout-tv .mediaSourceIndicator,
-.layout-tv .videoIndicator {
+.layout-tv .videoIndicator,
+.layout-tv .countIndicator,
+.layout-tv .fullSyncIndicator,
+.layout-tv .playerStats,
+.layout-tv .formDialogFooter {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+}
+.layout-tv .countIndicator,
+.layout-tv .fullSyncIndicator,
+.layout-tv .formDialogFooter {
+    background-color: rgb(30, 40, 54) !important;
+}
+.layout-tv .playerStats {
+    background-color: rgb(69, 69, 69) !important;
+}
+.layout-tv .backdropImageFadeIn {
+    animation: none !important;
 }
 .userPreferencesPage .button-submit {
     position: sticky !important;

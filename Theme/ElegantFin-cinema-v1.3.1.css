@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.0 */
+/* ElegantFin Cinema Edition v1.3.1 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.0";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.1";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -2229,7 +2229,21 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
     aspect-ratio: 1 / 1;
 }
 
-#childrenContent:has(.listItem[data-type="Audio"]),
+/* ⚠️ v1.3.1 — SÉPARÉ EN DEUX, ET IL FAUT QUE ÇA LE RESTE.
+   En CSS, un sélecteur invalide dans une LISTE invalide la RÈGLE ENTIÈRE — la
+   tolérance n'existe que dans `:is()` / `:where()`. Tant que ces deux sélecteurs
+   partageaient une liste, tout moteur sans `:has()` jetait le bloc complet, et
+   `.programGuideSection` (le cadre du guide TV) perdait TOUT son style : ni bordure,
+   ni fond, ni arrondi. Or `:has()` demande Chromium 105, c'est-à-dire Tizen 8.0 :
+   sur Tizen 4.0 à 7.0 — soit les téléviseurs de 2018 à 2023 — le guide s'affichait
+   donc sans cadre. Ne jamais recoller ces deux sélecteurs. */
+#childrenContent:has(.listItem[data-type="Audio"]) {
+    border: var(--defaultBorder);
+    border-radius: var(--largeRadius);
+    padding: 0.5em;
+    background-color: var(--lighterGradientPointAlpha);
+}
+
 .programGuideSection {
     border: var(--defaultBorder);
     border-radius: var(--largeRadius);
@@ -2238,8 +2252,15 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
 }
 
 /* this shows the poster in the cast, book, live tv and other pages */
+/* ⚠️ v1.3.1 — même séparation, même raison : les deux premiers sélecteurs ne
+   portent pas de `:has()` et tombaient avec les cinq autres sur Tizen ≤ 7.0.
+   L'affiche disparaissait alors des pages Casting, Livre et TV en direct, alors
+   que ces deux sélecteurs-là, eux, y étaient parfaitement compris. */
 .detailImageContainer > .backdropCard,
-.detailImageContainer > .squareCard,
+.detailImageContainer > .squareCard {
+    display: block;
+}
+
 .detailImageContainer > .card:has(.book),
 .detailImageContainer > .card:has(.person),
 .detailImageContainer > .card:has(.album),
@@ -6106,9 +6127,51 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    payé pendant tout défilement (pas seulement au focus). Fond semi-transparent
    conservé, lisible sans le flou. */
 .layout-tv .mediaSourceIndicator,
-.layout-tv .videoIndicator {
+.layout-tv .videoIndicator,
+/* v1.3.1 — les DEUX badges qui manquaient à cette liste. Mesuré au navigateur sur
+   le vrai fichier, en `html.layout-tv` : `.countIndicator` et `.fullSyncIndicator`
+   calculaient encore `blur(8px)` alors que `.mediaSourceIndicator`, déclaré dans la
+   MÊME règle qu'eux (ligne 639), était bien neutralisé ici. Même coût qu'au point 3
+   ci-dessus : un flou permanent sur chaque carte, payé pendant tout défilement. */
+.layout-tv .countIndicator,
+.layout-tv .fullSyncIndicator,
+/* v1.3.1 — panneau des statistiques de lecture : `blur(5px)` au-dessus de la vidéo,
+   c'est-à-dire au pire moment. `.iconOsd`, qui partage sa règle, était déjà dans la
+   liste plus haut ; `.playerStats` avait été oublié. */
+.layout-tv .playerStats,
+/* v1.3.1 — pied des dialogues de formulaire. `.formDialogHeader` est neutralisé
+   plus haut, `.formDialogFooter` ne l'était pas : les deux moitiés du même dialogue
+   n'avaient pas le même traitement. */
+.layout-tv .formDialogFooter {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+}
+
+/* ⚠️ INVARIANT (contrôle global) : tout panneau ajouté à la liste ci-dessus doit
+   recevoir un fond OPAQUE — sans flou, un fond translucide laisse passer la vidéo
+   ou l'affiche et devient illisible. Les trois ajouts de la v1.3.1 étaient tous
+   translucides (mesuré) : rgba(30,40,54,.8) pour les badges et le pied de dialogue,
+   rgba(69,69,69,.69) pour les statistiques. On les rend opaques, en gardant leur
+   teinte exacte pour ne rien changer à l'apparence hors TV. */
+.layout-tv .countIndicator,
+.layout-tv .fullSyncIndicator,
+.layout-tv .formDialogFooter {
+    background-color: rgb(30, 40, 54) !important;
+}
+
+.layout-tv .playerStats {
+    background-color: rgb(69, 69, 69) !important;
+}
+
+/* v1.3.1 — 4) fondu d'ouverture de l'image de fond. `detailBackdropIn` anime
+   `transform` ET `opacity` sur un élément PLEIN ÉCRAN pendant 0,7 s, exactement
+   quand la fiche se construit : c'est le pire instant pour demander une couche
+   composée à un GPU de téléviseur. Mesuré encore actif sur TV (`animation-name`
+   renvoyait `detailBackdropIn`) alors que la doctrine TV annonce zéro animation —
+   le strip d'animations plus haut ne couvrait ni cet élément ni cette classe.
+   Aucune conséquence de mise en page : seul le fondu disparaît. */
+.layout-tv .backdropImageFadeIn {
+    animation: none !important;
 }
 
 /* ============================================================

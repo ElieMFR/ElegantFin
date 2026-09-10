@@ -76,6 +76,20 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.1 — TV: the last permanent blurs, and two rules that vanished on 2018–2023 sets
+
+**Four blurs the TV strip had missed.** Measured in a browser against the real file under `html.layout-tv`, not read off the source: `.countIndicator` and `.fullSyncIndicator` still computed `blur(8px)` — a permanent blur on every card, paid throughout scrolling — while `.mediaSourceIndicator`, declared in the very same rule, was correctly stripped. `.playerStats` still blurred at 5 px over video, though `.iconOsd`, which shares its rule, was already handled. `.formDialogFooter` blurred while `.formDialogHeader` did not: the two halves of one dialog treated differently. All four are now stripped, and all four got an opaque background — a panel that loses its blur while keeping a translucent background lets the video through and becomes unreadable, which is a written invariant of this theme.
+
+**The backdrop fade-in is gone on TV.** `detailBackdropIn` animated `transform` and `opacity` on a full-screen element for 0.7 s, precisely while a detail page is being built — the worst moment to ask a television GPU for a composited layer. The TV animation strip covered neither that element nor that class.
+
+**Two rules disappeared entirely on Tizen 4.0 to 7.0.** In CSS, one invalid selector in a list invalidates the whole rule; only `:is()` and `:where()` forgive. Two rules paired a `:has()` selector with plain ones, and `:has()` needs Chromium 105 — that is Tizen 8.0. So on the 2018–2023 sets, the TV guide frame lost its border, background and rounding, and the poster failed to appear on Cast, Book and Live TV pages. Both rules are split; the plain halves now stand on their own.
+
+**What was deliberately left alone.** `.MuiAppBar-root` and `.MuiDrawer-paper` still blur, and that is correct: Jellyfin 12 keeps TV on the legacy app, so no Material UI component is ever rendered there. The mask on the page backdrop stays too — removing it would harden an edge that is meant to fade, and it only exists when the Backdrops option is on, which is off by default.
+
+**And what the measurements ruled out.** A benchmark of 400 focus moves over 160 cards put the theme at 6.00 ms against 0.70 ms with no theme. Removing all 70 `:has()` rules recovered 0.30 ms — six per cent. `:has()` is not the cost, and on Tizen 4.0 to 7.0 it never even runs. The card-size rules that looked like bulk turned out to sit in fourteen mutually exclusive media queries, only one of which ever applies. Neither was worth touching.
+
+---
+
 #### v1.3.0 — The phone's mini Play button goes back to the size it had
 
 v1.2.99 revived a `font-size: 75%` that had never applied to this badge, on the grounds that it was a dead declaration. It was dead — and it was protecting a good result. On a phone the containing button is already reduced to 60 %, so 75 % of that lands at 45 % of base size: the icon went from 16.0 px to 7.2 px, a 55 % cut. That `75 %` was written for the two other selectors sharing the rule, whose parent is not reduced; on this badge it never made sense.
@@ -513,6 +527,20 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.1 — TV : les derniers flous permanents, et deux regles qui disparaissaient sur les televiseurs de 2018 a 2023
+
+**Quatre flous que le strip TV avait manques.** Mesures au navigateur sur le vrai fichier en `html.layout-tv`, pas lues dans le source : `.countIndicator` et `.fullSyncIndicator` calculaient encore `blur(8px)` — un flou permanent sur chaque carte, paye pendant tout defilement — alors que `.mediaSourceIndicator`, declare dans la meme regle qu'eux, etait bien neutralise. `.playerStats` floutait encore a 5 px au-dessus de la video, alors qu'`.iconOsd`, qui partage sa regle, etait deja traite. `.formDialogFooter` floutait quand `.formDialogHeader` ne floutait pas : les deux moities d'un meme dialogue traitees differemment. Les quatre sont neutralises, et les quatre ont recu un fond opaque — un panneau qui perd son flou en gardant un fond translucide laisse passer la video et devient illisible, c'est un invariant ecrit de ce theme.
+
+**Le fondu d'ouverture de l'image de fond disparait sur TV.** `detailBackdropIn` animait `transform` et `opacity` sur un element plein ecran pendant 0,7 s, exactement pendant que la fiche se construit — le pire instant pour demander une couche composee au GPU d'un televiseur. Le strip d'animations TV ne couvrait ni cet element ni cette classe.
+
+**Deux regles disparaissaient entierement sur Tizen 4.0 a 7.0.** En CSS, un selecteur invalide dans une liste invalide la regle entiere ; seuls `:is()` et `:where()` tolerent. Deux regles associaient un selecteur `:has()` a des selecteurs simples, or `:has()` demande Chromium 105, c'est-a-dire Tizen 8.0. Sur les televiseurs de 2018 a 2023, le cadre du guide TV perdait donc bordure, fond et arrondi, et l'affiche ne s'affichait pas sur les pages Casting, Livre et TV en direct. Les deux regles sont separees ; les moities simples tiennent desormais seules.
+
+**Ce qui a ete laisse volontairement.** `.MuiAppBar-root` et `.MuiDrawer-paper` floutent toujours, et c'est correct : Jellyfin 12 garde la TV sur l'application legacy, aucun composant Material UI n'y est jamais rendu. Le masque de l'image de fond reste aussi — le retirer durcirait un bord cense s'estomper, et il n'existe que si l'option Arriere-plans est activee, ce qui n'est pas le cas par defaut.
+
+**Et ce que les mesures ont ecarte.** Un banc de 400 deplacements de focus sur 160 cartes place le theme a 6,00 ms contre 0,70 ms sans theme. Retirer les 70 regles `:has()` en recupere 0,30 — six pour cent. `:has()` n'est pas le cout, et sur Tizen 4.0 a 7.0 il ne tourne meme jamais. Les regles de taille de carte, qui semblaient faire masse, vivent dans quatorze media queries mutuellement exclusives dont une seule s'applique. Ni les unes ni les autres ne meritaient d'etre touchees.
 
 ---
 
