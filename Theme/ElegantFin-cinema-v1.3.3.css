@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.3-testC */
+/* ElegantFin Cinema Edition v1.3.3-retourA */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3-testG2";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3-retourA";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4174,52 +4174,11 @@ div[data-role="controlgroup"] a.ui-btn-active {
     padding-top: 3.75em !important;
 }
 
-/* `overflow: visible` : sans lui, le cercle de decoupe du bouton rabote le bord
-   de la photo. Constate a l'ecran : a 100 % ca rogne (build D), et a 94 % ca
-   rogne encore malgre 0,91 px de jeu (build F2) — le moteur en mange plus que
-   ca. La photo reste ronde par son propre `border-radius: 100em` pose par
-   Jellyfin, exactement ce sur quoi l'etat d'origine reposait deja. */
 .headerUserButton {
     width: 2em;
     height: 2em;
     margin-inline-end: 1em;
     border: var(--defaultBorder);
-    overflow: visible;
-}
-
-/* Avatar du profil : la photo occupe tout l'intérieur du bouton, en position ABSOLUE.
-   Jellyfin dessine la photo sur un <div> placé dans le <button> de l'en-tête, et ce
-   <div> porte AUSSI la classe `.paper-icon-button-light` : il n'a aucune largeur propre,
-   sa taille n'est que son propre padding de 0,556 em, soit 17,78 px dans un bouton de
-   32 px — la photo ne remplissait que 56 % du cercle. Il déborde en plus du contenu utile
-   du bouton, et seul `align-items: center` le ramenait au milieu : signalé sur Tizen 4.0,
-   l'anneau était plus épais en haut qu'en bas. Mesuré en simulant un moteur qui aligne
-   cet élément au début : 9,9 px d'écart en haut, 4,3 px en bas — le symptôme exact.
-   L'étirer à 100 % en absolu règle les deux d'un coup : photo de 30 px, 1,00 px restant
-   des quatre côtés (c'est la bordure du bouton, pas un écart), soit 94 % du cercle.
-   Mesuré identique sur moteur récent ET en forçant l'alignement au début : un élément en
-   position absolue ne dépend plus du tout de l'alignement flex. Cela le sort aussi du
-   flux du bouton, à l'abri des particularités de mise en page des <button> anciens.
-   La hauteur/largeur à 100 % vise l'intérieur du bouton grâce au `box-sizing: border-box`
-   que Jellyfin pose sur `.paper-icon-button-light`.
-   ⚠️ Fausses bonnes idées écartées, toutes deux mesurées : mettre le padding du bouton
-   à 0 AGGRAVE le décalage sur un moteur qui aligne au début (1 px en haut, 13,2 px en
-   bas) ; le centrage par `translate(-50%, -50%)` corrige l'anneau mais laisse la photo
-   à 17,78 px.
-   Pas d'effet de glissement à l'écran malgré le `transition: 0.2s` de Jellyfin sur ces
-   boutons : ces valeurs ne changent jamais, elles sont posées dès le rendu. */
-/* BUILD DE TEST G2 : photo a 94 % du bouton, sans decoupe.
-   Mesure : 28,19 px dans un bouton de 32 px, 1,9 px de marge sur les quatre
-   cotes. Meme taille que le build F2, mais F2 rognait parce que la decoupe du
-   bouton etait encore active — ici elle ne l'est plus.
-   A comparer avec le build G1 (90 %, 27,00 px). */
-.headerUserButton > .headerUserButtonRound {
-    position: absolute;
-    top: 3%;
-    left: 3%;
-    width: 94%;
-    height: 94%;
-    margin: 0;
 }
 
 .MuiAvatar-circular {
@@ -6618,28 +6577,6 @@ for extended styling, use the add-on */
         margin-bottom: 1em;
     }
 
-    /* 4) Barre d'onglets. Sur TV (≥ 75em) la grille centrait les onglets
-       verticalement dans la barre : bouton à +23 px, contre +3 px sans grille. Le
-       centrage lui-même vient de la règle `@media (min-width: 75em)` existante
-       (`justify-content: center`), parfaitement comprise en 56 — mais inopérante
-       sur un bloc. Il faut donc un conteneur flex.
-       ⚠️ Mais PAS `inline-flex`, et PAS `align-items: center` : c'était la v1.3.3, et
-       sur Tizen 4.0 elle coupait « Accueil » dès que le focus passait sur « Favoris ».
-       PROUVÉ par A/B sur le téléviseur : sans ce repli, plus de coupure ; en figeant
-       la graisse des onglets, coupure toujours là. Mécanisme : `inline-flex` +
-       `align-items: center` ajustaient le cadre des onglets AU PIXEL près (196 px
-       mesurés, largeurs fractionnaires). Jellyfin n'y fait glisser la barre
-       (`scroller.toCenter()`, sur TV uniquement) que si le contenu déborde du cadre —
-       et sur ce vieux moteur, un écart d'arrondi entre les deux largeurs suffisait.
-       Cette version rend un conteneur flex de NIVEAU BLOC dont l'enfant s'étire
-       (`align-items: stretch`) : le cadre retrouve la pleine largeur qu'il avait sans
-       repli (1 056 px mesurés), donc des centaines de pixels de marge, tout en gardant
-       le centrage vertical de la grille (+23 px mesurés).
-       ⚠️ Pas de `flex-grow` sur l'enfant non plus : essayé, il étirait le conteneur
-       au lieu de le centrer, et ramenait le bouton à +3 px en largeur TV. */
-    .sectionTabs {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-    }
+    /* 4) Barre d'onglets — RETIRÉE DANS CE BUILD DE TEST (testA), pour vérifier
+       si elle cause la coupure d'« Accueil » au focus de « Favoris » sur Tizen 4.0. */
 }
