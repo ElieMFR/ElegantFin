@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3-testF1";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3-testF2";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4174,18 +4174,11 @@ div[data-role="controlgroup"] a.ui-btn-active {
     padding-top: 3.75em !important;
 }
 
-/* BUILD DE TEST F1 : `overflow: visible` retire la decoupe du bouton.
-   A 100 %, le cercle de la photo et le cercle de decoupe du bouton sont
-   exactement confondus, et certains moteurs rabotent alors le pixel exterieur
-   de l'image (constate a l'ecran : le build D rogne). La photo est ronde par
-   son propre `border-radius: 100em` pose par Jellyfin, la decoupe du bouton ne
-   sert donc a rien ici. A comparer avec le build F2. */
 .headerUserButton {
     width: 2em;
     height: 2em;
     margin-inline-end: 1em;
     border: var(--defaultBorder);
-    overflow: visible;
 }
 
 /* Avatar du profil : la photo occupe tout l'intérieur du bouton, en position ABSOLUE.
@@ -4209,12 +4202,17 @@ div[data-role="controlgroup"] a.ui-btn-active {
    à 17,78 px.
    Pas d'effet de glissement à l'écran malgré le `transition: 0.2s` de Jellyfin sur ces
    boutons : ces valeurs ne changent jamais, elles sont posées dès le rendu. */
+/* BUILD DE TEST F2 : photo a 94 %, en retrait sous la decoupe du bouton.
+   Mesure : 28,19 px dans un bouton de 32 px, 1,9 px du bord, et 0,91 px de jeu
+   sous le cercle de decoupe — assez, en principe, pour que le rabotage constate
+   a 100 % ne la touche plus. A comparer avec le build F1, qui garde 30 px en
+   retirant la decoupe. */
 .headerUserButton > .headerUserButtonRound {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 3%;
+    left: 3%;
+    width: 94%;
+    height: 94%;
     margin: 0;
 }
 
