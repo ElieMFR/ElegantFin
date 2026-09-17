@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.4-testH */
+/* ElegantFin Cinema Edition v1.3.4-testI */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testH";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testI";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4136,6 +4136,17 @@ div[data-role="controlgroup"] a.ui-btn-active {
 .alphaPickerButton:hover,
 .alphaPickerButton-selected {
     color: #fff;
+}
+
+/* Jellyfin 12, coque moderne : le sélecteur A-Z est enveloppé dans un `Paper` MUI
+   qui lui pose un fond gris rgb(32, 32, 32), mesuré sur un serveur 12.1 réel —
+   une bande grise de 19 px de large sur toute la hauteur, à droite de la page
+   bibliothèque. Le A-Z legacy, lui, n'a aucun fond : ce sont des lettres posées
+   sur la page (voir `.alphaPickerButton` plus haut, qui ne peint que le texte).
+   La classe du conteneur est stable, contrairement aux classes `css-…` générées
+   par MUI. Sans effet en legacy : aucun `Paper` n'y est rendu. */
+.alphaPicker-fixed-right .MuiPaper-root {
+    background-color: transparent;
 }
 
 .alphaPicker-vertical {
