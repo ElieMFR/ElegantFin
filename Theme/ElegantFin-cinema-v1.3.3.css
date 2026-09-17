@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.3-testB */
+/* ElegantFin Cinema Edition v1.3.3-testC */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3-testB";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3-testC";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4181,6 +4181,31 @@ div[data-role="controlgroup"] a.ui-btn-active {
     border: var(--defaultBorder);
 }
 
+/* Avatar du profil : photo centrée en position ABSOLUE, pas par le flex.
+   Jellyfin dessine la photo sur un <div> placé dans le <button> de l'en-tête, et ce
+   <div> porte AUSSI la classe `.paper-icon-button-light` : il hérite d'un padding de
+   0,556 em qui le rend plus grand que l'espace utile du bouton. Il déborde, et seul
+   `align-items: center` le ramène au milieu. Signalé sur Tizen 4.0 : l'anneau de focus
+   était plus épais en haut qu'en bas. Mesuré en simulant un moteur qui aligne cet
+   élément au début : 9,9 px d'écart en haut, 4,3 px en bas — le symptôme exact.
+   Le centrage absolu ne dépend plus du tout de l'alignement flex : 7,1 px des quatre
+   côtés QUEL QUE SOIT le comportement du moteur, et rendu strictement identique sur un
+   moteur récent (vérifié). Il sort aussi la photo du flux du bouton, ce qui la met à
+   l'abri de toute autre particularité de mise en page des <button> anciens.
+   ⚠️ Fausse bonne idée écartée : mettre le padding du bouton à 0 pour supprimer le
+   débordement. Mesuré, elle AGGRAVE le décalage sur un moteur qui aligne au début
+   (1 px en haut, 13,2 px en bas).
+   Pas d'effet de glissement à l'écran malgré le `transition: 0.2s` de Jellyfin sur ces
+   boutons : la valeur de `transform` ne change jamais, elle est posée dès le rendu. */
+.headerUserButton > .headerUserButtonRound {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
 .MuiAvatar-circular {
     width: 1.5em;
     height: 1.5em;
@@ -5494,15 +5519,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     font-weight: 600 !important;
 }
 
-/* BUILD DE TEST (testB) — même graisse pour TOUS les états d'onglet. Mesuré : passer
-   « Favoris » en actif fait perdre 4,43 px à « Accueil » (gras → normal) et gagner
-   3,71 px à « Favoris ». Un onglet focalisé mais pas encore actif retombe, lui, sur
-   la graisse héritée (400). Ce build fige tout à 600 pour vérifier si ces variations
-   de largeur déclenchent la coupure d'« Accueil » sur Tizen 4.0. */
-.sectionTabs .emby-tab-button {
-    font-weight: 600 !important;
-}
-
 /* this increases page top padding when section tabs are expanded */
 .libraryPage:not(.noSecondaryNavPage) {
     padding-top: calc(var(--appBarHeight) * 2 + 0.5em) !important;
@@ -6589,12 +6605,25 @@ for extended styling, use the add-on */
     /* 4) Barre d'onglets. Sur TV (≥ 75em) la grille centrait les onglets
        verticalement dans la barre : bouton à +23 px, contre +3 px sans grille. Le
        centrage lui-même vient de la règle `@media (min-width: 75em)` existante
-       (`justify-content` / `align-items: center`), parfaitement comprise en 56 —
-       mais inopérante sur un bloc. Il suffit donc de rendre un conteneur flex.
-       ⚠️ Pas de `flex-grow` sur l'enfant : essayé, il étirait le conteneur au lieu de
-       le centrer, et ramenait le bouton à +3 px en largeur TV. */
+       (`justify-content: center`), parfaitement comprise en 56 — mais inopérante
+       sur un bloc. Il faut donc un conteneur flex.
+       ⚠️ Mais PAS `inline-flex`, et PAS `align-items: center` : c'était la v1.3.3, et
+       sur Tizen 4.0 elle coupait « Accueil » dès que le focus passait sur « Favoris ».
+       PROUVÉ par A/B sur le téléviseur : sans ce repli, plus de coupure ; en figeant
+       la graisse des onglets, coupure toujours là. Mécanisme : `inline-flex` +
+       `align-items: center` ajustaient le cadre des onglets AU PIXEL près (196 px
+       mesurés, largeurs fractionnaires). Jellyfin n'y fait glisser la barre
+       (`scroller.toCenter()`, sur TV uniquement) que si le contenu déborde du cadre —
+       et sur ce vieux moteur, un écart d'arrondi entre les deux largeurs suffisait.
+       Cette version rend un conteneur flex de NIVEAU BLOC dont l'enfant s'étire
+       (`align-items: stretch`) : le cadre retrouve la pleine largeur qu'il avait sans
+       repli (1 056 px mesurés), donc des centaines de pixels de marge, tout en gardant
+       le centrage vertical de la grille (+23 px mesurés).
+       ⚠️ Pas de `flex-grow` sur l'enfant non plus : essayé, il étirait le conteneur
+       au lieu de le centrer, et ramenait le bouton à +3 px en largeur TV. */
     .sectionTabs {
-        display: inline-flex;
+        display: flex;
         flex-direction: column;
+        align-items: stretch;
     }
 }
