@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3-testG1";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3-testG2";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4208,16 +4208,17 @@ div[data-role="controlgroup"] a.ui-btn-active {
    à 17,78 px.
    Pas d'effet de glissement à l'écran malgré le `transition: 0.2s` de Jellyfin sur ces
    boutons : ces valeurs ne changent jamais, elles sont posées dès le rendu. */
-/* BUILD DE TEST G1 : photo a 90 % du bouton, sans decoupe.
-   Mesure : 27,00 px dans un bouton de 32 px, 2,5 px de marge sur les quatre
-   cotes. Entre les 26,39 px juges un peu petits et les 30 px juges trop grands.
-   A comparer avec le build G2 (94 %, 28,19 px). */
+/* BUILD DE TEST G2 : photo a 94 % du bouton, sans decoupe.
+   Mesure : 28,19 px dans un bouton de 32 px, 1,9 px de marge sur les quatre
+   cotes. Meme taille que le build F2, mais F2 rognait parce que la decoupe du
+   bouton etait encore active — ici elle ne l'est plus.
+   A comparer avec le build G1 (90 %, 27,00 px). */
 .headerUserButton > .headerUserButtonRound {
     position: absolute;
-    top: 5%;
-    left: 5%;
-    width: 90%;
-    height: 90%;
+    top: 3%;
+    left: 3%;
+    width: 94%;
+    height: 94%;
     margin: 0;
 }
 
