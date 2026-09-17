@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3-testF2";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3-testG1";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4174,11 +4174,17 @@ div[data-role="controlgroup"] a.ui-btn-active {
     padding-top: 3.75em !important;
 }
 
+/* `overflow: visible` : sans lui, le cercle de decoupe du bouton rabote le bord
+   de la photo. Constate a l'ecran : a 100 % ca rogne (build D), et a 94 % ca
+   rogne encore malgre 0,91 px de jeu (build F2) — le moteur en mange plus que
+   ca. La photo reste ronde par son propre `border-radius: 100em` pose par
+   Jellyfin, exactement ce sur quoi l'etat d'origine reposait deja. */
 .headerUserButton {
     width: 2em;
     height: 2em;
     margin-inline-end: 1em;
     border: var(--defaultBorder);
+    overflow: visible;
 }
 
 /* Avatar du profil : la photo occupe tout l'intérieur du bouton, en position ABSOLUE.
@@ -4202,17 +4208,16 @@ div[data-role="controlgroup"] a.ui-btn-active {
    à 17,78 px.
    Pas d'effet de glissement à l'écran malgré le `transition: 0.2s` de Jellyfin sur ces
    boutons : ces valeurs ne changent jamais, elles sont posées dès le rendu. */
-/* BUILD DE TEST F2 : photo a 94 %, en retrait sous la decoupe du bouton.
-   Mesure : 28,19 px dans un bouton de 32 px, 1,9 px du bord, et 0,91 px de jeu
-   sous le cercle de decoupe — assez, en principe, pour que le rabotage constate
-   a 100 % ne la touche plus. A comparer avec le build F1, qui garde 30 px en
-   retirant la decoupe. */
+/* BUILD DE TEST G1 : photo a 90 % du bouton, sans decoupe.
+   Mesure : 27,00 px dans un bouton de 32 px, 2,5 px de marge sur les quatre
+   cotes. Entre les 26,39 px juges un peu petits et les 30 px juges trop grands.
+   A comparer avec le build G2 (94 %, 28,19 px). */
 .headerUserButton > .headerUserButtonRound {
     position: absolute;
-    top: 3%;
-    left: 3%;
-    width: 94%;
-    height: 94%;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
     margin: 0;
 }
 
