@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.2 */
+/* ElegantFin Cinema Edition v1.3.3 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.2";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -6510,3 +6510,82 @@ for extended styling, use the add-on */
 }
 
 /* === Home Screen Sections (HSS) overrides — end === */
+
+/* ============================================================
+   v1.3.3 — REPLI POUR LES MOTEURS SANS GRILLE CSS (Tizen 4.0)
+   ============================================================
+   CSS Grid est arrivé en Chrome 57. Tizen 4.0 tourne sur Chromium 56 : `display:
+   grid` y est inconnu, donc JETÉ, et l'élément retombe en simple bloc. Quatre
+   dispositions du thème reposaient sur la grille et se cassaient sur ces
+   téléviseurs de 2018, alors que Tizen 9.0 (Chromium 120) les rendait normalement.
+
+   Tout est enfermé dans `@supports not (display: grid)` : sur un moteur qui connaît
+   la grille — Tizen 5.0 et plus, tout PC, tout téléphone — ce bloc est IGNORÉ EN
+   ENTIER. Zéro changement de rendu ailleurs.
+
+   VÉRIFIÉ sur un banc qui simule Chromium 56 (en retirant à chaque élément tout ce
+   que ce moteur ignore : grid, gap, place-items, align-content sur bloc), puis en
+   comparant les positions mesurées à celles de la vraie grille. En largeur TV
+   (1920 px) comme en fenêtre étroite, les quatre replis reproduisent la grille au
+   pixel près sur les huit mesures.
+
+   ⚠️ NE PAS « simplifier » en écrivant `display: flex` juste avant `display: grid`
+   dans les règles d'origine : les propriétés de flexbox resteraient posées sur les
+   moteurs récents, où `justify-content` agit aussi en grille — il pousserait la
+   colonne à droite et réduirait la barre de progression à une largeur nulle.
+   ⚠️ NE PAS utiliser `gap` ici : sur une flexbox il demande Chromium 84. */
+@supports not (display: grid) {
+
+    /* 1) Barre de progression de « Continuer à regarder » — le bug SIGNALÉ.
+       Le thème étire le pied de carte sur TOUTE la hauteur (`height: 100%`, pour que
+       le dégradé couvre l'affiche) et compte sur `display: grid` + `align-content:
+       end` pour ramener son contenu en bas. Sans grille, `height: 100%` s'applique
+       toujours mais le contenu s'écoule depuis le haut : la barre remontait en haut
+       de l'affiche. Mesuré : 144 px sous le haut du pied avec la grille, 0 sans. */
+    .innerCardFooter,
+    .chapterThumbTextContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    /* 2) Bloc titre d'une fiche. Grille + `place-items: center` (lui-même Chromium
+       59) + `align-content: end` : titre, infos et boutons centrés et posés en bas.
+       Sans grille ils occupaient toute la largeur, collés à gauche, et remontaient
+       de 161 px. En colonne flex : `justify-content` = vertical, `align-items` =
+       horizontal. */
+    .infoWrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    /* 3) Sections d'une fiche. Sur TV chaque enfant occupe déjà toute la ligne
+       (`grid-column: 1 / -1`) : la grille y est une simple colonne RÉORDONNÉE par
+       `order`. Sans grille, l'empilement tenait mais `order` n'a aucun effet sur un
+       bloc — les sections sortaient dans l'ordre du DOM (« À suivre » avant le
+       résumé) — et `row-gap` disparaissait. La flexbox respecte `order` ; l'espace
+       est rendu par une marge, puisque `gap` sur flexbox n'existe pas en 56.
+       Mesuré : 32 px entre deux sections avec la grille, 16 sans, 32 avec ce repli. */
+    #itemDetailPage .detailSection {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #itemDetailPage .detailSection > * {
+        margin-bottom: 1em;
+    }
+
+    /* 4) Barre d'onglets. Sur TV (≥ 75em) la grille centrait les onglets
+       verticalement dans la barre : bouton à +23 px, contre +3 px sans grille. Le
+       centrage lui-même vient de la règle `@media (min-width: 75em)` existante
+       (`justify-content` / `align-items: center`), parfaitement comprise en 56 —
+       mais inopérante sur un bloc. Il suffit donc de rendre un conteneur flex.
+       ⚠️ Pas de `flex-grow` sur l'enfant : essayé, il étirait le conteneur au lieu de
+       le centrer, et ramenait le bouton à +3 px en largeur TV. */
+    .sectionTabs {
+        display: inline-flex;
+        flex-direction: column;
+    }
+}

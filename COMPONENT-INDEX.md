@@ -1,4 +1,4 @@
-# Index des composants — ElegantFin Cinema Edition v1.3.2
+# Index des composants — ElegantFin Cinema Edition v1.3.3
 
 Généré par `python scripts/component-index.py`. **Ne pas éditer à la main.**
 
@@ -9,7 +9,7 @@ sinon on en corrige une pendant qu'une autre, ailleurs, continue de gagner.
 C'est exactement ce qui a produit la régression v1.2.88 sur le bouton skip,
 dont les huit règles s'étalaient sur 3 700 lignes.
 
-Source indexée : `ElegantFin-cinema-v1.3.2.css` — 6513 lignes.
+Source indexée : `ElegantFin-cinema-v1.3.3.css` — 6592 lignes.
 
 | Composant | Règles | Zones | Lignes |
 |---|---:|---:|---|

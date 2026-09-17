@@ -76,6 +76,20 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.3 — Tizen 4.0: four layouts that needed CSS Grid now work without it
+
+Reported from a real Tizen 4.0 set: the progress bar on "Continue watching" cards sat at the top of the poster instead of the bottom. CSS Grid shipped in Chrome 57; Tizen 4.0 runs Chromium 56, where `display: grid` is unknown, thrown away, and the element falls back to a plain block. Four layouts depended on it.
+
+**The reported bug: the resume progress bar.** Jellyfin pins the card footer to the bottom as a small box. The theme stretches it over the whole card with `height: 100%`, so its gradient covers the poster, and counts on `display: grid` plus `align-content: end` to bring the content back down. Without grid, `height: 100%` still applies but the content flows from the top — so the bar rose to the top of the poster.
+
+**Three siblings with the same root cause.** The title block of a detail page lost its centring and dropped 161 px out of place. The detail sections came out in DOM order, "Up next" before the overview, because `order` does nothing on a block, and lost their spacing. And on TV the tab bar stopped centring its tabs vertically.
+
+**The fix** is a single `@supports not (display: grid)` block that rebuilds each layout with flexbox, which Chromium 56 handles fully. On any engine that knows grid — Tizen 5.0 and later, every desktop, every phone — the block is ignored entirely, so nothing changes there.
+
+**How it was checked, since there is no Chromium 56 to hand.** A test page loaded the real theme and simulated Chromium 56 by stripping, element by element, everything that engine ignores — grid, `gap`, `place-items`, `align-content` on blocks — then measured positions against the real grid. The first attempt was wrong, and only a test at true TV width caught it: at 1920 px a media query centres the tabs, and an extra `flex-grow` pushed the button back to the top. With that removed, all eight measurements match the grid to the pixel, at TV width and in a narrow window alike. The version that looked right at narrow width alone would have shipped a broken tab bar.
+
+---
+
 #### v1.3.2 — Tizen 4.0: the focus system comes back
 
 Reported from a real television: much smoother since v1.3.1, but a visual bug on Tizen 4.0 that Tizen 9.0 does not show. Tizen 4.0 runs Chromium 56, from January 2017.
@@ -543,6 +557,20 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.3 — Tizen 4.0 : quatre dispositions qui exigeaient CSS Grid fonctionnent desormais sans
+
+Signale depuis un vrai televiseur Tizen 4.0 : la barre de progression des cartes « Continuer a regarder » s'affichait en haut de l'affiche au lieu d'en bas. CSS Grid est arrive en Chrome 57 ; Tizen 4.0 tourne sur Chromium 56, ou `display: grid` est inconnu, jete, et l'element retombe en simple bloc. Quatre dispositions en dependaient.
+
+**Le bug signale : la barre de reprise.** Jellyfin colle le pied de carte en bas, en petite boite. Le theme l'etire sur toute la carte avec `height: 100%`, pour que son degrade couvre l'affiche, et compte sur `display: grid` et `align-content: end` pour ramener le contenu en bas. Sans grille, `height: 100%` s'applique toujours mais le contenu s'ecoule depuis le haut : la barre remontait en haut de l'affiche.
+
+**Trois regles soeurs, meme cause.** Le bloc titre d'une fiche perdait son centrage et remontait de 161 px. Les sections d'une fiche sortaient dans l'ordre du DOM, « A suivre » avant le resume, puisque `order` n'agit pas sur un bloc, et perdaient leur espacement. Et sur TV, la barre d'onglets ne centrait plus ses onglets verticalement.
+
+**Le correctif** est un unique bloc `@supports not (display: grid)` qui reconstruit chaque disposition en flexbox, que Chromium 56 gere entierement. Sur tout moteur qui connait la grille — Tizen 5.0 et suivants, tout PC, tout telephone — le bloc est ignore en entier : rien n'y change.
+
+**Comment ca a ete verifie, faute de Chromium 56 sous la main.** Une page de test chargeait le vrai theme et simulait Chromium 56 en retirant, element par element, tout ce que ce moteur ignore — grille, `gap`, `place-items`, `align-content` sur bloc — puis mesurait les positions face a la vraie grille. Le premier essai etait faux, et seul un test en vraie largeur TV l'a revele : a 1920 px une media query centre les onglets, et un `flex-grow` en trop renvoyait le bouton en haut. Une fois retire, les huit mesures correspondent a la grille au pixel pres, en largeur TV comme en fenetre etroite. La version qui semblait juste en fenetre etroite aurait livre une barre d'onglets cassee.
 
 ---
 
