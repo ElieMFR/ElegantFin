@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.4-testJ */
+/* ElegantFin Cinema Edition v1.3.4-testK */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testJ";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testK";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -5321,6 +5321,18 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    12.0 s'en sert pour le sélecteur A-Z des bibliothèques (AlphabetPicker). */
 .MuiToggleButtonGroup-grouped.Mui-selected {
     color: white;
+}
+
+/* Case à cocher COCHÉE du popover « Filtrer » : MUI la peint avec la couleur
+   primaire, restée sur le bleu Jellyfin rgb(0, 164, 220) — mesuré sur un serveur
+   12.1 réel, en ajoutant la classe `Mui-checked` en local puis en la retirant,
+   pour ne pas modifier les filtres de l'utilisateur. Passée à l'accent du thème,
+   ce qui la met d'accord avec le A-Z sélectionné juste au-dessus, déjà blanc sur
+   violet. Case décochée : rgba(255, 255, 255, 0.7), inchangée.
+   NB : `.MuiRadio-root` et `.MuiSwitch-root` existent dans les sources de la 12.1
+   mais n'ont JAMAIS été vus rendus ici — pas de règle posée à l'aveugle. */
+.MuiCheckbox-root.Mui-checked {
+    color: var(--activeColor);
 }
 
 @media (hover: hover) and (pointer: fine) {
