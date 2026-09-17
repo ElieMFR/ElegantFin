@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.1 */
+/* ElegantFin Cinema Edition v1.3.2 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.1";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.2";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -407,7 +407,18 @@ body {
    repart avant la fin du délai → l'animation ne démarre jamais (zéro re-raster,
    fluidité v1.2.55 conservée). À l'arrêt, la carte pop + ombre de profondeur.
    Le contour blanc (.cardScalable), lui, reste INSTANTANÉ = le curseur. */
-.layout-tv .card:focus-visible .cardBox,
+.layout-tv .card:focus-visible .cardBox {
+    outline: none !important;
+    transform: scale(1.05);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.5);
+    transition: transform 0.15s ease 0.28s, box-shadow 0.15s ease 0.28s !important;
+    z-index: 10;
+    position: relative;
+}
+
+/* ⚠️ SÉPARÉ : ne jamais recoller ces deux règles. Un sélecteur non reconnu
+   invalide la RÈGLE ENTIÈRE, liste comprise — la moitié ancienne tomberait
+   avec la moderne sur les moteurs qui ignorent le sélecteur du dessus. */
 .layout-tv .card:focus .cardBox {
     outline: none !important;
     transform: scale(1.05);
@@ -428,7 +439,15 @@ body {
     transition: none !important;
 }
 
-.layout-tv .card:focus-visible .cardScalable,
+.layout-tv .card:focus-visible .cardScalable {
+    box-shadow:
+        inset 0 0 0 3px rgba(255, 255, 255, 0.95),    /* contour blanc — image seule */
+        0 0 16px rgba(255, 255, 255, 0.3);             /* glow blanc subtle */
+}
+
+/* ⚠️ SÉPARÉ : ne jamais recoller ces deux règles. Un sélecteur non reconnu
+   invalide la RÈGLE ENTIÈRE, liste comprise — la moitié ancienne tomberait
+   avec la moderne sur les moteurs qui ignorent le sélecteur du dessus. */
 .layout-tv .card:focus .cardScalable {
     box-shadow:
         inset 0 0 0 3px rgba(255, 255, 255, 0.95),    /* contour blanc — image seule */
@@ -439,8 +458,14 @@ body {
    scalait .cardScalable à 1.06 EN PLUS du scale 1.05 de .cardBox → l'image (enfant)
    gonflait plus que son cadre/titre = « zoom bizarre ». On neutralise le scale
    propre de l'image sur TV : seul .cardBox pop, d'un seul tenant (image+contour+titre). */
+.layout-tv .card:focus-visible .cardScalable {
+    transform: none !important;
+}
+
+/* ⚠️ SÉPARÉ : ne jamais recoller ces deux règles. Un sélecteur non reconnu
+   invalide la RÈGLE ENTIÈRE, liste comprise — la moitié ancienne tomberait
+   avec la moderne sur les moteurs qui ignorent le sélecteur du dessus. */
 .layout-tv .card:focus .cardScalable,
-.layout-tv .card:focus-visible .cardScalable,
 .layout-tv .card.show-focus:focus .cardScalable,
 .layout-tv .card-hoverable:hover .cardScalable {
     transform: none !important;
@@ -459,7 +484,20 @@ body {
    v1.2.74 : le variant :focus-visible n'est plus scopé .layout-tv → il couvre
    aussi le focus CLAVIER sur PC (Tab), sans se déclencher au clic souris
    (heuristique native du navigateur). TV garde son chemin .show-focus. */
-.btnPlay:focus-visible,
+.btnPlay:focus-visible {
+    background-color: #111827 !important;
+    color: #fff !important;
+    outline: none !important;
+    box-shadow:
+        0 0 0 3px #fff,
+        0 0 22px rgba(255, 255, 255, 0.45);
+    z-index: 10;
+    position: relative;
+}
+
+/* ⚠️ SÉPARÉ : ne jamais recoller ces deux règles. Un sélecteur non reconnu
+   invalide la RÈGLE ENTIÈRE, liste comprise — la moitié ancienne tomberait
+   avec la moderne sur les moteurs qui ignorent le sélecteur du dessus. */
 .layout-tv .btnPlay.show-focus:focus {
     background-color: #111827 !important;
     color: #fff !important;
@@ -475,7 +513,18 @@ body {
    jamais de fill (la pastille blanche v1.2.48 était masquée par la photo → halo à
    peine perceptible). Même traitement que les profils « Qui regarde ? ». Déclaré
    après la règle .headerButton fill (même spécificité) pour la surcharger. */
-.headerUserButton:focus-visible,
+.headerUserButton:focus-visible {
+    background-color: transparent !important;
+    outline: none !important;
+    border-color: transparent !important;
+    box-shadow:
+        0 0 0 3px #fff,
+        0 0 18px rgba(255, 255, 255, 0.5) !important;
+}
+
+/* ⚠️ SÉPARÉ : ne jamais recoller ces deux règles. Un sélecteur non reconnu
+   invalide la RÈGLE ENTIÈRE, liste comprise — la moitié ancienne tomberait
+   avec la moderne sur les moteurs qui ignorent le sélecteur du dessus. */
 .layout-tv .headerUserButton.show-focus:focus {
     background-color: transparent !important;
     outline: none !important;
@@ -493,10 +542,24 @@ body {
    aussi au focus CLAVIER sur PC (icônes header / détail / OSD), jamais au clic
    souris. TV conserve son chemin .show-focus. */
 .detailButton:not(.btnPlay):focus-visible,
-.layout-tv .detailButton:not(.btnPlay).show-focus:focus,
 .headerButton:focus-visible,
+.paper-icon-button-light:focus-visible {
+    background-color: #fff !important;
+    color: #000 !important;
+    outline: none !important;
+    box-shadow:
+        0 0 16px rgba(255, 255, 255, 0.45),
+        0 2px 8px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.12s ease, box-shadow 0.12s ease;
+    z-index: 10;
+    position: relative;
+}
+
+/* ⚠️ SÉPARÉ : ne jamais recoller ces deux règles. Un sélecteur non reconnu
+   invalide la RÈGLE ENTIÈRE, liste comprise — la moitié ancienne tomberait
+   avec la moderne sur les moteurs qui ignorent le sélecteur du dessus. */
+.layout-tv .detailButton:not(.btnPlay).show-focus:focus,
 .layout-tv .headerButton.show-focus:focus,
-.paper-icon-button-light:focus-visible,
 .layout-tv .paper-icon-button-light.show-focus:focus {
     background-color: #fff !important;
     color: #000 !important;
@@ -562,7 +625,18 @@ body {
    La « pastille » est portée par un box-shadow étalé de la même couleur que le
    fond → aucun décalage de mise en page quand le focus arrive. color !important
    pour battre le hover violet (la télécommande déclenche aussi :hover sur Tizen). */
-.button-link.emby-button:focus-visible,
+.button-link.emby-button:focus-visible {
+    background-color: #fff !important;
+    color: #000 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 0.15em #fff !important;   /* v1.2.59 : 0.3em dépassait la ligne → rogné par l'overflow:hidden du module titres longs */
+    border-radius: 0.2em;
+    text-decoration: none !important;
+}
+
+/* ⚠️ SÉPARÉ : ne jamais recoller ces deux règles. Un sélecteur non reconnu
+   invalide la RÈGLE ENTIÈRE, liste comprise — la moitié ancienne tomberait
+   avec la moderne sur les moteurs qui ignorent le sélecteur du dessus. */
 .button-link.emby-button.show-focus:focus {
     background-color: #fff !important;
     color: #000 !important;
@@ -584,8 +658,17 @@ body {
 
 /* Onglets de section (Accueil / Films / Séries…) — mêmes règles que les onglets
    de date du Guide (remplis depuis v1.2.48) : deux types d'onglets, UN traitement. */
-.emby-tab-button.show-focus:focus,
 .emby-tab-button:focus-visible {
+    background-color: #fff !important;
+    color: #000 !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* ⚠️ SÉPARÉ : ne jamais recoller ces deux règles. Un sélecteur non reconnu
+   invalide la RÈGLE ENTIÈRE, liste comprise — la moitié ancienne tomberait
+   avec la moderne sur les moteurs qui ignorent le sélecteur du dessus. */
+.emby-tab-button.show-focus:focus {
     background-color: #fff !important;
     color: #000 !important;
     outline: none !important;
@@ -3138,8 +3221,14 @@ progress + span {
     display: none;
 }
 
-.cardText-secondary + .itemSelectionPanel > .checkboxContainer,
 .cardText.cardTextCentered:not(.cardText-secondary, .cardText-first) + .itemSelectionPanel > .checkboxContainer {
+    height: calc(100% - 3em);
+}
+
+/* ⚠️ SÉPARÉ : ne jamais recoller ces deux règles. Un sélecteur non reconnu
+   invalide la RÈGLE ENTIÈRE, liste comprise — la moitié ancienne tomberait
+   avec la moderne sur les moteurs qui ignorent le sélecteur du dessus. */
+.cardText-secondary + .itemSelectionPanel > .checkboxContainer {
     height: calc(100% - 3em);
 }
 
@@ -4382,9 +4471,15 @@ textarea,
         background-color: rgba(255, 255, 255, 0.125);
     }
 
-    .emby-select-withcolor:hover:not(.emby-select[disabled], :focus),
-    .emby-input:hover:not(:focus),
-    .emby-textarea:hover:not(:focus) {
+    .emby-select-withcolor:hover:not(.emby-select[disabled], :focus) {
+        border-color: var(--dimTextColor) !important;
+    }
+
+/* ⚠️ SÉPARÉ : ne jamais recoller ces deux règles. Un sélecteur non reconnu
+   invalide la RÈGLE ENTIÈRE, liste comprise — la moitié ancienne tomberait
+   avec la moderne sur les moteurs qui ignorent le sélecteur du dessus. */
+.emby-input:hover:not(:focus),
+.emby-textarea:hover:not(:focus) {
         border-color: var(--dimTextColor) !important;
     }
 
@@ -5989,8 +6084,17 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     text-align: center;
 }
 
-#loginPage #divUsers .card:focus .cardScalable,
 #loginPage #divUsers .card:focus-visible .cardScalable {
+    box-shadow:
+        inset 0 0 0 3px rgba(255, 255, 255, 0.95),
+        0 0 18px rgba(255, 255, 255, 0.35);
+    border-color: #fff !important;
+}
+
+/* ⚠️ SÉPARÉ : ne jamais recoller ces deux règles. Un sélecteur non reconnu
+   invalide la RÈGLE ENTIÈRE, liste comprise — la moitié ancienne tomberait
+   avec la moderne sur les moteurs qui ignorent le sélecteur du dessus. */
+#loginPage #divUsers .card:focus .cardScalable {
     box-shadow:
         inset 0 0 0 3px rgba(255, 255, 255, 0.95),
         0 0 18px rgba(255, 255, 255, 0.35);

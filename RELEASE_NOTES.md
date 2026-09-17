@@ -76,6 +76,22 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.2 — Tizen 4.0: the focus system comes back
+
+Reported from a real television: much smoother since v1.3.1, but a visual bug on Tizen 4.0 that Tizen 9.0 does not show. Tizen 4.0 runs Chromium 56, from January 2017.
+
+**The cause.** In CSS, an unrecognised selector invalidates the whole rule, the entire list with it. Eleven rules paired `:focus-visible`, which needs Chromium 86, with the television focus path `.show-focus:focus`, which Chromium 56 understands perfectly. On those sets the whole rule was dropped and the working half went down with it. Six of the eleven lost an explicit `.layout-tv` selector.
+
+What disappeared on Tizen 4.0: the card pop and its depth shadow at focus, the anti-double-zoom fix from v1.2.49, the Play button's dark inversion, the avatar's focus ring, the white pill on detail buttons, header buttons and icon buttons, the focus on text links and on the Home/Favourites tabs, and the ring on the "Who's watching" profiles.
+
+**And it was worse than a plain loss.** The rule that turns a focused button transparent uses only single-argument `:not()`, which Chromium 56 handles — so it survived. The rules that paint the button white died. A focused button therefore went transparent with dark text: invisible. The theme has carried a written warning about that trap since v1.2.51; here it fired across an entire engine.
+
+**The fix** splits each contaminated list into two rules with identical declarations, one modern and one legacy, and a comment on each forbidding anyone to merge them again. On a current engine the behaviour is strictly unchanged — same selectors, same declarations, same place in the cascade. On an old one the legacy half now stands alone. Verified: eleven of eleven legacy selectors live in a rule with no modern construct left.
+
+A second tier remains, untouched for now: Chromium 56 also predates CSS Grid, which shipped in Chrome 57, along with flexbox `gap`, `aspect-ratio`, `clamp()` and `margin-inline`. Those degrade the layout rather than delete rules.
+
+---
+
 #### v1.3.1 — TV: the last permanent blurs, and two rules that vanished on 2018–2023 sets
 
 **Four blurs the TV strip had missed.** Measured in a browser against the real file under `html.layout-tv`, not read off the source: `.countIndicator` and `.fullSyncIndicator` still computed `blur(8px)` — a permanent blur on every card, paid throughout scrolling — while `.mediaSourceIndicator`, declared in the very same rule, was correctly stripped. `.playerStats` still blurred at 5 px over video, though `.iconOsd`, which shares its rule, was already handled. `.formDialogFooter` blurred while `.formDialogHeader` did not: the two halves of one dialog treated differently. All four are now stripped, and all four got an opaque background — a panel that loses its blur while keeping a translucent background lets the video through and becomes unreadable, which is a written invariant of this theme.
@@ -527,6 +543,22 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.2 — Tizen 4.0 : le systeme de focus revient
+
+Signale depuis un vrai televiseur : bien plus fluide depuis la v1.3.1, mais un bug visuel sur Tizen 4.0 que Tizen 9.0 ne montre pas. Tizen 4.0 tourne sur Chromium 56, janvier 2017.
+
+**La cause.** En CSS, un selecteur non reconnu invalide la regle entiere, liste comprise. Onze regles associaient `:focus-visible`, qui demande Chromium 86, au chemin de focus televiseur `.show-focus:focus`, que Chromium 56 comprend parfaitement. Sur ces appareils la regle tombait en entier et la moitie valide partait avec. Six des onze perdaient un selecteur `.layout-tv` explicite.
+
+Ce qui disparaissait sur Tizen 4.0 : le pop des cartes et son ombre de profondeur au focus, le correctif anti-double-zoom de la v1.2.49, l'inversion sombre du bouton Lire, l'anneau de l'avatar, la pastille blanche des boutons de detail, des boutons d'en-tete et des boutons d'icone, le focus des liens texte et des onglets Accueil/Favoris, et l'anneau des profils « Qui regarde ? ».
+
+**Et c'etait pire qu'une simple perte.** La regle qui rend un bouton transparent au focus n'utilise que des `:not()` a argument unique, que Chromium 56 gere — elle survivait donc. Celles qui peignent le bouton en blanc mouraient. Un bouton selectionne devenait transparent avec du texte sombre : invisible. Le theme porte un avertissement ecrit sur ce piege depuis la v1.2.51 ; ici il se declenchait a l'echelle d'un moteur entier.
+
+**Le correctif** separe chaque liste contaminee en deux regles aux declarations identiques, une moderne et une ancienne, avec un commentaire sur chacune interdisant de les recoller. Sur un moteur actuel le comportement est rigoureusement inchange : memes selecteurs, memes declarations, meme position dans la cascade. Sur un ancien, la moitie ancienne tient desormais seule. Verifie : onze selecteurs anciens sur onze vivent dans une regle ou ne subsiste aucune construction moderne.
+
+Un second niveau reste, non traite pour l'instant : Chromium 56 est aussi anterieur a CSS Grid, arrive en Chrome 57, ainsi qu'au `gap` des flexbox, a `aspect-ratio`, `clamp()` et `margin-inline`. Ceux-la degradent la mise en page au lieu de supprimer des regles.
 
 ---
 

@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.1 */
+/* ElegantFin Cinema Edition v1.3.2 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.1";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.2";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -220,7 +220,14 @@ body {
     outline-offset: 0.1em;
     box-shadow: 0 0 0.8em rgba(255, 255, 255, 0.3);
 }
-.layout-tv .card:focus-visible .cardBox,
+.layout-tv .card:focus-visible .cardBox {
+    outline: none !important;
+    transform: scale(1.05);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.5);
+    transition: transform 0.15s ease 0.28s, box-shadow 0.15s ease 0.28s !important;
+    z-index: 10;
+    position: relative;
+}
 .layout-tv .card:focus .cardBox {
     outline: none !important;
     transform: scale(1.05);
@@ -236,19 +243,34 @@ body {
 .layout-tv .cardImageContainer {
     transition: none !important;
 }
-.layout-tv .card:focus-visible .cardScalable,
+.layout-tv .card:focus-visible .cardScalable {
+    box-shadow:
+        inset 0 0 0 3px rgba(255, 255, 255, 0.95),
+        0 0 16px rgba(255, 255, 255, 0.3);
+}
 .layout-tv .card:focus .cardScalable {
     box-shadow:
         inset 0 0 0 3px rgba(255, 255, 255, 0.95),
         0 0 16px rgba(255, 255, 255, 0.3);
 }
+.layout-tv .card:focus-visible .cardScalable {
+    transform: none !important;
+}
 .layout-tv .card:focus .cardScalable,
-.layout-tv .card:focus-visible .cardScalable,
 .layout-tv .card.show-focus:focus .cardScalable,
 .layout-tv .card-hoverable:hover .cardScalable {
     transform: none !important;
 }
-.btnPlay:focus-visible,
+.btnPlay:focus-visible {
+    background-color: #111827 !important;
+    color: #fff !important;
+    outline: none !important;
+    box-shadow:
+        0 0 0 3px #fff,
+        0 0 22px rgba(255, 255, 255, 0.45);
+    z-index: 10;
+    position: relative;
+}
 .layout-tv .btnPlay.show-focus:focus {
     background-color: #111827 !important;
     color: #fff !important;
@@ -259,7 +281,14 @@ body {
     z-index: 10;
     position: relative;
 }
-.headerUserButton:focus-visible,
+.headerUserButton:focus-visible {
+    background-color: transparent !important;
+    outline: none !important;
+    border-color: transparent !important;
+    box-shadow:
+        0 0 0 3px #fff,
+        0 0 18px rgba(255, 255, 255, 0.5) !important;
+}
 .layout-tv .headerUserButton.show-focus:focus {
     background-color: transparent !important;
     outline: none !important;
@@ -269,10 +298,20 @@ body {
         0 0 18px rgba(255, 255, 255, 0.5) !important;
 }
 .detailButton:not(.btnPlay):focus-visible,
-.layout-tv .detailButton:not(.btnPlay).show-focus:focus,
 .headerButton:focus-visible,
+.paper-icon-button-light:focus-visible {
+    background-color: #fff !important;
+    color: #000 !important;
+    outline: none !important;
+    box-shadow:
+        0 0 16px rgba(255, 255, 255, 0.45),
+        0 2px 8px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.12s ease, box-shadow 0.12s ease;
+    z-index: 10;
+    position: relative;
+}
+.layout-tv .detailButton:not(.btnPlay).show-focus:focus,
 .layout-tv .headerButton.show-focus:focus,
-.paper-icon-button-light:focus-visible,
 .layout-tv .paper-icon-button-light.show-focus:focus {
     background-color: #fff !important;
     color: #000 !important;
@@ -305,7 +344,14 @@ body {
         inset 0 0 0 2px rgba(255, 255, 255, 0.95),
         0 0 12px rgba(255, 255, 255, 0.3);
 }
-.button-link.emby-button:focus-visible,
+.button-link.emby-button:focus-visible {
+    background-color: #fff !important;
+    color: #000 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 0.15em #fff !important;
+    border-radius: 0.2em;
+    text-decoration: none !important;
+}
 .button-link.emby-button.show-focus:focus {
     background-color: #fff !important;
     color: #000 !important;
@@ -320,8 +366,13 @@ body {
 .layout-tv h3.itemName a:focus {
     color: #000 !important;
 }
-.emby-tab-button.show-focus:focus,
 .emby-tab-button:focus-visible {
+    background-color: #fff !important;
+    color: #000 !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.emby-tab-button.show-focus:focus {
     background-color: #fff !important;
     color: #000 !important;
     outline: none !important;
@@ -2193,8 +2244,10 @@ progress + span {
 #guestCastContent .cardPadder .cardImageIcon {
     display: none;
 }
-.cardText-secondary + .itemSelectionPanel > .checkboxContainer,
 .cardText.cardTextCentered:not(.cardText-secondary, .cardText-first) + .itemSelectionPanel > .checkboxContainer {
+    height: calc(100% - 3em);
+}
+.cardText-secondary + .itemSelectionPanel > .checkboxContainer {
     height: calc(100% - 3em);
 }
 .cardFooter + .itemSelectionPanel > .checkboxContainer,
@@ -3114,9 +3167,11 @@ textarea,
     .actionSheetMenuItem.emby-button:has(.listItemIcon.material-icons.check[style*="hidden"]):hover {
         background-color: rgba(255, 255, 255, 0.125);
     }
-    .emby-select-withcolor:hover:not(.emby-select[disabled], :focus),
-    .emby-input:hover:not(:focus),
-    .emby-textarea:hover:not(:focus) {
+    .emby-select-withcolor:hover:not(.emby-select[disabled], :focus) {
+        border-color: var(--dimTextColor) !important;
+    }
+.emby-input:hover:not(:focus),
+.emby-textarea:hover:not(:focus) {
         border-color: var(--dimTextColor) !important;
     }
     .checkboxContainer:hover .checkboxOutline:not(.multiSelectCheckboxOutline) {
@@ -4259,8 +4314,13 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 #loginPage #divUsers .cardText {
     text-align: center;
 }
-#loginPage #divUsers .card:focus .cardScalable,
 #loginPage #divUsers .card:focus-visible .cardScalable {
+    box-shadow:
+        inset 0 0 0 3px rgba(255, 255, 255, 0.95),
+        0 0 18px rgba(255, 255, 255, 0.35);
+    border-color: #fff !important;
+}
+#loginPage #divUsers .card:focus .cardScalable {
     box-shadow:
         inset 0 0 0 3px rgba(255, 255, 255, 0.95),
         0 0 18px rgba(255, 255, 255, 0.35);
