@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3-testD";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3-testF1";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4174,11 +4174,18 @@ div[data-role="controlgroup"] a.ui-btn-active {
     padding-top: 3.75em !important;
 }
 
+/* BUILD DE TEST F1 : `overflow: visible` retire la decoupe du bouton.
+   A 100 %, le cercle de la photo et le cercle de decoupe du bouton sont
+   exactement confondus, et certains moteurs rabotent alors le pixel exterieur
+   de l'image (constate a l'ecran : le build D rogne). La photo est ronde par
+   son propre `border-radius: 100em` pose par Jellyfin, la decoupe du bouton ne
+   sert donc a rien ici. A comparer avec le build F2. */
 .headerUserButton {
     width: 2em;
     height: 2em;
     margin-inline-end: 1em;
     border: var(--defaultBorder);
+    overflow: visible;
 }
 
 /* Avatar du profil : la photo occupe tout l'intérieur du bouton, en position ABSOLUE.
