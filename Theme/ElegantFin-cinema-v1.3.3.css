@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3-testE1";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3-testE2";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4181,10 +4181,22 @@ div[data-role="controlgroup"] a.ui-btn-active {
     border: var(--defaultBorder);
 }
 
-/* BUILD DE TEST E1 : aucune regle sur la photo de profil — etat exactement
-   identique a celui d'avant la mise en position absolue (build C). La photo
-   revient donc a 17,78 px dans un bouton de 32 px, et l'anneau redevient plus
-   epais en haut sur Tizen 4.0. A comparer avec le build E2. */
+/* BUILD DE TEST E2 : photo de profil centrée en absolu, à 88 % du bouton.
+   Mesuré : photo de 26,39 px dans un bouton de 32 px, 2,8 px d'air sur les
+   quatre côtés. Soit 48 % plus grande qu'à l'origine (17,78 px), mais sans
+   venir buter contre la bordure comme le build D (30 px, 1 px de bordure).
+   Le centrage absolu ne dépend pas de l'alignement flex, donc l'anneau reste
+   régulier sur Tizen 4.0. À comparer avec le build E1. */
+.headerUserButton > .headerUserButtonRound {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 88%;
+    height: 88%;
+    margin: 0;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
 
 .MuiAvatar-circular {
     width: 1.5em;
