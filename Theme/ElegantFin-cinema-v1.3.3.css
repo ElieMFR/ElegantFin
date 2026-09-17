@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.3-retourA */
+/* ElegantFin Cinema Edition v1.3.3-testC */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3-retourA";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3-retourE1";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4181,6 +4181,20 @@ div[data-role="controlgroup"] a.ui-btn-active {
     border: var(--defaultBorder);
 }
 
+/* Avatar du profil : AUCUNE regle. La photo reste celle de Jellyfin — 17,78 px
+   dans le bouton de 32 px du theme, centree par le flex.
+   ⚠️ Ne pas retenter de l'agrandir sans relire ceci : toute la serie C→G a ete
+   testee sur le materiel de l'utilisateur et abandonnee. En absolu a 100 %, le
+   cercle de la photo et le cercle de decoupe du bouton (overflow:hidden +
+   border-radius) sont confondus et le moteur rabote le bord de l'image ; a 94 %
+   il rogne encore malgre 0,91 px de jeu ; en retirant la decoupe
+   (`overflow: visible`), 27 et 28,19 px ont ete juges trop gros. Pour reference,
+   Jellyfin SANS theme affiche cette meme photo a 17,78 px, dans un bouton de
+   44,81 x 35,56 px sans bordure — le theme ne la retrecit donc pas, il ne fait
+   que l'entourer d'un cercle borde de 32 px.
+   Contrepartie connue : l'anneau de focus est plus epais en haut qu'en bas sur
+   Tizen 4.0, l'alignement flex de ce vieux moteur ne centrant pas l'element. */
+
 .MuiAvatar-circular {
     width: 1.5em;
     height: 1.5em;
@@ -6577,6 +6591,28 @@ for extended styling, use the add-on */
         margin-bottom: 1em;
     }
 
-    /* 4) Barre d'onglets — RETIRÉE DANS CE BUILD DE TEST (testA), pour vérifier
-       si elle cause la coupure d'« Accueil » au focus de « Favoris » sur Tizen 4.0. */
+    /* 4) Barre d'onglets. Sur TV (≥ 75em) la grille centrait les onglets
+       verticalement dans la barre : bouton à +23 px, contre +3 px sans grille. Le
+       centrage lui-même vient de la règle `@media (min-width: 75em)` existante
+       (`justify-content: center`), parfaitement comprise en 56 — mais inopérante
+       sur un bloc. Il faut donc un conteneur flex.
+       ⚠️ Mais PAS `inline-flex`, et PAS `align-items: center` : c'était la v1.3.3, et
+       sur Tizen 4.0 elle coupait « Accueil » dès que le focus passait sur « Favoris ».
+       PROUVÉ par A/B sur le téléviseur : sans ce repli, plus de coupure ; en figeant
+       la graisse des onglets, coupure toujours là. Mécanisme : `inline-flex` +
+       `align-items: center` ajustaient le cadre des onglets AU PIXEL près (196 px
+       mesurés, largeurs fractionnaires). Jellyfin n'y fait glisser la barre
+       (`scroller.toCenter()`, sur TV uniquement) que si le contenu déborde du cadre —
+       et sur ce vieux moteur, un écart d'arrondi entre les deux largeurs suffisait.
+       Cette version rend un conteneur flex de NIVEAU BLOC dont l'enfant s'étire
+       (`align-items: stretch`) : le cadre retrouve la pleine largeur qu'il avait sans
+       repli (1 056 px mesurés), donc des centaines de pixels de marge, tout en gardant
+       le centrage vertical de la grille (+23 px mesurés).
+       ⚠️ Pas de `flex-grow` sur l'enfant non plus : essayé, il étirait le conteneur
+       au lieu de le centrer, et ramenait le bouton à +3 px en largeur TV. */
+    .sectionTabs {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
 }
