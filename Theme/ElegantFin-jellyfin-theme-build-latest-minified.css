@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.4 */
+/* ElegantFin Cinema Edition v1.3.4-testH */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testH";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -1792,6 +1792,12 @@ html,
     background: #fff !important;
     border-radius: 0 var(--largeRadius) var(--largeRadius) 0;
 }
+.MuiLinearProgress-colorPrimary {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+}
+.MuiLinearProgress-barColorPrimary {
+    background-color: #fff !important;
+}
 .backgroundProgress > div,
 .backgroundProgress {
     background-color: var(--darkerGradientPoint);
@@ -3505,8 +3511,13 @@ table:not(.MuiTable-root.MuiTable-stickyHeader) {
 .detailTableBodyRow-shaded:nth-child(even) {
     background: var(--lighterGradientPointAlpha) !important;
 }
-.MuiList-root.MuiMenu-list {
+.MuiPopover-paper,
+.MuiMenu-paper {
     background-color: var(--drawerColor);
+    border-radius: var(--smallRadius);
+}
+.MuiList-root.MuiMenu-list {
+    background-color: transparent;
 }
 ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     gap: 0.5rem;

@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.4 */
+/* ElegantFin Cinema Edition v1.3.4-testH */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testH";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -2643,6 +2643,25 @@ html,
     border-radius: 0 var(--largeRadius) var(--largeRadius) 0;
 }
 
+/* Jellyfin 12, coque moderne : même barre de reprise, autre composant.
+   Les pages de bibliothèque de l'app « modern » rendent leurs cartes en React et
+   dessinent la barre avec un `LinearProgress` MUI, pas avec `.itemProgressBar`.
+   Mesuré sur un serveur 12.1 réel : barre rgb(0, 164, 220) et piste rgb(0, 82, 110),
+   soit le bleu Jellyfin — alors que l'accueil, resté en cartes legacy, affiche la
+   barre blanche du thème. Deux barres différentes dans la même session.
+   Alignées ici sur les valeurs legacy ci-dessus : blanc sur piste à 12 %.
+   ⚠️ `!important` INDISPENSABLE sur la barre : testé sans, elle reste bleue, la
+   classe générée par MUI l'emporte. La piste, elle, passait sans — les deux sont
+   mis pour rester cohérents. Sans effet sur TV et legacy : aucun composant MUI
+   n'y est rendu. */
+.MuiLinearProgress-colorPrimary {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.MuiLinearProgress-barColorPrimary {
+    background-color: #fff !important;
+}
+
 .backgroundProgress > div,
 .backgroundProgress {
     background-color: var(--darkerGradientPoint);
@@ -4929,8 +4948,24 @@ table:not(.MuiTable-root.MuiTable-stickyHeader) {
     background: var(--lighterGradientPointAlpha) !important;
 }
 
-.MuiList-root.MuiMenu-list {
+/* Menus déroulants de la coque moderne : le navy passe de la LISTE à la SURFACE.
+   Mesuré sur un serveur 12.1 réel, menu utilisateur ouvert : la liste était bien
+   peinte en navy par la règle ci-dessous, mais le panneau MUI sous elle restait
+   gris rgb(32, 32, 32), avec un rayon de 4 px quand la liste a un rayon de 0. Le
+   gris transparaissait donc par les 10 % de transparence du navy, et les quatre
+   coins étaient gris.
+   ⚠️ Ne PAS empiler les deux : `--drawerColor` vaut rgba(…, 0.9), et 0,9 par-dessus
+   0,9 donne 0,99 — l'effet de verre disparaîtrait. D'où la liste en transparent :
+   une seule couche translucide, portée par la surface, qui a le bon rayon et que
+   son `overflow: hidden` fait découper proprement aux coins. */
+.MuiPopover-paper,
+.MuiMenu-paper {
     background-color: var(--drawerColor);
+    border-radius: var(--smallRadius);
+}
+
+.MuiList-root.MuiMenu-list {
+    background-color: transparent;
 }
 
 ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
