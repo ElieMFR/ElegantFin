@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.4-testI */
+/* ElegantFin Cinema Edition v1.3.4-testJ */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testI";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testJ";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4976,6 +4976,15 @@ table:not(.MuiTable-root.MuiTable-stickyHeader) {
 }
 
 .MuiList-root.MuiMenu-list {
+    background-color: transparent;
+}
+
+/* Même raison, autre composant : le popover « Filtrer » des bibliothèques empile
+   trois `Accordion` (Filtres, Genres, Années) qui portent chacun leur propre fond
+   gris rgb(32, 32, 32) — mesuré — posé PAR-DESSUS le navy de la surface. Ils sont
+   rendus transparents pour que la surface unique reste visible au travers.
+   Scopé au popover : les accordéons d'autres contextes ne sont pas touchés. */
+.MuiPopover-paper .MuiAccordion-root {
     background-color: transparent;
 }
 
