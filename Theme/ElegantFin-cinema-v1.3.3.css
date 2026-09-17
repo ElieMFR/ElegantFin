@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.3 */
+/* ElegantFin Cinema Edition v1.3.3-testA */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3-testA";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -6577,15 +6577,6 @@ for extended styling, use the add-on */
         margin-bottom: 1em;
     }
 
-    /* 4) Barre d'onglets. Sur TV (≥ 75em) la grille centrait les onglets
-       verticalement dans la barre : bouton à +23 px, contre +3 px sans grille. Le
-       centrage lui-même vient de la règle `@media (min-width: 75em)` existante
-       (`justify-content` / `align-items: center`), parfaitement comprise en 56 —
-       mais inopérante sur un bloc. Il suffit donc de rendre un conteneur flex.
-       ⚠️ Pas de `flex-grow` sur l'enfant : essayé, il étirait le conteneur au lieu de
-       le centrer, et ramenait le bouton à +3 px en largeur TV. */
-    .sectionTabs {
-        display: inline-flex;
-        flex-direction: column;
-    }
+    /* 4) Barre d'onglets — RETIRÉE DANS CE BUILD DE TEST (testA), pour vérifier
+       si elle cause la coupure d'« Accueil » au focus de « Favoris » sur Tizen 4.0. */
 }
