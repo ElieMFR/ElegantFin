@@ -76,6 +76,20 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.4 — Tizen 4.0: the Home tab stops being clipped when focus moves to Favourites
+
+Reported from the same Tizen 4.0 set: moving the focus onto "Favourites" made the tab bar slide right, and "Home" came out clipped. Putting the focus back on "Home" undid it. Tizen 9.0 never showed it.
+
+**It came from the v1.3.3 fix itself.** That release rebuilt the tab bar with `display: inline-flex` so the tabs would stay vertically centred on an engine without CSS Grid. An inline-flex container shrink-wraps its content: the tab frame went from the full width it had before to 196 px, measured, hugging the tabs to the pixel. Jellyfin slides that bar on television only, through `scroller.toCenter()`, and only when the content overflows its frame — so with fractional label widths, a rounding difference of less than a pixel was enough to convince it there was an overflow to scroll.
+
+**The fix keeps the centring and gives the frame its width back.** The fallback now builds a block-level flex container whose child stretches, so the frame measures 1 056 px again — hundreds of pixels of slack instead of nothing — while the vertical centring stays exactly where it was, at +23 px against +3 px without the fallback.
+
+**Proven on the television, not on a bench.** Two builds went out: one with the fallback removed entirely, one with it kept but every tab locked to the same font weight, to test whether the label widths changing on selection were to blame. The first was clean, the second still clipped. So the culprit was the frame width, not the text.
+
+**What did not change, and why.** The profile photo in the header was looked at in the same pass and deliberately left alone. Seven builds tried to enlarge it: stretched to fill the button it gets its edge shaved, because the photo's circle and the button's clipping circle end up exactly on top of each other; pulled back to 94 % it is still shaved; with the button's clipping removed it was judged too big at 27 and 28 px. For reference, Jellyfin without any theme displays that same photo at 17.78 px — exactly its current size. The theme does not shrink it, it only draws a bordered circle around it.
+
+---
+
 #### v1.3.3 — Tizen 4.0: four layouts that needed CSS Grid now work without it
 
 Reported from a real Tizen 4.0 set: the progress bar on "Continue watching" cards sat at the top of the poster instead of the bottom. CSS Grid shipped in Chrome 57; Tizen 4.0 runs Chromium 56, where `display: grid` is unknown, thrown away, and the element falls back to a plain block. Four layouts depended on it.
@@ -557,6 +571,20 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.4 — Tizen 4.0 : l'onglet Accueil n'est plus coupe quand le focus passe sur Favoris
+
+Signale depuis le meme televiseur Tizen 4.0 : amener le focus sur « Favoris » faisait glisser la barre d'onglets vers la droite, et « Accueil » ressortait coupe. Remettre le focus sur « Accueil » annulait le defaut. Tizen 9.0 ne l'a jamais montre.
+
+**Il venait du correctif de la v1.3.3 lui-meme.** Cette version reconstruisait la barre d'onglets en `display: inline-flex` pour que les onglets restent centres verticalement sur un moteur sans CSS Grid. Or un conteneur inline-flex se retracte sur son contenu : le cadre des onglets est passe de la pleine largeur qu'il avait a 196 px mesures, colle aux onglets au pixel pres. Jellyfin ne fait glisser cette barre que sur televiseur, via `scroller.toCenter()`, et uniquement si le contenu deborde de son cadre — avec des largeurs de libelles fractionnaires, un ecart d'arrondi de moins d'un pixel suffisait donc a lui faire croire qu'il y avait un debordement a faire defiler.
+
+**Le correctif garde le centrage et rend sa largeur au cadre.** Le repli construit desormais un conteneur flex de niveau bloc dont l'enfant s'etire : le cadre retrouve 1 056 px mesures — des centaines de pixels de marge au lieu de rien — pendant que le centrage vertical reste exactement ou il etait, a +23 px contre +3 px sans repli.
+
+**Prouve sur le televiseur, pas sur un banc.** Deux builds ont ete pousses : un avec le repli entierement retire, un avec le repli garde mais tous les onglets figes a la meme graisse, pour verifier si les largeurs de libelles qui changent a la selection etaient en cause. Le premier etait propre, le second coupait toujours. Le coupable etait donc la largeur du cadre, pas le texte.
+
+**Ce qui n'a pas change, et pourquoi.** La photo de profil de l'en-tete a ete examinee dans la meme passe et volontairement laissee telle quelle. Sept builds ont tente de l'agrandir : etiree pour remplir le bouton, elle se fait raboter le bord, parce que le cercle de la photo et le cercle de decoupe du bouton finissent exactement l'un sur l'autre ; ramenee a 94 %, elle est encore rabotee ; la decoupe du bouton retiree, 27 et 28 px ont ete juges trop gros. Pour reference, Jellyfin sans aucun theme affiche cette meme photo a 17,78 px — exactement sa taille actuelle. Le theme ne la retrecit pas, il ne fait que dessiner un cercle borde autour d'elle.
 
 ---
 

@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.3-testC */
+/* ElegantFin Cinema Edition v1.3.4 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3-retourE1";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4";
 
     /* Base theme colors */
     color-scheme: dark;
