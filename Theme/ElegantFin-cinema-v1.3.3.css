@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3-testD";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.3-testE1";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4181,35 +4181,10 @@ div[data-role="controlgroup"] a.ui-btn-active {
     border: var(--defaultBorder);
 }
 
-/* Avatar du profil : la photo occupe tout l'intérieur du bouton, en position ABSOLUE.
-   Jellyfin dessine la photo sur un <div> placé dans le <button> de l'en-tête, et ce
-   <div> porte AUSSI la classe `.paper-icon-button-light` : il n'a aucune largeur propre,
-   sa taille n'est que son propre padding de 0,556 em, soit 17,78 px dans un bouton de
-   32 px — la photo ne remplissait que 56 % du cercle. Il déborde en plus du contenu utile
-   du bouton, et seul `align-items: center` le ramenait au milieu : signalé sur Tizen 4.0,
-   l'anneau était plus épais en haut qu'en bas. Mesuré en simulant un moteur qui aligne
-   cet élément au début : 9,9 px d'écart en haut, 4,3 px en bas — le symptôme exact.
-   L'étirer à 100 % en absolu règle les deux d'un coup : photo de 30 px, 1,00 px restant
-   des quatre côtés (c'est la bordure du bouton, pas un écart), soit 94 % du cercle.
-   Mesuré identique sur moteur récent ET en forçant l'alignement au début : un élément en
-   position absolue ne dépend plus du tout de l'alignement flex. Cela le sort aussi du
-   flux du bouton, à l'abri des particularités de mise en page des <button> anciens.
-   La hauteur/largeur à 100 % vise l'intérieur du bouton grâce au `box-sizing: border-box`
-   que Jellyfin pose sur `.paper-icon-button-light`.
-   ⚠️ Fausses bonnes idées écartées, toutes deux mesurées : mettre le padding du bouton
-   à 0 AGGRAVE le décalage sur un moteur qui aligne au début (1 px en haut, 13,2 px en
-   bas) ; le centrage par `translate(-50%, -50%)` corrige l'anneau mais laisse la photo
-   à 17,78 px.
-   Pas d'effet de glissement à l'écran malgré le `transition: 0.2s` de Jellyfin sur ces
-   boutons : ces valeurs ne changent jamais, elles sont posées dès le rendu. */
-.headerUserButton > .headerUserButtonRound {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-}
+/* BUILD DE TEST E1 : aucune regle sur la photo de profil — etat exactement
+   identique a celui d'avant la mise en position absolue (build C). La photo
+   revient donc a 17,78 px dans un bouton de 32 px, et l'anneau redevient plus
+   epais en haut sur Tizen 4.0. A comparer avec le build E2. */
 
 .MuiAvatar-circular {
     width: 1.5em;
