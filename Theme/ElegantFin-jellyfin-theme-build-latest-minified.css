@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.4-testK */
+/* ElegantFin Cinema Edition v1.3.4-testL */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testK";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testL";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -134,6 +134,19 @@ html {
     text-size-adjust: 100%;
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+.skinHeader,
+html {
+    color: rgba(255, 255, 255, 0.8);
+}
+.cardText-secondary,
+.fieldDescription,
+.guide-programNameCaret,
+.listItem .secondary,
+.nowPlayingBarSecondaryText,
+.programSecondaryTitle,
+.secondaryText {
+    color: rgba(255, 255, 255, 0.5);
 }
 body {
     --primaryItemPageNegativeSpace: 14vh;
@@ -414,6 +427,18 @@ body {
     border: 1px solid var(--lighterBorderColor) !important;
     font-weight: 600;
     backdrop-filter: blur(8px);
+}
+.countIndicator,
+.fullSyncIndicator,
+.mediaSourceIndicator,
+.playedIndicator {
+    color: #fff;
+}
+.countIndicator > svg,
+.fullSyncIndicator > svg,
+.mediaSourceIndicator > svg,
+.playedIndicator > svg {
+    fill: #fff;
 }
 .cardScalable {
     border-radius: var(--largeRadius);
@@ -2566,8 +2591,29 @@ div[data-role="controlgroup"] a.ui-btn-active {
 .MuiDrawer-paper {
     background: var(--drawerColor);
     backdrop-filter: var(--blurLarge);
-    border-right: var(--defaultBorder);
+    border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
     padding: 0.25em;
+}
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .MuiDrawer-paper {
+        backdrop-filter: blur(20px) saturate(1.4) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+        background-color: rgba(10, 15, 25, 0.85) !important;
+    }
+}
+.MuiDrawer-paper .MuiListSubheader-root {
+    text-transform: uppercase;
+    font-size: 0.7em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: normal;
+    color: rgba(255, 255, 255, 0.4);
+    background-color: transparent;
+    padding: 1.5em 1em 0.5em 1em;
+}
+.MuiDrawer-paper .MuiListItemButton-root {
+    border-radius: var(--smallRadius);
 }
 .MuiAppBar-root .MuiButton-colorPrimary {
     color: var(--activeColor) !important;
@@ -2581,6 +2627,33 @@ div[data-role="controlgroup"] a.ui-btn-active {
 }
 .MuiLink-root {
     color: var(--activeColor) !important;
+}
+.MuiLink-root:has(> .sectionTitle) {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+.MuiMenuItem-root {
+    border-radius: 0.7em;
+    margin: 0 0.35em;
+}
+.MuiMenuItem-root.Mui-focusVisible,
+.MuiListItemButton-root.Mui-focusVisible {
+    background-color: #fff !important;
+    color: #000 !important;
+}
+.MuiMenuItem-root.Mui-focusVisible .MuiListItemIcon-root,
+.MuiMenuItem-root.Mui-focusVisible .MuiTypography-root,
+.MuiListItemButton-root.Mui-focusVisible .MuiListItemIcon-root,
+.MuiListItemButton-root.Mui-focusVisible .MuiTypography-root {
+    color: #000 !important;
+}
+.MuiButtonGroup-root {
+    border-radius: var(--largeRadius);
+}
+.MuiButtonGroup-root > .MuiButtonGroup-firstButton {
+    border-radius: var(--largeRadius) 0 0 var(--largeRadius);
+}
+.MuiButtonGroup-root > .MuiButtonGroup-lastButton {
+    border-radius: 0 var(--largeRadius) var(--largeRadius) 0;
 }
 .MuiButton-containedPrimary {
     background-color: #fff !important;
@@ -3517,13 +3590,19 @@ table:not(.MuiTable-root.MuiTable-stickyHeader) {
 .MuiPopover-paper,
 .MuiMenu-paper {
     background-color: var(--drawerColor);
-    border-radius: var(--smallRadius);
+    border-radius: var(--largeRadius);
 }
 .MuiList-root.MuiMenu-list {
     background-color: transparent;
 }
 .MuiPopover-paper .MuiAccordion-root {
     background-color: transparent;
+}
+.MuiPopover-paper .MuiAccordionSummary-root {
+    border-radius: var(--smallRadius);
+}
+.MuiPopover-paper .MuiButton-root {
+    border-radius: var(--largeRadius);
 }
 ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     gap: 0.5rem;
@@ -3800,7 +3879,10 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     color: white;
 }
 .MuiCheckbox-root.Mui-checked {
-    color: var(--activeColor);
+    color: var(--checkboxCheckedBgColor);
+}
+.MuiCheckbox-root.Mui-checked > .MuiSvgIcon-root {
+    background: linear-gradient(#fff, #fff) center / 58% 58% no-repeat;
 }
 @media (hover: hover) and (pointer: fine) {
     .MuiButtonBase-root.MuiIconButton-root:hover {
@@ -3968,6 +4050,9 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 }
 .libraryPage:not(.noSecondaryNavPage) {
     padding-top: calc(var(--appBarHeight) * 2 + 0.5em) !important;
+}
+:root:has(.MuiAppBar-root) .libraryPage:not(.noSecondaryNavPage) {
+    padding-top: 1em !important;
 }
 #userProfilePage .readOnlyContent {
     padding-top: 2em !important;

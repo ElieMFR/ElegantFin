@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.4-testK */
+/* ElegantFin Cinema Edition v1.3.4-testL */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testK";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testL";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -270,6 +270,34 @@ html {
     text-size-adjust: 100%;
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+/* Jellyfin 12 — couleurs de texte de base remises à celles de la 10.11.
+   La 12 a réécrit sa feuille de thème (src/themes/_base/_theme.scss) en variables
+   MUI. Deux changements en ont résulté, prouvés en comparant les deux feuilles et
+   mesurés sur un serveur 12.1 réel :
+   1. texte principal (`html`, `.skinHeader`) : blanc à 80 % → `text-secondary`,
+      blanc à 70 % ;
+   2. textes secondaires (seconde ligne des cartes, descriptions des réglages,
+      lignes secondaires des listes, barre de lecture, guide) : 50 % → 70 %.
+   Résultat en 12 : principal et secondaire à la MÊME intensité, la hiérarchie de
+   lecture de la 10.11 avait disparu. Valeurs 10.11 reprises à l'identique, donc
+   aucun effet sur la 10.11. Touche aussi la TV en 12 : ce thème de base est commun
+   aux deux apps, legacy comprise. Les états de focus (texte noir sur pastille
+   blanche) restent prioritaires : ils sont déclarés en `!important`. */
+.skinHeader,
+html {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.cardText-secondary,
+.fieldDescription,
+.guide-programNameCaret,
+.listItem .secondary,
+.nowPlayingBarSecondaryText,
+.programSecondaryTitle,
+.secondaryText {
+    color: rgba(255, 255, 255, 0.5);
 }
 
 body {
@@ -726,6 +754,27 @@ body {
     border: 1px solid var(--lighterBorderColor) !important;
     font-weight: 600;
     backdrop-filter: blur(8px);
+}
+
+/* Chiffre et coche des pastilles en BLANC, comme en 10.11. Jellyfin 12 a ajouté
+   `color` et `fill: var(--jf-palette-primary-contrastText)` à ces quatre pastilles
+   (src/themes/_base/_theme.scss), soit rgba(0, 0, 0, 0.87) : noir, pensé pour son
+   fond bleu clair. Sur notre fond navy, mesuré sur un serveur 12.1 réel : contraste
+   1,37:1, chiffres illisibles — et coche « vu » noire sur le vert. En blanc :
+   14,87:1. La 10.11 ne posait que le fond, le chiffre restait blanc : ces deux
+   règles n'y changent rien. Touche aussi la TV en 12 (règle du thème de base). */
+.countIndicator,
+.fullSyncIndicator,
+.mediaSourceIndicator,
+.playedIndicator {
+    color: #fff;
+}
+
+.countIndicator > svg,
+.fullSyncIndicator > svg,
+.mediaSourceIndicator > svg,
+.playedIndicator > svg {
+    fill: #fff;
 }
 
 .cardScalable {
@@ -3671,11 +3720,46 @@ div[data-role="controlgroup"] a.ui-btn-active {
     backdrop-filter: var(--blurDefault);
 }
 
+/* Tiroir de navigation de la coque moderne (téléphone uniquement : sur PC la 12
+   n'en affiche pas). Aligné sur le tiroir LEGACY du module Cinema (« Sidebar
+   Glassmorphism Enhanced », `.mainDrawer`), valeurs recopiées telles quelles :
+   mesuré sur les deux serveurs de l'utilisateur, le tiroir 10.11 était
+   rgba(10, 15, 25, 0.85) + blur(20px) saturate(1.4), le tiroir 12
+   rgba(30, 40, 54, 0.9) + blur(10px) — le thème habillait ses deux tiroirs de
+   deux façons différentes. Le repli sans flou reste `--drawerColor`, opaque. */
 .MuiDrawer-paper {
     background: var(--drawerColor);
     backdrop-filter: var(--blurLarge);
-    border-right: var(--defaultBorder);
+    border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
     padding: 0.25em;
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .MuiDrawer-paper {
+        backdrop-filter: blur(20px) saturate(1.4) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+        background-color: rgba(10, 15, 25, 0.85) !important;
+    }
+}
+
+/* Intertitres du tiroir (« Médiathèques ») : même traitement que les
+   `.sidebarHeader` du tiroir legacy — majuscules, 0,7 em, gris à 40 %. */
+.MuiDrawer-paper .MuiListSubheader-root {
+    text-transform: uppercase;
+    font-size: 0.7em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: normal;
+    color: rgba(255, 255, 255, 0.4);
+    background-color: transparent;
+    padding: 1.5em 1em 0.5em 1em;
+}
+
+/* Entrées du tiroir : arrondi des `.navMenuOption` legacy (0,5 em, soit 7,2 px
+   mesurés en 10.11) au lieu des 10 px de la coque moderne. */
+.MuiDrawer-paper .MuiListItemButton-root {
+    border-radius: var(--smallRadius);
 }
 
 /* v1.2.84 — Jellyfin 12 : accent du thème sur la coque « moderne ».
@@ -3707,6 +3791,59 @@ div[data-role="controlgroup"] a.ui-btn-active {
 
 .MuiLink-root {
     color: var(--activeColor) !important;
+}
+
+/* …sauf quand le lien n'est qu'une enveloppe de titre de section. Jellyfin 12
+   rend certains titres (« Épisodes récemment ajoutés › ») dans un `a.MuiLink-root`,
+   et la règle ci-dessus les peignait en violet — mesuré rgb(119, 91, 244) sur un
+   serveur 12.1 réel, alors que ces mêmes titres sont blancs à 80 % en 10.11.
+   `:has()` ne pose aucun risque ici : ce lien n'existe que dans la coque moderne,
+   servie aux seuls navigateurs récents ; les moteurs sans `:has()` ignorent la
+   règle, seule dans sa déclaration. */
+.MuiLink-root:has(> .sectionTitle) {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Entrées des menus déroulants de la coque moderne (menu utilisateur, choix de
+   vue « Séries ▾ », tri) : arrondi et retrait des entrées des menus legacy,
+   10,4 px mesurés en 10.11 sur le menu « Plus » d'une carte. Sans ça, l'option
+   active du choix de vue était un rectangle violet à angles droits, bord à bord. */
+.MuiMenuItem-root {
+    border-radius: 0.7em;
+    margin: 0 0.35em;
+}
+
+/* Focus CLAVIER sur une entrée de menu ou de tiroir : pastille blanche et texte
+   noir, comme les entrées du tiroir legacy au focus (mesuré en 10.11 à la vraie
+   touche Tab : fond rgb(255, 255, 255), texte rgb(0, 0, 0)). La coque moderne
+   n'affichait qu'un voile à 12 %. `Mui-focusVisible` est posé par MUI au seul
+   focus clavier : aucun effet au clic souris. */
+.MuiMenuItem-root.Mui-focusVisible,
+.MuiListItemButton-root.Mui-focusVisible {
+    background-color: #fff !important;
+    color: #000 !important;
+}
+
+.MuiMenuItem-root.Mui-focusVisible .MuiListItemIcon-root,
+.MuiMenuItem-root.Mui-focusVisible .MuiTypography-root,
+.MuiListItemButton-root.Mui-focusVisible .MuiListItemIcon-root,
+.MuiListItemButton-root.Mui-focusVisible .MuiTypography-root {
+    color: #000 !important;
+}
+
+/* Boutons groupés de la barre de bibliothèque (« Tout lire » + « Lecture
+   aléatoire », etc.) : en pilule, comme les boutons de la 10.11, au lieu des
+   4 px de MUI. */
+.MuiButtonGroup-root {
+    border-radius: var(--largeRadius);
+}
+
+.MuiButtonGroup-root > .MuiButtonGroup-firstButton {
+    border-radius: var(--largeRadius) 0 0 var(--largeRadius);
+}
+
+.MuiButtonGroup-root > .MuiButtonGroup-lastButton {
+    border-radius: 0 var(--largeRadius) var(--largeRadius) 0;
 }
 
 /* v1.2.85 — bouton d'action principal de la coque moderne (« Tout lire », etc.).
@@ -4968,11 +5105,13 @@ table:not(.MuiTable-root.MuiTable-stickyHeader) {
    ⚠️ Ne PAS empiler les deux : `--drawerColor` vaut rgba(…, 0.9), et 0,9 par-dessus
    0,9 donne 0,99 — l'effet de verre disparaîtrait. D'où la liste en transparent :
    une seule couche translucide, portée par la surface, qui a le bon rayon et que
-   son `overflow: hidden` fait découper proprement aux coins. */
+   son `overflow: hidden` fait découper proprement aux coins.
+   Rayon : `--largeRadius` (14,88 px), celui des boîtes de filtre et de tri et du
+   menu « Plus » de la 10.11, mesurés sur le serveur de l'utilisateur. */
 .MuiPopover-paper,
 .MuiMenu-paper {
     background-color: var(--drawerColor);
-    border-radius: var(--smallRadius);
+    border-radius: var(--largeRadius);
 }
 
 .MuiList-root.MuiMenu-list {
@@ -4986,6 +5125,16 @@ table:not(.MuiTable-root.MuiTable-stickyHeader) {
    Scopé au popover : les accordéons d'autres contextes ne sont pas touchés. */
 .MuiPopover-paper .MuiAccordion-root {
     background-color: transparent;
+}
+
+/* Dans ces mêmes fenêtres : le voile de survol des en-têtes de section et le
+   bouton « Réinitialiser les filtres » étaient carrés (0 et 4 px). */
+.MuiPopover-paper .MuiAccordionSummary-root {
+    border-radius: var(--smallRadius);
+}
+
+.MuiPopover-paper .MuiButton-root {
+    border-radius: var(--largeRadius);
 }
 
 ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
@@ -5326,13 +5475,22 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 /* Case à cocher COCHÉE du popover « Filtrer » : MUI la peint avec la couleur
    primaire, restée sur le bleu Jellyfin rgb(0, 164, 220) — mesuré sur un serveur
    12.1 réel, en ajoutant la classe `Mui-checked` en local puis en la retirant,
-   pour ne pas modifier les filtres de l'utilisateur. Passée à l'accent du thème,
-   ce qui la met d'accord avec le A-Z sélectionné juste au-dessus, déjà blanc sur
-   violet. Case décochée : rgba(255, 255, 255, 0.7), inchangée.
+   pour ne pas modifier les filtres de l'utilisateur.
+   Couleur : `--checkboxCheckedBgColor`, rgb(79, 70, 229) — celle des cases cochées
+   de la 10.11 (mesurée au vrai clic sur le serveur de l'utilisateur), plus sombre
+   que l'accent rgb(119, 91, 244) qu'avait pris le build K.
+   Coche BLANCHE : l'icône MUI dessine la coche en CREUX dans le carré plein, on y
+   voyait donc le fond navy de la fenêtre. Un carré blanc posé derrière l'icône,
+   plus petit que le carré violet, ne se voit qu'à travers ce creux.
+   Case décochée : rgba(255, 255, 255, 0.7), inchangée.
    NB : `.MuiRadio-root` et `.MuiSwitch-root` existent dans les sources de la 12.1
    mais n'ont JAMAIS été vus rendus ici — pas de règle posée à l'aveugle. */
 .MuiCheckbox-root.Mui-checked {
-    color: var(--activeColor);
+    color: var(--checkboxCheckedBgColor);
+}
+
+.MuiCheckbox-root.Mui-checked > .MuiSvgIcon-root {
+    background: linear-gradient(#fff, #fff) center / 58% 58% no-repeat;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -5578,6 +5736,19 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 /* this increases page top padding when section tabs are expanded */
 .libraryPage:not(.noSecondaryNavPage) {
     padding-top: calc(var(--appBarHeight) * 2 + 0.5em) !important;
+}
+
+/* Jellyfin 12, coque moderne : ce retrait est pensé pour l'en-tête LEGACY fixe et
+   sa rangée d'onglets. La barre MUI de la 12 réserve déjà sa propre place
+   (`OffsetAppBar` et son espaceur) : le retrait s'y ajoutait, et la première
+   rangée de cartes tombait sous une bande vide — mesuré sur un serveur 12.1 réel,
+   82 px sur PC, 152 px sur téléphone. Référence 10.11 mesurée : 15 px entre la
+   barre d'outils et la première carte ; 1 em donne 15 px pile.
+   Ciblée par la présence de la barre MUI, qui n'existe qu'en app moderne : la TV,
+   toujours en legacy, garde le retrait d'origine. Les moteurs sans `:has()`
+   ignorent cette règle, seule dans sa déclaration, et gardent eux aussi l'origine. */
+:root:has(.MuiAppBar-root) .libraryPage:not(.noSecondaryNavPage) {
+    padding-top: 1em !important;
 }
 
 /* v1.2.85 — page Profil : la photo touchait la barre du haut. Cause : la page
