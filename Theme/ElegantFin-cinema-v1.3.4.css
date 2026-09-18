@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.4-testL */
+/* ElegantFin Cinema Edition v1.3.4-testM */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testL";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testM";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -5746,8 +5746,11 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    barre d'outils et la première carte ; 1 em donne 15 px pile.
    Ciblée par la présence de la barre MUI, qui n'existe qu'en app moderne : la TV,
    toujours en legacy, garde le retrait d'origine. Les moteurs sans `:has()`
-   ignorent cette règle, seule dans sa déclaration, et gardent eux aussi l'origine. */
-:root:has(.MuiAppBar-root) .libraryPage:not(.noSecondaryNavPage) {
+   ignorent cette règle, seule dans sa déclaration, et gardent eux aussi l'origine.
+   ⚠️ `.homePage` EXCLUE : l'accueil porte aussi `.libraryPage`, mais un autre
+   réglage du thème l'y colle déjà sous la barre (0 px sur PC, 13 px sur téléphone,
+   mesurés). Le premier essai de cette règle l'avait décalé à 15 et 27 px. */
+:root:has(.MuiAppBar-root) .libraryPage:not(.noSecondaryNavPage):not(.homePage) {
     padding-top: 1em !important;
 }
 
