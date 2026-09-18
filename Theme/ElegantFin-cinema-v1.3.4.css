@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.4-testM */
+/* ElegantFin Cinema Edition v1.3.4-testN */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testM";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testN";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -3844,6 +3844,55 @@ div[data-role="controlgroup"] a.ui-btn-active {
 
 .MuiButtonGroup-root > .MuiButtonGroup-lastButton {
     border-radius: 0 var(--largeRadius) var(--largeRadius) 0;
+}
+
+/* Onglets « Accueil / Favoris » de l'accueil, rendus VISIBLES dans la coque
+   moderne, comme en 10.11. Constaté dans le code de la 12.1 et sur un serveur
+   réel : l'accueil moderne (apps/modern/routes/home.tsx) crée toujours ces onglets
+   via `mainTabsManager.setTabs`, mais dans l'en-tête LEGACY `.skinHeader`, que la
+   coque moderne enveloppe dans un `<div style="display: none">` (AppHeader.tsx) —
+   ils existaient, invisibles. Les Favoris n'étaient plus joignables que par la
+   barre du haut sur PC et le menu ☰ au téléphone.
+   Un `!important` de feuille l'emporte sur ce style en ligne : l'enveloppe est
+   rouverte, tout le reste de l'en-tête legacy est caché (rangée de boutons
+   `.headerTop`, tiroir legacy, poignée de balayage), et la rangée d'onglets est
+   placée sous la barre MUI, dense, de 48 px mesurés en PC comme au téléphone.
+   Prototype mesuré en direct : onglets centrés, bascule Accueil ↔ Favoris
+   fonctionnelle, lien `?tab=1` qui allume le bon onglet, contenu sans chevauchement,
+   rien sur les autres pages.
+   Portée : uniquement quand la barre MUI ET la page d'accueil sont présentes.
+   La TV et la 10.11 n'ont pas de barre MUI : aucun effet. Les moteurs sans
+   `:has()` ignorent ces règles, seules dans leur déclaration.
+   ⚠️ Dépend de la structure interne de Jellyfin. Si une version supprime cet
+   en-tête, les onglets disparaissent simplement (retour à l'état de la 12.1). À
+   RE-VÉRIFIER à chaque version de Jellyfin : si `.headerTop` était renommée, la
+   rangée de boutons legacy réapparaîtrait sur l'accueil, en doublon de la barre. */
+:root:has(.MuiAppBar-root):has(.homePage) div:has(> .skinHeader) {
+    display: block !important;
+}
+
+:root:has(.MuiAppBar-root):has(.homePage) .mainDrawer,
+:root:has(.MuiAppBar-root):has(.homePage) .mainDrawerHandle,
+:root:has(.MuiAppBar-root):has(.homePage) .skinHeader .headerTop {
+    display: none !important;
+}
+
+:root:has(.MuiAppBar-root):has(.homePage) .skinHeader {
+    top: 48px !important;
+}
+
+:root:has(.MuiAppBar-root):has(.homePage) .skinHeader .sectionTabs {
+    margin-top: 0 !important;
+}
+
+/* …et le lien « Favoris » de la barre du haut (PC) retiré, puisqu'il fait
+   désormais doublon avec l'onglet — demande de l'utilisateur, et c'est la
+   disposition de la 10.11, où les Favoris ne sont qu'un onglet de l'accueil.
+   Ciblé par son adresse : dans UserViewNav.tsx (12.1), c'est toujours le premier
+   bouton, `to='/home?tab=1'`, jamais rangé dans le menu de débordement. Le menu ☰
+   du téléphone garde son entrée « Favoris ». */
+.MuiAppBar-root a[href="#/home?tab=1"] {
+    display: none;
 }
 
 /* v1.2.85 — bouton d'action principal de la coque moderne (« Tout lire », etc.).
