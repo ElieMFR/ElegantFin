@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testN";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testO";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -3709,15 +3709,69 @@ div[data-role="controlgroup"] a.ui-btn-active {
     flex-direction: column !important;
 }
 
-/* v1.2.86 : plus de liseré sous la barre du haut. Cette règle datait de l'époque
-   où elle visait le tableau de bord (où le Custom CSS n'est jamais injecté, donc
-   sans effet) ; elle habille aujourd'hui la coque moderne de Jellyfin 12, et son
-   border-bottom y traçait une ligne nette en travers de l'écran. Retirée : le
-   header se fond dans la page, dans l'esprit du header legacy qui s'estompe en
-   dégradé. Ne concerne que le mode moderne (JF12). */
+/* Barre du haut de la coque moderne (Jellyfin 12) : même recette que l'en-tête
+   « cinéma » legacy de la 10.11, qui s'estompe au lieu de former un bandeau.
+   Mesuré sur les deux serveurs de l'utilisateur. 10.11 : sur PC, dégradé noir
+   75 % → 0 et flou 20 px qui s'efface vers le bas ; au téléphone, dégradé navy
+   → 0 et flou 12 px ; sur les fiches PC, dégradé 75 → 40 → 0 % sans flou ; jamais
+   d'ombre, même en défilant. 12.1 avant correction : bande navy 80 % unie, flou
+   5 px, bord net, et une ombre MUI dès qu'on défile (OffsetAppBar passe la barre
+   en `elevation 1` au premier pixel de défilement).
+   Les variables sont celles de l'en-tête legacy : `--headerBackground` et
+   `--blurLargest`/`--headerBlurMask` basculent seules en version téléphone via
+   `:root.layout-mobile`, exactement comme en 10.11. `!important` : MUI peint la
+   barre en `transparent` puis en `default` selon le défilement.
+   v1.2.86 : le liseré du bas reste retiré (il traçait une ligne nette en travers
+   de l'écran). Ne concerne que le mode moderne : la TV et la 10.11 n'ont pas de
+   barre MUI. Vérifié : sur la page vidéo, la 12 vide cette barre (hauteur 0) et
+   affiche son propre en-tête legacy, habillé comme en 10.11. */
 .MuiAppBar-root {
-    background: var(--headerColor);
-    backdrop-filter: var(--blurDefault);
+    background: var(--headerBackground) !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+}
+
+.MuiAppBar-root::after {
+    content: var(--headerBlurLayerVisibility);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    backdrop-filter: var(--blurLargest);
+    -webkit-mask: var(--headerBlurMask);
+    mask: var(--headerBlurMask);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Fiches (PC) : le dégradé des fiches legacy (`.skinHeader-withBackground.
+   semiTransparent`, plus bas), sans flou, pour laisser voir l'image de fond. Au
+   téléphone, la 10.11 garde le dégradé navy flouté sur les fiches : rien à faire,
+   la règle générale ci-dessus le donne déjà.
+   ⚠️ `:not(.hide)` indispensable : la fiche est une page legacy que le gestionnaire
+   de vues garde en cache, masquée, après qu'on l'a quittée. Sans lui, le dégradé
+   des fiches restait sur la bibliothèque visitée ensuite (constaté au prototype). */
+:root.layout-desktop:has(#itemDetailPage:not(.hide)) .MuiAppBar-root {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%) !important;
+}
+
+:root.layout-desktop:has(#itemDetailPage:not(.hide)) .MuiAppBar-root::after {
+    content: none;
+}
+
+/* Police du thème pour tous les composants React de la 12. Jellyfin impose la
+   sienne (« Noto Sans ») à chaque composant Material UI, par ses variables
+   `--jf-font-*` et une règle par composant : barre du haut, menus, tiroir,
+   filtres, tri, page Préférences › Affichage, infobulles s'affichaient dans une
+   autre police que le reste du thème (« Inter », celle de toute la 10.11).
+   `inherit` remonte jusqu'à `html`, qui porte « Inter ».
+   `:where()` garde la spécificité basse (0,2,0), pour que les règles de police
+   plus précises posées plus bas (alphabet en monospace) gagnent par l'ordre.
+   Exclues : les polices d'icônes (`.MuiIcon-root`, `.material-icons`), qui
+   dessinent leurs glyphes par ligature — vérifié, icônes du tiroir intactes. */
+:where([class*="Mui"]):not(.MuiIcon-root):not(.material-icons) {
+    font-family: inherit;
 }
 
 /* Tiroir de navigation de la coque moderne (téléphone uniquement : sur PC la 12
@@ -3776,8 +3830,37 @@ div[data-role="controlgroup"] a.ui-btn-active {
    (barColorSuccess), et couleur des avatars du journal d'activité qui encode la
    gravité — d'où le scope .MuiAppBar-root sur l'avatar, limité à celui du header.
    Sans effet sur la 10.11 : ces éléments n'existent que dans la coque moderne. */
-.MuiAppBar-root .MuiButton-colorPrimary {
-    color: var(--activeColor) !important;
+
+/* Lien de la médiathèque active dans la barre (« Séries » sur PC) : pastille
+   violette et texte blanc, comme l'onglet « Accueil » actif (système deux tons du
+   thème : violet = actif, blanc = focus). Il n'était que du texte violet : sur la
+   barre en dégradé ci-dessus, il devenait presque invisible au-dessus d'une image
+   de fond claire (constaté sur une fiche).
+   Ciblé sur la variante `text` : la règle précédente visait `.MuiButton-colorPrimary`
+   et attrapait aussi « Tout lire » et « Lecture aléatoire », logés DANS la barre
+   (LibraryToolbar est rendue à l'intérieur de l'AppBar) : texte et icônes y
+   sortaient violets (mesuré rgb(119, 91, 244)) au lieu du quasi-noir voulu par la
+   règle `.MuiButton-containedPrimary` plus bas. */
+.MuiAppBar-root .MuiButton-textPrimary {
+    background-color: var(--activeColor) !important;
+    color: #fff !important;
+    border-radius: var(--largeRadius);
+}
+
+/* Séparateur entre « Tout lire » et « Lecture aléatoire » : MUI le peint avec le
+   bleu foncé de Jellyfin (mesuré rgb(0, 114, 154)). Gris discret sur fond blanc. */
+.MuiButtonGroup-groupedContainedPrimary:not(:last-of-type) {
+    border-color: rgba(17, 24, 39, 0.2) !important;
+}
+
+/* Survol des liens de la barre : arrondi du thème au lieu des 4 px de MUI, pour
+   rester cohérent avec la pastille active.
+   ⚠️ `:not(.MuiButtonGroup-grouped)` indispensable : sans lui, les boutons groupés
+   (filtre / tri / affichage, précédent / suivant) s'arrondissaient aux quatre
+   coins et leurs séparateurs verticaux se courbaient en arcs (constaté au
+   prototype). Leurs coins restent ceux du groupe (règles ButtonGroup plus bas). */
+.MuiAppBar-root .MuiButton-text:not(.MuiButtonGroup-grouped) {
+    border-radius: var(--largeRadius);
 }
 
 .MuiAppBar-root .MuiAvatar-root {
@@ -3877,8 +3960,25 @@ div[data-role="controlgroup"] a.ui-btn-active {
     display: none !important;
 }
 
+/* L'en-tête legacy remonte SOUS la barre MUI (0 au lieu de 48 px) et réserve la
+   hauteur de la barre en marge intérieure : sa rangée d'onglets reste au même
+   endroit, mais son dégradé et son flou « cinéma » couvrent désormais aussi la
+   barre, rendue transparente sur l'accueil. On retrouve le bloc unique de la
+   10.11, qui s'estompe d'un seul tenant (0 → 122 px sur PC, 0 → 120 px au
+   téléphone, mesurés), au lieu de deux dégradés superposés avec une couture.
+   Vérifié en défilant : Jellyfin pose `headroom--unpinned` sur l'en-tête mais sans
+   le déplacer — il reste en place, la barre n'est jamais laissée sans fond. */
 :root:has(.MuiAppBar-root):has(.homePage) .skinHeader {
-    top: 48px !important;
+    top: 0 !important;
+    padding-top: 48px !important;
+}
+
+:root:has(.MuiAppBar-root):has(.homePage) .MuiAppBar-root {
+    background: transparent !important;
+}
+
+:root:has(.MuiAppBar-root):has(.homePage) .MuiAppBar-root::after {
+    content: none;
 }
 
 :root:has(.MuiAppBar-root):has(.homePage) .skinHeader .sectionTabs {
@@ -5516,9 +5616,23 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    Material UI n'existe QUE dans le tableau de bord (vérifié dans le source de la
    10.11 et de la 12.0), où le Custom CSS n'est pas injecté : elles n'ont jamais
    rien stylé. La règle ToggleButtonGroup ci-dessous, elle, est bien active : la
-   12.0 s'en sert pour le sélecteur A-Z des bibliothèques (AlphabetPicker). */
-.MuiToggleButtonGroup-grouped.Mui-selected {
-    color: white;
+   12.0 s'en sert pour le sélecteur A-Z des bibliothèques (AlphabetPicker).
+   Aligné sur l'alphabet legacy de la 10.11, mesuré sur le serveur de
+   l'utilisateur : lettres en monospace, 400, blanc à 50 % ; la lettre choisie
+   passe simplement en blanc, SANS fond. La 12.1 affichait des lettres blanches en
+   500 et la lettre choisie dans un bloc violet carré (la règle générale
+   `.Mui-selected` plus haut, d'où `!important` pour le retirer ici).
+   Sélecteur à deux classes : il doit battre, par l'ordre du fichier, la règle de
+   police `:where([class*="Mui"])…` posée plus haut à même spécificité. */
+.MuiToggleButtonGroup-root .MuiToggleButtonGroup-grouped {
+    color: rgba(255, 255, 255, 0.5);
+    font-family: monospace;
+    font-weight: 400;
+}
+
+.MuiToggleButtonGroup-root .MuiToggleButtonGroup-grouped.Mui-selected {
+    color: #fff;
+    background-color: transparent !important;
 }
 
 /* Case à cocher COCHÉE du popover « Filtrer » : MUI la peint avec la couleur
@@ -5532,14 +5646,27 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    voyait donc le fond navy de la fenêtre. Un carré blanc posé derrière l'icône,
    plus petit que le carré violet, ne se voit qu'à travers ce creux.
    Case décochée : rgba(255, 255, 255, 0.7), inchangée.
-   NB : `.MuiRadio-root` et `.MuiSwitch-root` existent dans les sources de la 12.1
-   mais n'ont JAMAIS été vus rendus ici — pas de règle posée à l'aveugle. */
+   NB : `.MuiRadio-root` existe dans les sources de la 12.1 mais n'a JAMAIS été vu
+   rendu ici — pas de règle posée à l'aveugle. */
 .MuiCheckbox-root.Mui-checked {
     color: var(--checkboxCheckedBgColor);
 }
 
 .MuiCheckbox-root.Mui-checked > .MuiSvgIcon-root {
     background: linear-gradient(#fff, #fff) center / 58% 58% no-repeat;
+}
+
+/* Interrupteurs ACTIVÉS du panneau d'affichage des bibliothèques (bouton
+   d'affichage › roue dentée : « Montrer le titre », « Voir l'année ») : bleu
+   Jellyfin rgb(0, 164, 220) sur le bouton et la piste, mesuré sur un serveur 12.1
+   réel. Même violet que les cases cochées ci-dessus ; la piste garde l'opacité
+   0,5 de MUI. Interrupteur désactivé inchangé (gris). */
+.MuiSwitch-switchBase.Mui-checked {
+    color: var(--checkboxCheckedBgColor);
+}
+
+.MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
+    background-color: var(--checkboxCheckedBgColor);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -6594,6 +6721,101 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     bottom: calc(1em + env(safe-area-inset-bottom, 0px));
     box-shadow: 0 0.75em 2em 3em var(--darkerGradientPoint);
     z-index: 2 !important;
+}
+
+/* Jellyfin 12 : la page Préférences › Affichage est réécrite en React (Material
+   UI) dans la coque moderne, et le thème ne l'habillait pas. Champs « remplis »
+   gris avec une petite étiquette flottante à l'intérieur, coins de 4 px, trait de
+   soulignement ; au clic dans un champ, étiquette et soulignement en bleu Jellyfin
+   rgb(0, 164, 220) (constaté au vrai clic) ; titres de section en 300 ; bouton
+   « Sauvegarder » blanc à 4 px. Aligné sur la même page de la 10.11 (legacy),
+   mesurée sur le serveur de l'utilisateur :
+   - étiquette AU-DESSUS du champ, blanc 80 %, blanche au focus ;
+   - champ `--selectorBackgroundColor` avec la bordure et l'arrondi des
+     `.emby-select`/`.emby-input`, 38 px de haut (idem mesuré au prototype) ;
+   - focus : bordure + contour blancs à 95 % (règle `.emby-input:focus`) ;
+   - titres de section en gras, descriptions en blanc 50 % comme `.fieldDescription` ;
+   - « Sauvegarder » = `.button-submit` : violet, collé en bas pendant le défilement.
+   Portée `.userPreferencesPage` : vérifié sur la 12.1, c'est la seule page de
+   préférences qui contienne ces éléments Material UI (les autres sont legacy et
+   n'en ont aucun). Les autres pages React des bibliothèques ne sont pas touchées. */
+.userPreferencesPage .MuiTypography-h2 {
+    font-weight: 700;
+}
+
+.userPreferencesPage .MuiInputLabel-root.MuiInputLabel-formControl {
+    position: static;
+    transform: none;
+    max-width: none;
+    white-space: normal;
+    overflow: visible;
+    margin-bottom: 0.4em;
+    font-size: 1em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.userPreferencesPage .MuiInputLabel-root.Mui-focused {
+    color: #fff;
+}
+
+.userPreferencesPage .MuiFilledInput-root {
+    background-color: var(--selectorBackgroundColor) !important;
+    border: var(--defaultLighterBorder);
+    border-radius: var(--smallRadius);
+}
+
+/* Le trait de soulignement MUI et sa version focus (bleue) : retirés. */
+.userPreferencesPage .MuiFilledInput-root::before,
+.userPreferencesPage .MuiFilledInput-root::after {
+    content: none;
+}
+
+.userPreferencesPage .MuiFilledInput-root.Mui-focused {
+    border-color: rgba(255, 255, 255, 0.95);
+    outline: thin solid rgba(255, 255, 255, 0.95);
+}
+
+/* Marge intérieure : celle des champs legacy (0,5 em), à la place des 25 px que
+   MUI réserve en haut pour l'étiquette flottante. */
+.userPreferencesPage .MuiFilledInput-input {
+    padding: 0.5em;
+    font-size: 1.1em;
+    height: 1.2em;
+    min-height: 1.2em;
+    line-height: 1.2em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* …en gardant à droite la place de la flèche des listes déroulantes. */
+.userPreferencesPage .MuiSelect-select.MuiFilledInput-input {
+    padding-right: 32px;
+}
+
+.userPreferencesPage .MuiFormHelperText-root {
+    margin-left: 2px;
+    margin-right: 0;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Lien d'aide (« Voir comment vous pouvez contribuer ») : comme `.button-link`
+   de la 10.11, pas le violet souligné de la règle `.MuiLink-root` générale. */
+.userPreferencesPage .MuiLink-root {
+    color: var(--dimTextColor) !important;
+    text-decoration: none;
+}
+
+.userPreferencesPage .MuiButton-containedPrimary {
+    background: var(--btnSubmitColor) !important;
+    border: solid var(--btnSubmitBorderColor) var(--borderWidth) !important;
+    color: #fff !important;
+    border-radius: var(--smallRadius);
+    padding: 0.9em 1em;
+    font-weight: 600;
+    line-height: 1.4;
+    position: sticky;
+    bottom: calc(1em + env(safe-area-inset-bottom, 0px));
+    box-shadow: 0 0.75em 2em 3em var(--darkerGradientPoint);
+    z-index: 2;
 }
 
 /* Jellyfin Enhanced : la section avis TMDB débordait de la page détail. */

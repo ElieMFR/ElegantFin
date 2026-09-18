@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testN";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testO";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -2585,8 +2585,31 @@ div[data-role="controlgroup"] a.ui-btn-active {
     flex-direction: column !important;
 }
 .MuiAppBar-root {
-    background: var(--headerColor);
-    backdrop-filter: var(--blurDefault);
+    background: var(--headerBackground) !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+}
+.MuiAppBar-root::after {
+    content: var(--headerBlurLayerVisibility);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    backdrop-filter: var(--blurLargest);
+    -webkit-mask: var(--headerBlurMask);
+    mask: var(--headerBlurMask);
+    z-index: -1;
+    pointer-events: none;
+}
+:root.layout-desktop:has(#itemDetailPage:not(.hide)) .MuiAppBar-root {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%) !important;
+}
+:root.layout-desktop:has(#itemDetailPage:not(.hide)) .MuiAppBar-root::after {
+    content: none;
+}
+:where([class*="Mui"]):not(.MuiIcon-root):not(.material-icons) {
+    font-family: inherit;
 }
 .MuiDrawer-paper {
     background: var(--drawerColor);
@@ -2615,8 +2638,16 @@ div[data-role="controlgroup"] a.ui-btn-active {
 .MuiDrawer-paper .MuiListItemButton-root {
     border-radius: var(--smallRadius);
 }
-.MuiAppBar-root .MuiButton-colorPrimary {
-    color: var(--activeColor) !important;
+.MuiAppBar-root .MuiButton-textPrimary {
+    background-color: var(--activeColor) !important;
+    color: #fff !important;
+    border-radius: var(--largeRadius);
+}
+.MuiButtonGroup-groupedContainedPrimary:not(:last-of-type) {
+    border-color: rgba(17, 24, 39, 0.2) !important;
+}
+.MuiAppBar-root .MuiButton-text:not(.MuiButtonGroup-grouped) {
+    border-radius: var(--largeRadius);
 }
 .MuiAppBar-root .MuiAvatar-root {
     background-color: var(--activeColor) !important;
@@ -2664,7 +2695,14 @@ div[data-role="controlgroup"] a.ui-btn-active {
     display: none !important;
 }
 :root:has(.MuiAppBar-root):has(.homePage) .skinHeader {
-    top: 48px !important;
+    top: 0 !important;
+    padding-top: 48px !important;
+}
+:root:has(.MuiAppBar-root):has(.homePage) .MuiAppBar-root {
+    background: transparent !important;
+}
+:root:has(.MuiAppBar-root):has(.homePage) .MuiAppBar-root::after {
+    content: none;
 }
 :root:has(.MuiAppBar-root):has(.homePage) .skinHeader .sectionTabs {
     margin-top: 0 !important;
@@ -3892,14 +3930,26 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     margin-bottom: 0.5em;
     font-family: "Inter", sans-serif;
 }
-.MuiToggleButtonGroup-grouped.Mui-selected {
-    color: white;
+.MuiToggleButtonGroup-root .MuiToggleButtonGroup-grouped {
+    color: rgba(255, 255, 255, 0.5);
+    font-family: monospace;
+    font-weight: 400;
+}
+.MuiToggleButtonGroup-root .MuiToggleButtonGroup-grouped.Mui-selected {
+    color: #fff;
+    background-color: transparent !important;
 }
 .MuiCheckbox-root.Mui-checked {
     color: var(--checkboxCheckedBgColor);
 }
 .MuiCheckbox-root.Mui-checked > .MuiSvgIcon-root {
     background: linear-gradient(#fff, #fff) center / 58% 58% no-repeat;
+}
+.MuiSwitch-switchBase.Mui-checked {
+    color: var(--checkboxCheckedBgColor);
+}
+.MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
+    background-color: var(--checkboxCheckedBgColor);
 }
 @media (hover: hover) and (pointer: fine) {
     .MuiButtonBase-root.MuiIconButton-root:hover {
@@ -4545,6 +4595,68 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     bottom: calc(1em + env(safe-area-inset-bottom, 0px));
     box-shadow: 0 0.75em 2em 3em var(--darkerGradientPoint);
     z-index: 2 !important;
+}
+.userPreferencesPage .MuiTypography-h2 {
+    font-weight: 700;
+}
+.userPreferencesPage .MuiInputLabel-root.MuiInputLabel-formControl {
+    position: static;
+    transform: none;
+    max-width: none;
+    white-space: normal;
+    overflow: visible;
+    margin-bottom: 0.4em;
+    font-size: 1em;
+    color: rgba(255, 255, 255, 0.8);
+}
+.userPreferencesPage .MuiInputLabel-root.Mui-focused {
+    color: #fff;
+}
+.userPreferencesPage .MuiFilledInput-root {
+    background-color: var(--selectorBackgroundColor) !important;
+    border: var(--defaultLighterBorder);
+    border-radius: var(--smallRadius);
+}
+.userPreferencesPage .MuiFilledInput-root::before,
+.userPreferencesPage .MuiFilledInput-root::after {
+    content: none;
+}
+.userPreferencesPage .MuiFilledInput-root.Mui-focused {
+    border-color: rgba(255, 255, 255, 0.95);
+    outline: thin solid rgba(255, 255, 255, 0.95);
+}
+.userPreferencesPage .MuiFilledInput-input {
+    padding: 0.5em;
+    font-size: 1.1em;
+    height: 1.2em;
+    min-height: 1.2em;
+    line-height: 1.2em;
+    color: rgba(255, 255, 255, 0.8);
+}
+.userPreferencesPage .MuiSelect-select.MuiFilledInput-input {
+    padding-right: 32px;
+}
+.userPreferencesPage .MuiFormHelperText-root {
+    margin-left: 2px;
+    margin-right: 0;
+    color: rgba(255, 255, 255, 0.5);
+}
+.userPreferencesPage .MuiLink-root {
+    color: var(--dimTextColor) !important;
+    text-decoration: none;
+}
+.userPreferencesPage .MuiButton-containedPrimary {
+    background: var(--btnSubmitColor) !important;
+    border: solid var(--btnSubmitBorderColor) var(--borderWidth) !important;
+    color: #fff !important;
+    border-radius: var(--smallRadius);
+    padding: 0.9em 1em;
+    font-weight: 600;
+    line-height: 1.4;
+    position: sticky;
+    bottom: calc(1em + env(safe-area-inset-bottom, 0px));
+    box-shadow: 0 0.75em 2em 3em var(--darkerGradientPoint);
+    z-index: 2;
 }
 .tmdb-review-swipe-container {
     max-width: 93vw;
