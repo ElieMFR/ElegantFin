@@ -76,6 +76,14 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.6 — Lighter on TV: each remote keypress costs 45 % less
+
+- TV guide focus rule rewritten without its `*`: style work per focus change down 45 % (TV layout, 100 cards, 400 moves: 318 → 175 ms; 126 ms with no theme), same look.
+- Six duplicate declarations removed (three TV guards, `.countIndicator`, `.endTimeText`, `.detailsGroupItem`), no visual change.
+- Checked element by element on Jellyfin 10.11 (desktop, TV, phone) and 12.1: identical rendering.
+
+---
+
 #### v1.3.5 — Jellyfin 12: the new interface matches 10.11
 
 - Top bar: the same fading cinema header as 10.11 (gradient and blur, detail-page gradient on desktop), no more shadow when scrolling.
@@ -597,6 +605,14 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.6 — Plus leger sur TV : chaque appui de telecommande coute 45 % de moins
+
+- Regle de focus du guide TV reecrite sans son `*` : travail de style par changement de focus reduit de 45 % (mode TV, 100 cartes, 400 deplacements : 318 → 175 ms ; 126 ms sans theme), meme rendu.
+- Six declarations en double retirees (trois gardes TV, `.countIndicator`, `.endTimeText`, `.detailsGroupItem`), sans changement visuel.
+- Verifie element par element sur Jellyfin 10.11 (PC, TV, telephone) et 12.1 : rendu identique.
 
 ---
 

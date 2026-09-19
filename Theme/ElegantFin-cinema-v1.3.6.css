@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.5 */
+/* ElegantFin Cinema Edition v1.3.6 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.5";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.6";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -2603,11 +2603,6 @@ html,
     }
 }
 
-.layout-tv .page:not(.hide),
-.layout-tv .emby-scroller-container {
-    animation: none !important;
-}
-
 .backdropImageFadeIn {
     transform-origin: bottom center;
     animation: detailBackdropIn 0.7s var(--ease-smooth) forwards !important;
@@ -4352,7 +4347,6 @@ div[data-role="controlgroup"] a.ui-btn-active {
     margin: 0 !important;
     justify-content: space-between;
     padding: 0.5em 0.9em;
-    align-items: baseline;
 }
 
 /* v1.2.94 — compatibilité Jellyfin 12 Legacy, porté d'upstream d26a8e4.
@@ -5243,7 +5237,23 @@ textarea,
     color: #000 !important;
 }
 
-.programCell:focus > .guideProgramName * {
+/* v1.3.6 — texte noir sur la pastille blanche : la liste EXPLICITE des éléments
+   qu'une cellule du guide contient, à la place de l'ancien `*`. Relevés dans
+   components/guide/guide.js (identique en 10.11 et 12.1) : le titre, les badges
+   Direct / Première / Nouveau / Rediffusion, le titre d'épisode, l'icône HD et
+   les icônes d'enregistrement ; le chevron en Material Icons est couvert aussi.
+   ⚠️ NE PAS revenir à `.programCell:focus > .guideProgramName *`. Un `*` placé
+   après `:focus` oblige le navigateur à revérifier TOUT le sous-arbre à chaque
+   changement de focus, même hors du guide : mesuré en mode TV sur la 10.11,
+   100 cartes et 400 déplacements de focus, 318 ms avec le `*`, 175 ms avec la
+   liste, 126 ms sans thème du tout. Cette seule règle faisait les trois quarts
+   du coût du thème à chaque appui de télécommande. Rendu identique vérifié :
+   même couleur et même fond pour les 8 éléments d'une cellule, focus actif. */
+.programCell:focus > .guideProgramName .guideProgramNameText,
+.programCell:focus > .guideProgramName .guideProgramIndicator,
+.programCell:focus > .guideProgramName .programSecondaryTitle,
+.programCell:focus > .guideProgramName .programIcon,
+.programCell:focus > .guideProgramName .material-icons {
     color: #000 !important;
 }
 
@@ -5547,7 +5557,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 }
 
 .endTimeText {
-    justify-content: flex-end;
     padding-inline-end: 0.8em;
     margin: 0 0 0 0.75em !important;
 }
@@ -6327,8 +6336,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    CORRECTIONS MINEURES
    ============================================================ */
 
-.countIndicator { font-weight: 600; }
-
 .nowPlayingBar .nowPlayingBarCenter { overflow: hidden; }
 
 /* ============================================================
@@ -6446,11 +6453,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     }
 }
 
-.layout-tv .nowPlayingBar {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-}
-
 /* v1.2.33 (Fix F): respect iOS notches and Android system gesture bars.
    iPhone X+ have notches/Dynamic Island at top, Home Indicator at bottom.
    Android with gesture nav has a system bar at bottom. Without safe-area
@@ -6549,8 +6551,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 }
 
 .layout-tv .mainDrawer {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
     box-shadow: none;
 }
 

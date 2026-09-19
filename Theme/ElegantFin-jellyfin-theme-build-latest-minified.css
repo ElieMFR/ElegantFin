@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.5 */
+/* ElegantFin Cinema Edition v1.3.6 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.5";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.6";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -1743,10 +1743,6 @@ html,
         transform: none !important;
     }
 }
-.layout-tv .page:not(.hide),
-.layout-tv .emby-scroller-container {
-    animation: none !important;
-}
 .backdropImageFadeIn {
     transform-origin: bottom center;
     animation: detailBackdropIn 0.7s var(--ease-smooth) forwards !important;
@@ -2978,7 +2974,6 @@ div[data-role="controlgroup"] a.ui-btn-active {
     margin: 0 !important;
     justify-content: space-between;
     padding: 0.5em 0.9em;
-    align-items: baseline;
 }
 .detailsGroupItem:not(:last-child),
 .itemDetailsGroup > div:not(:last-child) {
@@ -3626,7 +3621,11 @@ textarea,
     background-color: #fff !important;
     color: #000 !important;
 }
-.programCell:focus > .guideProgramName * {
+.programCell:focus > .guideProgramName .guideProgramNameText,
+.programCell:focus > .guideProgramName .guideProgramIndicator,
+.programCell:focus > .guideProgramName .programSecondaryTitle,
+.programCell:focus > .guideProgramName .programIcon,
+.programCell:focus > .guideProgramName .material-icons {
     color: #000 !important;
 }
 .emby-select-iconbutton {
@@ -3847,7 +3846,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     margin: 0 !important;
 }
 .endTimeText {
-    justify-content: flex-end;
     padding-inline-end: 0.8em;
     margin: 0 0 0 0.75em !important;
 }
@@ -4363,7 +4361,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
         -webkit-backdrop-filter: blur(10px) !important;
     }
 }
-.countIndicator { font-weight: 600; }
 .nowPlayingBar .nowPlayingBarCenter { overflow: hidden; }
 @keyframes skeletonPulse {
     0%   { opacity: 0.06; }
@@ -4429,10 +4426,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
         -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
         background-color: rgba(0, 0, 0, 0.7) !important;
     }
-}
-.layout-tv .nowPlayingBar {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
 }
 .layout-mobile .skinHeader {
     padding-top: env(safe-area-inset-top, 0) !important;
@@ -4502,8 +4495,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     padding: 1.5em 1em 0.5em 1em;
 }
 .layout-tv .mainDrawer {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
     box-shadow: none;
 }
 @media (hover: hover) and (pointer: fine) {
