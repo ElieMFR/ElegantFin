@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.4-testO */
+/* ElegantFin Cinema Edition v1.3.5 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -69,7 +69,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testO";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.5";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -3914,6 +3914,43 @@ div[data-role="controlgroup"] a.ui-btn-active {
     color: #000 !important;
 }
 
+/* Même pastille blanche pour le focus clavier des boutons de la barre (liens,
+   icônes, filtre / tri / affichage, flèches) et des lettres A-Z. MUI n'y
+   affichait qu'un rond gris pulsant (onde blanche à 30 %), constaté en refermant
+   le menu de tri avec Échap. La pastille reste arrondie même sur un bouton
+   groupé, séparateur masqué le temps du focus. */
+.MuiButton-text.Mui-focusVisible,
+.MuiIconButton-root.Mui-focusVisible,
+.MuiToggleButton-root.Mui-focusVisible {
+    background-color: #fff !important;
+    color: #000 !important;
+}
+
+.MuiButton-text.Mui-focusVisible {
+    border-radius: var(--largeRadius) !important;
+    border-right-color: transparent !important;
+}
+
+/* Boutons pleins (« Tout lire », « Sauvegarder ») : une pastille blanche ne se
+   verrait pas sur le bouton blanc, d'où un anneau blanc détaché, comme le bouton
+   de connexion du thème. */
+.MuiButton-contained.Mui-focusVisible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+/* L'onde grise pulsante de MUI est masquée au focus clavier (la pastille ou
+   l'anneau la remplacent), et l'onde de clic prend le violet du thème au lieu du
+   blanc à 30 %, qui passait pour un éclair gris. Deux classes : MUI déclare la
+   couleur de l'onde avec la même profondeur de sélecteur. */
+.Mui-focusVisible > .MuiTouchRipple-root {
+    display: none;
+}
+
+.MuiTouchRipple-root .MuiTouchRipple-child {
+    background-color: var(--activeColor);
+}
+
 /* Boutons groupés de la barre de bibliothèque (« Tout lire » + « Lecture
    aléatoire », etc.) : en pilule, comme les boutons de la 10.11, au lieu des
    4 px de MUI. */
@@ -3927,6 +3964,15 @@ div[data-role="controlgroup"] a.ui-btn-active {
 
 .MuiButtonGroup-root > .MuiButtonGroup-lastButton {
     border-radius: 0 var(--largeRadius) var(--largeRadius) 0;
+}
+
+/* Compteur d'éléments à côté du titre de la bibliothèque (« Séries 20 ») : la
+   pastille `Chip` de MUI était grise (blanc à 16 %). Violet foncé du thème, celui
+   des boutons « Sauvegarder », chiffre blanc. C'est le seul `Chip` des pages
+   utilisateur de la 12.1 (vérifié dans le source : LibraryToolbar). */
+.MuiChip-root {
+    background-color: var(--btnSubmitColor);
+    color: #fff;
 }
 
 /* Onglets « Accueil / Favoris » de l'accueil, rendus VISIBLES dans la coque
@@ -4557,6 +4603,16 @@ div[data-role="controlgroup"] a.ui-btn-active {
     text-overflow: ellipsis;
     overflow: hidden;
     max-width: calc(100vw - 8em);
+}
+
+/* Page Recherche : le titre « Suggestions » est centré par Jellyfin, mais la
+   largeur maximale ci-dessus en fait un bloc plus étroit que la page, calé à
+   gauche — son texte tombait ~64 px à gauche de la liste centrée en dessous.
+   Mesuré sur la 10.11 comme sur la 12.1 (centre du titre 314 px, liste 378 px,
+   fenêtre de 757 px). Bloc recentré : titre et liste alignés au pixel près. */
+.searchSuggestions .sectionTitle {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .sectionTitleTextButton > * {
@@ -5261,6 +5317,48 @@ table:not(.MuiTable-root.MuiTable-stickyHeader) {
 .MuiMenu-paper {
     background-color: var(--drawerColor);
     border-radius: var(--largeRadius);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* …avec le flou des fenêtres legacy. Mesuré sur la 10.11, fenêtre « Trier par » :
+   navy rgba(30, 40, 54, 0.9), flou 20 px saturé, ombre 0 25px 50px à 40 %, aucune
+   bordure. Le menu de tri de la 12.1 avait le même navy mais pas de flou. */
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .MuiPopover-paper {
+        backdrop-filter: blur(20px) saturate(1.4);
+        -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    }
+}
+
+/* Voile d'« élévation » de MUI retiré. En mode sombre, MUI pose sur chaque
+   surface surélevée un dégradé BLANC en `background-image` : 11,8 % sur les menus
+   (élévation 8), mesuré sur la 12.1. Par-dessus le navy du thème, c'est lui qui
+   rendait le menu de tri et tous les menus gris. Même voile retiré du tiroir du
+   téléphone et des blocs du menu de filtres. La barre du haut garde son dégradé :
+   son `background` porte `!important`. */
+.MuiPaper-root {
+    background-image: none;
+}
+
+/* Infobulles des icônes de la barre (« Rechercher », « SyncPlay »…) : gris MUI
+   rgba(97, 97, 97, 0.92), coins de 4 px, texte de 10 px — mesuré au survol.
+   Même verre que les menus ci-dessus, arrondi du thème, texte un peu plus grand ;
+   le liseré discret la détache de la barre, sombre elle aussi. La 10.11 n'a pas
+   d'équivalent : ses boutons n'ont que l'infobulle native du navigateur. */
+.MuiTooltip-tooltip {
+    background-color: var(--drawerColor);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--smallRadius);
+    color: #fff;
+    font-size: 0.8em;
+    padding: 0.35em 0.75em;
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .MuiTooltip-tooltip {
+        backdrop-filter: blur(20px) saturate(1.4);
+        -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    }
 }
 
 .MuiList-root.MuiMenu-list {
@@ -5673,6 +5771,18 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     .MuiButtonBase-root.MuiIconButton-root:hover {
         color: white;
         background-color: transparent;
+    }
+
+    /* Survol dans la nouvelle interface : violet du thème à 35 % au lieu du gris
+       de MUI (blanc à 8 %, mesuré) — titre « Séries ▾ », liens de la barre,
+       filtre / tri / affichage, flèches, lettres A-Z, entrées de menu et du tiroir.
+       Une sélection reste en violet plein (`.Mui-selected`, `!important`) et le
+       focus clavier en blanc : le survol ne les recouvre pas. */
+    .MuiButton-text:hover,
+    .MuiToggleButton-root:hover,
+    .MuiMenuItem-root:hover,
+    .MuiListItemButton-root:hover {
+        background-color: rgba(119, 91, 244, 0.35);
     }
 }
 

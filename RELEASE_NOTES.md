@@ -1,4 +1,4 @@
-# ElegantFin Cinema Edition v1.2.95
+# ElegantFin Cinema Edition — release notes
 
 ## [English](#english) | [Francais](#francais)
 
@@ -73,6 +73,32 @@ This release transforms the ElegantFin theme into a professional, premium stream
 - **Reactive slider** — Expands to `0.5em` on hover, white thumb with `border-radius: 2px`, glow on progress bar
 - **Firefox slider** — Full `::-moz-range-thumb` styling matching WebKit (size, border, radius, transitions)
 - **Skip button** — Bold (700), `letter-spacing: 0.03em`, `scale(1.03)` on hover
+
+---
+
+#### v1.3.5 — Jellyfin 12: the new interface matches 10.11
+
+- Top bar: the same fading cinema header as 10.11 (gradient and blur, detail-page gradient on desktop), no more shadow when scrolling.
+- Home: the Home / Favourites tabs are back under the top bar; the duplicate Favourites link leaves the desktop top bar.
+- Active library link: violet pill with white text, readable even over a bright backdrop.
+- "Play all" and "Shuffle": dark text and icons instead of violet; the divider between them is no longer Jellyfin blue.
+- Display settings page (rewritten in React by Jellyfin 12): fields, labels, focus ring, section titles and sticky Save button as in 10.11.
+- Font: every element of the new interface uses the theme's Inter instead of Jellyfin's Noto Sans.
+- A-Z picker: dimmed monospace letters, selected letter in white, no grey panel.
+- Toggles (library view settings) and checked checkboxes (filters) in the theme's violet instead of Jellyfin blue.
+- Resume bars on library cards are white, as everywhere else.
+- Menus and filter popover: navy rounded surfaces, rounded entries, white keyboard focus, pill-shaped button groups.
+- Phone drawer aligned with the legacy drawer (glass, border, uppercase section headers).
+- Section titles in white instead of violet.
+- Library pages: the empty band under the top bar is gone (15 px, as in 10.11).
+- Colours changed by Jellyfin 12 restored everywhere, TV included: white badge digits and watched tick, main text at 80 %, secondary text at 50 %.
+- Menus (sort, filters, view, account…): Material UI's white overlay removed, same blur and shadow as the 10.11 dialogs — no more grey panels.
+- Icon tooltips ("Search", "SyncPlay"…): the theme's navy glass instead of Material UI grey.
+- Hover on buttons, A-Z letters and menu entries: theme violet instead of grey.
+- Library item count ("Series 20"): dark violet chip instead of grey.
+- Keyboard focus: white pill as in 10.11 instead of a grey pulsing circle; click ripple in violet.
+- Search page (10.11 too): the "Suggestions" title is centred over its list.
+- Jellyfin 10.11: apart from the Search title, nothing changes (checked element by element on desktop, TV and phone).
 
 ---
 
@@ -496,7 +522,7 @@ Repository/quality release; the rendered theme is byte-for-byte identical in rul
 ---
 
 ### Compatibility
-- Jellyfin **10.11.x**
+- Jellyfin **10.11.x** and **12.x** (tested on 12.1, new and legacy interfaces)
 - Works on all web browsers (Chrome, Edge, Firefox, Safari), Android app, LG WebOS, Samsung Tizen
 - Full `@supports` fallback for browsers without `backdrop-filter`
 
@@ -571,6 +597,32 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.5 — Jellyfin 12 : la nouvelle interface rejoint la 10.11
+
+- Barre du haut : le meme en-tete cinema qui s'estompe qu'en 10.11 (degrade et flou, degrade des fiches sur PC), plus d'ombre en defilant.
+- Accueil : les onglets Accueil / Favoris reviennent sous la barre ; le lien Favoris en doublon quitte la barre du haut sur PC.
+- Mediatheque active : pastille violette et texte blanc, lisible meme sur une image de fond claire.
+- « Tout lire » et « Lecture aleatoire » : texte et icones sombres au lieu de violets ; le separateur n'est plus bleu Jellyfin.
+- Page Preferences › Affichage (reecrite en React par Jellyfin 12) : champs, etiquettes, contour au clic, titres et bouton « Sauvegarder » fixe comme en 10.11.
+- Police : tous les elements de la nouvelle interface passent en Inter (celle du theme) au lieu de Noto Sans.
+- Alphabet A-Z : lettres grisees en monospace, lettre choisie en blanc, plus de panneau gris.
+- Interrupteurs (affichage des bibliotheques) et cases cochees (filtres) en violet au lieu du bleu Jellyfin.
+- Barres de reprise des cartes de bibliotheque en blanc, comme partout ailleurs.
+- Menus et popover de filtres : surfaces navy arrondies, entrees arrondies, focus clavier en pastille blanche, boutons groupes en pilule.
+- Tiroir du telephone aligne sur le tiroir legacy (verre, bordure, intertitres en majuscules).
+- Titres de section en blanc au lieu de violet.
+- Bibliotheques : la bande vide sous la barre disparait (15 px, comme en 10.11).
+- Couleurs changees par Jellyfin 12 retablies partout, TV comprise : chiffres des pastilles et coche « vu » en blanc, texte principal a 80 %, texte secondaire a 50 %.
+- Menus (tri, filtres, affichage, compte…) : voile blanc de Material UI retire, meme flou et meme ombre que les fenetres de la 10.11 — plus de panneaux gris.
+- Infobulles des icones (« Rechercher », « SyncPlay »…) : verre navy du theme au lieu du gris de Material UI.
+- Survol des boutons, des lettres A-Z et des entrees de menu : violet du theme au lieu du gris.
+- Compteur de la bibliotheque (« Series 20 ») : pastille violet fonce au lieu de grise.
+- Focus clavier : pastille blanche comme en 10.11 au lieu d'un rond gris pulsant ; onde de clic en violet.
+- Page Recherche (10.11 aussi) : le titre « Suggestions » est centre sur sa liste.
+- Jellyfin 10.11 : a part ce titre de la Recherche, rien ne change (verifie element par element en PC, TV et telephone).
 
 ---
 
@@ -994,6 +1046,6 @@ Release depot/qualite ; le theme rendu est identique regle pour regle.
 ---
 
 ### Compatibilite
-- Jellyfin **10.11.x**
+- Jellyfin **10.11.x** et **12.x** (teste sur la 12.1, nouvelle interface et interface legacy)
 - Fonctionne sur tous les navigateurs web (Chrome, Edge, Firefox, Safari), application Android, LG WebOS, Samsung Tizen
 - Fallback `@supports` complet pour les navigateurs sans `backdrop-filter`

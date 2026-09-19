@@ -7,9 +7,9 @@
 
 **A cinematic fork of [ElegantFin](https://github.com/lscambo13/ElegantFin) — streaming-inspired Jellyfin theme**
 
-[![Version](https://img.shields.io/badge/Cinema%20Edition-v1.3.4-red?style=flat&logo=github)](https://github.com/peterdu1109/ElegantFin/releases)
+[![Version](https://img.shields.io/badge/Cinema%20Edition-v1.3.5-red?style=flat&logo=github)](https://github.com/peterdu1109/ElegantFin/releases)
 [![Based on](https://img.shields.io/badge/Based%20on-ElegantFin%20v26.09.05-blue?style=flat&logo=github)](https://github.com/lscambo13/ElegantFin)
-[![Jellyfin](https://img.shields.io/badge/Jellyfin-10.11.x-00A4DC?style=flat&logo=jellyfin&logoColor=white)](https://jellyfin.org)
+[![Jellyfin](https://img.shields.io/badge/Jellyfin-10.11.x%20%7C%2012.x-00A4DC?style=flat&logo=jellyfin&logoColor=white)](https://jellyfin.org)
 [![Platform](https://img.shields.io/badge/Platform-Desktop%20%7C%20Mobile%20%7C%20TV-green?style=flat)]()
 [![jsDelivr](https://img.shields.io/jsdelivr/gh/hm/peterdu1109/ElegantFin?style=flat&label=CDN&color=orange)](https://www.jsdelivr.com/package/gh/peterdu1109/ElegantFin)
 
@@ -72,6 +72,7 @@ Everything works on **desktop, mobile and TV** with a single CSS import.
 | **Now Playing Glass** | Glassmorphism on the Now Playing bar |
 | **Watched Overlay** | Subtle dark overlay on already-watched items |
 | **Sidebar Glass** | Enhanced sidebar with glass effect, styled nav items |
+| **Jellyfin 12 Interface** | The new desktop and mobile interface matches 10.11: fading cinema top bar, Home/Favourites tabs, menus, drawer, filters, A-Z picker, Display settings page |
 
 ---
 
@@ -83,7 +84,7 @@ Everything works on **desktop, mobile and TV** with a single CSS import.
 @import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
-> 📌 `@main` always follows the latest version. To pin a release (and upgrade on your own schedule), replace `@main` with a version tag, e.g. `@v1.3.4` — see [Releases](https://github.com/peterdu1109/ElegantFin/releases).
+> 📌 `@main` always follows the latest version. To pin a release (and upgrade on your own schedule), replace `@main` with a version tag, e.g. `@v1.3.5` — see [Releases](https://github.com/peterdu1109/ElegantFin/releases).
 >
 > **Versioning.** `1.3.x` for fixes and adjustments. The minor number moves when a batch of work closes, or rather than letting the patch number reach 100.
 
@@ -91,8 +92,8 @@ Everything works on **desktop, mobile and TV** with a single CSS import.
 <summary><b>Server-side installation</b></summary>
 
 1. Open the **Dashboard** from the Administration tab in Settings
-2. In the sidebar, select **Branding** (Jellyfin 10.11.x) or **General** (older versions)
-3. Scroll down to the **Custom CSS** field
+2. In the sidebar, select **Branding** (Jellyfin 10.11 and 12) or **General** (older versions)
+3. Scroll down to the **Custom CSS code** field
 4. Paste the CSS import above
 5. Click **Save**
 </details>
@@ -101,7 +102,7 @@ Everything works on **desktop, mobile and TV** with a single CSS import.
 <summary><b>Client-side installation</b></summary>
 
 1. Open the **Display** tab in Settings
-2. Scroll down to the **Custom CSS** field
+2. Scroll down to the **Custom CSS code** field
 3. Paste the CSS import above
 4. Click **Save**
 </details>
@@ -122,7 +123,7 @@ All original ElegantFin customization options are preserved. Add these overrides
 | Card hover effect | `--cardHoverEffect` | `""` (enabled) / `none` (disabled) |
 | Library labels | `--libraryLabelVisibility` | `block` / `none` |
 | Extra card buttons | `--extraCardButtonsVisibility` | `block` / `none` |
-| App bar style | `--appBarHeight` | `5em` (fading) / `4.6em` (solid) |
+| App bar style (10.11 and TV) | `--appBarHeight` | `5em` (fading) / `4.6em` (solid) |
 | Original title | `--itemOriginalTitleVisibility` | `block` / `none` |
 | Clear logo | `--clearLogoVisibility` | `block` / `none` |
 | Critics rating on phones | `--criticsRatingVisibility` | `none` (hidden) / `block` |
@@ -138,7 +139,7 @@ All original ElegantFin customization options are preserved. Add these overrides
 | Platform | Status |
 |----------|--------|
 | Jellyfin Server 10.11.x | Fully supported |
-| Jellyfin Server 12.0 (preview) | Works — see note below |
+| Jellyfin Server 12.x | Fully supported (tested on 12.1) — see note below |
 | Web browsers (Chrome, Edge, Firefox, Safari) | Fully supported |
 | Jellyfin Android App | Fully supported |
 | LG WebOS | Supported (may need icon pack fix) |
@@ -146,7 +147,7 @@ All original ElegantFin customization options are preserved. Add these overrides
 | Android TV native app | Not supported (no CSS support) |
 | Jellyfin Media Player (Qt 5.x) | Partial (outdated web engine) |
 
-> **Jellyfin 12 (preview).** Jellyfin 12 splits the web app in two: **TV keeps the current app**, so the theme applies there unchanged. Desktop and mobile default to a new React shell, where the theme already covers cards, detail pages, the player and menus — and its accent colour is applied to the new top bar. That shell is still evolving, so compatibility will be re-checked when 12.0 is released.
+> **Jellyfin 12.** Jellyfin 12 splits the web app in two. **TV keeps the legacy interface**, so the theme applies there exactly as on 10.11. Desktop and mobile switch by default to a new interface built with React and Material UI; since v1.3.5 the theme dresses it like 10.11 — fading cinema top bar, Home/Favourites tabs, menus, drawer, filters, library toolbar, A-Z picker and the Display settings page. Checked on a real 12.1 server; on 10.11 these rules change nothing.
 
 ---
 
@@ -234,6 +235,7 @@ Tout fonctionne sur **PC, mobile et TV** avec un seul import CSS.
 | **Lecture en cours en verre** | Effet verre dépoli sur la barre de lecture |
 | **Voile sur les éléments vus** | Voile sombre discret sur ce qui est déjà visionné |
 | **Menu latéral en verre** | Menu latéral en verre dépoli, entrées de navigation habillées |
+| **Interface Jellyfin 12** | La nouvelle interface PC et mobile rejoint la 10.11 : barre du haut cinéma qui s'estompe, onglets Accueil/Favoris, menus, tiroir, filtres, alphabet, page Affichage |
 
 ---
 
@@ -245,7 +247,7 @@ Tout fonctionne sur **PC, mobile et TV** avec un seul import CSS.
 @import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
-> 📌 `@main` suit toujours la dernière version. Pour figer une version et mettre à jour quand VOUS le décidez, remplacez `@main` par un tag, par exemple `@v1.3.4` — voir les [Releases](https://github.com/peterdu1109/ElegantFin/releases).
+> 📌 `@main` suit toujours la dernière version. Pour figer une version et mettre à jour quand VOUS le décidez, remplacez `@main` par un tag, par exemple `@v1.3.5` — voir les [Releases](https://github.com/peterdu1109/ElegantFin/releases).
 >
 > **Numérotation.** `1.3.x` pour les correctifs et ajustements. Le numéro mineur change quand un ensemble de travaux se referme, ou plutôt que de laisser le numéro de correctif atteindre 100.
 
@@ -253,8 +255,8 @@ Tout fonctionne sur **PC, mobile et TV** avec un seul import CSS.
 <summary><b>Installation côté serveur</b></summary>
 
 1. Ouvrez le **Tableau de bord** depuis l'onglet Administration dans les Paramètres
-2. Dans la barre latérale, sélectionnez **Marque** (Jellyfin 10.11.x) ou **Général** (versions plus anciennes)
-3. Descendez jusqu'au champ **CSS personnalisé**
+2. Dans la barre latérale, sélectionnez **Slogan** (« Branding » en anglais, Jellyfin 10.11 et 12) ou **Général** (versions plus anciennes)
+3. Descendez jusqu'au champ **Code CSS personnalisé**
 4. Collez l'import ci-dessus
 5. Cliquez sur **Enregistrer**
 </details>
@@ -263,7 +265,7 @@ Tout fonctionne sur **PC, mobile et TV** avec un seul import CSS.
 <summary><b>Installation côté client</b></summary>
 
 1. Ouvrez l'onglet **Affichage** dans les Paramètres
-2. Descendez jusqu'au champ **CSS personnalisé**
+2. Descendez jusqu'au champ **Code CSS personnalisé**
 3. Collez l'import ci-dessus
 4. Cliquez sur **Enregistrer**
 </details>
@@ -284,7 +286,7 @@ Toutes les options de personnalisation d'ElegantFin sont préservées. Ajoutez c
 | Effet au survol des cartes | `--cardHoverEffect` | `""` (activé) / `none` (désactivé) |
 | Étiquettes des bibliothèques | `--libraryLabelVisibility` | `block` / `none` |
 | Boutons supplémentaires des cartes | `--extraCardButtonsVisibility` | `block` / `none` |
-| Style de la barre du haut | `--appBarHeight` | `5em` (fondue) / `4.6em` (pleine) |
+| Style de la barre du haut (10.11 et TV) | `--appBarHeight` | `5em` (fondue) / `4.6em` (pleine) |
 | Titre original | `--itemOriginalTitleVisibility` | `block` / `none` |
 | Logo du titre | `--clearLogoVisibility` | `block` / `none` |
 | Note des critiques sur téléphone | `--criticsRatingVisibility` | `none` (masquée) / `block` |
@@ -300,7 +302,7 @@ Toutes les options de personnalisation d'ElegantFin sont préservées. Ajoutez c
 | Plateforme | Statut |
 |------------|--------|
 | Jellyfin Server 10.11.x | Entièrement pris en charge |
-| Jellyfin Server 12.0 (préversion) | Fonctionne — voir la note ci-dessous |
+| Jellyfin Server 12.x | Entièrement pris en charge (testé sur la 12.1) — voir la note ci-dessous |
 | Navigateurs web (Chrome, Edge, Firefox, Safari) | Entièrement pris en charge |
 | Application Android Jellyfin | Entièrement prise en charge |
 | LG WebOS | Pris en charge (peut nécessiter le correctif d'icônes) |
@@ -308,7 +310,7 @@ Toutes les options de personnalisation d'ElegantFin sont préservées. Ajoutez c
 | Application native Android TV | Non prise en charge (elle n'accepte pas de CSS) |
 | Jellyfin Media Player (Qt 5.x) | Partiel (moteur web obsolète) |
 
-> **Jellyfin 12 (préversion).** Jellyfin 12 scinde l'application web en deux : la **TV reste sur l'application actuelle**, le thème s'y applique donc à l'identique. PC et mobile passent par défaut sur une nouvelle coque React, où le thème couvre déjà les cartes, les pages de détail, le lecteur et les menus — et où sa couleur d'accent habille la nouvelle barre du haut. Cette coque évolue encore : la compatibilité sera revalidée à la sortie de la 12.0.
+> **Jellyfin 12.** Jellyfin 12 scinde l'application web en deux. La **TV reste sur l'interface legacy** : le thème s'y applique exactement comme en 10.11. PC et mobile passent par défaut sur une nouvelle interface en React et Material UI ; depuis la v1.3.5, le thème l'habille comme la 10.11 — barre du haut cinéma qui s'estompe, onglets Accueil/Favoris, menus, tiroir, filtres, barre des bibliothèques, alphabet et page Affichage. Vérifié sur un vrai serveur 12.1 ; sur la 10.11, ces règles ne changent rien.
 
 ---
 

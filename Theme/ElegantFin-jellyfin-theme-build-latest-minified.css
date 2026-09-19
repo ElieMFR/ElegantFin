@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.4-testO */
+/* ElegantFin Cinema Edition v1.3.5 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.4-testO";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.5";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -2677,6 +2677,26 @@ div[data-role="controlgroup"] a.ui-btn-active {
 .MuiListItemButton-root.Mui-focusVisible .MuiTypography-root {
     color: #000 !important;
 }
+.MuiButton-text.Mui-focusVisible,
+.MuiIconButton-root.Mui-focusVisible,
+.MuiToggleButton-root.Mui-focusVisible {
+    background-color: #fff !important;
+    color: #000 !important;
+}
+.MuiButton-text.Mui-focusVisible {
+    border-radius: var(--largeRadius) !important;
+    border-right-color: transparent !important;
+}
+.MuiButton-contained.Mui-focusVisible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+.Mui-focusVisible > .MuiTouchRipple-root {
+    display: none;
+}
+.MuiTouchRipple-root .MuiTouchRipple-child {
+    background-color: var(--activeColor);
+}
 .MuiButtonGroup-root {
     border-radius: var(--largeRadius);
 }
@@ -2685,6 +2705,10 @@ div[data-role="controlgroup"] a.ui-btn-active {
 }
 .MuiButtonGroup-root > .MuiButtonGroup-lastButton {
     border-radius: 0 var(--largeRadius) var(--largeRadius) 0;
+}
+.MuiChip-root {
+    background-color: var(--btnSubmitColor);
+    color: #fff;
 }
 :root:has(.MuiAppBar-root):has(.homePage) div:has(> .skinHeader) {
     display: block !important;
@@ -3131,6 +3155,10 @@ div[data-role="controlgroup"] a.ui-btn-active {
     text-overflow: ellipsis;
     overflow: hidden;
     max-width: calc(100vw - 8em);
+}
+.searchSuggestions .sectionTitle {
+    margin-left: auto;
+    margin-right: auto;
 }
 .sectionTitleTextButton > * {
     text-align: left;
@@ -3646,6 +3674,30 @@ table:not(.MuiTable-root.MuiTable-stickyHeader) {
 .MuiMenu-paper {
     background-color: var(--drawerColor);
     border-radius: var(--largeRadius);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+}
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .MuiPopover-paper {
+        backdrop-filter: blur(20px) saturate(1.4);
+        -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    }
+}
+.MuiPaper-root {
+    background-image: none;
+}
+.MuiTooltip-tooltip {
+    background-color: var(--drawerColor);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--smallRadius);
+    color: #fff;
+    font-size: 0.8em;
+    padding: 0.35em 0.75em;
+}
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .MuiTooltip-tooltip {
+        backdrop-filter: blur(20px) saturate(1.4);
+        -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    }
 }
 .MuiList-root.MuiMenu-list {
     background-color: transparent;
@@ -3955,6 +4007,12 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     .MuiButtonBase-root.MuiIconButton-root:hover {
         color: white;
         background-color: transparent;
+    }
+    .MuiButton-text:hover,
+    .MuiToggleButton-root:hover,
+    .MuiMenuItem-root:hover,
+    .MuiListItemButton-root:hover {
+        background-color: rgba(119, 91, 244, 0.35);
     }
 }
 .videoOsdBottom.videoOsdBottom-maincontrols {
