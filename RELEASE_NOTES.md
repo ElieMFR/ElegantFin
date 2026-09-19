@@ -76,9 +76,9 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
-#### v1.3.6 — Lighter on TV: each remote keypress costs 45 % less
+#### v1.3.6 — Lighter on TV: each remote keypress costs 43 % less
 
-- TV guide focus rule rewritten without its `*`: style work per focus change down 45 % (TV layout, 100 cards, 400 moves: 318 → 175 ms; 126 ms with no theme), same look.
+- TV guide focus rule rewritten without its `*`: style work per focus change down 43 % (TV layout, 100 cards, 400 moves: 290 → 166 ms; 126 ms with no theme), same look.
 - Six duplicate declarations removed (three TV guards, `.countIndicator`, `.endTimeText`, `.detailsGroupItem`), no visual change.
 - Checked element by element on Jellyfin 10.11 (desktop, TV, phone) and 12.1: identical rendering.
 
@@ -608,9 +608,9 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 
 ---
 
-#### v1.3.6 — Plus leger sur TV : chaque appui de telecommande coute 45 % de moins
+#### v1.3.6 — Plus leger sur TV : chaque appui de telecommande coute 43 % de moins
 
-- Regle de focus du guide TV reecrite sans son `*` : travail de style par changement de focus reduit de 45 % (mode TV, 100 cartes, 400 deplacements : 318 → 175 ms ; 126 ms sans theme), meme rendu.
+- Regle de focus du guide TV reecrite sans son `*` : travail de style par changement de focus reduit de 43 % (mode TV, 100 cartes, 400 deplacements : 290 → 166 ms ; 126 ms sans theme), meme rendu.
 - Six declarations en double retirees (trois gardes TV, `.countIndicator`, `.endTimeText`, `.detailsGroupItem`), sans changement visuel.
 - Verifie element par element sur Jellyfin 10.11 (PC, TV, telephone) et 12.1 : rendu identique.
 
