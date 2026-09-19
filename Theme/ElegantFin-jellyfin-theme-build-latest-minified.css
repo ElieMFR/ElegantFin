@@ -4014,6 +4014,9 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     .MuiListItemButton-root:hover {
         background-color: rgba(119, 91, 244, 0.35);
     }
+    .MuiToggleButtonGroup-root .MuiToggleButtonGroup-grouped:hover {
+        color: #fff;
+    }
 }
 .videoOsdBottom.videoOsdBottom-maincontrols {
     background: linear-gradient(

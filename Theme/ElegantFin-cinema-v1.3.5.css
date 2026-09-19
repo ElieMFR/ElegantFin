@@ -5784,6 +5784,12 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     .MuiListItemButton-root:hover {
         background-color: rgba(119, 91, 244, 0.35);
     }
+
+    /* Lettre A-Z survolée : blanche, comme en 10.11 (mesuré au survol), au lieu
+       de garder le blanc à 50 % des lettres au repos. */
+    .MuiToggleButtonGroup-root .MuiToggleButtonGroup-grouped:hover {
+        color: #fff;
+    }
 }
 
 .videoOsdBottom.videoOsdBottom-maincontrols {
