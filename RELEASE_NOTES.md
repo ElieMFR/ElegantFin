@@ -76,6 +76,18 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.7 — Detail pages: aligned rows, last poster fully visible
+
+- Detail-page rows (cast, "More like this", Jellyseerr sections): titles and posters line up with the rest of the page again (19 → 25 px on desktop); the edge-to-edge bleed was applied twice.
+- Jellyfin 12: the right scroll arrow of those rows is fully on screen again (it was half off-screen on desktop).
+- Jellyfin 12: the last poster of a row is fully visible at the end of scrolling (18 px were cut on desktop, 7 px on phones).
+- Phones and TV with Jellyfin Enhanced: Jellyseerr sections line up with the other rows, no longer widen the page (386 px for a 375 px screen, 763 for 747) and no longer cut their last poster on phones.
+- Subtitle preview (Settings › Subtitles): background in the theme's colours instead of Jellyfin's purple-blue gradient.
+- Housekeeping, no visual change: table of contents completed, stale line references in comments replaced by selector names, two overridden declarations removed.
+- Checked element by element on Jellyfin 10.11 and 12.1 (desktop, phone, TV): only the detail-page rows and the subtitle preview change.
+
+---
+
 #### v1.3.6 — Lighter on TV: each remote keypress costs 43 % less
 
 - TV guide focus rule rewritten without its `*`: style work per focus change down 43 % (TV layout, 100 cards, 400 moves: 290 → 166 ms; 126 ms with no theme), same look.
@@ -605,6 +617,18 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.7 — Fiches : rangees alignees, derniere affiche entiere
+
+- Rangees des fiches (distribution, « Plus de ce genre », sections Jellyseerr) : titres et affiches de nouveau alignes sur le reste de la page (19 → 25 px sur PC) ; le debordement bord a bord etait applique deux fois.
+- Jellyfin 12 : la fleche de defilement droite de ces rangees est de nouveau entierement a l'ecran (elle en sortait a moitie sur PC).
+- Jellyfin 12 : la derniere affiche d'une rangee est entierement visible en fin de defilement (18 px coupes sur PC, 7 px sur telephone).
+- Telephone et TV avec Jellyfin Enhanced : les sections Jellyseerr s'alignent sur les autres rangees, n'elargissent plus la page (386 px pour un ecran de 375, 763 pour 747) et ne coupent plus leur derniere affiche sur telephone.
+- Apercu des sous-titres (Preferences › Sous-titres) : fond aux couleurs du theme au lieu du degrade violet-bleu de Jellyfin.
+- Menage sans changement visuel : sommaire complete, renvois de lignes perimes remplaces par des noms de selecteurs, deux declarations ecrasees retirees.
+- Verifie element par element sur Jellyfin 10.11 et 12.1 (PC, telephone, TV) : seules les rangees des fiches et l'apercu des sous-titres changent.
 
 ---
 

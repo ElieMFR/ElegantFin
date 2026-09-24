@@ -1717,9 +1717,9 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
    12.1) et le plugin Jellyfin Enhanced l'écrit en dur sur ses sections Jellyseerr.
    La cibler aussi posait le fond perdu DEUX FOIS, section puis défileur. Mesuré :
    titres et affiches des rangées à 19 px contre 25 pour le résumé (PC, 10.11 et
-   12.1), flèche droite à moitié hors de l'écran, dernière affiche coupée de 18 px
-   en bout de rangée (12.1) ; sur téléphone et TV, sections Jellyseerr décalées et
-   page plus large que l'écran (386 px pour 375, 763 pour 747). */
+   12.1) ; en 12.1, flèche droite à moitié hors de l'écran et dernière affiche
+   coupée de 18 px en bout de rangée ; sur téléphone et TV, sections Jellyseerr
+   décalées et page plus large que l'écran (386 px pour 375, 763 pour 747). */
 #itemDetailPage .emby-scroller,
 #itemDetailPage .scrollX {
     margin: 0 calc(-1 * var(--sidePadding));
