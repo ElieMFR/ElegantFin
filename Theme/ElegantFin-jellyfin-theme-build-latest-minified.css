@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.6 */
+/* ElegantFin Cinema Edition v1.3.7 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.6";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.7";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -1118,11 +1118,13 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
     padding-top: 1.25em !important;
     margin: 0 0 -0.5em 0;
 }
-#itemDetailPage .emby-scroller-container,
 #itemDetailPage .emby-scroller,
 #itemDetailPage .scrollX {
     margin: 0 calc(-1 * var(--sidePadding));
     padding-left: calc(var(--sidePadding) - 0.375em);
+}
+.detailPageSecondaryContainer.padded-left {
+    padding-right: var(--sidePadding);
 }
 .layout-desktop .emby-scroller-container,
 .layout-desktop .emby-scroller,
@@ -1646,7 +1648,6 @@ html,
 .backgroundContainer:not(.withBackdrop),
 .backgroundContainer:not(.backgroundContainer-transparent),
 .backdropContainer {
-    background-color: var(--darkerGradientPoint);
     background: var(--backgroundGradient);
 }
 .backdropImage {
@@ -3636,6 +3637,7 @@ textarea,
 }
 .subtitleappearance-preview {
     border-radius: var(--smallRadius);
+    background-image: linear-gradient(140deg, var(--activeColor), var(--lighterGradientPoint)) !important;
 }
 .infoBanner {
     display: flex;
@@ -4247,7 +4249,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 @container skinHeader (min-height: 4.9em) {
     .skinHeader-blurred:not(.osdHeader):not(.semiTransparent) {
         backdrop-filter: none;
-        background-color: transparent;
         border: none;
         background: var(--headerBackground);
         padding: 0;
@@ -4568,6 +4569,10 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
         opacity: 0;
         transition: opacity 0.2s ease;
         z-index: 5;
+    }
+    #itemDetailPage .emby-scroller-container > .emby-scrollbuttons {
+        left: calc(-1 * var(--sidePadding));
+        right: calc(-1 * var(--sidePadding));
     }
     .layout-desktop .verticalSection:not(.editorsChoiceContainer):not(:has(.editorsChoiceContainer)):hover .emby-scrollbuttons {
         opacity: 1;

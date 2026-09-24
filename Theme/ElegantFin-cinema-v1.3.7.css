@@ -1,10 +1,10 @@
-/* ElegantFin Cinema Edition v1.3.6 */
+/* ElegantFin Cinema Edition v1.3.7 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
    SOMMAIRE — repères de navigation (les numéros de ligne bougent :
    chercher les bannières « ==== » ou les titres ci-dessous)
-    1. Polices self-hostées (@font-face Inter + Material Symbols)
+    1. Polices self-hostées (@font-face Inter + Material Icons Round)
     2. Variables & palette (navy · violet=actif · blanc=focus · vert=vu)
     3. Focus cartes TV (contour instantané + pop différé)
     4. Focus boutons TV — 3 traitements (v1.2.46)
@@ -19,6 +19,11 @@
    13. PORTAGE UPSTREAM — fixes additifs (v1.2.61)
    14. FORMAT UNIQUE DU TITRE DE SÉRIE — règle ID (v1.2.65) ; les
        chemins par-plateforme restent = fallback clients sans :has()
+   15. PLUGINS — Media Bar, Editor's Choice, Home Screen Sections
+       (blocs balisés « start » / « end »)
+   16. REPLI SANS GRILLE CSS — Tizen 4.0 (v1.3.3), en fin de fichier
+   Jellyfin 12 (coque moderne en MUI) : pas de section à part, chaque
+   règle vit près du composant qu'elle habille → chercher « Jellyfin 12 ».
    NB : le fichier distribué (latest-minified) est généré par
    scripts/minify.py — commentaires retirés, règles identiques.
    ============================================================ */
@@ -69,7 +74,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.6";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.7";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -345,7 +350,7 @@ body {
 }
 
 .material-icons {
-    font-family: var(--iconPack), "Material Icons" !important;   /* v1.2.61 : fallback = police d'icônes stock Jellyfin (toujours chargée) → plus de flash de texte invisible pendant le chargement de Material Symbols */
+    font-family: var(--iconPack), "Material Icons" !important;   /* v1.2.61 : fallback = police d'icônes stock Jellyfin (toujours chargée) → plus de flash de texte invisible pendant le chargement de Material Icons Round */
     font-weight: normal;
     font-style: normal;
     display: inline-block;
@@ -1705,12 +1710,31 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
     margin: 0 0 -0.5em 0;
 }
 
-#itemDetailPage .emby-scroller-container,
+/* v1.3.7 — le fond perdu (la rangée déborde jusqu'aux bords de l'écran) se pose
+   sur le DÉFILEUR seul. `.emby-scroller-container` n'est pas un défileur : c'est
+   la SECTION qui le contient. Jellyfin l'y ajoute sur PC à la souris
+   (`emby-scrollbuttons.js` : `parent.classList.add(...)`, identique en 10.11 et
+   12.1) et le plugin Jellyfin Enhanced l'écrit en dur sur ses sections Jellyseerr.
+   La cibler aussi posait le fond perdu DEUX FOIS, section puis défileur. Mesuré :
+   titres et affiches des rangées à 19 px contre 25 pour le résumé (PC, 10.11 et
+   12.1), flèche droite à moitié hors de l'écran, dernière affiche coupée de 18 px
+   en bout de rangée (12.1) ; sur téléphone et TV, sections Jellyseerr décalées et
+   page plus large que l'écran (386 px pour 375, 763 pour 747). */
 #itemDetailPage .emby-scroller,
 #itemDetailPage .scrollX {
     margin: 0 calc(-1 * var(--sidePadding));
     padding-left: calc(var(--sidePadding) - 0.375em);
     /* mask-image: linear-gradient(90deg, transparent, white var(--sidePadding), white calc(100vw - var(--sidePadding)), transparent); */
+}
+
+/* v1.3.7 — Jellyfin 12 : la fiche n'enveloppe plus ses sections dans
+   `.detailPageContent`, que le thème borde des DEUX côtés (règle
+   `[dir="ltr"] .detailPageContent`) ; il ne reste que `.padded-left`. Sans marge
+   à droite, le fond perdu ci-dessus sortait de l'écran de 3,3 % : sur téléphone,
+   la dernière affiche d'une rangée restait coupée de 7 px en fin de défilement.
+   Sans effet en 10.11, où ce conteneur n'a pas `.padded-left`. */
+.detailPageSecondaryContainer.padded-left {
+    padding-right: var(--sidePadding);
 }
 
 .layout-desktop .emby-scroller-container,
@@ -2070,7 +2094,7 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
 }
 
 /* v1.2.96 — mobile : le texte repasse AU-DESSUS de l'image de fond.
-   `.layout-mobile .itemBackdrop` (ligne 1733) est en `position: sticky`, donc
+   `.layout-mobile .itemBackdrop` (plus haut) est en `position: sticky`, donc
    c'est un élément POSITIONNÉ — et un élément positionné se peint au-dessus du
    texte en flux de ses frères. Or `.itemBackdrop` et `.detailPageWrapperContainer`
    (titre, sous-titre, résumé : tout le texte de la fiche) sont frères, les
@@ -2084,7 +2108,8 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
    épisode/saison (backdrop à 28vh → épinglé hors écran) — d'où un défaut discret,
    qui délavait le texte au lieu de le masquer franchement.
    Correctif : le conteneur de texte prend son propre contexte d'empilement et
-   repasse devant — exactement ce que la TV fait déjà ligne 1388. L'image reste
+   repasse devant — exactement ce que la TV fait déjà avec
+   `.layout-tv .detailPageWrapperContainer`. L'image reste
    visible en fond, aucun effet perdu. Sans objet sur PC : le backdrop n'y est pas
    collant, donc pas positionné. */
 .layout-mobile .detailPageWrapperContainer {
@@ -2479,7 +2504,6 @@ html,
 .backgroundContainer:not(.withBackdrop),
 .backgroundContainer:not(.backgroundContainer-transparent),
 .backdropContainer {
-    background-color: var(--darkerGradientPoint);
     background: var(--backgroundGradient);
 }
 
@@ -2591,7 +2615,7 @@ html,
     .section0 .cardImageContainer::before,
     .backdropImageFadeIn,
     /* v1.2.97 : l'image de fond mobile manquait à l'appel — elle est animée en
-       deux endroits (animMoveDown ligne 1733, animMoveDownSecondaryPage plus bas),
+       deux endroits (animMoveDown plus haut, animMoveDownSecondaryPage plus bas),
        aucun des deux n'était couvert. `!important` suffit à battre la seconde
        règle, plus spécifique (elle porte un id) mais sans `!important`. */
     .layout-mobile .itemBackdrop,
@@ -5266,6 +5290,12 @@ textarea,
 
 .subtitleappearance-preview {
     border-radius: var(--smallRadius);
+    /* v1.3.7 — le fond d'essai des sous-titres (Préférences › Sous-titres) reste un
+       dégradé, clair d'un côté et sombre de l'autre pour juger la lisibilité, mais
+       aux couleurs du thème au lieu du violet → bleu de Jellyfin : c'était le
+       dernier bleu Jellyfin du thème (détecteur, 10.11 PC/téléphone/TV et 12.1).
+       Posé en style en ligne par le gabarit, d'où le `!important`. */
+    background-image: linear-gradient(140deg, var(--activeColor), var(--lighterGradientPoint)) !important;
 }
 
 .infoBanner {
@@ -6153,7 +6183,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     /* this is the alternative faded app bar */
     .skinHeader-blurred:not(.osdHeader):not(.semiTransparent) {
         backdrop-filter: none;
-        background-color: transparent;
         border: none;
         background: var(--headerBackground);
         padding: 0;
@@ -6471,7 +6500,8 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 
 /* Landscape iPhone: notch at left/right depending on rotation.
    v1.2.41: removed .detailPagePrimaryContent from this block — it has
-   `padding-left/right: var(--sidePadding) !important` (line ~1169) so the
+   `padding-left/right: var(--sidePadding) !important` (see
+   `.layout-mobile .detailPagePrimaryContent` above) so the
    env() padding never applied there (dead rule). Container keeps it. */
 @media screen and (orientation: landscape) {
     .layout-mobile .skinHeader {
@@ -6681,6 +6711,15 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
         z-index: 5;
     }
 
+    /* v1.3.7 — fiche : la section ne déborde plus, seul son défileur le fait
+       (voir « v1.3.7 — le fond perdu »). Les bandeaux reprennent le même
+       débordement — même pourcentage, même bloc conteneur, la section — pour
+       rester aux bords de l'écran comme sur l'accueil. */
+    #itemDetailPage .emby-scroller-container > .emby-scrollbuttons {
+        left: calc(-1 * var(--sidePadding));
+        right: calc(-1 * var(--sidePadding));
+    }
+
     .layout-desktop .verticalSection:not(.editorsChoiceContainer):not(:has(.editorsChoiceContainer)):hover .emby-scrollbuttons {
         opacity: 1;
     }
@@ -6782,7 +6821,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 /* v1.3.1 — les DEUX badges qui manquaient à cette liste. Mesuré au navigateur sur
    le vrai fichier, en `html.layout-tv` : `.countIndicator` et `.fullSyncIndicator`
    calculaient encore `blur(8px)` alors que `.mediaSourceIndicator`, déclaré dans la
-   MÊME règle qu'eux (ligne 639), était bien neutralisé ici. Même coût qu'au point 3
+   MÊME règle qu'eux (celle des pastilles, plus haut), était bien neutralisé ici. Même coût qu'au point 3
    ci-dessus : un flou permanent sur chaque carte, payé pendant tout défilement. */
 .layout-tv .countIndicator,
 .layout-tv .fullSyncIndicator,
