@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.7 */
+/* ElegantFin Cinema Edition v1.3.8 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.7";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.8";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -2707,7 +2707,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
     background-color: var(--btnSubmitColor);
     color: #fff;
 }
-:root:has(.MuiAppBar-root):has(.homePage) div:has(> .skinHeader) {
+:root:has(.MuiAppBar-root):has(.homePage) [style]:has(> .skinHeader) {
     display: block !important;
 }
 :root:has(.MuiAppBar-root):has(.homePage) .mainDrawer,
@@ -4363,32 +4363,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     }
 }
 .nowPlayingBar .nowPlayingBarCenter { overflow: hidden; }
-@keyframes skeletonPulse {
-    0%   { opacity: 0.06; }
-    50%  { opacity: 0.12; }
-    100% { opacity: 0.06; }
-}
-.cardImageContainer:empty::after,
-.cardImageContainer .blurhash-canvas + .cardImage[src=""]::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        110deg,
-        rgba(255, 255, 255, 0.04) 25%,
-        rgba(255, 255, 255, 0.08) 37%,
-        rgba(255, 255, 255, 0.04) 63%
-    );
-    animation: skeletonPulse 1.8s ease-in-out infinite;
-    border-radius: inherit;
-    z-index: 0;
-}
-@media (prefers-reduced-motion: reduce) {
-    .cardImageContainer:empty::after,
-    .cardImageContainer .blurhash-canvas + .cardImage[src=""]::after {
-        animation: none !important;
-    }
-}
 .layout-desktop .card-hoverable .cardFooter {
     transition: max-height 0.3s var(--ease-smooth),
                 opacity 0.3s var(--ease-smooth),
@@ -4619,10 +4593,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 .layout-tv .listItemImage,
 .layout-tv .listItemBodyText {
     transition: none !important;
-}
-.layout-tv .cardImageContainer:empty::after,
-.layout-tv .cardImageContainer .blurhash-canvas + .cardImage[src=""]::after {
-    animation: none !important;
 }
 .layout-tv .card-hoverable:hover .cardBox {
     box-shadow: none !important;

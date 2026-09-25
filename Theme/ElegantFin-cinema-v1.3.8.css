@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.7 */
+/* ElegantFin Cinema Edition v1.3.8 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -74,7 +74,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.7";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.8";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4014,8 +4014,16 @@ div[data-role="controlgroup"] a.ui-btn-active {
    ⚠️ Dépend de la structure interne de Jellyfin. Si une version supprime cet
    en-tête, les onglets disparaissent simplement (retour à l'état de la 12.1). À
    RE-VÉRIFIER à chaque version de Jellyfin : si `.headerTop` était renommée, la
-   rangée de boutons legacy réapparaîtrait sur l'accueil, en doublon de la barre. */
-:root:has(.MuiAppBar-root):has(.homePage) div:has(> .skinHeader) {
+   rangée de boutons legacy réapparaîtrait sur l'accueil, en doublon de la barre.
+   v1.3.8 — sujet `[style]` et non plus `div`. Le moteur range une règle selon la
+   partie la plus à droite de son sélecteur : avec `div:has(...)`, le `:has()`
+   était évalué sur CHAQUE `div` de CHAQUE page, 10.11 comprise, où la règle ne
+   s'applique jamais. L'enveloppe n'a pas de classe, mais son style en ligne est
+   précisément ce qu'on annule : sans lui, la règle n'a rien à faire. Seuls les
+   éléments à style en ligne sont donc testés. Mesuré sur la 10.11 (copie hors
+   écran de la page, 15 paires) : −3,1 ms de calcul de styles sur Films (PC),
+   −5,0 sur l'accueil (PC), −1,3 sur Films (TV). */
+:root:has(.MuiAppBar-root):has(.homePage) [style]:has(> .skinHeader) {
     display: block !important;
 }
 
@@ -6371,39 +6379,16 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    CINEMA FEATURES (introduced v1.2.2, expanded through current)
    ============================================================ */
 
-/* --- 1. Skeleton Loading Placeholders --- */
-@keyframes skeletonPulse {
-    0%   { opacity: 0.06; }
-    50%  { opacity: 0.12; }
-    100% { opacity: 0.06; }
-}
-
-.cardImageContainer:empty::after,
-.cardImageContainer .blurhash-canvas + .cardImage[src=""]::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        110deg,
-        rgba(255, 255, 255, 0.04) 25%,
-        rgba(255, 255, 255, 0.08) 37%,
-        rgba(255, 255, 255, 0.04) 63%
-    );
-    animation: skeletonPulse 1.8s ease-in-out infinite;
-    border-radius: inherit;
-    z-index: 0;
-}
-
-/* v1.2.97 : ce bloc ne couvrait que la première moitié du sélecteur du squelette
-   — la variante blurhash continuait de pulser à l'infini malgré la préférence.
-   Le doublon TV qui se trouvait ici est parti : la règle de la section perf plus
-   bas (« trois coûts débusqués ») couvre déjà les deux moitiés. */
-@media (prefers-reduced-motion: reduce) {
-    .cardImageContainer:empty::after,
-    .cardImageContainer .blurhash-canvas + .cardImage[src=""]::after {
-        animation: none !important;
-    }
-}
+/* --- 1. RETIRÉ en v1.3.8 : « squelette » de chargement des vignettes
+   (`.cardImageContainer:empty::after` + `@keyframes skeletonPulse`). Mesuré sur la
+   10.11 : il ne se voyait nulle part. Pendant le chargement, la TV masque la
+   vignette (`lazy-hidden`, opacité 0) ; sur PC et téléphone, le voile pulsait à
+   moins de 1 % de blanc (dégradé à 4-8 % × opacité 0,06-0,12). Mais Jellyfin pose
+   l'image en FOND du conteneur, qui reste donc `:empty` une fois chargé : 98
+   animations infinies tournaient en permanence sur une page de bibliothèque (PC),
+   et sur TV, où l'animation est coupée depuis la v1.2.58, le voile restait figé à
+   pleine opacité, 4 à 8 % de blanc sur chaque affiche. Coût de style : 1,1 ms (TV)
+   à 3,6 ms (PC) par page. Le blurhash de Jellyfin reste le repère de chargement. */
 
 /* --- 2. Hover Preview Info (streaming-style) --- */
 .layout-desktop .card-hoverable .cardFooter {
@@ -6797,14 +6782,9 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     transition: none !important;
 }
 
-/* v1.2.58 — TV : trois coûts débusqués par l'audit final. */
-
-/* 1) Pulse « squelette » des vignettes en chargement : boucle INFINIE jamais
-   désactivée sur TV (le strip d'animations ne couvrait que le shimmer). */
-.layout-tv .cardImageContainer:empty::after,
-.layout-tv .cardImageContainer .blurhash-canvas + .cardImage[src=""]::after {
-    animation: none !important;
-}
+/* v1.2.58 — TV : trois coûts débusqués par l'audit final.
+   (1 — pulse du squelette de chargement : sans objet depuis la v1.3.8, qui retire
+   le squelette ; voir « 1. RETIRÉ en v1.3.8 » dans CINEMA FEATURES.) */
 
 /* 2) Ombre hover upstream des cartes (12px+30px, !important, GLOBALE) : le hover
    suit la télécommande → repeinte à chaque appui. Le pop différé (plus haut) la
