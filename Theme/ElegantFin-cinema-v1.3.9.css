@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.8 */
+/* ElegantFin Cinema Edition v1.3.9 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -74,7 +74,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.8";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.9";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -3037,6 +3037,28 @@ progress + span {
 .itemExternalLinks >a[href*="musicbrainz.org"]:active {
     background-color: rgb(186, 71, 143) !important;
     color: var(--textColor) !important;
+}
+
+/* v1.3.9 — Jellyfin Enhanced : Letterboxd et Seerr en icônes nues, comme les
+   logos de sa feuille d'icônes. Le plugin transforme IMDb, TVDB, TMDB… en logos
+   sans fond (`public-icon.css` : `background: none !important`, `padding: 0`),
+   mais ses deux liens à lui (`.letterboxd-link`, `.seerr-link`) n'y figurent pas :
+   ils gardaient la pastille grise ci-dessus et le violet au survol, seuls de la
+   rangée (mesuré sur la 10.11, PC et téléphone). Le focus clavier reste la
+   pastille blanche commune à tous les liens (`.button-link.emby-button:focus-visible`,
+   plus spécifique). Sur TV, Jellyfin masque cette rangée. */
+.itemExternalLinks > .letterboxd-link,
+.itemExternalLinks > .seerr-link {
+    background: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.layout-desktop .itemExternalLinks > a.letterboxd-link:hover,
+.layout-desktop .itemExternalLinks > a.seerr-link:hover,
+.itemExternalLinks > a.letterboxd-link:active,
+.itemExternalLinks > a.seerr-link:active {
+    background: none !important;
 }
 
 .itemTags,

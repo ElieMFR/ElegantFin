@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.8 */
+/* ElegantFin Cinema Edition v1.3.9 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.8";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.9";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -2054,6 +2054,18 @@ progress + span {
 .itemExternalLinks >a[href*="musicbrainz.org"]:active {
     background-color: rgb(186, 71, 143) !important;
     color: var(--textColor) !important;
+}
+.itemExternalLinks > .letterboxd-link,
+.itemExternalLinks > .seerr-link {
+    background: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.layout-desktop .itemExternalLinks > a.letterboxd-link:hover,
+.layout-desktop .itemExternalLinks > a.seerr-link:hover,
+.itemExternalLinks > a.letterboxd-link:active,
+.itemExternalLinks > a.seerr-link:active {
+    background: none !important;
 }
 .itemTags,
 .itemTags > a {
