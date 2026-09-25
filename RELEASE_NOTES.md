@@ -76,6 +76,15 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.9 — Jellyfin Enhanced: Letterboxd and Seerr icons like the other logos
+
+- Detail pages: the Letterboxd and Seerr icons added by Jellyfin Enhanced lose the grey pill and the violet hover they alone kept, and now look like the IMDb, TVDB and TMDB logos next to them.
+- The five icons of the row now sit on the same line (the logos were 2 px lower) and the row loses the 6 px margin the two pills added.
+- Keyboard focus unchanged: the same white pill as every other link. TV unaffected (Jellyfin hides this row).
+- Checked on 10.11 (desktop and phone): only these two links change; no change on 12.1.
+
+---
+
 #### v1.3.8 — Lighter: less style work on every page
 
 - Loading "skeleton" on thumbnails removed: it never showed (thumbnail hidden while loading on TV, under 1 % white on desktop and phones) but stayed once the image had loaded, as 98 endless animations on a desktop library page and a fixed 4–8 % white veil over every TV poster.
@@ -628,6 +637,15 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.9 — Jellyfin Enhanced : icones Letterboxd et Seerr comme les autres logos
+
+- Fiches : les icones Letterboxd et Seerr ajoutees par Jellyfin Enhanced perdent la pastille grise et le survol violet qu'elles etaient seules a garder, et ressemblent aux logos IMDb, TVDB et TMDB voisins.
+- Les cinq icones de la rangee sont desormais sur la meme ligne (les logos etaient 2 px plus bas) et la rangee perd les 6 px de marge qu'ajoutaient les deux pastilles.
+- Focus clavier inchange : la meme pastille blanche que tous les autres liens. TV non concernee (Jellyfin masque cette rangee).
+- Verifie sur 10.11 (PC et telephone) : seuls ces deux liens changent ; aucun changement sur 12.1.
 
 ---
 
