@@ -76,6 +76,17 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.8 — Lighter: less style work on every page
+
+- Loading "skeleton" on thumbnails removed: it never showed (thumbnail hidden while loading on TV, under 1 % white on desktop and phones) but stayed once the image had loaded, as 98 endless animations on a desktop library page and a fixed 4–8 % white veil over every TV poster.
+- TV: posters show their true colours again, blacks included, as on desktop.
+- Jellyfin 12: the rule that reveals the Home / Favourites tabs is only tested on elements with an inline style instead of every `div` of every page (10.11 included); same result.
+- Measured on Jellyfin 10.11, style work to display a page: Films desktop 18.3 → 12.6 ms, home desktop 42.6 → 38.3 ms, Films TV 10.3 → 8.1 ms.
+- "Skeleton Loading" removed from the README module list.
+- Checked element by element on 10.11 and 12.1 (desktop, phone, TV): only the skeleton layer leaves the thumbnails; the Jellyfin 12 tabs stay pixel-identical.
+
+---
+
 #### v1.3.7 — Detail pages: aligned rows, last poster fully visible
 
 - Detail-page rows (cast, "More like this", Jellyseerr sections): titles and posters line up with the rest of the page again (19 → 25 px on desktop); the edge-to-edge bleed was applied twice.
@@ -617,6 +628,17 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.8 — Plus leger : moins de travail de style a chaque page
+
+- Squelette de chargement des vignettes retire : il ne se voyait jamais (vignette masquee pendant le chargement sur TV, moins de 1 % de blanc sur PC et telephone) mais restait une fois l'image chargee, sous forme de 98 animations sans fin sur une page de bibliotheque (PC) et d'un voile blanc fige de 4 a 8 % sur chaque affiche TV.
+- TV : les affiches retrouvent leurs vraies couleurs, noirs compris, comme sur PC.
+- Jellyfin 12 : la regle qui affiche les onglets Accueil / Favoris n'est plus testee sur chaque `div` de chaque page (10.11 comprise), seulement sur les elements a style en ligne ; meme resultat.
+- Mesure sur Jellyfin 10.11, travail de style pour afficher une page : Films PC 18,3 → 12,6 ms, accueil PC 42,6 → 38,3 ms, Films TV 10,3 → 8,1 ms.
+- « Chargement en silhouette » retire de la liste des modules du README.
+- Verifie element par element sur 10.11 et 12.1 (PC, telephone, TV) : seul le calque du squelette quitte les vignettes ; les onglets Jellyfin 12 restent identiques au pixel pres.
 
 ---
 
