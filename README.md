@@ -71,7 +71,7 @@ Everything works on **desktop, mobile and TV** with a single CSS import.
 | **Now Playing Glass** | Glassmorphism on the Now Playing bar |
 | **Watched Overlay** | Subtle dark overlay on already-watched items |
 | **Sidebar Glass** | Enhanced sidebar with glass effect, styled nav items |
-| **Jellyfin 12 Interface** | The new desktop and mobile interface matches 10.11: fading cinema top bar, Home/Favourites tabs, menus, drawer, filters, A-Z picker, Display settings page |
+| **Jellyfin 12** | The new desktop and mobile interface looks like 10.11 (TV unchanged) |
 
 ---
 
@@ -91,7 +91,7 @@ Everything works on **desktop, mobile and TV** with a single CSS import.
 <summary><b>Server-side installation</b></summary>
 
 1. Open the **Dashboard** from the Administration tab in Settings
-2. In the sidebar, select **Branding** (Jellyfin 10.11 and 12) or **General** (older versions)
+2. In the sidebar, select **Branding**
 3. Scroll down to the **Custom CSS code** field
 4. Paste the CSS import above
 5. Click **Save**
@@ -137,16 +137,13 @@ All original ElegantFin customization options are preserved. Add these overrides
 
 | Platform | Status |
 |----------|--------|
-| Jellyfin Server 10.11.x | Fully supported |
-| Jellyfin Server 12.x | Fully supported (tested on 12.1) — see note below |
+| Jellyfin Server 10.11 and 12 | Fully supported |
 | Web browsers (Chrome, Edge, Firefox, Safari) | Fully supported |
 | Jellyfin Android App | Fully supported |
 | LG WebOS | Supported (may need icon pack fix) |
 | Samsung Tizen (Jellyfin community) | Supported (extensively field-tested; graceful degrade on older models) |
 | Android TV native app | Not supported (no CSS support) |
 | Jellyfin Media Player (Qt 5.x) | Partial (outdated web engine) |
-
-> **Jellyfin 12.** Jellyfin 12 splits the web app in two. **TV keeps the legacy interface**, so the theme applies there exactly as on 10.11. Desktop and mobile switch by default to a new interface built with React and Material UI; since v1.3.5 the theme dresses it like 10.11 — fading cinema top bar, Home/Favourites tabs, menus, drawer, filters, library toolbar, A-Z picker and the Display settings page. Checked on a real 12.1 server; on 10.11 these rules change nothing.
 
 ---
 
@@ -165,8 +162,9 @@ Cinema Edition has dedicated styling for these popular Jellyfin plugins:
 | Plugin | What it does | Cinema styling |
 |--------|--------------|----------------|
 | [**Editor's Choice**](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | Curated editorial picks on home page | Banner spacing fix, button/section collision resolved, 3-line description on desktop, working scroll/pause controls as navy pills below the header, aspect-ratio-safe title logo |
-| [**Media Bar**](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) | Auto-cycling slideshow at top of home | Glassmorphism overlay, gradient backdrop, polished button states |
+| [**Media Bar**](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) | Auto-cycling slideshow at top of home | Gradient overlay, readable synopsis, polished button states |
 | [**Home Screen Sections**](https://github.com/IAmParadox27/jellyfin-plugin-home-sections) | Extra curated rows on the home page | Readable Top 10 rank numbers (they were near-black on near-black), Discover badges in the theme accent and in French |
+| [**Jellyfin Enhanced**](https://github.com/n00bcodr/Jellyfin-Enhanced) | All-in-one additions: shortcuts, Jellyseerr requests, reviews, extra links | Letterboxd and Seerr icons in line with the other logos, TMDB reviews no longer overflow the detail page |
 
 If a plugin isn't in this list, the theme just doesn't add overrides for it — it'll work with default styling.
 
@@ -233,7 +231,7 @@ Tout fonctionne sur **PC, mobile et TV** avec un seul import CSS.
 | **Lecture en cours en verre** | Effet verre dépoli sur la barre de lecture |
 | **Voile sur les éléments vus** | Voile sombre discret sur ce qui est déjà visionné |
 | **Menu latéral en verre** | Menu latéral en verre dépoli, entrées de navigation habillées |
-| **Interface Jellyfin 12** | La nouvelle interface PC et mobile rejoint la 10.11 : barre du haut cinéma qui s'estompe, onglets Accueil/Favoris, menus, tiroir, filtres, alphabet, page Affichage |
+| **Jellyfin 12** | La nouvelle interface PC et mobile ressemble à la 10.11 (TV inchangée) |
 
 ---
 
@@ -253,7 +251,7 @@ Tout fonctionne sur **PC, mobile et TV** avec un seul import CSS.
 <summary><b>Installation côté serveur</b></summary>
 
 1. Ouvrez le **Tableau de bord** depuis l'onglet Administration dans les Paramètres
-2. Dans la barre latérale, sélectionnez **Slogan** (« Branding » en anglais, Jellyfin 10.11 et 12) ou **Général** (versions plus anciennes)
+2. Dans la barre latérale, sélectionnez **Slogan** (« Branding » en anglais)
 3. Descendez jusqu'au champ **Code CSS personnalisé**
 4. Collez l'import ci-dessus
 5. Cliquez sur **Enregistrer**
@@ -299,16 +297,13 @@ Toutes les options de personnalisation d'ElegantFin sont préservées. Ajoutez c
 
 | Plateforme | Statut |
 |------------|--------|
-| Jellyfin Server 10.11.x | Entièrement pris en charge |
-| Jellyfin Server 12.x | Entièrement pris en charge (testé sur la 12.1) — voir la note ci-dessous |
+| Jellyfin Server 10.11 et 12 | Entièrement pris en charge |
 | Navigateurs web (Chrome, Edge, Firefox, Safari) | Entièrement pris en charge |
 | Application Android Jellyfin | Entièrement prise en charge |
 | LG WebOS | Pris en charge (peut nécessiter le correctif d'icônes) |
 | Samsung Tizen (communauté Jellyfin) | Pris en charge, éprouvé sur matériel réel ; dégradation progressive sur les modèles anciens |
 | Application native Android TV | Non prise en charge (elle n'accepte pas de CSS) |
 | Jellyfin Media Player (Qt 5.x) | Partiel (moteur web obsolète) |
-
-> **Jellyfin 12.** Jellyfin 12 scinde l'application web en deux. La **TV reste sur l'interface legacy** : le thème s'y applique exactement comme en 10.11. PC et mobile passent par défaut sur une nouvelle interface en React et Material UI ; depuis la v1.3.5, le thème l'habille comme la 10.11 — barre du haut cinéma qui s'estompe, onglets Accueil/Favoris, menus, tiroir, filtres, barre des bibliothèques, alphabet et page Affichage. Vérifié sur un vrai serveur 12.1 ; sur la 10.11, ces règles ne changent rien.
 
 ---
 
@@ -327,8 +322,9 @@ L'Édition Cinéma habille spécifiquement ces plugins Jellyfin :
 | Plugin | Ce qu'il fait | Habillage Cinéma |
 |--------|---------------|------------------|
 | [**Editor's Choice**](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | Sélection éditoriale sur la page d'accueil | Espacement de la bannière corrigé, collision bouton/section résolue, description sur trois lignes sur PC, contrôles de défilement et de pause fonctionnels en pastilles sombres sous la barre du haut, logo de titre au ratio préservé |
-| [**Media Bar**](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) | Diaporama défilant en haut de la page d'accueil | Voile en verre dépoli, dégradé d'arrière-plan, états des boutons soignés |
+| [**Media Bar**](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) | Diaporama défilant en haut de la page d'accueil | Dégradé d'arrière-plan, résumé lisible, états des boutons soignés |
 | [**Home Screen Sections**](https://github.com/IAmParadox27/jellyfin-plugin-home-sections) | Rangées éditoriales supplémentaires sur la page d'accueil | Numéros du Top 10 rendus lisibles — ils étaient quasi noirs sur fond quasi noir — et badges Découvrir à la couleur du thème, en français |
+| [**Jellyfin Enhanced**](https://github.com/n00bcodr/Jellyfin-Enhanced) | Ajouts tout-en-un : raccourcis, demandes Jellyseerr, avis, liens supplémentaires | Icônes Letterboxd et Seerr alignées sur les autres logos, avis TMDB qui ne débordent plus de la fiche |
 
 Si un plugin ne figure pas dans cette liste, le thème ne lui applique aucune surcharge : il s'affiche avec son habillage d'origine.
 
