@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.9 */
+/* ElegantFin Cinema Edition v1.3.10 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -74,7 +74,7 @@
 }
 
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.9";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.10";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -2581,9 +2581,25 @@ html,
     }
 }
 
-/* Page transitions — Fade-in fluide */
+/* Page transitions — Fade-in fluide
+   v1.3.10 — `backwards` et non plus `forwards` : même fondu, mais la page ne garde
+   plus `transform: translateY(0)` une fois l'animation finie. Cette transformation
+   résiduelle faisait de chaque page un contexte d'empilement et le bloc conteneur de
+   ses éléments `position: fixed`. Deux bugs prouvés sur Jellyfin 12.1 :
+   1) téléphone (appli Android et navigateur) : sur les fiches (série, saison, film),
+      tout ce qui dépassait du premier écran ne réagissait plus au toucher — saisons,
+      épisodes, distribution… Jellyfin fige la hauteur des pages
+      (`.mainAnimatedPage { contain: style size }`), le contenu déborde, et avec la
+      transformation plus le `z-index` du bloc de texte mobile (v1.2.96), la partie
+      qui déborde n'était plus atteignable : le doigt tombait sur `.backgroundContainer`.
+      Vrais touchers : « Saison 2 » sans effet en v1.3.9, ouverte avec ce correctif ;
+      épisodes d'une saison touchables 0/10 → 10/10 ;
+   2) PC et téléphone : l'alphabet A-Z des bibliothèques (`.alphaPicker-fixed-right`)
+      partait avec la page au défilement au lieu de rester à l'écran (y −408 px après
+      600 px de défilement, contre 96 px sans thème et avec ce correctif).
+   TV non concernée : les animations de page y sont coupées. */
 .page:not(.hide) {
-    animation: pageFadeIn 0.4s var(--ease-smooth) forwards;
+    animation: pageFadeIn 0.4s var(--ease-smooth) backwards;
 }
 
 @keyframes pageFadeIn {
@@ -3059,6 +3075,14 @@ progress + span {
 .itemExternalLinks > a.letterboxd-link:active,
 .itemExternalLinks > a.seerr-link:active {
     background: none !important;
+}
+
+/* v1.3.10 — Jellyfin Enhanced : l'indicateur des lectures en cours (icône et compteur
+   dans la barre du haut) prend l'accent du thème. Le plugin prévoit la variable :
+   `color: var(--je-as-accent, #00a4dc)` ; sans elle, c'était le seul bleu Jellyfin
+   relevé par le détecteur sur la 12.1 (PC et téléphone, toutes les pages). */
+:root {
+    --je-as-accent: var(--activeColor);
 }
 
 .itemTags,
