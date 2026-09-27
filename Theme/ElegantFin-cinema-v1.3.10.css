@@ -74,6 +74,10 @@
 }
 
 :root {
+    /* ⚠️ Ne renommer ni cette variable ni `--activeColor` : le plugin Jellyfin
+       Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
+       `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
+       éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
     --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.10";
 
     /* Base theme colors */
@@ -3075,14 +3079,6 @@ progress + span {
 .itemExternalLinks > a.letterboxd-link:active,
 .itemExternalLinks > a.seerr-link:active {
     background: none !important;
-}
-
-/* v1.3.10 — Jellyfin Enhanced : l'indicateur des lectures en cours (icône et compteur
-   dans la barre du haut) prend l'accent du thème. Le plugin prévoit la variable :
-   `color: var(--je-as-accent, #00a4dc)` ; sans elle, c'était le seul bleu Jellyfin
-   relevé par le détecteur sur la 12.1 (PC et téléphone, toutes les pages). */
-:root {
-    --je-as-accent: var(--activeColor);
 }
 
 .itemTags,

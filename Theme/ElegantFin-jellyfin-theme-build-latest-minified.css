@@ -2067,9 +2067,6 @@ progress + span {
 .itemExternalLinks > a.seerr-link:active {
     background: none !important;
 }
-:root {
-    --je-as-accent: var(--activeColor);
-}
 .itemTags,
 .itemTags > a {
     display: none;

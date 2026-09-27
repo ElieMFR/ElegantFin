@@ -9,218 +9,218 @@ sinon on en corrige une pendant qu'une autre, ailleurs, continue de gagner.
 C'est exactement ce qui a produit la régression v1.2.88 sur le bouton skip,
 dont les huit règles s'étalaient sur 3 700 lignes.
 
-Source indexée : `ElegantFin-cinema-v1.3.10.css` — 7312 lignes.
+Source indexée : `ElegantFin-cinema-v1.3.10.css` — 7308 lignes.
 
 | Composant | Règles | Zones | Lignes |
 |---|---:|---:|---|
-| `card` | 36 | 14 | 416–498, 736, 839, 1485–1505, 2027–2060, 2087–2091, 2367–2385, 2421, 6291, 6549–6565, 6643–6665, 6695–6702, 6785, 7190 |
-| `cardScalable` | 28 | 13 | 416–427, 475–498, 785–829, 855–893, 2385, 3368, 3479, 3558, 5500, 6305–6315, 6384, 6549, 6686–6702 |
-| `material-icons` | 17 | 13 | 352–371, 1704, 1782, 1834, 3325, 3484, 3558–3564, 3670, 3828, 4218, 4702, 4736–4746, 5318 |
-| `cardImageContainer` | 22 | 12 | 470, 807, 835–864, 893, 950–980, 5609–5613, 5693, 6297, 6376–6384, 6424, 6549–6565, 6686 |
-| `itemDetailPage` | 18 | 11 | 1548, 1634, 1713, 1953–1978, 2022, 2123, 2434–2439, 3813–3824, 4312, 4599, 7018–7056 |
-| `skinHeader` | 16 | 10 | 280, 4043, 4076–4103, 5508, 5902, 5958–5966, 5992–6017, 6367, 6516, 7127 |
-| `nameContainer` | 27 | 9 | 682, 2130–2153, 2194, 2223, 2258–2304, 2341, 2372–2376, 5075–5127, 7018–7056 |
-| `backdropCard` | 12 | 9 | 937–943, 1058, 1953, 2039, 2123, 2376–2385, 2412, 2439, 2719 |
-| `js` | 9 | 9 | 319, 1620, 1713, 2194, 2796, 3458, 5318, 6468, 6712 |
-| `card-hoverable` | 23 | 8 | 498, 795, 855–943, 5613, 6315, 6424–6459, 6549, 6831 |
-| `parentName` | 23 | 8 | 682, 2135–2153, 2194, 2223, 2258–2304, 5081–5127, 5200, 7018–7056 |
-| `detailPageWrapperContainer` | 17 | 8 | 682, 1516–1526, 1978, 2096, 2130–2153, 2223, 2258–2304, 2372 |
-| `subtitle` | 16 | 8 | 1953, 2022, 2135, 2194, 2313–2323, 2434–2439, 5135–5168, 7018–7056 |
-| `cardBox` | 12 | 8 | 416–464, 490, 736, 877, 984, 6291, 6549, 6831 |
-| `emby-button` | 11 | 8 | 608–625, 652–670, 3058, 3127–3134, 3504, 3539, 3692, 4236 |
-| `detailLogo` | 17 | 7 | 682, 1967–1978, 2013–2022, 2123–2153, 2223, 2258–2304, 2372 |
-| `loginPage` | 15 | 7 | 3637, 5512–5527, 5566, 5594–5613, 6320, 6363, 6675–6702 |
-| `nowPlayingBar` | 7 | 7 | 2982, 5745, 6330, 6418, 6502, 6528, 6790 |
-| `listItem` | 17 | 6 | 298, 625, 2389, 4138–4164, 4195–4227, 6808–6825 |
-| `navMenuOption` | 12 | 6 | 625, 721–731, 3878, 4205–4227, 4293–4298, 6588–6599 |
-| `verticalSection` | 11 | 6 | 1708, 2620–2625, 4599, 6376, 6468, 6712 |
-| `button-link` | 10 | 6 | 625, 652–670, 2932–2941, 3002–3012, 3058, 6981 |
-| `person` | 8 | 6 | 1953–1963, 2123, 2376, 2421–2430, 3765, 7013 |
-| `mainDrawer` | 7 | 6 | 2946, 3842, 4076, 6320–6330, 6575, 6614 |
-| `detailImageContainer` | 20 | 5 | 1953–1963, 2027–2091, 2123, 2363–2385, 2412–2439 |
-| `osdHeader` | 15 | 5 | 1677–1695, 5897–5966, 5992–6017, 6367, 6790 |
-| `actionSheetMenuItem` | 11 | 5 | 625, 4138–4149, 4195, 4273–4289, 6348 |
-| `sectionTabs` | 10 | 5 | 1751, 3616, 4103, 5938–5943, 6083–6109 |
-| `cardImageIcon` | 8 | 5 | 408–412, 2376–2385, 2445, 3352, 5693 |
-| `headerTop` | 8 | 5 | 4043, 4076, 5908–5933, 5984–6001, 6028–6032 |
-| `paper-icon-button-light` | 8 | 5 | 570–625, 1634, 1704, 1782, 4994 |
-| `sectionTitle` | 7 | 5 | 1708, 1761–1768, 3944, 4672–4680, 5561 |
-| `emby-scroller-container` | 6 | 5 | 1708–1713, 1740, 2610, 6376, 6468 |
-| `portraitCard` | 5 | 5 | 1058, 1136, 1872, 2087, 2719 |
-| `scss` | 5 | 5 | 280, 764, 1010, 3374, 6468 |
-| `skinHeader-withBackground` | 5 | 5 | 1616, 3813, 5508, 5897, 5947 |
-| `btnPlay` | 16 | 4 | 507–531, 570–625, 3568–3610, 3643–3670 |
-| `cardOverlayContainer` | 12 | 4 | 911–943, 988–1010, 1070, 6790–6808 |
-| `itemName` | 11 | 4 | 682, 2194, 5081–5127, 5218–5235 |
-| `backdropImage` | 10 | 4 | 2510–2537, 2564–2568, 6284, 6384–6392 |
-| `emby-tab-button` | 10 | 4 | 625, 692–701, 3616, 6068–6104 |
-| `upNextContainer` | 10 | 4 | 4764–4783, 4809–4835, 6320–6330, 6356 |
-| `emby-scroller` | 9 | 4 | 1713, 1740–1746, 6618–6665, 6776–6785 |
-| `detailRibbon` | 7 | 4 | 1573–1601, 1787, 1872–1877, 7013 |
-| `listItemBodyText` | 7 | 4 | 4159–4178, 4218, 4277, 6825 |
-| `visualCardBox` | 7 | 4 | 416, 816–829, 855–860, 984 |
-| `button-submit` | 6 | 4 | 3637, 3724, 5594–5602, 6893–6907 |
-| `cardText-secondary` | 6 | 4 | 298, 898, 3357–3361, 6446–6454 |
-| `detailPagePrimaryContent` | 6 | 4 | 1588–1606, 2328, 4593, 6532 |
-| `skip-button` | 6 | 4 | 625, 3621, 4858–4875, 4902–4908 |
-| `squareCard` | 6 | 4 | 839, 2376, 2412–2430, 5570–5574 |
-| `skinHeader-blurred` | 5 | 4 | 5508, 5926–5933, 6516, 6790 |
-| `appfooter` | 4 | 4 | 2662, 6042, 6407, 6790 |
-| `raised` | 4 | 4 | 625, 711, 3504, 3539 |
-| `detailButton` | 13 | 3 | 570–625, 3549–3610, 3666–3670 |
-| `itemBackdrop` | 9 | 3 | 1919–1963, 2096, 2439 |
-| `itemSelectionPanel` | 9 | 3 | 868–872, 3297, 3325–3368 |
-| `check` | 8 | 3 | 3325, 3558, 4269–4289 |
-| `pageTitle` | 8 | 3 | 1652–1695, 5958, 6017 |
-| `sectionTitleTextButton` | 8 | 3 | 4655–4663, 4690–4702, 4736–4746 |
-| `backgroundContainer` | 7 | 3 | 2501, 2542–2560, 2592 |
-| `homePage` | 7 | 3 | 4043, 4076–4103, 6126 |
-| `playedIndicator` | 7 | 3 | 764–778, 3441, 6549–6570 |
-| `detailSectionContent` | 6 | 3 | 3159, 4394–4404, 4484–4494 |
-| `emby-checkbox` | 6 | 3 | 3302, 3339–3343, 3392–3404 |
-| `actionSheetContent` | 5 | 3 | 4261–4265, 6320–6330, 6356 |
-| `cardText-first` | 5 | 3 | 898, 3331–3357, 5674 |
-| `dialog` | 5 | 3 | 3209–3219, 6320–6330, 6356 |
-| `guideProgramName` | 5 | 3 | 625, 5259–5270, 5313–5318 |
-| `musicParentName` | 5 | 3 | 1953, 2434–2439, 5200–5209 |
-| `noHomeButtonHeader` | 5 | 3 | 1634, 5958, 6068–6076 |
-| `overflowBackdropCard` | 5 | 3 | 937–943, 3335, 5669–5674 |
-| `secondary` | 5 | 3 | 298, 4168–4178, 4218 |
-| `album` | 4 | 3 | 2123, 2381–2385, 2421 |
-| `cardPadder` | 4 | 3 | 412, 984, 3348–3352 |
-| `cardText` | 4 | 3 | 898–908, 3357, 6691 |
-| `detailPageContent` | 4 | 3 | 1730, 4325, 4586–4593 |
-| `dialog-fullscreen` | 4 | 3 | 3219, 6320–6330, 6356 |
-| `emby-scrollbuttons` | 4 | 3 | 1773–1778, 6712, 7165 |
-| `formDialogFooter` | 4 | 3 | 3277, 3731, 6842–6866 |
-| `infoWrapper` | 4 | 3 | 2066–2071, 2328, 2356 |
-| `listItemImage` | 4 | 3 | 2696–2701, 4132, 6825 |
-| `semiTransparent` | 4 | 3 | 1616, 5508, 5926–5947 |
-| `toast` | 4 | 3 | 4756, 6320–6330, 6356 |
-| `cardFooter` | 3 | 3 | 3368, 6424, 6459 |
-| `defaultCardBackground` | 3 | 3 | 3479, 5689, 5788 |
-| `detailPageSecondaryContainer` | 3 | 3 | 1583, 1610, 1730 |
-| `folder` | 3 | 3 | 1872, 3458, 3522 |
-| `formDialogFooterItem` | 3 | 3 | 3277, 3517, 3643 |
-| `formDialogHeader` | 3 | 3 | 3731, 6790, 6842 |
-| `iconOsd` | 3 | 3 | 5486, 6790, 6842 |
-| `itemsContainer` | 3 | 3 | 736, 1755, 4599 |
-| `live_tv` | 3 | 3 | 1953, 2421, 3765 |
-| `myPreferencesMenuPage` | 3 | 3 | 385, 4303, 4607 |
-| `page` | 3 | 3 | 980, 2592, 6376 |
-| `playerStats` | 3 | 3 | 5486, 6842, 6878 |
-| `sectionTitle-cards` | 3 | 3 | 1708, 4672, 4732 |
-| `x` | 3 | 3 | 2194, 5183, 6468 |
-| `itemExternalLinks` | 13 | 2 | 2995–3073, 3159 |
-| `checkboxOutline` | 10 | 2 | 3302–3343, 3374–3404 |
-| `mdl-slider` | 9 | 2 | 2792, 2847–2905 |
-| `listItemIcon` | 8 | 2 | 3761–3765, 4273–4303 |
-| `sliderContainer` | 8 | 2 | 2796, 2824–2889 |
-| `cardOverlayButton-br` | 7 | 2 | 996, 1025–1063 |
-| `detail-clamp-text` | 7 | 2 | 3095–3121, 3147–3151 |
-| `divUsers` | 7 | 2 | 5570–5574, 6675–6702 |
-| `multiSelectCheckboxOutline` | 7 | 2 | 3339–3343, 3373–3392 |
-| `detailPagePrimaryContainer` | 6 | 2 | 1560–1606, 2328 |
-| `detailsGroupItem` | 6 | 2 | 4356, 4424–4461 |
-| `headerButton` | 6 | 2 | 545–625, 6010 |
-| `headerLeft` | 6 | 2 | 1658–1695, 6213 |
-| `trackSelections` | 6 | 2 | 4329–4356, 4489–4494 |
-| `withBackdrop` | 6 | 2 | 2501, 2542–2560 |
-| `countIndicator` | 5 | 2 | 755–778, 6842–6866 |
-| `detailSection` | 5 | 2 | 4312–4321, 4474–4494 |
-| `fullSyncIndicator` | 5 | 2 | 755–778, 6842–6866 |
-| `mainDrawer-scrollContainer` | 5 | 2 | 2955, 6588–6605 |
-| `mediaInfoItem` | 5 | 2 | 1791–1834, 6468 |
-| `overview-expand` | 5 | 2 | 3127–3151, 4394 |
-| `videoIndicator` | 5 | 2 | 3447–3475, 6842 |
-| `withSectionTabs` | 5 | 2 | 2551–2568, 5933 |
-| `alphaPickerButton` | 4 | 2 | 625, 4533–4545 |
-| `backgroundProgress` | 4 | 2 | 2707–2719, 2749 |
-| `emby-tab-button-active` | 4 | 2 | 3703, 6095–6109 |
-| `mediaSourceIndicator` | 4 | 2 | 755–778, 6842 |
-| `play_arrow` | 4 | 2 | 3484–3500, 3670 |
-| `playbackProgress` | 4 | 2 | 2707–2719, 2754 |
-| `playlistIndexIndicatorImage` | 4 | 2 | 4159–4164, 5782–5788 |
-| `programCell` | 4 | 2 | 5250, 5309–5318 |
-| `programGuideSection` | 4 | 2 | 2389–2404, 4494–4509 |
-| `scrollX` | 4 | 2 | 1713, 1740–1751 |
-| `section0` | 4 | 2 | 950–980, 6376 |
-| `visualLoginForm` | 4 | 2 | 5561–5578, 5619 |
-| `cardOverlayButtonIcon` | 3 | 2 | 996–1008, 1063 |
-| `castCollapsible` | 3 | 2 | 807, 3343–3352 |
-| `emby-input` | 3 | 2 | 5008–5024, 6907 |
-| `emby-scrollbuttons-button` | 3 | 2 | 1782, 7172–7179 |
-| `guestCastContent` | 3 | 2 | 807, 3343–3352 |
-| `guide-channelHeaderCell` | 3 | 2 | 625, 5284–5300 |
-| `guide-date-tab-button` | 3 | 2 | 625, 3703–3711 |
-| `headerUserButton` | 3 | 2 | 545–558, 4611 |
-| `manualLoginForm` | 3 | 2 | 5561–5578, 5619 |
-| `overview` | 3 | 2 | 3147–3151, 4404 |
-| `selectionCommandsPanel` | 3 | 2 | 3287–3293, 6790 |
-| `add` | 2 | 2 | 1713, 6468 |
-| `alphaPicker-fixed-right` | 2 | 2 | 2592, 4545 |
-| `backdropImageFadeIn` | 2 | 2 | 2646, 6882 |
-| `book` | 2 | 2 | 1953, 2421 |
-| `btnDeleteImage` | 2 | 2 | 3504, 3717 |
-| `cardContent` | 2 | 2 | 807, 839 |
-| `cardOverlayButton` | 2 | 2 | 1010, 1046 |
-| `cardOverlayButton-hover` | 2 | 2 | 893, 1025 |
-| `chevron_right` | 2 | 2 | 4702, 4746 |
-| `classList` | 2 | 2 | 1713, 6468 |
-| `collapseContent` | 2 | 2 | 3282, 3729 |
-| `content-primary` | 2 | 2 | 4586, 4638 |
-| `editorsChoiceItemOverview` | 2 | 2 | 7102, 7183 |
-| `emby-select` | 2 | 2 | 5008, 6907 |
-| `endsAt` | 2 | 2 | 1812, 6468 |
-| `fieldDescription` | 2 | 2 | 298, 6907 |
-| `formDialogFooter-clear` | 2 | 2 | 3277, 3731 |
-| `guide-programNameCaret` | 2 | 2 | 298, 5266 |
-| `headroom` | 2 | 2 | 5921, 5958 |
-| `mediaInfoOfficialRating` | 2 | 2 | 1812, 6468 |
-| `navMenuOption-selected` | 2 | 2 | 4308, 6599 |
-| `nowPlayingInfoContainer` | 2 | 2 | 2986, 5719 |
-| `org` | 2 | 2 | 3022, 3052 |
-| `paperList` | 2 | 2 | 816, 3742 |
-| `playlist` | 2 | 2 | 4154, 5697 |
-| `programSecondaryTitle` | 2 | 2 | 298, 5318 |
-| `queue` | 2 | 2 | 1953, 2421 |
-| `readOnlyContent` | 2 | 2 | 3773, 6142 |
-| `recordingFields` | 2 | 2 | 4348, 4489 |
-| `runtime` | 2 | 2 | 5631, 5659 |
-| `sectionTitleContainer` | 2 | 2 | 1778, 4518 |
-| `sectionTitleContainer-cards` | 2 | 2 | 4667, 4732 |
-| `sidebarHeader` | 2 | 2 | 3865, 6605 |
-| `tagline` | 2 | 2 | 2492, 4404 |
-| `tsx` | 2 | 2 | 4043, 4107 |
-| `upNextDialog-title` | 2 | 2 | 4788, 4822 |
-| `vertical-list` | 2 | 2 | 1755, 7008 |
-| `videoOsdBottom` | 2 | 2 | 2978, 5888 |
-| `videoOsdBottom-maincontrols` | 2 | 2 | 2978, 5888 |
-| `userPreferencesPage` | 12 | 1 | 6893–6988 |
-| `checkboxContainer` | 7 | 1 | 3331–3368 |
-| `itemDetailsGroup` | 7 | 1 | 4408–4494 |
-| `itemProgressBar` | 6 | 1 | 2696–2730 |
-| `trackSelectionFieldContainer` | 6 | 1 | 4367–4390 |
-| `editorsChoiceScrollButtonsContainer` | 5 | 1 | 7139–7179 |
-| `innerCardFooter` | 5 | 1 | 3172–3201 |
-| `chapterCardImageContainer` | 4 | 1 | 3172–3201 |
-| `endTimeText` | 4 | 1 | 5631–5659 |
-| `mainDetailButtons` | 4 | 1 | 3666–3680 |
-| `overview-controls` | 4 | 1 | 3147–3159 |
-| `startTimeText` | 4 | 1 | 5631–5653 |
-| `button-flat` | 3 | 1 | 2959–2969 |
-| `cardIndicators` | 3 | 1 | 3421–3431 |
-| `cardOverlayFab-primary` | 3 | 1 | 988–1010 |
-| `com` | 3 | 1 | 3028–3046 |
-| `content` | 3 | 1 | 4430–4461 |
-| `discover-card` | 3 | 1 | 7190–7213 |
-| `emby-select-withcolor` | 3 | 1 | 5008–5042 |
-| `emby-textarea` | 3 | 1 | 4999–5024 |
-| `fab` | 3 | 1 | 3526–3539 |
-| `listChildrenCollapsible` | 3 | 1 | 4479–4494 |
-| `mdl-slider-background-flex` | 3 | 1 | 2816–2829 |
-| `mediaInfoCriticRating` | 3 | 1 | 1853–1862 |
-| `nextUpSection` | 3 | 1 | 4474–4494 |
-| `nowPlayingPageImageContainerNoAlbum` | 3 | 1 | 5683–5693 |
-| `serverInfo` | 3 | 1 | 3746–3755 |
-| `transcodingProgress` | 3 | 1 | 2707–2719 |
+| `card` | 36 | 14 | 420–502, 740, 843, 1489–1509, 2031–2064, 2091–2095, 2371–2389, 2425, 6287, 6545–6561, 6639–6661, 6691–6698, 6781, 7186 |
+| `cardScalable` | 28 | 13 | 420–431, 479–502, 789–833, 859–897, 2389, 3364, 3475, 3554, 5496, 6301–6311, 6380, 6545, 6682–6698 |
+| `material-icons` | 17 | 13 | 356–375, 1708, 1786, 1838, 3321, 3480, 3554–3560, 3666, 3824, 4214, 4698, 4732–4742, 5314 |
+| `cardImageContainer` | 22 | 12 | 474, 811, 839–868, 897, 954–984, 5605–5609, 5689, 6293, 6372–6380, 6420, 6545–6561, 6682 |
+| `itemDetailPage` | 18 | 11 | 1552, 1638, 1717, 1957–1982, 2026, 2127, 2438–2443, 3809–3820, 4308, 4595, 7014–7052 |
+| `skinHeader` | 16 | 10 | 284, 4039, 4072–4099, 5504, 5898, 5954–5962, 5988–6013, 6363, 6512, 7123 |
+| `nameContainer` | 27 | 9 | 686, 2134–2157, 2198, 2227, 2262–2308, 2345, 2376–2380, 5071–5123, 7014–7052 |
+| `backdropCard` | 12 | 9 | 941–947, 1062, 1957, 2043, 2127, 2380–2389, 2416, 2443, 2723 |
+| `js` | 9 | 9 | 323, 1624, 1717, 2198, 2800, 3454, 5314, 6464, 6708 |
+| `card-hoverable` | 23 | 8 | 502, 799, 859–947, 5609, 6311, 6420–6455, 6545, 6827 |
+| `parentName` | 23 | 8 | 686, 2139–2157, 2198, 2227, 2262–2308, 5077–5123, 5196, 7014–7052 |
+| `detailPageWrapperContainer` | 17 | 8 | 686, 1520–1530, 1982, 2100, 2134–2157, 2227, 2262–2308, 2376 |
+| `subtitle` | 16 | 8 | 1957, 2026, 2139, 2198, 2317–2327, 2438–2443, 5131–5164, 7014–7052 |
+| `cardBox` | 12 | 8 | 420–468, 494, 740, 881, 988, 6287, 6545, 6827 |
+| `emby-button` | 11 | 8 | 612–629, 656–674, 3062, 3123–3130, 3500, 3535, 3688, 4232 |
+| `detailLogo` | 17 | 7 | 686, 1971–1982, 2017–2026, 2127–2157, 2227, 2262–2308, 2376 |
+| `loginPage` | 15 | 7 | 3633, 5508–5523, 5562, 5590–5609, 6316, 6359, 6671–6698 |
+| `nowPlayingBar` | 7 | 7 | 2986, 5741, 6326, 6414, 6498, 6524, 6786 |
+| `listItem` | 17 | 6 | 302, 629, 2393, 4134–4160, 4191–4223, 6804–6821 |
+| `navMenuOption` | 12 | 6 | 629, 725–735, 3874, 4201–4223, 4289–4294, 6584–6595 |
+| `verticalSection` | 11 | 6 | 1712, 2624–2629, 4595, 6372, 6464, 6708 |
+| `button-link` | 10 | 6 | 629, 656–674, 2936–2945, 3006–3016, 3062, 6977 |
+| `person` | 8 | 6 | 1957–1967, 2127, 2380, 2425–2434, 3761, 7009 |
+| `mainDrawer` | 7 | 6 | 2950, 3838, 4072, 6316–6326, 6571, 6610 |
+| `detailImageContainer` | 20 | 5 | 1957–1967, 2031–2095, 2127, 2367–2389, 2416–2443 |
+| `osdHeader` | 15 | 5 | 1681–1699, 5893–5962, 5988–6013, 6363, 6786 |
+| `actionSheetMenuItem` | 11 | 5 | 629, 4134–4145, 4191, 4269–4285, 6344 |
+| `sectionTabs` | 10 | 5 | 1755, 3612, 4099, 5934–5939, 6079–6105 |
+| `cardImageIcon` | 8 | 5 | 412–416, 2380–2389, 2449, 3348, 5689 |
+| `headerTop` | 8 | 5 | 4039, 4072, 5904–5929, 5980–5997, 6024–6028 |
+| `paper-icon-button-light` | 8 | 5 | 574–629, 1638, 1708, 1786, 4990 |
+| `sectionTitle` | 7 | 5 | 1712, 1765–1772, 3940, 4668–4676, 5557 |
+| `emby-scroller-container` | 6 | 5 | 1712–1717, 1744, 2614, 6372, 6464 |
+| `portraitCard` | 5 | 5 | 1062, 1140, 1876, 2091, 2723 |
+| `scss` | 5 | 5 | 284, 768, 1014, 3370, 6464 |
+| `skinHeader-withBackground` | 5 | 5 | 1620, 3809, 5504, 5893, 5943 |
+| `btnPlay` | 16 | 4 | 511–535, 574–629, 3564–3606, 3639–3666 |
+| `cardOverlayContainer` | 12 | 4 | 915–947, 992–1014, 1074, 6786–6804 |
+| `itemName` | 11 | 4 | 686, 2198, 5077–5123, 5214–5231 |
+| `backdropImage` | 10 | 4 | 2514–2541, 2568–2572, 6280, 6380–6388 |
+| `emby-tab-button` | 10 | 4 | 629, 696–705, 3612, 6064–6100 |
+| `upNextContainer` | 10 | 4 | 4760–4779, 4805–4831, 6316–6326, 6352 |
+| `emby-scroller` | 9 | 4 | 1717, 1744–1750, 6614–6661, 6772–6781 |
+| `detailRibbon` | 7 | 4 | 1577–1605, 1791, 1876–1881, 7009 |
+| `listItemBodyText` | 7 | 4 | 4155–4174, 4214, 4273, 6821 |
+| `visualCardBox` | 7 | 4 | 420, 820–833, 859–864, 988 |
+| `button-submit` | 6 | 4 | 3633, 3720, 5590–5598, 6889–6903 |
+| `cardText-secondary` | 6 | 4 | 302, 902, 3353–3357, 6442–6450 |
+| `detailPagePrimaryContent` | 6 | 4 | 1592–1610, 2332, 4589, 6528 |
+| `skip-button` | 6 | 4 | 629, 3617, 4854–4871, 4898–4904 |
+| `squareCard` | 6 | 4 | 843, 2380, 2416–2434, 5566–5570 |
+| `skinHeader-blurred` | 5 | 4 | 5504, 5922–5929, 6512, 6786 |
+| `appfooter` | 4 | 4 | 2666, 6038, 6403, 6786 |
+| `raised` | 4 | 4 | 629, 715, 3500, 3535 |
+| `detailButton` | 13 | 3 | 574–629, 3545–3606, 3662–3666 |
+| `itemBackdrop` | 9 | 3 | 1923–1967, 2100, 2443 |
+| `itemSelectionPanel` | 9 | 3 | 872–876, 3293, 3321–3364 |
+| `check` | 8 | 3 | 3321, 3554, 4265–4285 |
+| `pageTitle` | 8 | 3 | 1656–1699, 5954, 6013 |
+| `sectionTitleTextButton` | 8 | 3 | 4651–4659, 4686–4698, 4732–4742 |
+| `backgroundContainer` | 7 | 3 | 2505, 2546–2564, 2596 |
+| `homePage` | 7 | 3 | 4039, 4072–4099, 6122 |
+| `playedIndicator` | 7 | 3 | 768–782, 3437, 6545–6566 |
+| `detailSectionContent` | 6 | 3 | 3155, 4390–4400, 4480–4490 |
+| `emby-checkbox` | 6 | 3 | 3298, 3335–3339, 3388–3400 |
+| `actionSheetContent` | 5 | 3 | 4257–4261, 6316–6326, 6352 |
+| `cardText-first` | 5 | 3 | 902, 3327–3353, 5670 |
+| `dialog` | 5 | 3 | 3205–3215, 6316–6326, 6352 |
+| `guideProgramName` | 5 | 3 | 629, 5255–5266, 5309–5314 |
+| `musicParentName` | 5 | 3 | 1957, 2438–2443, 5196–5205 |
+| `noHomeButtonHeader` | 5 | 3 | 1638, 5954, 6064–6072 |
+| `overflowBackdropCard` | 5 | 3 | 941–947, 3331, 5665–5670 |
+| `secondary` | 5 | 3 | 302, 4164–4174, 4214 |
+| `album` | 4 | 3 | 2127, 2385–2389, 2425 |
+| `cardPadder` | 4 | 3 | 416, 988, 3344–3348 |
+| `cardText` | 4 | 3 | 902–912, 3353, 6687 |
+| `detailPageContent` | 4 | 3 | 1734, 4321, 4582–4589 |
+| `dialog-fullscreen` | 4 | 3 | 3215, 6316–6326, 6352 |
+| `emby-scrollbuttons` | 4 | 3 | 1777–1782, 6708, 7161 |
+| `formDialogFooter` | 4 | 3 | 3273, 3727, 6838–6862 |
+| `infoWrapper` | 4 | 3 | 2070–2075, 2332, 2360 |
+| `listItemImage` | 4 | 3 | 2700–2705, 4128, 6821 |
+| `semiTransparent` | 4 | 3 | 1620, 5504, 5922–5943 |
+| `toast` | 4 | 3 | 4752, 6316–6326, 6352 |
+| `cardFooter` | 3 | 3 | 3364, 6420, 6455 |
+| `defaultCardBackground` | 3 | 3 | 3475, 5685, 5784 |
+| `detailPageSecondaryContainer` | 3 | 3 | 1587, 1614, 1734 |
+| `folder` | 3 | 3 | 1876, 3454, 3518 |
+| `formDialogFooterItem` | 3 | 3 | 3273, 3513, 3639 |
+| `formDialogHeader` | 3 | 3 | 3727, 6786, 6838 |
+| `iconOsd` | 3 | 3 | 5482, 6786, 6838 |
+| `itemsContainer` | 3 | 3 | 740, 1759, 4595 |
+| `live_tv` | 3 | 3 | 1957, 2425, 3761 |
+| `myPreferencesMenuPage` | 3 | 3 | 389, 4299, 4603 |
+| `page` | 3 | 3 | 984, 2596, 6372 |
+| `playerStats` | 3 | 3 | 5482, 6838, 6874 |
+| `sectionTitle-cards` | 3 | 3 | 1712, 4668, 4728 |
+| `x` | 3 | 3 | 2198, 5179, 6464 |
+| `itemExternalLinks` | 13 | 2 | 2999–3077, 3155 |
+| `checkboxOutline` | 10 | 2 | 3298–3339, 3370–3400 |
+| `mdl-slider` | 9 | 2 | 2796, 2851–2909 |
+| `listItemIcon` | 8 | 2 | 3757–3761, 4269–4299 |
+| `sliderContainer` | 8 | 2 | 2800, 2828–2893 |
+| `cardOverlayButton-br` | 7 | 2 | 1000, 1029–1067 |
+| `detail-clamp-text` | 7 | 2 | 3091–3117, 3143–3147 |
+| `divUsers` | 7 | 2 | 5566–5570, 6671–6698 |
+| `multiSelectCheckboxOutline` | 7 | 2 | 3335–3339, 3369–3388 |
+| `detailPagePrimaryContainer` | 6 | 2 | 1564–1610, 2332 |
+| `detailsGroupItem` | 6 | 2 | 4352, 4420–4457 |
+| `headerButton` | 6 | 2 | 549–629, 6006 |
+| `headerLeft` | 6 | 2 | 1662–1699, 6209 |
+| `trackSelections` | 6 | 2 | 4325–4352, 4485–4490 |
+| `withBackdrop` | 6 | 2 | 2505, 2546–2564 |
+| `countIndicator` | 5 | 2 | 759–782, 6838–6862 |
+| `detailSection` | 5 | 2 | 4308–4317, 4470–4490 |
+| `fullSyncIndicator` | 5 | 2 | 759–782, 6838–6862 |
+| `mainDrawer-scrollContainer` | 5 | 2 | 2959, 6584–6601 |
+| `mediaInfoItem` | 5 | 2 | 1795–1838, 6464 |
+| `overview-expand` | 5 | 2 | 3123–3147, 4390 |
+| `videoIndicator` | 5 | 2 | 3443–3471, 6838 |
+| `withSectionTabs` | 5 | 2 | 2555–2572, 5929 |
+| `alphaPickerButton` | 4 | 2 | 629, 4529–4541 |
+| `backgroundProgress` | 4 | 2 | 2711–2723, 2753 |
+| `emby-tab-button-active` | 4 | 2 | 3699, 6091–6105 |
+| `mediaSourceIndicator` | 4 | 2 | 759–782, 6838 |
+| `play_arrow` | 4 | 2 | 3480–3496, 3666 |
+| `playbackProgress` | 4 | 2 | 2711–2723, 2758 |
+| `playlistIndexIndicatorImage` | 4 | 2 | 4155–4160, 5778–5784 |
+| `programCell` | 4 | 2 | 5246, 5305–5314 |
+| `programGuideSection` | 4 | 2 | 2393–2408, 4490–4505 |
+| `scrollX` | 4 | 2 | 1717, 1744–1755 |
+| `section0` | 4 | 2 | 954–984, 6372 |
+| `visualLoginForm` | 4 | 2 | 5557–5574, 5615 |
+| `cardOverlayButtonIcon` | 3 | 2 | 1000–1012, 1067 |
+| `castCollapsible` | 3 | 2 | 811, 3339–3348 |
+| `emby-input` | 3 | 2 | 5004–5020, 6903 |
+| `emby-scrollbuttons-button` | 3 | 2 | 1786, 7168–7175 |
+| `guestCastContent` | 3 | 2 | 811, 3339–3348 |
+| `guide-channelHeaderCell` | 3 | 2 | 629, 5280–5296 |
+| `guide-date-tab-button` | 3 | 2 | 629, 3699–3707 |
+| `headerUserButton` | 3 | 2 | 549–562, 4607 |
+| `manualLoginForm` | 3 | 2 | 5557–5574, 5615 |
+| `overview` | 3 | 2 | 3143–3147, 4400 |
+| `selectionCommandsPanel` | 3 | 2 | 3283–3289, 6786 |
+| `add` | 2 | 2 | 1717, 6464 |
+| `alphaPicker-fixed-right` | 2 | 2 | 2596, 4541 |
+| `backdropImageFadeIn` | 2 | 2 | 2650, 6878 |
+| `book` | 2 | 2 | 1957, 2425 |
+| `btnDeleteImage` | 2 | 2 | 3500, 3713 |
+| `cardContent` | 2 | 2 | 811, 843 |
+| `cardOverlayButton` | 2 | 2 | 1014, 1050 |
+| `cardOverlayButton-hover` | 2 | 2 | 897, 1029 |
+| `chevron_right` | 2 | 2 | 4698, 4742 |
+| `classList` | 2 | 2 | 1717, 6464 |
+| `collapseContent` | 2 | 2 | 3278, 3725 |
+| `content-primary` | 2 | 2 | 4582, 4634 |
+| `editorsChoiceItemOverview` | 2 | 2 | 7098, 7179 |
+| `emby-select` | 2 | 2 | 5004, 6903 |
+| `endsAt` | 2 | 2 | 1816, 6464 |
+| `fieldDescription` | 2 | 2 | 302, 6903 |
+| `formDialogFooter-clear` | 2 | 2 | 3273, 3727 |
+| `guide-programNameCaret` | 2 | 2 | 302, 5262 |
+| `headroom` | 2 | 2 | 5917, 5954 |
+| `mediaInfoOfficialRating` | 2 | 2 | 1816, 6464 |
+| `navMenuOption-selected` | 2 | 2 | 4304, 6595 |
+| `nowPlayingInfoContainer` | 2 | 2 | 2990, 5715 |
+| `org` | 2 | 2 | 3026, 3056 |
+| `paperList` | 2 | 2 | 820, 3738 |
+| `playlist` | 2 | 2 | 4150, 5693 |
+| `programSecondaryTitle` | 2 | 2 | 302, 5314 |
+| `queue` | 2 | 2 | 1957, 2425 |
+| `readOnlyContent` | 2 | 2 | 3769, 6138 |
+| `recordingFields` | 2 | 2 | 4344, 4485 |
+| `runtime` | 2 | 2 | 5627, 5655 |
+| `sectionTitleContainer` | 2 | 2 | 1782, 4514 |
+| `sectionTitleContainer-cards` | 2 | 2 | 4663, 4728 |
+| `sidebarHeader` | 2 | 2 | 3861, 6601 |
+| `tagline` | 2 | 2 | 2496, 4400 |
+| `tsx` | 2 | 2 | 4039, 4103 |
+| `upNextDialog-title` | 2 | 2 | 4784, 4818 |
+| `vertical-list` | 2 | 2 | 1759, 7004 |
+| `videoOsdBottom` | 2 | 2 | 2982, 5884 |
+| `videoOsdBottom-maincontrols` | 2 | 2 | 2982, 5884 |
+| `userPreferencesPage` | 12 | 1 | 6889–6984 |
+| `checkboxContainer` | 7 | 1 | 3327–3364 |
+| `itemDetailsGroup` | 7 | 1 | 4404–4490 |
+| `itemProgressBar` | 6 | 1 | 2700–2734 |
+| `trackSelectionFieldContainer` | 6 | 1 | 4363–4386 |
+| `editorsChoiceScrollButtonsContainer` | 5 | 1 | 7135–7175 |
+| `innerCardFooter` | 5 | 1 | 3168–3197 |
+| `chapterCardImageContainer` | 4 | 1 | 3168–3197 |
+| `endTimeText` | 4 | 1 | 5627–5655 |
+| `mainDetailButtons` | 4 | 1 | 3662–3676 |
+| `overview-controls` | 4 | 1 | 3143–3155 |
+| `startTimeText` | 4 | 1 | 5627–5649 |
+| `button-flat` | 3 | 1 | 2963–2973 |
+| `cardIndicators` | 3 | 1 | 3417–3427 |
+| `cardOverlayFab-primary` | 3 | 1 | 992–1014 |
+| `com` | 3 | 1 | 3032–3050 |
+| `content` | 3 | 1 | 4426–4457 |
+| `discover-card` | 3 | 1 | 7186–7209 |
+| `emby-select-withcolor` | 3 | 1 | 5004–5038 |
+| `emby-textarea` | 3 | 1 | 4995–5020 |
+| `fab` | 3 | 1 | 3522–3535 |
+| `listChildrenCollapsible` | 3 | 1 | 4475–4490 |
+| `mdl-slider-background-flex` | 3 | 1 | 2820–2833 |
+| `mediaInfoCriticRating` | 3 | 1 | 1857–1866 |
+| `nextUpSection` | 3 | 1 | 4470–4490 |
+| `nowPlayingPageImageContainerNoAlbum` | 3 | 1 | 5679–5689 |
+| `serverInfo` | 3 | 1 | 3742–3751 |
+| `transcodingProgress` | 3 | 1 | 2711–2723 |
