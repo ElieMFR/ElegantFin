@@ -76,6 +76,14 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.10 — Phones: detail pages respond to touch again
+
+- Jellyfin 12, phones (Android app and browser): on series, season and movie pages, seasons, episodes and everything below the first screen respond to taps again (the page fade-in left a transform behind).
+- Libraries: the A-Z picker stays on screen while scrolling instead of leaving with the page (desktop and phones).
+- Checked with real taps on Jellyfin 12.1 (series → season → episode); TV unaffected.
+
+---
+
 #### v1.3.9 — Jellyfin Enhanced: Letterboxd and Seerr icons like the other logos
 
 - Detail pages: the Letterboxd and Seerr icons added by Jellyfin Enhanced lose the grey pill and the violet hover they alone kept, and now look like the IMDb, TVDB and TMDB logos next to them.
@@ -637,6 +645,14 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.10 — Telephone : les fiches repondent de nouveau au toucher
+
+- Jellyfin 12, telephone (appli Android et navigateur) : sur les fiches serie, saison et film, les saisons, les episodes et tout ce qui depasse du premier ecran repondent de nouveau au toucher (le fondu d'entree laissait une transformation derriere lui).
+- Bibliotheques : l'alphabet A-Z reste a l'ecran au defilement au lieu de partir avec la page (PC et telephone).
+- Verifie par de vrais touchers sur Jellyfin 12.1 (serie → saison → episode) ; TV non concernee.
 
 ---
 
