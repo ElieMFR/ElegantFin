@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.11 */
+/* ElegantFin Cinema Edition v1.3.12 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.11";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.12";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -439,6 +439,13 @@ body {
 .mediaSourceIndicator > svg,
 .playedIndicator > svg {
     fill: #fff;
+}
+.countIndicator {
+    box-sizing: border-box;
+    width: auto;
+    min-width: calc(2em + 2px);
+    height: calc(2em + 2px);
+    padding: 0 0.3em;
 }
 .cardScalable {
     border-radius: var(--largeRadius);
@@ -1126,6 +1133,10 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
 .detailPageSecondaryContainer.padded-left {
     padding-right: var(--sidePadding);
 }
+#itemDetailPage .itemsContainer.vertical-wrap:not(.collectionItemsContainer) {
+    margin-left: -0.375em;
+    margin-right: -0.375em;
+}
 .layout-desktop .emby-scroller-container,
 .layout-desktop .emby-scroller,
 .layout-desktop .scrollX {
@@ -1133,6 +1144,9 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
 }
 .emby-scroller,
 .scrollX {
+    padding-left: calc(var(--sidePadding) - 0.375em);
+}
+[dir="ltr"] .scrollX.padded-left {
     padding-left: calc(var(--sidePadding) - 0.375em);
 }
 .sectionTabs .scrollX {
@@ -2231,6 +2245,18 @@ progress + span {
     background: var(--lighterGradientPoint);
     border-bottom: var(--defaultBorder);
     backdrop-filter: var(--blurLarge);
+}
+.selectionCommandsPanel,
+.selectionCommandsPanel .itemSelectionCount,
+.selectionCommandsPanel .paper-icon-button-light:not(:disabled) {
+    color: #fff !important;
+}
+.selectionCommandsPanel .paper-icon-button-light:not(:disabled):hover,
+.selectionCommandsPanel .paper-icon-button-light:not(:disabled):focus {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+.selectionCommandsPanel .paper-icon-button-light:not(:disabled):focus-visible {
+    color: #000 !important;
 }
 .selectionCommandsPanel > h1 {
     font-size: large;
@@ -4584,6 +4610,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 .layout-desktop .emby-scroller,
 .layout-mobile .emby-scroller {
     scroll-snap-type: x proximity;
+    scroll-padding-left: calc(var(--sidePadding) - 0.375em);
 }
 .layout-desktop .emby-scroller .card,
 .layout-mobile .emby-scroller .card {

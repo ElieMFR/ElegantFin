@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.11 */
+/* ElegantFin Cinema Edition v1.3.12 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.11";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.12";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -784,6 +784,20 @@ body {
 .mediaSourceIndicator > svg,
 .playedIndicator > svg {
     fill: #fff;
+}
+
+/* v1.3.12 — pastille « 99+ » : le texte touchait le bord du rond. Jellyfin donne à
+   toutes les pastilles un rond de 2em sur 2em (`.indicator`), quel que soit le
+   nombre ; en Inter 600, « 99+ » remplit tout l'intérieur (0,3 px de marge sur PC,
+   0,6 sur TV, mesurés). La pastille s'élargit désormais en ovale quand le texte le
+   demande. `border-box` + 2em + 2px = la taille exacte d'avant, bordure de 1 px
+   comprise : de 1 à 96, les pastilles restent au pixel près (vérifié sur TV). */
+.countIndicator {
+    box-sizing: border-box;
+    width: auto;
+    min-width: calc(2em + 2px);
+    height: calc(2em + 2px);
+    padding: 0 0.3em;
 }
 
 .cardScalable {
@@ -1741,6 +1755,17 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
     padding-right: var(--sidePadding);
 }
 
+/* v1.3.12 — fiches : les GRILLES (« À suivre », « Saisons » sur PC et TV, films
+   d'un acteur, albums d'un artiste) démarraient 0,375em à droite de leur titre —
+   la marge intérieure des cartes —, alors que les rangées qui défilent, compensées
+   plus haut, sont alignées. Mesuré : 5,6 px sur PC, 5,4 au téléphone, 7,5 sur TV.
+   Les collections sont exclues : elles s'alignent déjà autrement, en décalant leurs
+   titres (règle `.collectionItems .sectionTitleContainer.padded-left`). */
+#itemDetailPage .itemsContainer.vertical-wrap:not(.collectionItemsContainer) {
+    margin-left: -0.375em;
+    margin-right: -0.375em;
+}
+
 .layout-desktop .emby-scroller-container,
 .layout-desktop .emby-scroller,
 .layout-desktop .scrollX {
@@ -1749,6 +1774,15 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
 
 .emby-scroller,
 .scrollX {
+    padding-left: calc(var(--sidePadding) - 0.375em);
+}
+
+/* v1.3.12 — même compensation pour les rangées legacy qui portent aussi
+   `.padded-left` : la règle de Jellyfin (`[dir="ltr"] .padded-left`) est plus
+   précise que la nôtre et la battait. Rangées de la TV en direct et des onglets
+   « Suggestions » des bibliothèques, affiches 7,5 px à droite de leur titre sur TV
+   (mesuré). */
+[dir="ltr"] .scrollX.padded-left {
     padding-left: calc(var(--sidePadding) - 0.375em);
 }
 
@@ -3284,6 +3318,34 @@ progress + span {
     background: var(--lighterGradientPoint);
     border-bottom: var(--defaultBorder);
     backdrop-filter: var(--blurLarge);
+}
+
+/* v1.3.12 — bandeau de sélection (appui long sur une carte) : croix, compteur et
+   bouton ⋮ — celui qui ouvre « Supprimer » — en BLANC. Jellyfin 12 les peint en
+   `--jf-palette-primary-contrastText`, rgba(0, 0, 0, 0.87), noir pensé pour SON
+   bandeau bleu : sur notre bleu nuit, contraste 1,3:1, « aucun bouton en haut »
+   (signalé par l'utilisateur, vérifié sur la prod 12.1). `!important` : Jellyfin en
+   met un sur la couleur du bandeau. */
+.selectionCommandsPanel,
+.selectionCommandsPanel .itemSelectionCount,
+.selectionCommandsPanel .paper-icon-button-light:not(:disabled) {
+    color: #fff !important;
+}
+
+/* Survol et appui : voile blanc au lieu du bleu foncé de Jellyfin
+   (`--jf-palette-primary-dark`). La pastille blanche du focus clavier, posée en
+   `!important` par la règle générale, reste prioritaire. */
+.selectionCommandsPanel .paper-icon-button-light:not(:disabled):hover,
+.selectionCommandsPanel .paper-icon-button-light:not(:disabled):focus {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ⚠️ SÉPARÉ : ne jamais recoller cette règle aux précédentes. Un sélecteur non
+   reconnu invalide la RÈGLE ENTIÈRE : `:focus-visible` ferait tomber le blanc des
+   icônes sur les moteurs qui l'ignorent. Au focus clavier, icône sombre sur la
+   pastille blanche, comme partout ailleurs. */
+.selectionCommandsPanel .paper-icon-button-light:not(:disabled):focus-visible {
+    color: #000 !important;
 }
 
 .selectionCommandsPanel > h1 {
@@ -6788,10 +6850,17 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 /* --- C. Aimantation du défilement des rangées (PC + mobile) : la rangée
    relâche toujours alignée sur une carte, jamais coupée entre deux.
    « proximity » (pas mandatory) pour ne pas se battre avec le scroll JS de
-   Jellyfin. PAS sur TV : la navigation focus y gère déjà le défilement. */
+   Jellyfin. PAS sur TV : la navigation focus y gère déjà le défilement.
+   v1.3.12 — `scroll-padding-left` = la marge intérieure de la rangée. Sans lui, le
+   point d'aimantation de la première carte était le BORD de la rangée : au
+   téléphone, le navigateur y ramenait chaque rangée dès l'affichage, et toutes les
+   affiches restaient 7 px à gauche de leur titre (mesuré sur l'accueil, les
+   favoris, les fiches, la recherche). Sans effet sur PC, où Jellyfin fait défiler
+   les rangées par script (pas de défilement natif). */
 .layout-desktop .emby-scroller,
 .layout-mobile .emby-scroller {
     scroll-snap-type: x proximity;
+    scroll-padding-left: calc(var(--sidePadding) - 0.375em);
 }
 
 .layout-desktop .emby-scroller .card,
