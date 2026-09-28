@@ -76,6 +76,17 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.12 — Alignments, "99+" badge and a readable selection bar
+
+- Long press on a card (select mode): the close button, the counter and the ⋮ button (Delete, Mark as played…) are white again; Jellyfin 12 painted them black on the theme's navy bar, so no button was visible at the top.
+- Phones: horizontal rows no longer rest 7 px left of their title (home, favourites, detail pages, search).
+- Detail pages: the "Next up", "Seasons", actor films and artist albums grids line up with their title (5 to 7.5 px too far right on desktop, phone and TV).
+- TV: Live TV rows and the libraries' "Suggestions" tab line up with their title too (7.5 px).
+- The "99+" unwatched badge widens into a pill instead of touching its circle; 1- and 2-digit badges are unchanged.
+- Checked on Jellyfin 12.1 (desktop, phone, TV): every row lines up, no horizontal overflow on phones, the ⋮ menu opens normally.
+
+---
+
 #### v1.3.11 — Login page: no more bright band under the top bar
 
 - Jellyfin 12, desktop: the login page no longer shows a bright strip of the background image under the top bar; the page covers the whole screen again, as on 10.11.
@@ -654,6 +665,17 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.12 — Alignements, pastille « 99+ » et bandeau de selection lisible
+
+- Appui long sur une carte (mode selection) : la croix, le compteur et le bouton ⋮ (Supprimer, Marquer comme lu…) repassent en blanc ; Jellyfin 12 les peignait en noir sur le bandeau bleu nuit du theme, aucun bouton n'etait visible en haut.
+- Telephone : les rangees qui defilent ne sont plus decalees de 7 px a gauche de leur titre (accueil, favoris, fiches, recherche).
+- Fiches : les grilles « A suivre », « Saisons », films d'un acteur et albums d'un artiste s'alignent sur leur titre (5 a 7,5 px trop a droite sur PC, telephone et TV).
+- TV : les rangees de la TV en direct et de l'onglet « Suggestions » des bibliotheques s'alignent aussi sur leur titre (7,5 px).
+- La pastille « 99+ » des episodes non vus s'elargit en ovale au lieu de toucher le bord du rond ; les pastilles de 1 ou 2 chiffres ne changent pas.
+- Verifie sur Jellyfin 12.1 (PC, telephone, TV) : toutes les rangees alignees, aucun debordement horizontal au telephone, le menu ⋮ s'ouvre normalement.
 
 ---
 
