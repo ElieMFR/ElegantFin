@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.12 */
+/* ElegantFin Cinema Edition v1.3.13 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.12";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.13-test";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -1912,6 +1912,13 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
     align-content: flex-end;
 }
 
+/* v1.3.13 — téléphone : cette hauteur minimale, pensée pour aligner le titre sur le
+   bas de l'affiche à côté (PC), repoussait le titre des fiches Saison vers le bas :
+   36 px de vide sous le logo, mesurés (l'affiche n'y est pas affichée). */
+.layout-mobile .detailRibbon:has(.portraitCard .folder) {
+    min-height: 0;
+}
+
 .layout-desktop .detailRibbon {
     height: 100%;
     min-height: 25vh;
@@ -1927,18 +1934,6 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
     to {
         transform: translateY(0);
         opacity: 1;
-    }
-}
-
-@keyframes animMoveDownSecondaryPage {
-    from {
-        transform: translateY(-2em);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 0.3;
     }
 }
 
@@ -1998,6 +1993,17 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
     height: calc(100vh - 27vh - var(--secondaryItemPageNegativeSpace));
 }
 
+/* v1.3.13 — TV, fiches Saison : le titre de la série s'écrivait par-dessus le bas
+   du logo sur un téléviseur 1080p. Le logo y est placé par rapport à l'écran
+   (`top: calc(100vh - 6em - …)`, règle plus bas), le titre suit la page : en 720p
+   il restait 10 px d'écart, en 1080p les deux se chevauchaient sur 86 px (mesuré).
+   Le contenu commence désormais 0,8em sous le logo, quelle que soit la hauteur de
+   l'écran : même formule que le logo, moins la marge haute de la page (4,2em).
+   Les fiches Épisode ne sont pas concernées : elles masquent leur logo. */
+.layout-tv #itemDetailPage:has(.subtitle):has(.detailLogo:not(.hide)):not(:has(.detailImageContainer .backdropCard)) .itemBackdrop {
+    height: calc(100vh - 9.4em - var(--secondaryItemPageNegativeSpace));
+}
+
 #itemDetailPage:has(.detailImageContainer .cardPadder-square:not(.person)) .itemBackdrop {
     height: calc(100vh - 20vh - var(--secondaryItemPageNegativeSpace));
 }
@@ -2046,6 +2052,25 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
     background-position: center !important;
     background-repeat: no-repeat !important;
     animation: none !important;
+}
+
+/* v1.3.13 — téléphone : titre remonté, deux vides retirés sous l'image.
+   1. Cadre du logo 11em → 7em (158 → 101 px). Le logo est centré dans son cadre :
+      sur 25 logos réels, un logo typique (3,3 fois plus large que haut) n'occupe
+      que 80 px, soit 39 px de vide au-dessus ET en dessous en médiane (69 au
+      pire). Les logos larges gardent leur taille ; les rares logos presque carrés
+      rapetissent un peu.
+   2. Jellyfin 12 : la marge haute de `--appBarHeight` (règle ci-dessus) faisait
+      doublon avec la place que la barre MUI réserve déjà (`OffsetAppBar`) — même
+      double décalage que les bibliothèques en v1.3.5. 84 → 12 px. La 10.11 garde sa
+      marge : sa page commence SOUS l'en-tête. */
+html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
+    height: 7em !important;
+    max-height: 7em !important;
+}
+
+:root.layout-mobile:has(.MuiAppBar-root) #itemDetailPage .detailLogo:not(.hide) {
+    margin-top: 0.8em !important;
 }
 
 .layout-tv .detailLogo {
@@ -2469,15 +2494,18 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
     display: none;
 }
 
+/* v1.3.13 — fiches Saison, Épisode et Album : l'image de fond reste lumineuse en
+   haut, comme sur la fiche de la série, puis se fond dans le bleu nuit là où
+   commencent le titre et les boutons (voile complet à 45vh). Avant, un voile navy à
+   85 % couvrait toute la page : on passait d'une série lumineuse à une saison
+   éteinte, et en Jellyfin 12 sur PC, la page commençant SOUS la barre du haut, les
+   48 px derrière la barre gardaient l'image en clair (bande de couleur différente).
+   Téléphone : l'image de ces pages s'arrêtait à 30 % d'opacité (`@keyframes
+   animMoveDownSecondaryPage`, retirée) ; elle garde désormais le fondu d'entrée
+   commun et reste pleine, comme celle de la série. */
 #itemDetailPage:has(.subtitle),
 #itemDetailPage:has(.musicParentName) {
-    background: linear-gradient(180deg, var(--darkerGradientPointAlpha) 80%, transparent);
-}
-
-.layout-mobile #itemDetailPage:has(.detailImageContainer .backdropCard) .itemBackdrop,
-.layout-mobile #itemDetailPage:has(.subtitle) .itemBackdrop,
-.layout-mobile #itemDetailPage:has(.musicParentName) .itemBackdrop {
-    animation: animMoveDownSecondaryPage 0.5s ease-out forwards;
+    background: linear-gradient(180deg, transparent 0, var(--darkerGradientPointAlpha) 45vh, var(--darkerGradientPointAlpha) 80%, transparent);
 }
 
 .layout-mobile .cardImageIcon {
@@ -2668,10 +2696,9 @@ html,
     .verticalSection,
     .section0 .cardImageContainer::before,
     .backdropImageFadeIn,
-    /* v1.2.97 : l'image de fond mobile manquait à l'appel — elle est animée en
-       deux endroits (animMoveDown plus haut, animMoveDownSecondaryPage plus bas),
-       aucun des deux n'était couvert. `!important` suffit à battre la seconde
-       règle, plus spécifique (elle porte un id) mais sans `!important`. */
+    /* v1.2.97 : l'image de fond mobile manquait à l'appel — elle était animée en
+       deux endroits (animMoveDown, et jusqu'en v1.3.12 animMoveDownSecondaryPage
+       pour les saisons/épisodes), aucun des deux n'était couvert. */
     .layout-mobile .itemBackdrop,
     #loginPage .padded-left.padded-right.padded-bottom-page {
         animation: none !important;

@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.12 */
+/* ElegantFin Cinema Edition v1.3.13 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.12";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.13-test";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -1244,6 +1244,9 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
     min-height: 32vh;
     align-content: flex-end;
 }
+.layout-mobile .detailRibbon:has(.portraitCard .folder) {
+    min-height: 0;
+}
 .layout-desktop .detailRibbon {
     height: 100%;
     min-height: 25vh;
@@ -1257,16 +1260,6 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
     to {
         transform: translateY(0);
         opacity: 1;
-    }
-}
-@keyframes animMoveDownSecondaryPage {
-    from {
-        transform: translateY(-2em);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 0.3;
     }
 }
 @keyframes animMoveUp {
@@ -1309,6 +1302,9 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
 #itemDetailPage:has(.detailImageContainer .live_tv) .itemBackdrop {
     height: calc(100vh - 27vh - var(--secondaryItemPageNegativeSpace));
 }
+.layout-tv #itemDetailPage:has(.subtitle):has(.detailLogo:not(.hide)):not(:has(.detailImageContainer .backdropCard)) .itemBackdrop {
+    height: calc(100vh - 9.4em - var(--secondaryItemPageNegativeSpace));
+}
 #itemDetailPage:has(.detailImageContainer .cardPadder-square:not(.person)) .itemBackdrop {
     height: calc(100vh - 20vh - var(--secondaryItemPageNegativeSpace));
 }
@@ -1340,6 +1336,13 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
     background-position: center !important;
     background-repeat: no-repeat !important;
     animation: none !important;
+}
+html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
+    height: 7em !important;
+    max-height: 7em !important;
+}
+:root.layout-mobile:has(.MuiAppBar-root) #itemDetailPage .detailLogo:not(.hide) {
+    margin-top: 0.8em !important;
 }
 .layout-tv .detailLogo {
     display: var(--clearLogoVisibility);
@@ -1604,12 +1607,7 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
 }
 #itemDetailPage:has(.subtitle),
 #itemDetailPage:has(.musicParentName) {
-    background: linear-gradient(180deg, var(--darkerGradientPointAlpha) 80%, transparent);
-}
-.layout-mobile #itemDetailPage:has(.detailImageContainer .backdropCard) .itemBackdrop,
-.layout-mobile #itemDetailPage:has(.subtitle) .itemBackdrop,
-.layout-mobile #itemDetailPage:has(.musicParentName) .itemBackdrop {
-    animation: animMoveDownSecondaryPage 0.5s ease-out forwards;
+    background: linear-gradient(180deg, transparent 0, var(--darkerGradientPointAlpha) 45vh, var(--darkerGradientPointAlpha) 80%, transparent);
 }
 .layout-mobile .cardImageIcon {
     font-size: 3.5em;
