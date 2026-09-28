@@ -76,6 +76,15 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.11 — Login page: no more bright band under the top bar
+
+- Jellyfin 12, desktop: the login page no longer shows a bright strip of the background image under the top bar; the page covers the whole screen again, as on 10.11.
+- The login page no longer shows two scrollbars side by side on desktop (it was 48 px taller than the screen).
+- The top bar is hidden on the login page only, as the header already was on 10.11, and comes back once signed in; phones get the same full-screen page. TV unaffected.
+- Checked on Jellyfin 12.1 (desktop and phone): uniform page, single scrollbar, home page unchanged after sign-in.
+
+---
+
 #### v1.3.10 — Phones: detail pages respond to touch again
 
 - Jellyfin 12, phones (Android app and browser): on series, season and movie pages, seasons, episodes and everything below the first screen respond to taps again (the page fade-in left a transform behind).
@@ -645,6 +654,15 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.11 — Connexion : plus de bande claire sous la barre du haut
+
+- Jellyfin 12, PC : la page de connexion ne laisse plus voir une bande claire de l'image de fond sous la barre du haut ; la page couvre de nouveau tout l'ecran, comme en 10.11.
+- La page de connexion n'affiche plus deux barres de defilement cote a cote sur PC (elle depassait l'ecran de 48 px).
+- La barre du haut est masquee sur la page de connexion seulement, comme l'en-tete l'etait deja en 10.11, et revient une fois connecte ; meme page plein ecran sur telephone. TV non concernee.
+- Verifie sur Jellyfin 12.1 (PC et telephone) : page uniforme, une seule barre de defilement, accueil inchange apres connexion.
 
 ---
 
