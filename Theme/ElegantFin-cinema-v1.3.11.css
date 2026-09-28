@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.10 */
+/* ElegantFin Cinema Edition v1.3.11 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.10";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.11";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -5502,6 +5502,22 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 }
 
 .skinHeader.focuscontainer-x.skinHeader-withBackground.skinHeader-blurred.semiTransparent.noHeaderRight {
+    display: none;
+}
+
+/* v1.3.11 — page de connexion sans barre du haut en Jellyfin 12 aussi. La règle
+   ci-dessus masque l'en-tête legacy sur la connexion en 10.11 (`noHeaderRight` est
+   posé sur toute page autonome, `semiTransparent` par la connexion elle-même) ; en
+   coque moderne, c'est la barre MUI qui s'affiche, et la page commence SOUS elle.
+   Constaté sur la prod 12.1, PC : les 48 px derrière la barre n'avaient pas le
+   voile navy de la page, l'image d'accueil y apparaissait en clair (« un trou
+   entre la barre et la page »), et la page (`min-height: 100vh` plus bas)
+   dépassait l'écran d'autant → deux barres de défilement côte à côte.
+   Barre masquée, `OffsetAppBar` ramène son espaceur à 0 (il suit la hauteur de la
+   barre) : la page reprend tout l'écran, comme en 10.11. Dès qu'on quitte la page,
+   la barre et son espaceur de 48 px reviennent (accueil identique, vérifié).
+   `:not(.hide)` : la page de connexion reste en cache, masquée, après usage. */
+:root:has(#loginPage:not(.hide)) .MuiAppBar-root {
     display: none;
 }
 
