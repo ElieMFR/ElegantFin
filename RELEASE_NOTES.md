@@ -76,6 +76,19 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.13 — Season pages as bright as the series, title higher on phones
+
+- Season, episode and album pages keep their backdrop bright at the top, like the series page, then fade to navy where the title and buttons start.
+- Jellyfin 12, desktop: no more lighter band behind the top bar on season, episode and album pages.
+- Phones: season, episode and album backdrops at full brightness instead of 30 %.
+- Phones: the logo sits right under the image — the logo frame goes from 158 to 101 px and loses the duplicate top-bar margin (Jellyfin 12).
+- Phones, season pages: no more empty space between the logo and the title.
+- Phones: the Play button comes up by 130 to 166 px (film, series, season, episode, album).
+- TV, season pages in 1080p: the series title no longer overlaps the logo; 720p is unchanged.
+- Checked on Jellyfin 12.1 (desktop, phone, TV) with a test build before release.
+
+---
+
 #### v1.3.12 — Alignments, "99+" badge and a readable selection bar
 
 - Long press on a card (select mode): the close button, the counter and the ⋮ button (Delete, Mark as played…) are white again; Jellyfin 12 painted them black on the theme's navy bar, so no button was visible at the top.
@@ -665,6 +678,19 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.13 — Saisons aussi lumineuses que la serie, titre remonte au telephone
+
+- Fiches saison, episode et album : l'image de fond reste lumineuse en haut, comme sur la fiche serie, puis se fond dans le bleu nuit la ou commencent le titre et les boutons.
+- Jellyfin 12, PC : plus de bande plus claire derriere la barre du haut sur les fiches saison, episode et album.
+- Telephone : l'image des saisons, episodes et albums est pleine au lieu de 30 %.
+- Telephone : le logo arrive juste sous l'image — son cadre passe de 158 a 101 px et perd la marge en double de la barre du haut (Jellyfin 12).
+- Telephone, fiches saison : plus de vide entre le logo et le titre.
+- Telephone : le bouton Lire remonte de 130 a 166 px (film, serie, saison, episode, album).
+- TV, fiches saison en 1080p : le titre de la serie ne chevauche plus le logo ; rien ne change en 720p.
+- Verifie sur Jellyfin 12.1 (PC, telephone, TV) avec une version de test avant publication.
 
 ---
 
