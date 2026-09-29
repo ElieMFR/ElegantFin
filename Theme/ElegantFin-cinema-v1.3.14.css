@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.13 */
+/* ElegantFin Cinema Edition v1.3.14 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.13";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.14-test";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -2071,6 +2071,29 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
 
 :root.layout-mobile:has(.MuiAppBar-root) #itemDetailPage .detailLogo:not(.hide) {
     margin-top: 0.8em !important;
+}
+
+/* v1.3.14 — PC, fenêtre de moins de 1000 px de large (demi-écran) : Jellyfin 12 n'y
+   charge PAS l'image de fond des fiches (`itemDetails` : `renderBackdrop` exige
+   `innerWidth >= 1000`, et la bannière n'existe qu'en mode téléphone). La place
+   réservée à l'image restait vide : à 960 × 900, 457 px de bleu nuit sous la barre,
+   logo à 591 px et bouton Lire à 927, sous le bas de l'écran (mesuré). Sans image,
+   le logo remonte donc sous la barre, comme au téléphone (0,8em : la barre MUI
+   réserve déjà sa place). Série à 960 × 900 : logo 591 → 60 px, Lire 927 → 396.
+   Condition « pas d'image » = `.backgroundContainer` sans `withBackdrop`, classe
+   que Jellyfin pose quand une image de fond est affichée — ou un script qui en
+   affiche une (le JavaScript Injector de l'utilisateur) : la place revient alors.
+   Limitée à moins de 1000 px, où Jellyfin n'en charge jamais : au-dessus, il ne pose
+   `withBackdrop` qu'une fois l'image chargée, et la page sauterait de 450 px.
+   Jellyfin 12 seulement : en 10.11, la page commence SOUS l'en-tête fixe. */
+@media (max-width: 999.98px) {
+    :root.layout-desktop:has(.MuiAppBar-root):not(:has(.backgroundContainer.withBackdrop)) #itemDetailPage .itemBackdrop {
+        height: 0 !important;
+    }
+
+    :root.layout-desktop:has(.MuiAppBar-root):not(:has(.backgroundContainer.withBackdrop)) #itemDetailPage .detailLogo:not(.hide) {
+        margin-top: 0.8em !important;
+    }
 }
 
 .layout-tv .detailLogo {
