@@ -76,6 +76,15 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.14 — Half-screen windows and theme songs (desktop)
+
+- Jellyfin 12, desktop windows narrower than 1000 px (half screen): Jellyfin loads no backdrop there, so the empty space reserved for it is gone — the logo sits under the top bar and the Play button comes up (series at 960 × 900: 927 → 396 px; season: 581 → 459 px).
+- Desktop: detail pages no longer jump by about 77 px when a series theme song starts, then again when it stops; room for the now-playing bar is kept only when that bar is actually shown.
+- Windows of 1000 px and wider, phones and TV unchanged; if a script displays the backdrop in a narrow window, the normal layout comes back by itself.
+- Checked on Jellyfin 12.1 with a test build: theme song playing, logo steady for 8 s; half-screen series and season pages.
+
+---
+
 #### v1.3.13 — Season pages as bright as the series, title higher on phones
 
 - Season, episode and album pages keep their backdrop bright at the top, like the series page, then fade to navy where the title and buttons start.
@@ -678,6 +687,15 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.14 — Fenetres en demi-ecran et generiques (PC)
+
+- Jellyfin 12, fenetres PC de moins de 1000 px (demi-ecran) : Jellyfin n'y charge pas d'image de fond, la place vide qui lui etait reservee disparait — le logo arrive sous la barre du haut et le bouton Lire remonte (serie a 960 × 900 : 927 → 396 px ; saison : 581 → 459 px).
+- PC : les fiches ne sautent plus d'environ 77 px quand le generique d'une serie demarre, puis quand il s'arrete ; la place de la barre de lecture n'est reservee que si cette barre est vraiment affichee.
+- Fenetres de 1000 px et plus, telephone et TV inchanges ; si un script affiche l'image dans une fenetre etroite, la mise en page normale revient d'elle-meme.
+- Verifie sur Jellyfin 12.1 avec une version de test : generique en cours, logo immobile pendant 8 s ; fiches serie et saison en demi-ecran.
 
 ---
 
