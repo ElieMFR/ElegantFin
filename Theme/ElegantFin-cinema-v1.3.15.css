@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.14 */
+/* ElegantFin Cinema Edition v1.3.15 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.14";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.15-test";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4382,28 +4382,50 @@ div[data-role="controlgroup"] a.ui-btn-active {
     font-size: unset;
 }
 
-[dir="ltr"] .actionsheetMenuItemIcon.check {
-    margin: 0 0.45em 0 0.45em !important;
-}
-
+/* v1.3.15 — Menus de choix (Trier par, pistes audio, sous-titres…) : l'option
+   choisie est surlignée et les coches sont masquées. Jellyfin rend la coche de
+   l'option choisie SANS attribut style, celle des autres options avec
+   style="visibility:hidden;" (actionSheet.ts, identique en 10.11 et 12.1).
+   La coche devient donc le FOND de sa ligne : visible = ligne surlignée,
+   masquée = ligne transparente (survol et appui viennent alors des règles
+   génériques .listItem:hover / .listItem:active, comme les autres menus).
+   ⚠️ INVARIANT PERF : dans :has(), JAMAIS d'attribut que Jellyfin réécrit en
+   continu (style, data-src, sous-chaîne de class…). L'ancienne version testait
+   :has(.listItemIcon.check[style*="hidden"]) ; sur TV, Jellyfin réécrit
+   l'attribut style des rangées à chaque image du défilement, et chaque
+   réécriture faisait revérifier toute la page : accueil à 9 images/s, 0,4 à
+   0,7 s par flèche, contre 48 images/s sans ces règles (mesuré sur une Tizen 9,
+   2026-10-05). Sans danger : un attribut fixé à l'affichage ([data-type]), ou un
+   attribut testé sur l'élément lui-même hors de :has() (comme ci-dessous). */
 .actionSheetMenuItem:has(.listItemIcon.check) {
-    background-color: var(--activeColor);
+    position: relative;
+    isolation: isolate;
 }
 
 .actionSheetMenuItem:has(.listItemIcon.check) .listItemBodyText {
     color: white;
 }
 
-.actionSheetMenuItem:has(.listItemIcon.check) .listItemIcon.check {
-    display: none;
+/* width/height : Jellyfin impose `.listItemIcon { width: 1em !important;
+   height: 1em !important }`, qu'il faut lever pour que inset:0 étire la couche. */
+.actionSheetMenuItem > .actionsheetMenuItemIcon.listItemIcon.check {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    border-radius: inherit;
+    background-color: var(--activeColor);
+    color: transparent !important;
+    font-size: 0 !important;
+    pointer-events: none;
 }
 
-.actionSheetMenuItem:has(.listItemIcon.check[style*="hidden"]) {
+/* Au focus, la ligne prend la pastille blanche (.listItem:focus) : la couche de
+   l'option choisie ne doit pas la recouvrir. */
+.actionSheetMenuItem:focus > .actionsheetMenuItemIcon.listItemIcon.check {
     background-color: transparent;
-}
-
-.actionSheetMenuItem:has(.listItemIcon.check[style*="hidden"]):active {
-    background-color: rgba(255, 255, 255, 0.125);
 }
 
 .navMenuOption {
@@ -5039,10 +5061,6 @@ textarea,
     .paper-icon-button-light:hover:not(:disabled) {
         color: #fff;
         background-color: rgb(255 255 255 / 5%);
-    }
-
-    .actionSheetMenuItem.emby-button:has(.listItemIcon.material-icons.check[style*="hidden"]):hover {
-        background-color: rgba(255, 255, 255, 0.125);
     }
 
     .emby-select-withcolor:hover:not(.emby-select[disabled], :focus) {

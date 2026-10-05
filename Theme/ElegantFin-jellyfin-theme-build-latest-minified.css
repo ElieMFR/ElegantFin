@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.14 */
+/* ElegantFin Cinema Edition v1.3.15 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.14";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.15-test";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -2891,23 +2891,28 @@ div[data-role="controlgroup"] a.ui-btn-active {
 .actionSheetContent > h1 {
     font-size: unset;
 }
-[dir="ltr"] .actionsheetMenuItemIcon.check {
-    margin: 0 0.45em 0 0.45em !important;
-}
 .actionSheetMenuItem:has(.listItemIcon.check) {
-    background-color: var(--activeColor);
+    position: relative;
+    isolation: isolate;
 }
 .actionSheetMenuItem:has(.listItemIcon.check) .listItemBodyText {
     color: white;
 }
-.actionSheetMenuItem:has(.listItemIcon.check) .listItemIcon.check {
-    display: none;
+.actionSheetMenuItem > .actionsheetMenuItemIcon.listItemIcon.check {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    border-radius: inherit;
+    background-color: var(--activeColor);
+    color: transparent !important;
+    font-size: 0 !important;
+    pointer-events: none;
 }
-.actionSheetMenuItem:has(.listItemIcon.check[style*="hidden"]) {
+.actionSheetMenuItem:focus > .actionsheetMenuItemIcon.listItemIcon.check {
     background-color: transparent;
-}
-.actionSheetMenuItem:has(.listItemIcon.check[style*="hidden"]):active {
-    background-color: rgba(255, 255, 255, 0.125);
 }
 .navMenuOption {
     border-radius: var(--smallRadius) !important;
@@ -3368,9 +3373,6 @@ textarea,
     .paper-icon-button-light:hover:not(:disabled) {
         color: #fff;
         background-color: rgb(255 255 255 / 5%);
-    }
-    .actionSheetMenuItem.emby-button:has(.listItemIcon.material-icons.check[style*="hidden"]):hover {
-        background-color: rgba(255, 255, 255, 0.125);
     }
     .emby-select-withcolor:hover:not(.emby-select[disabled], :focus) {
         border-color: var(--dimTextColor) !important;
