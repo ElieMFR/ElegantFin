@@ -76,6 +76,16 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.15 — Smoother TV navigation
+
+- TV home screen: arrow keys respond about three times faster (measured on a Samsung Tizen 9 TV: 6 → 29 frames per second, ~0.65 s → ~0.2 s per key press). Three choice-menu rules (audio and subtitle tracks, player settings, TV drop-down lists) tested the `style` attribute inside `:has()`; Jellyfin rewrites that attribute on every frame while rows scroll, and each rewrite made the TV re-check the whole page.
+- Choice menus look exactly the same: the chosen option is highlighted and the check marks stay hidden; the highlight is now drawn by the chosen option's own check mark.
+- TV live guide: 11 → 20 frames per second while moving around (Jellyfin without the theme: 18). The Jellyfin 12 rule that reveals the Home / Favourites tabs on desktop made the TV recalculate every guide cell hundreds of times while scrolling; it now targets its element directly, with the same result on Jellyfin 12.1.
+- Library grids and season episode lists measured on par with Jellyfin without the theme (33 vs 37 and 35 vs 36 frames per second); no visual change on desktop, phones or TV.
+- Checked on the TV with test builds (home, guide, library, season, audio track menu) and on Jellyfin 12.1 desktop (Home / Favourites tabs, detail pages).
+
+---
+
 #### v1.3.14 — Half-screen windows and theme songs (desktop)
 
 - Jellyfin 12, desktop windows narrower than 1000 px (half screen): Jellyfin loads no backdrop there, so the empty space reserved for it is gone — the logo sits under the top bar and the Play button comes up (series at 960 × 900: 927 → 396 px; season: 581 → 459 px).
@@ -687,6 +697,16 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.15 — Navigation TV plus fluide
+
+- Accueil TV : les fleches repondent environ trois fois plus vite (mesure sur une TV Samsung Tizen 9 : 6 → 29 images par seconde, ~0,65 s → ~0,2 s par appui). Trois regles des menus de choix (pistes audio et sous-titres, reglages du lecteur, listes deroulantes en mode TV) testaient l'attribut `style` dans un `:has()` ; Jellyfin reecrit cet attribut a chaque image quand les rangees defilent, et chaque reecriture obligeait la TV a reverifier toute la page.
+- Menus de choix identiques a l'oeil : l'option choisie est surlignee et les coches restent masquees ; le surlignage est desormais dessine par la coche de l'option choisie.
+- Guide TV : 11 → 20 images par seconde en navigation (Jellyfin sans theme : 18). La regle Jellyfin 12 qui affiche les onglets Accueil / Favoris sur PC faisait recalculer chaque case du guide des centaines de fois pendant le defilement ; elle cible maintenant directement son element, avec le meme resultat sur Jellyfin 12.1.
+- Grilles de bibliotheque et listes d'episodes mesurees au niveau de Jellyfin sans theme (33 contre 37 et 35 contre 36 images par seconde) ; aucun changement visuel sur PC, telephone ni TV.
+- Verifie sur la TV avec des versions de test (accueil, guide, bibliotheque, saison, menu des pistes audio) et sur Jellyfin 12.1 PC (onglets Accueil / Favoris, fiches).
 
 ---
 

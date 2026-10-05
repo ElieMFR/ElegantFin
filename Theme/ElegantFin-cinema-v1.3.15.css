@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.15-test2";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.15";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4395,7 +4395,8 @@ div[data-role="controlgroup"] a.ui-btn-active {
     font-size: unset;
 }
 
-/* v1.3.15 — Menus de choix (Trier par, pistes audio, sous-titres…) : l'option
+/* v1.3.15 — Menus de choix (pistes audio et sous-titres, réglages du lecteur,
+   listes déroulantes en mode TV…) : l'option
    choisie est surlignée et les coches sont masquées. Jellyfin rend la coche de
    l'option choisie SANS attribut style, celle des autres options avec
    style="visibility:hidden;" (actionSheet.ts, identique en 10.11 et 12.1).
