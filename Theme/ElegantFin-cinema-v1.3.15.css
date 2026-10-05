@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.15-test";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.15-test2";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4184,8 +4184,21 @@ div[data-role="controlgroup"] a.ui-btn-active {
    précisément ce qu'on annule : sans lui, la règle n'a rien à faire. Seuls les
    éléments à style en ligne sont donc testés. Mesuré sur la 10.11 (copie hors
    écran de la page, 15 paires) : −3,1 ms de calcul de styles sur Films (PC),
-   −5,0 sur l'accueil (PC), −1,3 sur Films (TV). */
-:root:has(.MuiAppBar-root):has(.homePage) [style]:has(> .skinHeader) {
+   −5,0 sur l'accueil (PC), −1,3 sur Films (TV).
+   v1.3.15 — plus de `:root:has(...)` DEVANT `[style]`. Le moteur tient une liste
+   COMMUNE à toutes les règles :has() des éléments à revérifier quand un :has()
+   change ; avec `:root:has(...) [style]`, cette liste contenait « tout élément à
+   style en ligne ». Or les :has() de la racine sont revérifiés à chaque bascule
+   de la classe `hide`, que Jellyfin fait des centaines de fois en défilant le
+   guide TV, dont chaque case porte un style en ligne : 36 000 recalculs pour
+   12 flèches, 6,1 s de styles contre 0,5 s sans cette règle (mesuré sur une
+   Tizen 9, 2026-10-05). Les conditions passent donc DANS le sujet : l'enveloppe
+   (enfant de #reactRoot, RootAppRouter.tsx) est suivie de la mise en page
+   moderne qui contient la barre MUI et la page d'accueil.
+   ⚠️ INVARIANT PERF : derrière un :has() ancêtre (`:root:has(...) X`), X ne doit
+   jamais être un simple attribut ou une simple balise ; une classe ou un id
+   seulement. */
+[style]:has(> .skinHeader):has(~ * .MuiAppBar-root):has(~ * .homePage) {
     display: block !important;
 }
 
