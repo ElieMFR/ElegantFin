@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.16 */
+/* ElegantFin Cinema Edition v1.3.17 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.16";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.17-test";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -1081,8 +1081,14 @@ body {
     display: var(--miniOverlayButtonVisibility);
 }
 
-.layout-mobile .portraitCard .cardOverlayButton-br:not([data-action="menu"]),
-.layout-mobile .backdropCard .cardOverlayButton-br:not([data-action="menu"]) {
+/* v1.3.17 — `:not(.MuiButtonGroup-root)` : en Jellyfin 12, la classe
+   `cardOverlayButton-br` est posée sur le GROUPE MUI qui contient les boutons de
+   l'affiche (CardOverlayButtons.tsx : Lecture et « ⋮ » seulement), pas sur chaque
+   bouton comme en 10.11. Sans cette exception, le groupe entier disparaissait et
+   les affiches de films perdaient leur bouton Lecture au téléphone (bug amont
+   lscambo13/ElegantFin#317, constaté ici : 0 × 0 px au lieu de 38 × 38). */
+.layout-mobile .portraitCard .cardOverlayButton-br:not([data-action="menu"]):not(.MuiButtonGroup-root),
+.layout-mobile .backdropCard .cardOverlayButton-br:not([data-action="menu"]):not(.MuiButtonGroup-root) {
     display: none;
 }
 
@@ -3997,6 +4003,60 @@ div[data-role="controlgroup"] a.ui-btn-active {
     border-radius: var(--smallRadius);
 }
 
+/* v1.3.17 — Jellyfin 12 : PONT DE PALETTE. La coque moderne (MUI) tire ses couleurs
+   de variables `--jf-palette-*` générées par Jellyfin : bleu #00a4dc, fonds gris
+   #101010 / #202020, texte blanc pur (mesuré sur un serveur 12.1). Le thème
+   habillait chaque composant un par un ; tout composant non ciblé (fenêtre,
+   notification, champ, futur ajout de Jellyfin) restait aux couleurs de Jellyfin.
+   La palette est redéclarée avec les variables du thème, et le thème suit d'office.
+   Idée et liste reprises du complément communautaire elegantfin-jf12 (mihaif7,
+   GPL-2.0), adaptées à ce fork : ses variables amont (--accentColor,
+   --dividerColor, --semiTransparentAccentColor…) n'existent pas ici, et importé
+   tel quel il laissait 4 des 13 couleurs relevées VIDES, dont la couleur principale.
+   Volontairement NON redéclarés : survol, focus, séparateurs et fond des champs
+   (restent neutres comme le reste du thème), succès / avertissement / info
+   (couleurs sémantiques, cf. v1.2.84 ci-dessous). Le rouge d'erreur devient celui
+   du thème, qui reste rouge. `:root[data-theme]` (0,2,0) passe devant les
+   déclarations de MUI, quel que soit le thème choisi par l'utilisateur.
+   Sans effet en 10.11 et sur TV : ces variables n'y sont lues par rien. */
+:root,
+:root[data-theme] {
+    --jf-palette-background-default: var(--darkerGradientPoint);
+    --jf-palette-background-defaultChannel: 17 24 39;
+    --jf-palette-background-paper: rgb(30, 40, 54);
+    --jf-palette-background-paperChannel: 30 40 54;
+    --jf-palette-AppBar-defaultBg: var(--headerColor);
+    --jf-palette-AppBar-transparentBg: transparent;
+    --jf-palette-text-primary: var(--textColor);
+    --jf-palette-text-primaryChannel: 209 213 219;
+    --jf-palette-text-secondary: var(--dimTextColor);
+    --jf-palette-text-secondaryChannel: 156 163 175;
+    --jf-palette-text-disabled: rgba(209, 213, 219, 0.5);
+    --jf-palette-common-white: #fff;
+    --jf-palette-common-whiteChannel: 255 255 255;
+    --jf-palette-primary-main: var(--activeColor);
+    --jf-palette-primary-mainChannel: 119 91 244;
+    --jf-palette-primary-light: rgb(146, 124, 246);
+    --jf-palette-primary-dark: var(--btnSubmitColor);
+    --jf-palette-primary-contrastText: #fff;
+    --jf-palette-secondary-main: var(--activeColor);
+    --jf-palette-secondary-mainChannel: 119 91 244;
+    --jf-palette-secondary-contrastText: #fff;
+    --jf-palette-error-main: var(--btnDeleteColor);
+    --jf-palette-error-mainChannel: 169 29 29;
+    --jf-palette-error-light: var(--btnDeleteBorderColor);
+    --jf-palette-error-contrastText: #fff;
+    --jf-palette-Alert-infoFilledBg: var(--btnSubmitColor);
+    --jf-palette-Alert-infoFilledColor: #fff;
+    --jf-palette-action-selected: rgba(119, 91, 244, 0.25);
+    --jf-palette-action-active: var(--textColor);
+    --jf-palette-FilledInput-borderColor: var(--borderColor);
+    --jf-palette-Button-inheritContainedBg: var(--selectorBackgroundColor);
+    --jf-palette-Button-inheritContainedHoverBg: var(--borderColor);
+    --jf-palette-SnackbarContent-bg: var(--drawerColor);
+    --jf-palette-SnackbarContent-color: var(--textColor);
+}
+
 /* v1.2.84 — Jellyfin 12 : accent du thème sur la coque « moderne ».
    Contexte vérifié sur un serveur JF12 réel : la 12.0 scinde l'app en deux
    (apps/legacy et apps/modern) ; le mode TV reste sur l'app legacy (thème inchangé),
@@ -4042,6 +4102,78 @@ div[data-role="controlgroup"] a.ui-btn-active {
    prototype). Leurs coins restent ceux du groupe (règles ButtonGroup plus bas). */
 .MuiAppBar-root .MuiButton-text:not(.MuiButtonGroup-grouped) {
     border-radius: var(--largeRadius);
+}
+
+/* v1.3.17 — PC : bibliothèques de la barre en PASTILLES et nom du serveur en
+   EN-TÊTE. Style repris du complément communautaire elegantfin-jf12 (mihaif7,
+   GPL-2.0), validé sur maquette par l'utilisateur, mais dans la barre de 48 px du
+   thème : le complément la porte à 67 px, refusé (19 px de contenu perdus en haut
+   de chaque page, et plusieurs règles 12.1 du thème sont calées sur 48 px).
+   Système deux tons du thème conservé : bibliothèque en cours = pastille violette
+   (`.MuiButton-textPrimary` ci-dessus ; le complément la faisait blanche), focus
+   clavier = pastille blanche (`Mui-focusVisible` plus bas), survol = voile blanc
+   comme les onglets Accueil / Favoris.
+   Limité à la 1re rangée de la barre (serveur, bibliothèques, « Plus ») : la 2e
+   rangée d'une bibliothèque (choix de vue « Films ▾ ») garde son allure. PC
+   seulement : au téléphone, les bibliothèques vivent dans le menu latéral. */
+.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped) {
+    background-color: var(--darkerGradientPointAlpha);
+    color: var(--textColor);
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 0.35rem 1.1rem;
+    margin: 0 0.3rem;
+}
+
+.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped) .MuiButton-startIcon {
+    margin-left: 0;
+    margin-right: 0.6rem;
+}
+
+.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped, .MuiButton-textPrimary, .Mui-focusVisible, :has(.MuiButton-startIcon > img)):hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
+
+/* Nom du serveur (le bouton qui porte le logo) : en-tête plus grand, sans pastille,
+   séparé des bibliothèques par un filet vertical centré dans l'écart. */
+.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) {
+    background-color: transparent;
+    font-size: 1.375rem;
+    font-weight: 600;
+    letter-spacing: -0.012em;
+    padding: 0;
+    margin: 0 2.6rem 0 0;
+    position: relative;
+}
+
+.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img):has(+ .MuiButton-text)::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -1.45rem;
+    width: var(--borderWidth);
+    height: 1.75rem;
+    background: var(--borderColor);
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img):not(:has(+ .MuiButton-text)) {
+    margin: 0;
+}
+
+.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) .MuiButton-startIcon {
+    margin-right: 0.75rem;
+}
+
+.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) .MuiButton-startIcon > img {
+    max-height: 1.875rem !important;
+    max-width: 1.875rem !important;
+}
+
+.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) .MuiTouchRipple-root {
+    display: none;
 }
 
 .MuiAppBar-root .MuiAvatar-root {
@@ -4374,8 +4506,11 @@ div[data-role="controlgroup"] a.ui-btn-active {
     margin: 0.25em 0.5em !important;
 }
 
+/* v1.3.17 : texte blanc imposé — le pont de palette (plus haut) passe le texte MUI
+   au gris clair du thème, qui ne donnerait que 3,1:1 sur le violet (4,6:1 en blanc). */
 .Mui-selected {
     background-color: var(--activeColor) !important;
+    color: #fff !important;
 }
 
 .actionsheetDivider {

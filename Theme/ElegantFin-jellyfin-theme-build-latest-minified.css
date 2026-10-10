@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.16 */
+/* ElegantFin Cinema Edition v1.3.17 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.16";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.17-test";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -660,8 +660,8 @@ body {
     right: 0.25em;
     display: var(--miniOverlayButtonVisibility);
 }
-.layout-mobile .portraitCard .cardOverlayButton-br:not([data-action="menu"]),
-.layout-mobile .backdropCard .cardOverlayButton-br:not([data-action="menu"]) {
+.layout-mobile .portraitCard .cardOverlayButton-br:not([data-action="menu"]):not(.MuiButtonGroup-root),
+.layout-mobile .backdropCard .cardOverlayButton-br:not([data-action="menu"]):not(.MuiButtonGroup-root) {
     display: none;
 }
 .layout-mobile .cardOverlayButton-br[data-action="menu"] > .cardOverlayButtonIcon {
@@ -2679,6 +2679,43 @@ div[data-role="controlgroup"] a.ui-btn-active {
 .MuiDrawer-paper .MuiListItemButton-root {
     border-radius: var(--smallRadius);
 }
+:root,
+:root[data-theme] {
+    --jf-palette-background-default: var(--darkerGradientPoint);
+    --jf-palette-background-defaultChannel: 17 24 39;
+    --jf-palette-background-paper: rgb(30, 40, 54);
+    --jf-palette-background-paperChannel: 30 40 54;
+    --jf-palette-AppBar-defaultBg: var(--headerColor);
+    --jf-palette-AppBar-transparentBg: transparent;
+    --jf-palette-text-primary: var(--textColor);
+    --jf-palette-text-primaryChannel: 209 213 219;
+    --jf-palette-text-secondary: var(--dimTextColor);
+    --jf-palette-text-secondaryChannel: 156 163 175;
+    --jf-palette-text-disabled: rgba(209, 213, 219, 0.5);
+    --jf-palette-common-white: #fff;
+    --jf-palette-common-whiteChannel: 255 255 255;
+    --jf-palette-primary-main: var(--activeColor);
+    --jf-palette-primary-mainChannel: 119 91 244;
+    --jf-palette-primary-light: rgb(146, 124, 246);
+    --jf-palette-primary-dark: var(--btnSubmitColor);
+    --jf-palette-primary-contrastText: #fff;
+    --jf-palette-secondary-main: var(--activeColor);
+    --jf-palette-secondary-mainChannel: 119 91 244;
+    --jf-palette-secondary-contrastText: #fff;
+    --jf-palette-error-main: var(--btnDeleteColor);
+    --jf-palette-error-mainChannel: 169 29 29;
+    --jf-palette-error-light: var(--btnDeleteBorderColor);
+    --jf-palette-error-contrastText: #fff;
+    --jf-palette-Alert-infoFilledBg: var(--btnSubmitColor);
+    --jf-palette-Alert-infoFilledColor: #fff;
+    --jf-palette-action-selected: rgba(119, 91, 244, 0.25);
+    --jf-palette-action-active: var(--textColor);
+    --jf-palette-FilledInput-borderColor: var(--borderColor);
+    --jf-palette-Button-inheritContainedBg: var(--selectorBackgroundColor);
+    --jf-palette-Button-inheritContainedHoverBg: var(--borderColor);
+    --jf-palette-SnackbarContent-bg: var(--drawerColor);
+    --jf-palette-SnackbarContent-color: var(--textColor);
+}
 .MuiAppBar-root .MuiButton-textPrimary {
     background-color: var(--activeColor) !important;
     color: #fff !important;
@@ -2689,6 +2726,55 @@ div[data-role="controlgroup"] a.ui-btn-active {
 }
 .MuiAppBar-root .MuiButton-text:not(.MuiButtonGroup-grouped) {
     border-radius: var(--largeRadius);
+}
+.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped) {
+    background-color: var(--darkerGradientPointAlpha);
+    color: var(--textColor);
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 0.35rem 1.1rem;
+    margin: 0 0.3rem;
+}
+.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped) .MuiButton-startIcon {
+    margin-left: 0;
+    margin-right: 0.6rem;
+}
+.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped, .MuiButton-textPrimary, .Mui-focusVisible, :has(.MuiButton-startIcon > img)):hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
+.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) {
+    background-color: transparent;
+    font-size: 1.375rem;
+    font-weight: 600;
+    letter-spacing: -0.012em;
+    padding: 0;
+    margin: 0 2.6rem 0 0;
+    position: relative;
+}
+.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img):has(+ .MuiButton-text)::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -1.45rem;
+    width: var(--borderWidth);
+    height: 1.75rem;
+    background: var(--borderColor);
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img):not(:has(+ .MuiButton-text)) {
+    margin: 0;
+}
+.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) .MuiButton-startIcon {
+    margin-right: 0.75rem;
+}
+.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) .MuiButton-startIcon > img {
+    max-height: 1.875rem !important;
+    max-width: 1.875rem !important;
+}
+.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) .MuiTouchRipple-root {
+    display: none;
 }
 .MuiAppBar-root .MuiAvatar-root {
     background-color: var(--activeColor) !important;
@@ -2877,6 +2963,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
 }
 .Mui-selected {
     background-color: var(--activeColor) !important;
+    color: #fff !important;
 }
 .actionsheetDivider {
     height: 2px;
