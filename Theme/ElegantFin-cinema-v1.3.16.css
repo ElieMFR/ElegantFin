@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.15 */
+/* ElegantFin Cinema Edition v1.3.16 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.15";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.16-test";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -6244,9 +6244,14 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     font-variation-settings: "FILL" 0;
 }
 
-.layout-tv .sectionTabs .emby-tabs.smoothScrollX {
-    overflow: visible !important;
-}
+/* v1.3.16 — RETIRÉ : `.layout-tv .sectionTabs .emby-tabs.smoothScrollX { overflow:
+   visible !important }` (amont 384ce22, 2025, « pastille de focus coupée »). Sur une
+   TV dont la police de base fait 27 px, les 7 onglets de Musiques et les 6 de la TV en
+   direct dépassaient leur cadre et recouvraient le titre, la cloche et les icônes (de
+   169 à 1752 px sur 1920). Rendue à Jellyfin, la rangée reste dans son cadre et défile.
+   La pastille n'est plus coupée depuis la v1.2.48 : le focus est un fond blanc DANS le
+   bouton, sans contour ni ombre qui en sortent (mesuré : 0 px coupé, du premier au
+   dernier onglet). ⚠️ Ne pas réimporter cette règle lors d'un portage amont. */
 
 .sectionTabs .emby-tab-button {
     display: inline-flex;
