@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.21 */
+/* ElegantFin Cinema Edition v1.3.22 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.21";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.22";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -7173,11 +7173,17 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
         opacity: 1;
     }
 
+    /* v1.3.22 — `padding-bottom` : la bande couvre l'image ET le titre sous la carte,
+       le chevron se centrait donc sur l'ensemble, 18 à 22 px sous le centre des
+       images (31 px pour des titres sur deux lignes). 3.2em ≈ la hauteur d'un titre
+       de carte : chevron à 1-2 px du centre des images sur l'accueil (11 px au pire,
+       titres sur deux lignes). La bande garde toute sa hauteur cliquable. */
     .layout-desktop .verticalSection:not(.editorsChoiceContainer):not(:has(.editorsChoiceContainer)) .emby-scrollbuttons-button {
         pointer-events: auto;
         height: 100%;
         width: 3em;
         margin: 0;
+        padding-bottom: 3.2em;
         border-radius: 0;
         background: linear-gradient(90deg, rgba(17, 24, 39, 0.8), transparent);
     }
@@ -7188,6 +7194,74 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 
     .layout-desktop .verticalSection:not(.editorsChoiceContainer):not(:has(.editorsChoiceContainer)) .emby-scrollbuttons-button > .material-icons {
         font-size: 1.8em;
+    }
+}
+
+/* v1.3.22 — Media Carousel (rangées Top 10) : mêmes bandes pleine hauteur que les
+   rangées, même décalage — chevron 19 px sous le centre des affiches, parce que la
+   bande couvre aussi les titres. 2.5rem le ramène au centre (0 px mesuré).
+   Sélecteur plus spécifique que celui du plugin (`.mc-row .mc-arrow`). */
+.mc-row .mc-strip-wrap .mc-arrow {
+    padding-bottom: 2.5rem;
+}
+
+/* v1.3.22 — Onglets de l'accueil (Accueil, Favoris + ceux de Jellyfin Enhanced) en
+   fenêtre PC étroite : quand ils ne tiennent plus, Jellyfin les fait défiler avec
+   une fine barre grise dessous. À la place, des flèches dans le style des rangées
+   (bande en dégradé bleu nuit, chevron blanc), générées en CSS par
+   `::scroll-button()` : cliquables, masquées d'elles-mêmes (`:disabled`) quand il
+   n'y a plus rien à faire défiler de leur côté. Chromium 135+ seulement — d'où
+   le `@supports` : ailleurs (Firefox, Safari) la barre reste, rien ne casse.
+   Bande haute de 3rem = la pastille (2.5rem) et ses marges (0.25rem) : le chevron
+   tombe au centre des pastilles. TV et téléphone non concernés (`.layout-desktop`). */
+@supports selector(::scroll-button(*)) {
+    .layout-desktop .headerTabs {
+        position: relative;
+    }
+
+    .layout-desktop .headerTabs .emby-tabs.scrollX {
+        scrollbar-width: none;
+    }
+
+    .layout-desktop .headerTabs .emby-tabs.scrollX::scroll-button(*) {
+        position: absolute;
+        top: 0;
+        height: 3rem;
+        width: 2.6rem;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        padding: 0;
+        border: 0;
+        font-family: "Material Icons Round", "Material Icons";
+        font-size: 1.8rem;
+        line-height: 1;
+        color: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        transition: opacity 0.15s ease;
+    }
+
+    .layout-desktop .headerTabs .emby-tabs.scrollX::scroll-button(right) {
+        content: "chevron_right" / "Onglets suivants";
+        right: 0;
+        justify-content: flex-end;
+        background: linear-gradient(270deg, rgba(17, 24, 39, 0.8) 30%, rgba(17, 24, 39, 0));
+    }
+
+    .layout-desktop .headerTabs .emby-tabs.scrollX::scroll-button(left) {
+        content: "chevron_left" / "Onglets précédents";
+        left: 0;
+        justify-content: flex-start;
+        background: linear-gradient(90deg, rgba(17, 24, 39, 0.8) 30%, rgba(17, 24, 39, 0));
+    }
+
+    .layout-desktop .headerTabs .emby-tabs.scrollX::scroll-button(*):hover {
+        color: #fff;
+    }
+
+    .layout-desktop .headerTabs .emby-tabs.scrollX::scroll-button(*):disabled {
+        opacity: 0;
+        pointer-events: none;
     }
 }
 

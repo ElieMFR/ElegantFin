@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.21 */
+/* ElegantFin Cinema Edition v1.3.22 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.21";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.22";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -4755,6 +4755,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
         height: 100%;
         width: 3em;
         margin: 0;
+        padding-bottom: 3.2em;
         border-radius: 0;
         background: linear-gradient(90deg, rgba(17, 24, 39, 0.8), transparent);
     }
@@ -4763,6 +4764,53 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     }
     .layout-desktop .verticalSection:not(.editorsChoiceContainer):not(:has(.editorsChoiceContainer)) .emby-scrollbuttons-button > .material-icons {
         font-size: 1.8em;
+    }
+}
+.mc-row .mc-strip-wrap .mc-arrow {
+    padding-bottom: 2.5rem;
+}
+@supports selector(::scroll-button(*)) {
+    .layout-desktop .headerTabs {
+        position: relative;
+    }
+    .layout-desktop .headerTabs .emby-tabs.scrollX {
+        scrollbar-width: none;
+    }
+    .layout-desktop .headerTabs .emby-tabs.scrollX::scroll-button(*) {
+        position: absolute;
+        top: 0;
+        height: 3rem;
+        width: 2.6rem;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        padding: 0;
+        border: 0;
+        font-family: "Material Icons Round", "Material Icons";
+        font-size: 1.8rem;
+        line-height: 1;
+        color: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        transition: opacity 0.15s ease;
+    }
+    .layout-desktop .headerTabs .emby-tabs.scrollX::scroll-button(right) {
+        content: "chevron_right" / "Onglets suivants";
+        right: 0;
+        justify-content: flex-end;
+        background: linear-gradient(270deg, rgba(17, 24, 39, 0.8) 30%, rgba(17, 24, 39, 0));
+    }
+    .layout-desktop .headerTabs .emby-tabs.scrollX::scroll-button(left) {
+        content: "chevron_left" / "Onglets précédents";
+        left: 0;
+        justify-content: flex-start;
+        background: linear-gradient(90deg, rgba(17, 24, 39, 0.8) 30%, rgba(17, 24, 39, 0));
+    }
+    .layout-desktop .headerTabs .emby-tabs.scrollX::scroll-button(*):hover {
+        color: #fff;
+    }
+    .layout-desktop .headerTabs .emby-tabs.scrollX::scroll-button(*):disabled {
+        opacity: 0;
+        pointer-events: none;
     }
 }
 .layout-desktop .emby-scroller,

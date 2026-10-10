@@ -76,6 +76,14 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.22 — Arrows: home tabs on narrow PC windows, centred row arrows
+
+- PC, narrow window: when the home tabs (Home, Favourites and those added by Jellyfin Enhanced) no longer fit, arrows in the style of the rows replace the thin grey scrollbar under them. They scroll the tabs and hide themselves at either end. Recent Chrome and Edge; other browsers keep the scrollbar.
+- PC: row arrows sit at the centre of the posters instead of about 20 px lower (home rows, detail pages, Media Carousel Top 10 rows).
+- Checked on Jellyfin 12.1 (home and detail pages, 530 to 1440 px wide).
+
+---
+
 #### v1.3.21 — Jellyfin Enhanced: Seerr badges in the theme's accent
 
 - Search and Jellyseerr sections: the Film / Series / Collection badges on Seerr results use the theme's purple accent instead of the plugin's blue, magenta and green — like the Film / Series badges of the Home Screen Sections Discover row.
@@ -745,6 +753,14 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.22 — Fleches : onglets de l'accueil en fenetre PC etroite, fleches des rangees centrees
+
+- PC, fenetre etroite : quand les onglets de l'accueil (Accueil, Favoris et ceux ajoutes par Jellyfin Enhanced) ne tiennent plus, des fleches dans le style des rangees remplacent la fine barre grise en dessous. Elles font defiler les onglets et se masquent d'elles-memes aux extremites. Chrome et Edge recents ; les autres navigateurs gardent la barre.
+- PC : les fleches des rangees tombent au centre des affiches au lieu d'environ 20 px plus bas (rangees de l'accueil, fiches, rangees Top 10 de Media Carousel).
+- Verifie sur Jellyfin 12.1 (accueil et fiches, de 530 a 1440 px de large).
 
 ---
 
