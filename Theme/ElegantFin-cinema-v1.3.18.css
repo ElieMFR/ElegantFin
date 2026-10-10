@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.17 */
+/* ElegantFin Cinema Edition v1.3.18 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.17";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.18-test";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -5204,6 +5204,18 @@ textarea,
    PC et mobile où il a toujours été correct. Seul le placement est spécifique. */
 .layout-tv .skip-button:hover {
     transform: none;
+}
+
+/* v1.3.18 — exception au principe ci-dessus, en `background-color` SEUL (jamais le
+   raccourci) : le focus TV du bouton prend son fond dans la palette de Jellyfin
+   (`.emby-button.show-focus:focus { background: --jf-palette-primary-main }`).
+   Depuis le pont de palette (v1.3.17) ce fond était violet, la couleur même de la
+   jauge : celle-ci ne se voyait plus se remplir (signalé par l'utilisateur sur sa
+   TV). Le bouton garde au focus son bleu nuit de base, où la jauge se lit bien. */
+.layout-tv .skip-button.show-focus:focus,
+.layout-tv .skip-button:focus {
+    background-color: #111827;
+    color: #fff;
 }
 
 .activeSession {
