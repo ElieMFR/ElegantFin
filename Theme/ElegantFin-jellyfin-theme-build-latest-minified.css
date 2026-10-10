@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.19 */
+/* ElegantFin Cinema Edition v1.3.20 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.19";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.20";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -51,14 +51,14 @@
     --osdSeekBarPlayedColor: var(--textColor);
     --osdSeekBarBufferedColorAlpha: rgba(128, 128, 128, 0.5);
     --osdSeekBarThumbColor: white;
-    --tableBodyColor: rgb(31 41 55 / 1);
+    --tableBodyColor: rgb(31, 41, 55);
     --uiAccentColor: rgb(119, 91, 244);
-    --btnMiniPlayColor: rgb(41 154 93);
+    --btnMiniPlayColor: rgb(41, 154, 93);
     --btnMiniPlayBorderColor: rgb(50, 167, 105);
     --btnDeleteColor: rgb(169, 29, 29);
     --btnDeleteBorderColor: rgb(217, 84, 84);
     --btnSubmitColor: rgb(61, 54, 178);
-    --btnSubmitBorderColor: rgb(117 111 226);
+    --btnSubmitBorderColor: rgb(117, 111, 226);
     --checkboxCheckedBgColor: rgb(79, 70, 229);
     --highlightOutlineColor: rgb(37, 99, 235);
     --defaultBorder: var(--borderWidth) solid var(--borderColor);
@@ -76,15 +76,15 @@
     --hoverGradientV: linear-gradient(
         0deg,
         transparent,
-        rgb(255 255 255 / 100%) 45%,
-        rgb(255 255 255 / 100%) 55%,
+        rgb(255, 255, 255) 45%,
+        rgb(255, 255, 255) 55%,
         transparent
     );
     --hoverGradientH: linear-gradient(
         90deg,
         transparent,
-        rgb(255 255 255 / 100%) 45%,
-        rgb(255 255 255 / 100%) 55%,
+        rgb(255, 255, 255) 45%,
+        rgb(255, 255, 255) 55%,
         transparent
     );
     --itemBackdropMask: linear-gradient(180deg, rgba(0, 0, 0, 0.8), 75%, transparent);
@@ -1174,7 +1174,8 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
 }
 .emby-scrollbuttons-button.paper-icon-button-light > .material-icons {
     font-size: 1.5em;
-    place-content: center;
+    align-content: center;
+    justify-content: center;
 }
 .detailRibbon {
     background-color: transparent;
@@ -1525,6 +1526,7 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
 .layout-mobile .detailLogo.hide ~ .detailPageWrapperContainer .nameContainer h1.parentName {
     position: static !important;
     color: white !important;
+    font-size: 5vw !important;
     font-size: clamp(2em, 5vw, 4em) !important;
     pointer-events: auto;
     text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5) !important;
@@ -1671,6 +1673,7 @@ html,
     background: var(--backgroundGradient);
 }
 .backdropImage {
+    background-position-y: calc(var(--backdropTrimFromTop) * 5);
     background-position-y: clamp(0%, calc(var(--backdropTrimFromTop) * 5), 100%);
 }
 .backdropImage:after,
@@ -2411,7 +2414,7 @@ progress + span {
     right: 0.2em;
 }
 .indicator {
-    border: solid rgb(124 124 124 / 50%) var(--borderWidth);
+    border: solid rgba(124, 124, 124, 0.5) var(--borderWidth);
     border-radius: 100em;
 }
 .playedIndicator {
@@ -2564,7 +2567,8 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
 }
 .btnPlay > .detailButton-content::after {
     padding: 0 1ch;
-    place-content: center;
+    align-content: center;
+    justify-content: center;
 }
 .btnPlay > .detailButton-content {
     -webkit-align-items: unset;
@@ -3019,7 +3023,10 @@ div[data-role="controlgroup"] a.ui-btn-active {
 }
 .actionSheetMenuItem > .actionsheetMenuItemIcon.listItemIcon.check {
     position: absolute;
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     z-index: -1;
     width: auto !important;
     height: auto !important;
@@ -3203,6 +3210,12 @@ div[data-role="controlgroup"] a.ui-btn-active {
 .collectionItems,
 .programGuideSection {
     grid-column: 1 / -1;
+}
+@media (max-width: 1199.98px) {
+    .layout-desktop #itemDetailPage .itemDetailsGroup,
+    .layout-desktop #itemDetailPage .trackSelections {
+        grid-column: 1 / -1;
+    }
 }
 .programGuideSection:not(.hide) {
     order: -1;
@@ -3496,7 +3509,7 @@ textarea,
 @media (hover: hover) and (pointer: fine) {
     .paper-icon-button-light:hover:not(:disabled) {
         color: #fff;
-        background-color: rgb(255 255 255 / 5%);
+        background-color: rgba(255, 255, 255, 0.05);
     }
     .emby-select-withcolor:hover:not(.emby-select[disabled], :focus) {
         border-color: var(--dimTextColor) !important;
@@ -3547,7 +3560,7 @@ textarea,
 }
 .paper-icon-button-light:active:not(:disabled) {
     color: #fff;
-    background-color: rgb(255 255 255 / 5%);
+    background-color: rgba(255, 255, 255, 0.05);
 }
 .emby-textarea {
     font-family: consolas, monaco, monospace;
@@ -3564,6 +3577,11 @@ textarea,
     border: var(--defaultLighterBorder);
     border-radius: var(--smallRadius);
     padding: 0.5em !important;
+}
+.emby-select-withcolor,
+.emby-select {
+    padding-right: 2em !important;
+    text-overflow: ellipsis;
 }
 .inputLabelFocused,
 .selectLabelFocused,
@@ -3618,6 +3636,7 @@ textarea,
 }
 .nameContainer > h1.itemName,
 .nameContainer > h1.parentName {
+    font-size: 5vw;
     font-size: clamp(2em, 5vw, 4em);
     white-space: pre-wrap;
     padding-bottom: 0.5ch;
@@ -3811,7 +3830,8 @@ textarea,
 }
 .infoBanner {
     display: flex;
-    place-content: center;
+    align-content: center;
+    justify-content: center;
     background-color: var(--headerColor) !important;
     border-radius: var(--largeRadius) !important;
     border: var(--defaultBorder) !important;
@@ -3924,6 +3944,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     box-sizing: border-box;
 }
 #loginPage .padded-left.padded-right.padded-bottom-page {
+    width: 28em;
     width: min(28em, calc(100vw - 2em));
     background: rgba(17, 24, 39, 0.92) !important;
     padding: 2em 2em 1em 2em !important;
@@ -4595,7 +4616,10 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 .card:has(.playedIndicator) .cardImageContainer::after {
     content: "";
     position: absolute;
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     background: rgba(0, 0, 0, 0.35);
     border-radius: inherit;
     z-index: 1;
@@ -4790,6 +4814,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 }
 .userPreferencesPage .button-submit {
     position: sticky !important;
+    bottom: 1em;
     bottom: calc(1em + env(safe-area-inset-bottom, 0px));
     box-shadow: 0 0.75em 2em 3em var(--darkerGradientPoint);
     z-index: 2 !important;
@@ -4852,6 +4877,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     font-weight: 600;
     line-height: 1.4;
     position: sticky;
+    bottom: 1em;
     bottom: calc(1em + env(safe-area-inset-bottom, 0px));
     box-shadow: 0 0.75em 2em 3em var(--darkerGradientPoint);
     z-index: 2;

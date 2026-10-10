@@ -76,6 +76,15 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.20 — Drop-down lists readable, older TVs better covered
+
+- Drop-down lists (audio and subtitle tracks on a detail page, settings): long names no longer run under the arrow. The theme had removed the room Jellyfin keeps for it.
+- PC, narrow window (under 1200 px, e.g. half screen): on a detail page the Credits and Media panels now stack, as on phones, so track names are shown in full.
+- Older TVs (Tizen 4.0 to 6.5): a few colours and positions written in recent CSS syntax now have a fallback those engines understand (button borders, sticky Save button, item titles, action-menu ticks). No change on recent devices.
+- Checked on Jellyfin 12.1: PC, phone and TV layouts.
+
+---
+
 #### v1.3.19 — Jellyfin Enhanced "where to watch" bar in the theme's colours
 
 - Detail pages: the Jellyfin Enhanced streaming-availability bar gets the theme's look, like the Director / Media panels below it: navy panel with a thin border, title in secondary grey, services as pills, round search and settings buttons with no background.
@@ -729,6 +738,15 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.20 — Listes deroulantes lisibles, anciennes TV mieux prises en charge
+
+- Listes deroulantes (pistes audio et sous-titres d'une fiche, reglages) : un nom long ne passe plus sous la fleche. Le theme supprimait la place que Jellyfin lui reserve.
+- PC, fenetre etroite (moins de 1200 px, par exemple en demi-ecran) : sur une fiche, les panneaux Credits et Media passent l'un sous l'autre, comme sur telephone, et les noms de pistes s'affichent en entier.
+- Anciennes TV (Tizen 4.0 a 6.5) : quelques couleurs et positions ecrites en syntaxe CSS recente ont maintenant un repli que ces moteurs comprennent (bordures des boutons, bouton Sauvegarder colle en bas, titres des fiches, coches des menus d'action). Aucun changement sur les appareils recents.
+- Verifie sur Jellyfin 12.1 : dispositions PC, telephone et TV.
 
 ---
 

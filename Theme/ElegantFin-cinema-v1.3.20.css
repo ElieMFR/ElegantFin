@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.19 */
+/* ElegantFin Cinema Edition v1.3.20 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.19";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.20";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -102,18 +102,18 @@
     --osdSeekBarPlayedColor: var(--textColor);
     --osdSeekBarBufferedColorAlpha: rgba(128, 128, 128, 0.5);
     --osdSeekBarThumbColor: white;
-    --tableBodyColor: rgb(31 41 55 / 1);
+    --tableBodyColor: rgb(31, 41, 55);
     /* v1.2.47 : unifie sur l'unique violet d'accent (etait rgb(117 111 226),
        un 2e violet quasi identique a --activeColor = desordre). Un seul violet. */
     --uiAccentColor: rgb(119, 91, 244);
-    --btnMiniPlayColor: rgb(41 154 93);
+    --btnMiniPlayColor: rgb(41, 154, 93);
     --btnMiniPlayBorderColor: rgb(50, 167, 105);
 
     /* Base component colors */
     --btnDeleteColor: rgb(169, 29, 29);
     --btnDeleteBorderColor: rgb(217, 84, 84);
     --btnSubmitColor: rgb(61, 54, 178);
-    --btnSubmitBorderColor: rgb(117 111 226);
+    --btnSubmitBorderColor: rgb(117, 111, 226);
     --checkboxCheckedBgColor: rgb(79, 70, 229);
     --highlightOutlineColor: rgb(37, 99, 235);
 
@@ -158,15 +158,15 @@
     --hoverGradientV: linear-gradient(
         0deg,
         transparent,
-        rgb(255 255 255 / 100%) 45%,
-        rgb(255 255 255 / 100%) 55%,
+        rgb(255, 255, 255) 45%,
+        rgb(255, 255, 255) 55%,
         transparent
     );
     --hoverGradientH: linear-gradient(
         90deg,
         transparent,
-        rgb(255 255 255 / 100%) 45%,
-        rgb(255 255 255 / 100%) 55%,
+        rgb(255, 255, 255) 45%,
+        rgb(255, 255, 255) 55%,
         transparent
     );
 
@@ -1833,7 +1833,8 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
 
 .emby-scrollbuttons-button.paper-icon-button-light > .material-icons {
     font-size: 1.5em;
-    place-content: center;
+    align-content: center;
+    justify-content: center;
 }
 
 .detailRibbon {
@@ -2394,6 +2395,7 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
 .layout-mobile .detailLogo.hide ~ .detailPageWrapperContainer .nameContainer h1.parentName {
     position: static !important;
     color: white !important;
+    font-size: 5vw !important;
     font-size: clamp(2em, 5vw, 4em) !important;
     pointer-events: auto;
     text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5) !important;
@@ -2611,6 +2613,7 @@ html,
 }
 
 .backdropImage {
+    background-position-y: calc(var(--backdropTrimFromTop) * 5);
     background-position-y: clamp(0%, calc(var(--backdropTrimFromTop) * 5), 100%);
 }
 
@@ -3605,7 +3608,7 @@ progress + span {
 }
 
 .indicator {
-    border: solid rgb(124 124 124 / 50%) var(--borderWidth);
+    border: solid rgba(124, 124, 124, 0.5) var(--borderWidth);
     border-radius: 100em;
 }
 
@@ -3818,7 +3821,8 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
 
 .btnPlay > .detailButton-content::after {
     padding: 0 1ch;
-    place-content: center;
+    align-content: center;
+    justify-content: center;
 }
 
 .btnPlay > .detailButton-content {
@@ -4612,7 +4616,10 @@ div[data-role="controlgroup"] a.ui-btn-active {
    height: 1em !important }`, qu'il faut lever pour que inset:0 étire la couche. */
 .actionSheetMenuItem > .actionsheetMenuItemIcon.listItemIcon.check {
     position: absolute;
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     z-index: -1;
     width: auto !important;
     height: auto !important;
@@ -4844,6 +4851,18 @@ div[data-role="controlgroup"] a.ui-btn-active {
 .collectionItems,
 .programGuideSection {
     grid-column: 1 / -1;
+}
+
+/* v1.3.20 : fenêtre PC étroite (< 1200 px, dont le demi-écran à 960 px) — les
+   panneaux Crédits et Média passent l'un sous l'autre, comme sur téléphone. Côte à
+   côte, chacun n'a que deux des quatre colonnes de la grille : mesuré à 1000 px,
+   311 px de place pour une piste de 323 px (« French (Forced) – Par défaut – Forcé
+   – SUBRIP »), donc coupée. Empilées, les listes prennent toute la largeur. */
+@media (max-width: 1199.98px) {
+    .layout-desktop #itemDetailPage .itemDetailsGroup,
+    .layout-desktop #itemDetailPage .trackSelections {
+        grid-column: 1 / -1;
+    }
 }
 
 .programGuideSection:not(.hide) {
@@ -5274,7 +5293,7 @@ textarea,
 @media (hover: hover) and (pointer: fine) {
     .paper-icon-button-light:hover:not(:disabled) {
         color: #fff;
-        background-color: rgb(255 255 255 / 5%);
+        background-color: rgba(255, 255, 255, 0.05);
     }
 
     .emby-select-withcolor:hover:not(.emby-select[disabled], :focus) {
@@ -5341,7 +5360,7 @@ textarea,
 
 .paper-icon-button-light:active:not(:disabled) {
     color: #fff;
-    background-color: rgb(255 255 255 / 5%);
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 .emby-textarea {
@@ -5361,6 +5380,19 @@ textarea,
     border: var(--defaultLighterBorder);
     border-radius: var(--smallRadius);
     padding: 0.5em !important;
+}
+
+/* v1.3.20 : le `padding: 0.5em !important` ci-dessus écrasait aussi la marge droite
+   que Jellyfin réserve à la flèche des listes (`[dir="ltr"] .emby-select {
+   padding-right: 1.9em }`). Le texte d'une option longue passait SOUS la flèche
+   (téléphone : pistes audio/sous-titres d'une fiche ; PC : panneau Média).
+   Mesuré : flèche = 25 px depuis le bord droit pour une police de 14,9 px, soit
+   1,7em → 2em la dégage. `text-overflow` : points de suspension là où le moteur
+   les dessine dans un <select> (Firefox), coupe nette ailleurs. */
+.emby-select-withcolor,
+.emby-select {
+    padding-right: 2em !important;
+    text-overflow: ellipsis;
 }
 
 .inputLabelFocused,
@@ -5428,6 +5460,7 @@ textarea,
 
 .nameContainer > h1.itemName,
 .nameContainer > h1.parentName {
+    font-size: 5vw;
     font-size: clamp(2em, 5vw, 4em);
     white-space: pre-wrap;
     padding-bottom: 0.5ch;
@@ -5702,7 +5735,8 @@ textarea,
 
 .infoBanner {
     display: flex;
-    place-content: center;
+    align-content: center;
+    justify-content: center;
     background-color: var(--headerColor) !important;
     border-radius: var(--largeRadius) !important;
     border: var(--defaultBorder) !important;
@@ -5889,6 +5923,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 }
 
 #loginPage .padded-left.padded-right.padded-bottom-page {
+    width: 28em;
     width: min(28em, calc(100vw - 2em));
     background: rgba(17, 24, 39, 0.92) !important;
     padding: 2em 2em 1em 2em !important;
@@ -6923,7 +6958,10 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 .card:has(.playedIndicator) .cardImageContainer::after {
     content: "";
     position: absolute;
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     background: rgba(0, 0, 0, 0.35);
     border-radius: inherit;
     z-index: 1;
@@ -7275,6 +7313,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    page pendant le défilement. */
 .userPreferencesPage .button-submit {
     position: sticky !important;
+    bottom: 1em;
     bottom: calc(1em + env(safe-area-inset-bottom, 0px));
     box-shadow: 0 0.75em 2em 3em var(--darkerGradientPoint);
     z-index: 2 !important;
@@ -7370,6 +7409,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     font-weight: 600;
     line-height: 1.4;
     position: sticky;
+    bottom: 1em;
     bottom: calc(1em + env(safe-area-inset-bottom, 0px));
     box-shadow: 0 0.75em 2em 3em var(--darkerGradientPoint);
     z-index: 2;
