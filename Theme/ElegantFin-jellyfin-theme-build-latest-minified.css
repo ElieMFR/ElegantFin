@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.18 */
+/* ElegantFin Cinema Edition v1.3.19 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.18";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.19-test";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -2086,6 +2086,34 @@ progress + span {
 .itemExternalLinks > a.letterboxd-link:active,
 .itemExternalLinks > a.seerr-link:active {
     background: none !important;
+}
+.streaming-lookup-container > div {
+    background: rgba(30, 40, 54, 0.55) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: var(--largeRadius) !important;
+    padding: 0.8em 1em !important;
+}
+.streaming-lookup-container .elsewhere-link-reset {
+    color: var(--dimTextColor) !important;
+    font-weight: 500 !important;
+}
+.streaming-lookup-container :is(.elsewhere-search-button, .elsewhere-settings-button) {
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 50% !important;
+    color: var(--textColor) !important;
+}
+.layout-desktop .streaming-lookup-container :is(.elsewhere-search-button, .elsewhere-settings-button):hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+}
+.streaming-lookup-container > div > div:not(:first-child, #streaming-result-container) > div {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-radius: var(--largeRadius) !important;
+    color: var(--textColor) !important;
+    font-weight: 500 !important;
+}
+.streaming-lookup-container > div > div:not(:first-child, #streaming-result-container) > div img {
+    border-radius: 5px !important;
 }
 .itemTags,
 .itemTags > a {

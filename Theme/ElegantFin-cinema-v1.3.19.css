@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.18 */
+/* ElegantFin Cinema Edition v1.3.19 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.18";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.19-test";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -3177,6 +3177,48 @@ progress + span {
 .itemExternalLinks > a.letterboxd-link:active,
 .itemExternalLinks > a.seerr-link:active {
     background: none !important;
+}
+
+/* v1.3.19 — Jellyfin Enhanced, bandeau « où regarder » des fiches
+   (`.streaming-lookup-container`) : il gardait le style par défaut du plugin
+   (cadre noir à 20 %, étiquettes grises à coins de 8 px, boutons carrés). Aux
+   couleurs du thème, validé sur maquette : panneau bleu nuit discret à fin liseré
+   comme les menus, titre en gris secondaire, services en pastilles comme les
+   onglets, loupe et réglages en boutons ronds sans fond. Le plugin pose ses styles
+   en ligne, d'où les `!important`. Structure lue sur un serveur 12.1 réel :
+   panneau > [rangée titre + boutons, rangée des services]. */
+.streaming-lookup-container > div {
+    background: rgba(30, 40, 54, 0.55) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: var(--largeRadius) !important;
+    padding: 0.8em 1em !important;
+}
+
+.streaming-lookup-container .elsewhere-link-reset {
+    color: var(--dimTextColor) !important;
+    font-weight: 500 !important;
+}
+
+.streaming-lookup-container :is(.elsewhere-search-button, .elsewhere-settings-button) {
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 50% !important;
+    color: var(--textColor) !important;
+}
+
+.layout-desktop .streaming-lookup-container :is(.elsewhere-search-button, .elsewhere-settings-button):hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+}
+
+.streaming-lookup-container > div > div:not(:first-child, #streaming-result-container) > div {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-radius: var(--largeRadius) !important;
+    color: var(--textColor) !important;
+    font-weight: 500 !important;
+}
+
+.streaming-lookup-container > div > div:not(:first-child, #streaming-result-container) > div img {
+    border-radius: 5px !important;
 }
 
 .itemTags,
