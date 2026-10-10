@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.17-test";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.17-test2";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4018,7 +4018,14 @@ div[data-role="controlgroup"] a.ui-btn-active {
    (couleurs sémantiques, cf. v1.2.84 ci-dessous). Le rouge d'erreur devient celui
    du thème, qui reste rouge. `:root[data-theme]` (0,2,0) passe devant les
    déclarations de MUI, quel que soit le thème choisi par l'utilisateur.
-   Sans effet en 10.11 et sur TV : ces variables n'y sont lues par rien. */
+   ⚠️ La TV est CONCERNÉE : en 12.x, le thème de base de l'interface classique
+   (themes/_base/_theme.scss, 64 règles) lit aussi ces variables. Mesuré sur la TV
+   contre la v1.3.16 (8 pages + 20 éléments recréés) : passent du bleu Jellyfin au
+   violet du thème le focus du bouton « Passer », des listes déroulantes TV et le
+   compte à rebours « Épisode suivant » (voulu) ; tout le reste est identique.
+   D'où deux exclusions : `text-secondary` (sinon les onglets de date du guide
+   passaient du blanc à 70 % au gris-bleu, plus assortis aux onglets du thème) et
+   `SnackbarContent-color` (texte des notifications gardé blanc). */
 :root,
 :root[data-theme] {
     --jf-palette-background-default: var(--darkerGradientPoint);
@@ -4029,8 +4036,6 @@ div[data-role="controlgroup"] a.ui-btn-active {
     --jf-palette-AppBar-transparentBg: transparent;
     --jf-palette-text-primary: var(--textColor);
     --jf-palette-text-primaryChannel: 209 213 219;
-    --jf-palette-text-secondary: var(--dimTextColor);
-    --jf-palette-text-secondaryChannel: 156 163 175;
     --jf-palette-text-disabled: rgba(209, 213, 219, 0.5);
     --jf-palette-common-white: #fff;
     --jf-palette-common-whiteChannel: 255 255 255;
@@ -4054,7 +4059,6 @@ div[data-role="controlgroup"] a.ui-btn-active {
     --jf-palette-Button-inheritContainedBg: var(--selectorBackgroundColor);
     --jf-palette-Button-inheritContainedHoverBg: var(--borderColor);
     --jf-palette-SnackbarContent-bg: var(--drawerColor);
-    --jf-palette-SnackbarContent-color: var(--textColor);
 }
 
 /* v1.2.84 — Jellyfin 12 : accent du thème sur la coque « moderne ».

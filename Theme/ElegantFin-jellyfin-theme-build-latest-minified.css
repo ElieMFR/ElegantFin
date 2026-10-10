@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.17-test";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.17-test2";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -2689,8 +2689,6 @@ div[data-role="controlgroup"] a.ui-btn-active {
     --jf-palette-AppBar-transparentBg: transparent;
     --jf-palette-text-primary: var(--textColor);
     --jf-palette-text-primaryChannel: 209 213 219;
-    --jf-palette-text-secondary: var(--dimTextColor);
-    --jf-palette-text-secondaryChannel: 156 163 175;
     --jf-palette-text-disabled: rgba(209, 213, 219, 0.5);
     --jf-palette-common-white: #fff;
     --jf-palette-common-whiteChannel: 255 255 255;
@@ -2714,7 +2712,6 @@ div[data-role="controlgroup"] a.ui-btn-active {
     --jf-palette-Button-inheritContainedBg: var(--selectorBackgroundColor);
     --jf-palette-Button-inheritContainedHoverBg: var(--borderColor);
     --jf-palette-SnackbarContent-bg: var(--drawerColor);
-    --jf-palette-SnackbarContent-color: var(--textColor);
 }
 .MuiAppBar-root .MuiButton-textPrimary {
     background-color: var(--activeColor) !important;
