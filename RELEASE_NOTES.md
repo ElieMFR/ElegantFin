@@ -76,6 +76,13 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.19 — Jellyfin Enhanced "where to watch" bar in the theme's colours
+
+- Detail pages: the Jellyfin Enhanced streaming-availability bar gets the theme's look, like the Director / Media panels below it: navy panel with a thin border, title in secondary grey, services as pills, round search and settings buttons with no background.
+- Checked on Jellyfin 12.1 with test builds (movie page).
+
+---
+
 #### v1.3.18 — TV: the Skip button countdown shows again
 
 - TV, Jellyfin 12: the focused Skip button keeps its navy background, so its purple countdown fills visibly again. Since v1.3.17 the focus background had turned purple, the same colour as the countdown, which then could not be seen.
@@ -722,6 +729,13 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.19 — Bandeau « ou regarder » de Jellyfin Enhanced aux couleurs du theme
+
+- Fiches : le bandeau de disponibilite en streaming de Jellyfin Enhanced prend le style du theme, comme les panneaux Realisateur / Media juste en dessous : panneau bleu nuit a fin lisere, titre en gris secondaire, services en pastilles, boutons recherche et reglages ronds sans fond.
+- Verifie sur Jellyfin 12.1 avec des versions de test (fiche film).
 
 ---
 
