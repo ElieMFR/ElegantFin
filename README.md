@@ -7,7 +7,7 @@
 
 **A cinematic fork of [ElegantFin](https://github.com/lscambo13/ElegantFin) — streaming-inspired Jellyfin theme**
 
-[![Version](https://img.shields.io/badge/Cinema%20Edition-v1.3.20-red?style=flat&logo=github)](https://github.com/peterdu1109/ElegantFin/releases)
+[![Version](https://img.shields.io/badge/Cinema%20Edition-v1.3.21-red?style=flat&logo=github)](https://github.com/peterdu1109/ElegantFin/releases)
 [![Based on](https://img.shields.io/badge/Based%20on-ElegantFin%20v26.09.05-blue?style=flat&logo=github)](https://github.com/lscambo13/ElegantFin)
 [![Jellyfin](https://img.shields.io/badge/Jellyfin-10.11.x%20%7C%2012.x-00A4DC?style=flat&logo=jellyfin&logoColor=white)](https://jellyfin.org)
 [![Platform](https://img.shields.io/badge/Platform-Desktop%20%7C%20Mobile%20%7C%20TV-green?style=flat)]()
@@ -83,7 +83,7 @@ Everything works on **desktop, mobile and TV** with a single CSS import.
 @import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
-> 📌 `@main` always follows the latest version. To pin a release (and upgrade on your own schedule), replace `@main` with a version tag, e.g. `@v1.3.20` — see [Releases](https://github.com/peterdu1109/ElegantFin/releases).
+> 📌 `@main` always follows the latest version. To pin a release (and upgrade on your own schedule), replace `@main` with a version tag, e.g. `@v1.3.21` — see [Releases](https://github.com/peterdu1109/ElegantFin/releases).
 >
 > **Versioning.** `1.3.x` for fixes and adjustments. The minor number moves when a batch of work closes, or rather than letting the patch number reach 100.
 
@@ -164,7 +164,7 @@ Cinema Edition has dedicated styling for these popular Jellyfin plugins:
 | [**Editor's Choice**](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | Curated editorial picks on home page | Banner spacing fix, button/section collision resolved, 3-line description on desktop, working scroll/pause controls as navy pills below the header, aspect-ratio-safe title logo |
 | [**Media Bar**](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) | Auto-cycling slideshow at top of home | Gradient overlay, readable synopsis, polished button states |
 | [**Home Screen Sections**](https://github.com/IAmParadox27/jellyfin-plugin-home-sections) | Extra curated rows on the home page | Readable Top 10 rank numbers (they were near-black on near-black), Discover badges in the theme accent and in French |
-| [**Jellyfin Enhanced**](https://github.com/n00bcodr/Jellyfin-Enhanced) | All-in-one additions: shortcuts, Jellyseerr requests, reviews, extra links | Letterboxd and Seerr icons in line with the other logos, TMDB reviews no longer overflow the detail page |
+| [**Jellyfin Enhanced**](https://github.com/n00bcodr/Jellyfin-Enhanced) | All-in-one additions: shortcuts, Jellyseerr requests, reviews, extra links | Letterboxd and Seerr icons in line with the other logos, TMDB reviews no longer overflow the detail page, "where to watch" bar and Seerr badges in the theme's colours |
 
 If a plugin isn't in this list, the theme just doesn't add overrides for it — it'll work with default styling.
 
@@ -243,7 +243,7 @@ Tout fonctionne sur **PC, mobile et TV** avec un seul import CSS.
 @import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
-> 📌 `@main` suit toujours la dernière version. Pour figer une version et mettre à jour quand VOUS le décidez, remplacez `@main` par un tag, par exemple `@v1.3.20` — voir les [Releases](https://github.com/peterdu1109/ElegantFin/releases).
+> 📌 `@main` suit toujours la dernière version. Pour figer une version et mettre à jour quand VOUS le décidez, remplacez `@main` par un tag, par exemple `@v1.3.21` — voir les [Releases](https://github.com/peterdu1109/ElegantFin/releases).
 >
 > **Numérotation.** `1.3.x` pour les correctifs et ajustements. Le numéro mineur change quand un ensemble de travaux se referme, ou plutôt que de laisser le numéro de correctif atteindre 100.
 
@@ -324,7 +324,7 @@ L'Édition Cinéma habille spécifiquement ces plugins Jellyfin :
 | [**Editor's Choice**](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | Sélection éditoriale sur la page d'accueil | Espacement de la bannière corrigé, collision bouton/section résolue, description sur trois lignes sur PC, contrôles de défilement et de pause fonctionnels en pastilles sombres sous la barre du haut, logo de titre au ratio préservé |
 | [**Media Bar**](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) | Diaporama défilant en haut de la page d'accueil | Dégradé d'arrière-plan, résumé lisible, états des boutons soignés |
 | [**Home Screen Sections**](https://github.com/IAmParadox27/jellyfin-plugin-home-sections) | Rangées éditoriales supplémentaires sur la page d'accueil | Numéros du Top 10 rendus lisibles — ils étaient quasi noirs sur fond quasi noir — et badges Découvrir à la couleur du thème, en français |
-| [**Jellyfin Enhanced**](https://github.com/n00bcodr/Jellyfin-Enhanced) | Ajouts tout-en-un : raccourcis, demandes Jellyseerr, avis, liens supplémentaires | Icônes Letterboxd et Seerr alignées sur les autres logos, avis TMDB qui ne débordent plus de la fiche |
+| [**Jellyfin Enhanced**](https://github.com/n00bcodr/Jellyfin-Enhanced) | Ajouts tout-en-un : raccourcis, demandes Jellyseerr, avis, liens supplémentaires | Icônes Letterboxd et Seerr alignées sur les autres logos, avis TMDB qui ne débordent plus de la fiche, bandeau « où regarder » et badges Seerr aux couleurs du thème |
 
 Si un plugin ne figure pas dans cette liste, le thème ne lui applique aucune surcharge : il s'affiche avec son habillage d'origine.
 

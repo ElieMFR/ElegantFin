@@ -76,6 +76,13 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.21 — Jellyfin Enhanced: Seerr badges in the theme's accent
+
+- Search and Jellyseerr sections: the Film / Series / Collection badges on Seerr results use the theme's purple accent instead of the plugin's blue, magenta and green — like the Film / Series badges of the Home Screen Sections Discover row.
+- Checked on Jellyfin 12.1 (search page).
+
+---
+
 #### v1.3.20 — Drop-down lists readable, older TVs better covered
 
 - Drop-down lists (audio and subtitle tracks on a detail page, settings): long names no longer run under the arrow. The theme had removed the room Jellyfin keeps for it.
@@ -738,6 +745,13 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.21 — Jellyfin Enhanced : badges Seerr a l'accent du theme
+
+- Recherche et sections Jellyseerr : les badges Film / Serie / Collection des resultats Seerr prennent le violet d'accent du theme au lieu du bleu, du magenta et du vert du plugin — comme les badges Film / Serie de la rangee Decouvrir de Home Screen Sections.
+- Verifie sur Jellyfin 12.1 (page de recherche).
 
 ---
 
