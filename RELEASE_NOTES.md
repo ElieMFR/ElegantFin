@@ -76,6 +76,15 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.17 — Library pills in the top bar, theme colours everywhere, Play button on phones
+
+- Jellyfin 12, desktop: the libraries in the top bar become pills and the server name becomes a header with a thin divider, inside the theme's 48 px bar (style adapted from the community companion elegantfin-jf12 by mihaif7, GPL-2.0). The current library stays purple, keyboard focus white, hover a light veil.
+- Jellyfin 12: the MUI palette now follows the theme (purple, navy, theme red) instead of Jellyfin's blue and greys, so components the theme does not target yet follow it too. On TV, the focused Skip button, focused drop-down lists and the Up Next countdown turn from Jellyfin blue to the theme's purple; everything else measured on the TV is unchanged.
+- Phones, Jellyfin 12: movie posters get their Play button back (upstream lscambo13/ElegantFin#317): an inherited rule hid the whole button group.
+- Checked with test builds on Jellyfin 12.1 desktop and phone, and on the TV against v1.3.16 (8 pages and 20 recreated elements).
+
+---
+
 #### v1.3.16 — TV header tabs stay in their frame
 
 - TV, Music and Live TV pages: the header tabs (7 and 6 of them) no longer spill over the page title, the bell and the header icons; the row stays in its frame and scrolls, as in Jellyfin (measured on a Tizen 9 TV with a 27 px base font: the tabs ran from 169 to 1752 px of 1920).
@@ -706,6 +715,15 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.17 — Bibliotheques en pastilles, couleurs du theme partout, bouton Lecture au telephone
+
+- Jellyfin 12, PC : les bibliotheques de la barre du haut deviennent des pastilles et le nom du serveur un en-tete avec un fin filet, dans la barre de 48 px du theme (style adapte du complement communautaire elegantfin-jf12 de mihaif7, GPL-2.0). Bibliotheque en cours en violet, focus clavier blanc, survol en voile clair.
+- Jellyfin 12 : la palette MUI suit le theme (violet, bleu nuit, rouge du theme) au lieu du bleu et des gris de Jellyfin ; les composants pas encore cibles suivent aussi. Sur TV, le bouton Passer cible, les listes deroulantes ciblees et le compte a rebours Episode suivant passent du bleu Jellyfin au violet du theme ; tout le reste mesure sur la TV est inchange.
+- Telephone, Jellyfin 12 : les affiches de films retrouvent leur bouton Lecture (amont lscambo13/ElegantFin#317) : une regle heritee cachait tout le groupe de boutons.
+- Verifie avec des versions de test sur Jellyfin 12.1 PC et telephone, et sur la TV contre la v1.3.16 (8 pages et 20 elements recrees).
 
 ---
 
