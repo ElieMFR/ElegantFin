@@ -76,6 +76,13 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.18 — TV: the Skip button countdown shows again
+
+- TV, Jellyfin 12: the focused Skip button keeps its navy background, so its purple countdown fills visibly again. Since v1.3.17 the focus background had turned purple, the same colour as the countdown, which then could not be seen.
+- Checked on the TV: focused background navy #111827 instead of purple; only the background colour is set, the countdown itself is untouched.
+
+---
+
 #### v1.3.17 — Library pills in the top bar, theme colours everywhere, Play button on phones
 
 - Jellyfin 12, desktop: the libraries in the top bar become pills and the server name becomes a header with a thin divider, inside the theme's 48 px bar (style adapted from the community companion elegantfin-jf12 by mihaif7, GPL-2.0). The current library stays purple, keyboard focus white, hover a light veil.
@@ -715,6 +722,13 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.18 — TV : la jauge du bouton Passer se voit de nouveau
+
+- TV, Jellyfin 12 : le bouton Passer cible garde son fond bleu nuit, et sa jauge violette se voit de nouveau se remplir. Depuis la v1.3.17, le fond au focus etait devenu violet, la couleur meme de la jauge, qui ne se voyait plus.
+- Verifie sur la TV : fond au focus bleu nuit #111827 au lieu du violet ; seule la couleur de fond est posee, la jauge n'est pas touchee.
 
 ---
 
