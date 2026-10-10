@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.19-test";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.19-test2";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -3200,6 +3200,12 @@ progress + span {
 }
 
 .streaming-lookup-container :is(.elsewhere-search-button, .elsewhere-settings-button) {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 2.2em !important;
+    height: 2.2em !important;
+    padding: 0 !important;
     background: transparent !important;
     border: 0 !important;
     border-radius: 50% !important;
