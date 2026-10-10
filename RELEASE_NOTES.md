@@ -76,6 +76,15 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.16 — TV header tabs stay in their frame
+
+- TV, Music and Live TV pages: the header tabs (7 and 6 of them) no longer spill over the page title, the bell and the header icons; the row stays in its frame and scrolls, as in Jellyfin (measured on a Tizen 9 TV with a 27 px base font: the tabs ran from 169 to 1752 px of 1920).
+- The focus pill is never cut, from the first tab to the last: since v1.2.48 it is a white fill inside the button, so the 2025 upstream rule that let the row overflow is no longer needed.
+- Pages whose tabs fit (Movies, Shows…) are unchanged; desktop and phones unchanged.
+- Checked on the TV and with a test build in TV layout at 1920 × 1080 with the TV's 27 px font, keyboard navigation on Music and Live TV.
+
+---
+
 #### v1.3.15 — Smoother TV navigation
 
 - TV home screen: arrow keys respond about three times faster (measured on a Samsung Tizen 9 TV: 6 → 29 frames per second, ~0.65 s → ~0.2 s per key press). Three choice-menu rules (audio and subtitle tracks, player settings, TV drop-down lists) tested the `style` attribute inside `:has()`; Jellyfin rewrites that attribute on every frame while rows scroll, and each rewrite made the TV re-check the whole page.
@@ -697,6 +706,15 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.16 — Onglets TV dans leur cadre
+
+- TV, pages Musiques et TV en direct : les onglets de l'en-tete (7 et 6) ne debordent plus sur le titre de la page, la cloche et les icones ; la rangee reste dans son cadre et defile, comme dans Jellyfin (mesure sur une TV Tizen 9 avec une police de base de 27 px : les onglets allaient de 169 a 1752 px sur 1920).
+- La pastille de focus n'est jamais coupee, du premier au dernier onglet : depuis la v1.2.48 c'est un fond blanc dans le bouton, la regle amont de 2025 qui laissait deborder la rangee n'est plus utile.
+- Pages dont les onglets tiennent (Films, Series…) inchangees ; PC et telephone inchanges.
+- Verifie sur la TV et avec une version de test en affichage TV a 1920 × 1080 avec la police de 27 px de la TV, navigation au clavier sur Musiques et TV en direct.
 
 ---
 
