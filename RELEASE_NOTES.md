@@ -76,6 +76,14 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.23 — TV: header readable while scrolling detail pages, bigger avatar
+
+- TV, detail pages: when you move down with the remote, the logo, the info pills and the Play button no longer mix with the header icons. A navy veil fades in behind the header as the page scrolls; at the top of the page it stays invisible and the backdrop keeps its full cinema look. Recent TV engines (Tizen 9, Android TV); older ones keep the current header.
+- TV: the profile picture in the header is at least 52 px (it was 40 px on Android TV boxes, which use Jellyfin's standard TV text size). Unchanged on Samsung TVs (54 px).
+- Checked on a Freebox Pop (Android TV) and a Samsung TV (Tizen 9).
+
+---
+
 #### v1.3.22 — Arrows: home tabs on narrow PC windows, centred row arrows
 
 - PC, narrow window: when the home tabs (Home, Favourites and those added by Jellyfin Enhanced) no longer fit, arrows in the style of the rows replace the thin grey scrollbar under them. They scroll the tabs and hide themselves at either end. Recent Chrome and Edge; other browsers keep the scrollbar.
@@ -753,6 +761,14 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.23 — TV : en-tete lisible au defilement des fiches, avatar plus grand
+
+- TV, fiches : en descendant a la telecommande, le logo, les pastilles d'infos et le bouton Lire ne se melangent plus aux icones de l'en-tete. Un voile bleu nuit apparait derriere l'en-tete au fil du defilement ; en haut de la fiche il reste invisible et l'image garde tout son effet cinema. Moteurs TV recents (Tizen 9, Android TV) ; les plus anciens gardent l'en-tete actuel.
+- TV : la photo de profil de l'en-tete fait au moins 52 px (40 px sur les box Android TV, qui utilisent la taille de texte TV standard de Jellyfin). Inchangee sur les TV Samsung (54 px).
+- Verifie sur une Freebox Pop (Android TV) et une TV Samsung (Tizen 9).
 
 ---
 
