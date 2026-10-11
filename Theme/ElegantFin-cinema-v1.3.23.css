@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.22 */
+/* ElegantFin Cinema Edition v1.3.23 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.22";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.23-test";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4999,6 +4999,24 @@ div[data-role="controlgroup"] a.ui-btn-active {
    Contrepartie connue : l'anneau de focus est plus epais en haut qu'en bas sur
    Tizen 4.0, l'alignement flex de ce vieux moteur ne centrant pas l'element. */
 
+/* v1.3.23 — TV seulement : avatar d'au moins 52 px. Jellyfin pose une police de
+   base de 125 % en mode TV (20 px) : sur une box Android TV (Freebox Pop) l'avatar
+   ne faisait que 40 px, flou une fois la TV 4K agrandie. Tizen affiche 27 px de
+   base → 54 px, inchangé (`max()` garde le plus grand). En Jellyfin 12 la photo
+   est un DIV `.headerUserButtonRound` qui remplit déjà le bouton (40 px dans
+   40 px mesurés) : on l'agrandit avec lui, même géométrie qu'avant — ce n'est
+   pas la photo de 17,78 px de la 10.11 décrite ci-dessus. Moteurs sans `max()`
+   (Chromium < 79) : déclaration ignorée, taille actuelle. */
+.layout-tv .headerUserButton {
+    width: max(2em, 52px);
+    height: max(2em, 52px);
+}
+
+.layout-tv .headerUserButton > .headerUserButtonRound {
+    width: 100%;
+    height: 100%;
+}
+
 .MuiAvatar-circular {
     width: 1.5em;
     height: 1.5em;
@@ -6388,6 +6406,46 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     border: none;
     position: relative;
     z-index: 1000 !important;
+}
+
+/* v1.3.23 — TV, fiches : en descendant à la télécommande, le logo, les pastilles
+   d'infos et le bouton Lire passent sous l'en-tête, transparent sur ces pages
+   (`.semiTransparent`), et s'y mêlent aux icônes (signalé sur Freebox Pop, vu aussi
+   sur Tizen). Voile bleu nuit DERRIÈRE les icônes (z-index -1 dans le contexte
+   d'empilement de l'en-tête, qui a z-index 1000), dont l'opacité suit le
+   défilement de la page : 0 en haut de fiche — l'image garde tout son effet
+   cinéma —, pleine après 8em de défilement. Animation pilotée par le défilement
+   (Chromium 115+ : Freebox, Tizen 9) ; ailleurs, le bloc est ignoré et l'en-tête
+   reste tel quel. Opacité seule : animée par le compositeur, sans recalcul de
+   style à chaque pas. Pas de `:has()` (coût TV, voir v1.3.15). */
+@supports (animation-timeline: scroll()) {
+    .layout-tv .skinHeader.semiTransparent:not(.osdHeader)::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        pointer-events: none;
+        background: linear-gradient(
+            to bottom,
+            rgba(17, 24, 39, 0.96) 0%,
+            rgba(17, 24, 39, 0.88) 45%,
+            rgba(17, 24, 39, 0.5) 75%,
+            rgba(17, 24, 39, 0) 100%
+        );
+        opacity: 0;
+        animation: efHeaderVeil linear both;
+        animation-timeline: scroll(root);
+        animation-range: 0 8em;
+    }
+
+    @keyframes efHeaderVeil {
+        to {
+            opacity: 1;
+        }
+    }
 }
 
 /* this keeps the header elements aligned when its height is modified */
