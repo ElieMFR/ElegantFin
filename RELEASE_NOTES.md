@@ -76,6 +76,12 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.25 — Jellyfin Enhanced: active streams button always purple
+
+- Jellyfin Enhanced: the active streams button in the header (and its counter) is always in the theme's purple. It sometimes stayed Jellyfin blue when the plugin started before the theme had loaded, or when Jellyfin was opened on the dashboard.
+
+---
+
 #### v1.3.24 — TV: profile picture back to its usual size
 
 - TV: the header profile picture is back to Jellyfin's size (40 px on Android TV boxes, 54 px on Samsung TVs); the 52 px of v1.3.23 looked too big next to the other header icons. The header veil of v1.3.23 stays.
@@ -767,6 +773,12 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.25 — Jellyfin Enhanced : bouton des lectures en cours toujours violet
+
+- Jellyfin Enhanced : le bouton des lectures en cours de l'en-tete (et son compteur) est toujours au violet du theme. Il restait parfois au bleu de Jellyfin quand le plugin demarrait avant l'arrivee du theme, ou quand Jellyfin s'ouvrait sur le tableau de bord.
 
 ---
 

@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.24 */
+/* ElegantFin Cinema Edition v1.3.25 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.24";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.25";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -3240,6 +3240,20 @@ progress + span {
 .jellyseerr-media-badge.jellyseerr-media-badge-series,
 .jellyseerr-media-badge.jellyseerr-media-badge-collection {
     background-color: var(--uiAccentColor);
+}
+
+/* v1.3.25 : bouton « lectures en cours » de Jellyfin Enhanced parfois BLEU. Le
+   plugin pose `--je-as-accent` en style inline sur <html>, une seule fois au
+   démarrage : l'accent d'ElegantFin s'il a détecté le thème (via
+   `--elegantFinFooterText`), sinon #00a4dc. La détection échoue quand le plugin
+   démarre avant l'arrivée du thème (@import depuis le CDN, cache froid) ou quand
+   Jellyfin s'ouvre sur le tableau de bord, où le CSS personnalisé n'est jamais
+   injecté — et le bleu reste jusqu'au rechargement. `!important` d'une feuille
+   de style l'emporte sur un style inline sans `!important` : violet dès que le
+   thème est chargé, quoi qu'ait détecté le plugin. (La v1.3.10 avait retiré une
+   ligne équivalente sans `!important`, inopérante face au style inline.) */
+:root {
+    --je-as-accent: var(--activeColor) !important;
 }
 
 .itemTags,
