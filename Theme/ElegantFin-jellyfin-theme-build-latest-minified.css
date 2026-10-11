@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.23 */
+/* ElegantFin Cinema Edition v1.3.24 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.23";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.24";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -3299,14 +3299,6 @@ div[data-role="controlgroup"] a.ui-btn-active {
     height: 2em;
     margin-inline-end: 1em;
     border: var(--defaultBorder);
-}
-.layout-tv .headerUserButton {
-    width: max(2em, 52px);
-    height: max(2em, 52px);
-}
-.layout-tv .headerUserButton > .headerUserButtonRound {
-    width: 100%;
-    height: 100%;
 }
 .MuiAvatar-circular {
     width: 1.5em;

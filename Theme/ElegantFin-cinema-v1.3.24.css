@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.23 */
+/* ElegantFin Cinema Edition v1.3.24 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.23";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.24";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4999,23 +4999,9 @@ div[data-role="controlgroup"] a.ui-btn-active {
    Contrepartie connue : l'anneau de focus est plus epais en haut qu'en bas sur
    Tizen 4.0, l'alignement flex de ce vieux moteur ne centrant pas l'element. */
 
-/* v1.3.23 — TV seulement : avatar d'au moins 52 px. Jellyfin pose une police de
-   base de 125 % en mode TV (20 px) : sur une box Android TV (Freebox Pop) l'avatar
-   ne faisait que 40 px, flou une fois la TV 4K agrandie. Tizen affiche 27 px de
-   base → 54 px, inchangé (`max()` garde le plus grand). En Jellyfin 12 la photo
-   est un DIV `.headerUserButtonRound` qui remplit déjà le bouton (40 px dans
-   40 px mesurés) : on l'agrandit avec lui, même géométrie qu'avant — ce n'est
-   pas la photo de 17,78 px de la 10.11 décrite ci-dessus. Moteurs sans `max()`
-   (Chromium < 79) : déclaration ignorée, taille actuelle. */
-.layout-tv .headerUserButton {
-    width: max(2em, 52px);
-    height: max(2em, 52px);
-}
-
-.layout-tv .headerUserButton > .headerUserButtonRound {
-    width: 100%;
-    height: 100%;
-}
+/* v1.3.24 — la v1.3.23 portait l'avatar TV à au moins 52 px (40 px sur Android
+   TV, police de base Jellyfin de 20 px). RETIRÉ à la demande de l'utilisateur :
+   trop grand à côté des autres icônes de l'en-tête. Taille Jellyfin (2em) partout. */
 
 .MuiAvatar-circular {
     width: 1.5em;

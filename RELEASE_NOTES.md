@@ -76,6 +76,12 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.24 — TV: profile picture back to its usual size
+
+- TV: the header profile picture is back to Jellyfin's size (40 px on Android TV boxes, 54 px on Samsung TVs); the 52 px of v1.3.23 looked too big next to the other header icons. The header veil of v1.3.23 stays.
+
+---
+
 #### v1.3.23 — TV: header readable while scrolling detail pages, bigger avatar
 
 - TV, detail pages: when you move down with the remote, the logo, the info pills and the Play button no longer mix with the header icons. A navy veil fades in behind the header as the page scrolls; at the top of the page it stays invisible and the backdrop keeps its full cinema look. Recent TV engines (Tizen 9, Android TV); older ones keep the current header.
@@ -761,6 +767,12 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.3.24 — TV : photo de profil revenue a sa taille habituelle
+
+- TV : la photo de profil de l'en-tete reprend la taille de Jellyfin (40 px sur les box Android TV, 54 px sur les TV Samsung) ; les 52 px de la v1.3.23 paraissaient trop grands a cote des autres icones. Le voile de l'en-tete de la v1.3.23 reste.
 
 ---
 
