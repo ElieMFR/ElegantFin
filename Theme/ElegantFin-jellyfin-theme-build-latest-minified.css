@@ -524,12 +524,12 @@ body {
 }
 .card-hoverable:hover .cardBox {
     z-index: 2;
-    box-shadow:
-        0 12px 30px rgba(0, 0, 0, 0.55),
-        0 4px 8px rgba(0, 0, 0, 0.3) !important;
 }
 .layout-desktop .card-hoverable:hover .cardScalable {
     border-color: rgba(255, 255, 255, 0.3) !important;
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.55),
+        0 4px 8px rgba(0, 0, 0, 0.3) !important;
 }
 .card-hoverable .cardScalable:active {
     transition: transform var(--transitionFast);
@@ -4527,6 +4527,18 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 }
 .layout-tv .card-hoverable:hover .cardScalable {
     box-shadow: none !important;
+}
+.layout-tv .card:focus .cardScalable {
+    box-shadow:
+        inset 0 0 0 3px rgba(255, 255, 255, 0.95),
+        0 0 16px rgba(255, 255, 255, 0.3),
+        0 10px 26px rgba(0, 0, 0, 0.55) !important;
+}
+.layout-tv .card:focus-visible .cardScalable {
+    box-shadow:
+        inset 0 0 0 3px rgba(255, 255, 255, 0.95),
+        0 0 16px rgba(255, 255, 255, 0.3),
+        0 10px 26px rgba(0, 0, 0, 0.55) !important;
 }
 .layout-tv .dialog:not(.dialog-fullscreen),
 .layout-tv .mainDrawer,

@@ -908,13 +908,19 @@ body {
 
 .card-hoverable:hover .cardBox {
     z-index: 2;
+}
+
+/* v1.3.25 — l'ombre du survol QUITTE .cardBox : elle y dessinait un rectangle
+   sombre autour de l'image ET du titre, alors que seule l'image grossit. Posée sur
+   .cardScalable, elle épouse l'image et ses coins, et suit son zoom (transition
+   box-shadow déjà portée par la règle de base). PC seulement : sur Tizen la
+   télécommande déclenche aussi :hover (v1.2.49) — le pop TV a sa propre ombre,
+   sur .cardScalable, posée par les règles de focus `.layout-tv`. */
+.layout-desktop .card-hoverable:hover .cardScalable {
+    border-color: rgba(255, 255, 255, 0.3) !important;
     box-shadow:
         0 12px 30px rgba(0, 0, 0, 0.55),
         0 4px 8px rgba(0, 0, 0, 0.3) !important;
-}
-
-.layout-desktop .card-hoverable:hover .cardScalable {
-    border-color: rgba(255, 255, 255, 0.3) !important;
 }
 
 .card-hoverable .cardScalable:active {
@@ -6793,6 +6799,28 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 
 .layout-tv .card-hoverable:hover .cardScalable {
     box-shadow: none !important;
+}
+
+/* v1.3.25 — Ombre du pop TV, déclarée APRÈS les deux règles ci-dessus : elles
+   coupent toute ombre de .cardScalable sur TV en `!important` (perf, v1.2.58),
+   ce qui rendait inopérantes les ombres de focus déclarées plus haut. Ici :
+   contour + halo blancs et ombre de profondeur, à l'arrêt seulement — aucune
+   transition (`.layout-tv .cardScalable { transition: none }`), donc dessinée une
+   seule fois par déplacement, jamais animée. Le survol (qui suit la télécommande)
+   n'a plus d'ombre propre : rien ne se redessine pendant un défilement rapide. */
+.layout-tv .card:focus .cardScalable {
+    box-shadow:
+        inset 0 0 0 3px rgba(255, 255, 255, 0.95),
+        0 0 16px rgba(255, 255, 255, 0.3),
+        0 10px 26px rgba(0, 0, 0, 0.55) !important;
+}
+
+/* ⚠️ SÉPARÉ : ne jamais recoller ces deux règles (sélecteur moderne). */
+.layout-tv .card:focus-visible .cardScalable {
+    box-shadow:
+        inset 0 0 0 3px rgba(255, 255, 255, 0.95),
+        0 0 16px rgba(255, 255, 255, 0.3),
+        0 10px 26px rgba(0, 0, 0, 0.55) !important;
 }
 
 /* TV : pas de backdrop-filter (perf) */

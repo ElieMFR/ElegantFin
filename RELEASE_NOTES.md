@@ -80,6 +80,7 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 - Jellyfin Enhanced: the active streams button in the header (and its counter) is always in the theme's purple. It sometimes stayed Jellyfin blue when the plugin started before the theme had loaded, or when Jellyfin was opened on the dashboard.
 - TV: nicer, lighter focus zoom on cards. The depth shadow now hugs the picture and its rounded corners instead of drawing a dark rectangle around the picture and the title, appears at once instead of being animated, and the zoom eases out more softly. Slightly smoother on a Samsung TV (about 37 → 40 frames per second in poster rows).
+- PC: the shadow when hovering a card hugs the picture too, instead of a dark rectangle around the picture and its title.
 
 ---
 
@@ -781,6 +782,7 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 
 - Jellyfin Enhanced : le bouton des lectures en cours de l'en-tete (et son compteur) est toujours au violet du theme. Il restait parfois au bleu de Jellyfin quand le plugin demarrait avant l'arrivee du theme, ou quand Jellyfin s'ouvrait sur le tableau de bord.
 - TV : zoom des cartes ciblees plus joli et plus leger. L'ombre de profondeur epouse l'image et ses coins arrondis au lieu de dessiner un rectangle sombre autour de l'image et du titre, apparait d'un coup au lieu d'etre animee, et le zoom ralentit plus doucement en fin de course. Un peu plus fluide sur une TV Samsung (environ 37 → 40 images par seconde dans les rangees d'affiches).
+- PC : l'ombre au survol d'une carte epouse elle aussi l'image, au lieu d'un rectangle sombre autour de l'image et de son titre.
 
 ---
 
