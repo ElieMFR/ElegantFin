@@ -76,11 +76,18 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.3.26 — TV focus zoom fixed, PC hover shadow on the picture
+
+- TV: the new focus zoom of v1.3.25 now really shows its depth shadow (an older TV performance rule was cancelling it), and the thin white glow around the picture and its title is gone. The focused card looks as intended: white outline and shadow on the picture only.
+- PC: the shadow when hovering a card hugs the picture too, instead of a dark rectangle around the picture and its title.
+- Checked on a Samsung TV (Tizen 9). Use this version rather than v1.3.25.
+
+---
+
 #### v1.3.25 — Jellyfin Enhanced button always purple, nicer TV focus zoom
 
 - Jellyfin Enhanced: the active streams button in the header (and its counter) is always in the theme's purple. It sometimes stayed Jellyfin blue when the plugin started before the theme had loaded, or when Jellyfin was opened on the dashboard.
 - TV: nicer, lighter focus zoom on cards. The depth shadow now hugs the picture and its rounded corners instead of drawing a dark rectangle around the picture and the title, appears at once instead of being animated, and the zoom eases out more softly. Slightly smoother on a Samsung TV (about 37 → 40 frames per second in poster rows).
-- PC: the shadow when hovering a card hugs the picture too, instead of a dark rectangle around the picture and its title.
 
 ---
 
@@ -778,11 +785,18 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 
 ---
 
+#### v1.3.26 — Zoom TV corrige, ombre de survol PC sur l'image
+
+- TV : le nouveau zoom de la v1.3.25 affiche enfin son ombre de profondeur (une ancienne regle de performance TV l'annulait), et le fin halo blanc autour de l'image et de son titre disparait. La carte ciblee a le rendu prevu : contour blanc et ombre sur l'image seulement.
+- PC : l'ombre au survol d'une carte epouse elle aussi l'image, au lieu d'un rectangle sombre autour de l'image et de son titre.
+- Verifie sur une TV Samsung (Tizen 9). Preferer cette version a la v1.3.25.
+
+---
+
 #### v1.3.25 — Bouton Jellyfin Enhanced toujours violet, zoom TV plus joli
 
 - Jellyfin Enhanced : le bouton des lectures en cours de l'en-tete (et son compteur) est toujours au violet du theme. Il restait parfois au bleu de Jellyfin quand le plugin demarrait avant l'arrivee du theme, ou quand Jellyfin s'ouvrait sur le tableau de bord.
 - TV : zoom des cartes ciblees plus joli et plus leger. L'ombre de profondeur epouse l'image et ses coins arrondis au lieu de dessiner un rectangle sombre autour de l'image et du titre, apparait d'un coup au lieu d'etre animee, et le zoom ralentit plus doucement en fin de course. Un peu plus fluide sur une TV Samsung (environ 37 → 40 images par seconde dans les rangees d'affiches).
-- PC : l'ombre au survol d'une carte epouse elle aussi l'image, au lieu d'un rectangle sombre autour de l'image et de son titre.
 
 ---
 

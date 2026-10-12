@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.3.25 */
+/* ElegantFin Cinema Edition v1.3.26 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.25";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.3.26";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -912,7 +912,7 @@ body {
     z-index: 2;
 }
 
-/* v1.3.25 — l'ombre du survol QUITTE .cardBox : elle y dessinait un rectangle
+/* v1.3.26 — l'ombre du survol QUITTE .cardBox : elle y dessinait un rectangle
    sombre autour de l'image ET du titre, alors que seule l'image grossit. Posée sur
    .cardScalable, elle épouse l'image et ses coins, et suit son zoom (transition
    box-shadow déjà portée par la règle de base). PC seulement : sur Tizen la
@@ -6803,9 +6803,10 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     box-shadow: none !important;
 }
 
-/* v1.3.25 — Ombre du pop TV, déclarée APRÈS les deux règles ci-dessus : elles
+/* v1.3.26 — Ombre du pop TV, déclarée APRÈS les deux règles ci-dessus : elles
    coupent toute ombre de .cardScalable sur TV en `!important` (perf, v1.2.58),
-   ce qui rendait inopérantes les ombres de focus déclarées plus haut. Ici :
+   ce qui rendait inopérantes les ombres de focus déclarées plus haut (la v1.3.25
+   n'avait donc plus aucune ombre de profondeur sur TV). Ici :
    contour + halo blancs et ombre de profondeur, à l'arrêt seulement — aucune
    transition (`.layout-tv .cardScalable { transition: none }`), donc dessinée une
    seule fois par déplacement, jamais animée. Le survol (qui suit la télécommande)
