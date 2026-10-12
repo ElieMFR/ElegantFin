@@ -76,6 +76,14 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.4.0 — Cards without drop shadow
+
+- TV: the focused card keeps its zoom, white outline and soft white glow, without the dark drop shadow (it was barely visible on the navy background).
+- PC: hovering a card zooms it with its lighter border, without a drop shadow.
+- Checked on PC and on a Samsung TV (Tizen 9).
+
+---
+
 #### v1.3.26 — TV focus zoom fixed, PC hover shadow on the picture
 
 - TV: the new focus zoom of v1.3.25 now really shows its depth shadow (an older TV performance rule was cancelling it), and the thin white glow around the picture and its title is gone. The focused card looks as intended: white outline and shadow on the picture only.
@@ -782,6 +790,14 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.4.0 — Cartes sans ombre portee
+
+- TV : la carte ciblee garde son zoom, son contour blanc et son halo blanc leger, sans l'ombre portee sombre (a peine visible sur le fond bleu nuit).
+- PC : au survol, la carte grossit avec son liseré eclairci, sans ombre portee.
+- Verifie sur PC et sur une TV Samsung (Tizen 9).
 
 ---
 
