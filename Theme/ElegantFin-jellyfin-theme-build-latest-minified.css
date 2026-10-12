@@ -236,6 +236,7 @@ body {
 .layout-tv .card:focus-visible .cardBox {
     outline: none !important;
     transform: scale(1.05);
+    box-shadow: none !important;
     transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1) 0.28s !important;
     z-index: 10;
     position: relative;
@@ -243,6 +244,7 @@ body {
 .layout-tv .card:focus .cardBox {
     outline: none !important;
     transform: scale(1.05);
+    box-shadow: none !important;
     transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1) 0.28s !important;
     z-index: 10;
     position: relative;
