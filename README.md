@@ -60,12 +60,14 @@ Everything works on **desktop, mobile and TV** with a single CSS import.
 | **Who's Watching** | Round centered profile avatars on the login screen |
 | **Row Scroll-Snap** | Rows settle aligned on a card (desktop and mobile) |
 | **Full-Height Scroll Arrows** | Streaming-style gradient arrows on desktop rows |
+| **Home Tabs Arrows** | Narrow desktop window: arrows instead of a scrollbar under the home tabs (recent Chrome and Edge) |
+| **TV Header Veil** | On TV detail pages, a navy veil fades in behind the header as you scroll, so content never mixes with the icons |
 | **Typography Hierarchy** | Refined weights for body text, episode titles, subtitles |
 | **Long Titles Fix** | Responsive line-clamp (2 desktop, 3 mobile), word-break |
 | **Thin Scrollbars** | 4px cross-browser scrollbars, transparent track |
 | **OSD Header Glass** | Blurred dark header during video playback |
 | **Alpha Picker** | Smooth transition on library A-Z picker |
-| **TV Optimizations** | No blur, no shadows, no animations for low-end TVs |
+| **TV Optimizations** | No blur, no drop shadows, no looping animations for low-end TVs |
 | **Mobile Optimizations** | Reduced blur intensity for better performance |
 | **Hover Preview Info** | Secondary text and gradient reveal on card hover (desktop) |
 | **Now Playing Glass** | Glassmorphism on the Now Playing bar |
@@ -85,7 +87,7 @@ Everything works on **desktop, mobile and TV** with a single CSS import.
 
 > 📌 `@main` always follows the latest version. To pin a release (and upgrade on your own schedule), replace `@main` with a version tag, e.g. `@v1.4.0` — see [Releases](https://github.com/peterdu1109/ElegantFin/releases).
 >
-> **Versioning.** `1.3.x` for fixes and adjustments. The minor number moves when a batch of work closes, or rather than letting the patch number reach 100.
+> **Versioning.** `X.Y.Z` — the last number moves for fixes and adjustments, the middle one when a batch of work closes (e.g. `1.4.0`), or rather than letting the last one reach 100.
 
 <details>
 <summary><b>Server-side installation</b></summary>
@@ -142,6 +144,7 @@ All original ElegantFin customization options are preserved. Add these overrides
 | Jellyfin Android App | Fully supported |
 | LG WebOS | Supported (may need icon pack fix) |
 | Samsung Tizen (Jellyfin community) | Supported (extensively field-tested; graceful degrade on older models) |
+| Android TV apps based on the Jellyfin web interface | Supported (field-tested on an Android TV box) |
 | Android TV native app | Not supported (no CSS support) |
 | Jellyfin Media Player (Qt 5.x) | Partial (outdated web engine) |
 
@@ -150,7 +153,7 @@ All original ElegantFin customization options are preserved. Add these overrides
 ### Accessibility
 
 - `prefers-reduced-motion` is respected: all animations are disabled when the user has this preference enabled
-- TV layouts disable all blur, shadows and animations for performance
+- TV layouts disable blur, drop shadows and looping animations for performance
 - Mobile layouts use reduced blur intensity
 
 ---
@@ -165,6 +168,7 @@ Cinema Edition has dedicated styling for these popular Jellyfin plugins:
 | [**Media Bar**](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) | Auto-cycling slideshow at top of home | Gradient overlay, readable synopsis, polished button states |
 | [**Home Screen Sections**](https://github.com/IAmParadox27/jellyfin-plugin-home-sections) | Extra curated rows on the home page | Readable Top 10 rank numbers (they were near-black on near-black), Discover badges in the theme accent and in French |
 | [**Jellyfin Enhanced**](https://github.com/n00bcodr/Jellyfin-Enhanced) | All-in-one additions: shortcuts, Jellyseerr requests, reviews, extra links | Letterboxd and Seerr icons in line with the other logos, TMDB reviews no longer overflow the detail page, "where to watch" bar and Seerr badges in the theme's colours |
+| [**Media Carousel**](https://github.com/peterdu1109/MediaCarousel) | Streaming-style home rows: server Top 10 from real plays, worldwide Top 10, Seerr requests, library rows | Row arrows centred on the posters, like the other rows |
 
 If a plugin isn't in this list, the theme just doesn't add overrides for it — it'll work with default styling.
 
@@ -220,12 +224,14 @@ Tout fonctionne sur **PC, mobile et TV** avec un seul import CSS.
 | **Qui regarde ?** | Avatars de profil ronds et centrés à la connexion |
 | **Aimantation des rangées** | Les rangées se posent alignées sur une carte (PC et mobile) |
 | **Flèches pleine hauteur** | Flèches en dégradé façon streaming sur les rangées PC |
+| **Flèches des onglets** | Fenêtre PC étroite : des flèches au lieu d'une barre de défilement sous les onglets de l'accueil (Chrome et Edge récents) |
+| **Voile de l'en-tête TV** | Sur les fiches TV, un voile bleu nuit apparaît derrière l'en-tête au défilement : le contenu ne se mêle plus aux icônes |
 | **Hiérarchie typographique** | Graisses affinées pour le texte, les titres d'épisodes et les sous-titres |
 | **Titres longs** | Nombre de lignes limité selon l'écran (2 sur PC, 3 sur mobile), césure des mots |
 | **Barres de défilement fines** | 4 px, compatibles tous navigateurs, piste transparente |
 | **En-tête du lecteur en verre** | Bandeau sombre flouté pendant la lecture |
 | **Sélecteur A-Z** | Transition fluide sur le sélecteur alphabétique des bibliothèques |
-| **Optimisations TV** | Ni flou, ni ombres, ni animations, pour les téléviseurs peu puissants |
+| **Optimisations TV** | Ni flou, ni ombre portée, ni animation en boucle, pour les téléviseurs peu puissants |
 | **Optimisations mobile** | Intensité de flou réduite pour de meilleures performances |
 | **Aperçu au survol** | Texte secondaire et dégradé révélés au survol des cartes (PC) |
 | **Lecture en cours en verre** | Effet verre dépoli sur la barre de lecture |
@@ -245,7 +251,7 @@ Tout fonctionne sur **PC, mobile et TV** avec un seul import CSS.
 
 > 📌 `@main` suit toujours la dernière version. Pour figer une version et mettre à jour quand VOUS le décidez, remplacez `@main` par un tag, par exemple `@v1.4.0` — voir les [Releases](https://github.com/peterdu1109/ElegantFin/releases).
 >
-> **Numérotation.** `1.3.x` pour les correctifs et ajustements. Le numéro mineur change quand un ensemble de travaux se referme, ou plutôt que de laisser le numéro de correctif atteindre 100.
+> **Numérotation.** `X.Y.Z` — le dernier chiffre change pour les correctifs et ajustements, celui du milieu quand un ensemble de travaux se referme (par exemple `1.4.0`), ou plutôt que de laisser le dernier atteindre 100.
 
 <details>
 <summary><b>Installation côté serveur</b></summary>
@@ -302,6 +308,7 @@ Toutes les options de personnalisation d'ElegantFin sont préservées. Ajoutez c
 | Application Android Jellyfin | Entièrement prise en charge |
 | LG WebOS | Pris en charge (peut nécessiter le correctif d'icônes) |
 | Samsung Tizen (communauté Jellyfin) | Pris en charge, éprouvé sur matériel réel ; dégradation progressive sur les modèles anciens |
+| Applis Android TV basées sur l'interface web de Jellyfin | Prises en charge (testé sur une box Android TV) |
 | Application native Android TV | Non prise en charge (elle n'accepte pas de CSS) |
 | Jellyfin Media Player (Qt 5.x) | Partiel (moteur web obsolète) |
 
@@ -310,7 +317,7 @@ Toutes les options de personnalisation d'ElegantFin sont préservées. Ajoutez c
 ### Accessibilité
 
 - `prefers-reduced-motion` est respecté : toutes les animations sont désactivées si l'utilisateur a exprimé cette préférence
-- Les dispositions TV désactivent tous les flous, ombres et animations, pour la fluidité
+- Les dispositions TV désactivent les flous, les ombres portées et les animations en boucle, pour la fluidité
 - Les dispositions mobiles utilisent une intensité de flou réduite
 
 ---
@@ -325,6 +332,7 @@ L'Édition Cinéma habille spécifiquement ces plugins Jellyfin :
 | [**Media Bar**](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) | Diaporama défilant en haut de la page d'accueil | Dégradé d'arrière-plan, résumé lisible, états des boutons soignés |
 | [**Home Screen Sections**](https://github.com/IAmParadox27/jellyfin-plugin-home-sections) | Rangées éditoriales supplémentaires sur la page d'accueil | Numéros du Top 10 rendus lisibles — ils étaient quasi noirs sur fond quasi noir — et badges Découvrir à la couleur du thème, en français |
 | [**Jellyfin Enhanced**](https://github.com/n00bcodr/Jellyfin-Enhanced) | Ajouts tout-en-un : raccourcis, demandes Jellyseerr, avis, liens supplémentaires | Icônes Letterboxd et Seerr alignées sur les autres logos, avis TMDB qui ne débordent plus de la fiche, bandeau « où regarder » et badges Seerr aux couleurs du thème |
+| [**Media Carousel**](https://github.com/peterdu1109/MediaCarousel) | Rangées d'accueil façon streaming : Top 10 du serveur d'après les vraies lectures, Top 10 mondial, demandes Seerr, rangées de la bibliothèque | Flèches des rangées centrées sur les affiches, comme les autres rangées |
 
 Si un plugin ne figure pas dans cette liste, le thème ne lui applique aucune surcharge : il s'affiche avec son habillage d'origine.
 
