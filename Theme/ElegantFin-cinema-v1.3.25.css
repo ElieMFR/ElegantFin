@@ -451,12 +451,17 @@ body {
    portés par une transition à DÉLAI d'entrée (280ms). En défilement rapide, le focus
    repart avant la fin du délai → l'animation ne démarre jamais (zéro re-raster,
    fluidité v1.2.55 conservée). À l'arrêt, la carte pop + ombre de profondeur.
-   Le contour blanc (.cardScalable), lui, reste INSTANTANÉ = le curseur. */
+   Le contour blanc (.cardScalable), lui, reste INSTANTANÉ = le curseur.
+   v1.3.25 — l'ombre de profondeur QUITTE .cardBox : elle y dessinait un rectangle
+   sombre autour de l'image ET du titre, et s'animait avec le zoom (redessinée à
+   chaque image, mesuré : le seul effet du pop qui coûte sur Tizen 9). Elle est
+   désormais posée sur .cardScalable avec le contour : elle épouse l'image et ses
+   coins, apparaît d'un coup, sans transition. Le zoom garde son délai, avec une
+   courbe qui ralentit en fin de course (plus douce que `ease`). */
 .layout-tv .card:focus-visible .cardBox {
     outline: none !important;
     transform: scale(1.05);
-    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.5);
-    transition: transform 0.15s ease 0.28s, box-shadow 0.15s ease 0.28s !important;
+    transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1) 0.28s !important;
     z-index: 10;
     position: relative;
 }
@@ -467,8 +472,7 @@ body {
 .layout-tv .card:focus .cardBox {
     outline: none !important;
     transform: scale(1.05);
-    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.5);
-    transition: transform 0.15s ease 0.28s, box-shadow 0.15s ease 0.28s !important;
+    transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1) 0.28s !important;
     z-index: 10;
     position: relative;
 }
@@ -476,7 +480,7 @@ body {
 /* Sortie de focus : IMMÉDIATE et courte (la règle de base ci-dessous, sans délai) —
    rien ne traîne derrière le curseur. */
 .layout-tv .cardBox {
-    transition: transform 0.1s ease, box-shadow 0.1s ease !important;
+    transition: transform 0.1s ease !important;
 }
 
 .layout-tv .card,
@@ -487,7 +491,8 @@ body {
 .layout-tv .card:focus-visible .cardScalable {
     box-shadow:
         inset 0 0 0 3px rgba(255, 255, 255, 0.95),    /* contour blanc — image seule */
-        0 0 16px rgba(255, 255, 255, 0.3);             /* glow blanc subtle */
+        0 0 16px rgba(255, 255, 255, 0.3),             /* glow blanc subtle */
+        0 10px 26px rgba(0, 0, 0, 0.55);               /* ombre de profondeur (v1.3.25) */
 }
 
 /* ⚠️ SÉPARÉ : ne jamais recoller ces deux règles. Un sélecteur non reconnu
@@ -496,7 +501,8 @@ body {
 .layout-tv .card:focus .cardScalable {
     box-shadow:
         inset 0 0 0 3px rgba(255, 255, 255, 0.95),    /* contour blanc — image seule */
-        0 0 16px rgba(255, 255, 255, 0.3);             /* glow blanc subtle */
+        0 0 16px rgba(255, 255, 255, 0.3),             /* glow blanc subtle */
+        0 10px 26px rgba(0, 0, 0, 0.55);               /* ombre de profondeur (v1.3.25) */
 }
 
 /* v1.2.49 — ANTI-CUMUL DE SCALE. La télécommande déclenche aussi le :hover, qui
