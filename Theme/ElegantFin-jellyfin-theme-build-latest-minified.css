@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.4.2 */
+/* ElegantFin Cinema Edition v1.4.3 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.4.2";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.4.3";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -2771,7 +2771,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
 .MuiAppBar-root .MuiButton-text:not(.MuiButtonGroup-grouped) {
     border-radius: var(--largeRadius);
 }
-.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped) {
+:root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped) {
     background-color: var(--darkerGradientPointAlpha);
     color: var(--textColor);
     font-size: 1rem;
@@ -2779,15 +2779,15 @@ div[data-role="controlgroup"] a.ui-btn-active {
     padding: 0.35rem 1.1rem;
     margin: 0 0.3rem;
 }
-.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped) .MuiButton-startIcon {
+:root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped) .MuiButton-startIcon {
     margin-left: 0;
     margin-right: 0.6rem;
 }
-.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped, .MuiButton-textPrimary, .Mui-focusVisible, :has(.MuiButton-startIcon > img)):hover {
+:root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped, .MuiButton-textPrimary, .Mui-focusVisible, :has(.MuiButton-startIcon > img)):hover {
     background-color: rgba(255, 255, 255, 0.12);
     color: #fff;
 }
-.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) {
+:root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) {
     background-color: transparent;
     font-size: 1.375rem;
     font-weight: 600;
@@ -2796,7 +2796,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
     margin: 0 2.6rem 0 0;
     position: relative;
 }
-.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img):has(+ .MuiButton-text)::after {
+:root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img):has(+ .MuiButton-text)::after {
     content: "";
     position: absolute;
     top: 50%;
@@ -2807,17 +2807,17 @@ div[data-role="controlgroup"] a.ui-btn-active {
     transform: translateY(-50%);
     pointer-events: none;
 }
-.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img):not(:has(+ .MuiButton-text)) {
+:root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img):not(:has(+ .MuiButton-text)) {
     margin: 0;
 }
-.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) .MuiButton-startIcon {
+:root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) .MuiButton-startIcon {
     margin-right: 0.75rem;
 }
-.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) .MuiButton-startIcon > img {
+:root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) .MuiButton-startIcon > img {
     max-height: 1.875rem !important;
     max-width: 1.875rem !important;
 }
-.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) .MuiTouchRipple-root {
+:root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) .MuiTouchRipple-root {
     display: none;
 }
 .MuiAppBar-root .MuiAvatar-root {

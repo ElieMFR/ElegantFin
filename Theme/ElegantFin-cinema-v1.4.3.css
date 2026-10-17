@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.4.2 */
+/* ElegantFin Cinema Edition v1.4.3 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.4.2";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.4.3";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4230,7 +4230,12 @@ div[data-role="controlgroup"] a.ui-btn-active {
    Limité à la 1re rangée de la barre (serveur, bibliothèques, « Plus ») : la 2e
    rangée d'une bibliothèque (choix de vue « Films ▾ ») garde son allure. PC
    seulement : au téléphone, les bibliothèques vivent dans le menu latéral. */
-.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped) {
+/* v1.4.3 — ces pastilles valent aussi pour la disposition MOBILE : l'appli Android
+   en paysage (~920 px) affiche les liens de bibliothèques de la barre MUI, restés
+   en texte simple tant que ces règles exigeaient `.layout-desktop`. `:root` garde
+   la même spécificité, donc rien ne change sur PC ; MUI cache ces liens sous
+   900 px (portrait) et la TV n'affiche jamais la barre MUI. */
+:root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped) {
     background-color: var(--darkerGradientPointAlpha);
     color: var(--textColor);
     font-size: 1rem;
@@ -4239,19 +4244,19 @@ div[data-role="controlgroup"] a.ui-btn-active {
     margin: 0 0.3rem;
 }
 
-.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped) .MuiButton-startIcon {
+:root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped) .MuiButton-startIcon {
     margin-left: 0;
     margin-right: 0.6rem;
 }
 
-.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped, .MuiButton-textPrimary, .Mui-focusVisible, :has(.MuiButton-startIcon > img)):hover {
+:root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped, .MuiButton-textPrimary, .Mui-focusVisible, :has(.MuiButton-startIcon > img)):hover {
     background-color: rgba(255, 255, 255, 0.12);
     color: #fff;
 }
 
 /* Nom du serveur (le bouton qui porte le logo) : en-tête plus grand, sans pastille,
    séparé des bibliothèques par un filet vertical centré dans l'écart. */
-.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) {
+:root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) {
     background-color: transparent;
     font-size: 1.375rem;
     font-weight: 600;
@@ -4261,7 +4266,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
     position: relative;
 }
 
-.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img):has(+ .MuiButton-text)::after {
+:root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img):has(+ .MuiButton-text)::after {
     content: "";
     position: absolute;
     top: 50%;
@@ -4273,20 +4278,20 @@ div[data-role="controlgroup"] a.ui-btn-active {
     pointer-events: none;
 }
 
-.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img):not(:has(+ .MuiButton-text)) {
+:root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img):not(:has(+ .MuiButton-text)) {
     margin: 0;
 }
 
-.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) .MuiButton-startIcon {
+:root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) .MuiButton-startIcon {
     margin-right: 0.75rem;
 }
 
-.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) .MuiButton-startIcon > img {
+:root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) .MuiButton-startIcon > img {
     max-height: 1.875rem !important;
     max-width: 1.875rem !important;
 }
 
-.layout-desktop .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) .MuiTouchRipple-root {
+:root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped):has(.MuiButton-startIcon > img) .MuiTouchRipple-root {
     display: none;
 }
 

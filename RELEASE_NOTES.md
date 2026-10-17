@@ -76,6 +76,12 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.4.3 — Phones in landscape: library pills like on desktop
+
+- Phone in landscape (Jellyfin Android app): the library links in the top bar (Animés, Films, Séries, More…) get the same pills as on desktop instead of plain text. No change on desktop, in portrait (Jellyfin hides these links there) or on TV.
+
+---
+
 #### v1.4.2 — TV: header tabs and season logo no longer under the icons
 
 - TV, home and libraries: the tab row stops before the header icons. With SyncPlay, Jellyfin Enhanced, NotifySync, search, avatar and clock, the right side had grown and "Requests" was hiding under the first icon. Tabs that don't fit scroll when you reach them, as before.
@@ -804,6 +810,12 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.4.3 — Telephone en paysage : pastilles de bibliotheques comme sur PC
+
+- Telephone en paysage (appli Android Jellyfin) : les liens de bibliotheques de la barre du haut (Animes, Films, Series, Plus…) prennent les memes pastilles que sur PC au lieu d'un texte simple. Rien ne change sur PC, en portrait (Jellyfin y cache ces liens) ni sur TV.
 
 ---
 
