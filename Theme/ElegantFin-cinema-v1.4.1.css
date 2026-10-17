@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.4.0 */
+/* ElegantFin Cinema Edition v1.4.1 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.4.0";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.4.1";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -322,8 +322,15 @@ body {
    `fullscreen: false`). La fiche réservait donc 5em pour rien et sautait au
    démarrage puis à l'arrêt du générique : logo 703 → 626 px sur une série à
    1920 × 960 (mesuré), stable à 701 avec ce sélecteur. La barre naît avec
-   `hide nowPlayingBar-hidden` ; Jellyfin retire les deux pour l'afficher. */
-.layout-desktop > body:has(.nowPlayingBar:not(.hide):not(.nowPlayingBar-hidden)) {
+   `hide nowPlayingBar-hidden` ; Jellyfin retire les deux pour l'afficher.
+   v1.4.1 — chemin EXACT de la barre (`body > .appfooter > .nowPlayingBar` :
+   appFooter.js l'ajoute à body, nowPlayingBar.js s'insère dans .appfooter). Avec
+   un descendant quelconque, le moteur réévaluait ce :has() à CHAQUE ajout/retrait
+   de `.hide` n'importe où dans la page, et comme il pose des variables sur body,
+   il recalculait tout le document — même sur TV où `.layout-desktop` ne correspond
+   pas. Mesuré sur TV Samsung : 2,1 ms de style par déplacement du focus, accueil
+   38 → 46 images/s une fois restreint. Effet sur PC identique. */
+.layout-desktop > body:has(> .appfooter > .nowPlayingBar:not(.hide):not(.nowPlayingBar-hidden)) {
     --primaryItemPageNegativeSpace: calc(14vh + 5em);
     --secondaryItemPageNegativeSpace: calc(60vh + 5em);
 }

@@ -76,6 +76,12 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.4.1 — TV: smoother navigation
+
+- TV: moving around with the remote is smoother (home screen on a Samsung TV: about 38 → 46 frames per second, half as many stutters). A desktop-only rule was making the TV recompute the whole page at every move; it now only watches the playback bar. No visible change on PC, phone or TV.
+
+---
+
 #### v1.4.0 — Cards without drop shadow
 
 - TV: the focused card keeps its zoom, white outline and soft white glow, without the dark drop shadow (it was barely visible on the navy background).
@@ -790,6 +796,12 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.4.1 — TV : navigation plus fluide
+
+- TV : la navigation a la telecommande est plus fluide (accueil sur une TV Samsung : environ 38 → 46 images par seconde, deux fois moins d'a-coups). Une regle reservee au PC faisait recalculer toute la page a chaque deplacement sur TV ; elle ne surveille plus que la barre de lecture. Aucun changement visible sur PC, telephone ou TV.
 
 ---
 
