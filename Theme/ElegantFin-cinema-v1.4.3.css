@@ -4228,8 +4228,8 @@ div[data-role="controlgroup"] a.ui-btn-active {
    clavier = pastille blanche (`Mui-focusVisible` plus bas), survol = voile blanc
    comme les onglets Accueil / Favoris.
    Limité à la 1re rangée de la barre (serveur, bibliothèques, « Plus ») : la 2e
-   rangée d'une bibliothèque (choix de vue « Films ▾ ») garde son allure. PC
-   seulement : au téléphone, les bibliothèques vivent dans le menu latéral. */
+   rangée d'une bibliothèque (choix de vue « Films ▾ ») garde son allure. (PC seulement
+   jusqu'en v1.4.2 — voir la note v1.4.3 ci-dessous.) */
 /* v1.4.3 — ces pastilles valent aussi pour la disposition MOBILE : l'appli Android
    en paysage (~920 px) affiche les liens de bibliothèques de la barre MUI, restés
    en texte simple tant que ces règles exigeaient `.layout-desktop`. `:root` garde
