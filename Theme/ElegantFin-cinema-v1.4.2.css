@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.4.1 */
+/* ElegantFin Cinema Edition v1.4.2 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.4.1";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.4.2-test";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -2035,7 +2035,8 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
    l'écran : même formule que le logo, moins la marge haute de la page (4,2em).
    Les fiches Épisode ne sont pas concernées : elles masquent leur logo. */
 .layout-tv #itemDetailPage:has(.subtitle):has(.detailLogo:not(.hide)):not(:has(.detailImageContainer .backdropCard)) .itemBackdrop {
-    height: calc(100vh - 9.4em - var(--secondaryItemPageNegativeSpace));
+    /* v1.4.2 : 9.4em → 6.2em, le logo descend de 3.2em (voir .detailLogo TV plus bas) */
+    height: calc(100vh - 6.2em - var(--secondaryItemPageNegativeSpace));
 }
 
 #itemDetailPage:has(.detailImageContainer .cardPadder-square:not(.person)) .itemBackdrop {
@@ -2141,6 +2142,14 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
 
 #itemDetailPage:has(.subtitle) .detailLogo {
     top: calc(100vh - 6em - var(--secondaryItemPageNegativeSpace));
+}
+
+/* v1.4.2 — TV, fiches Saison : le cadre du logo commençait à 54 px, dans la bande
+   de l'en-tête (135 px à 27 px de base), presque contre les icônes. Descendu de
+   3.2em (cadre 140 → 356 px en 1080p) ; titre, saison et bouton Lire suivent via
+   la hauteur de .itemBackdrop ci-dessus (titre à 378 px, Lire à 705 px). */
+.layout-tv #itemDetailPage:has(.subtitle) .detailLogo {
+    top: calc(100vh - 2.8em - var(--secondaryItemPageNegativeSpace));
 }
 
 
@@ -6575,6 +6584,19 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    La pastille n'est plus coupée depuis la v1.2.48 : le focus est un fond blanc DANS le
    bouton, sans contour ni ombre qui en sortent (mesuré : 0 px coupé, du premier au
    dernier onglet). ⚠️ Ne pas réimporter cette règle lors d'un portage amont. */
+
+/* v1.4.2 — TV : la rangée d'onglets (centrée, 1056 px sur 1920) passait sous les
+   premières icônes de droite, devenues plus nombreuses (SyncPlay, lectures en cours
+   de Jellyfin Enhanced, cloche NotifySync, recherche, avatar, heure : ~480 px).
+   Largeur limitée pour laisser 19em de chaque côté (513 px à 27 px de base) : la
+   rangée va de 513 à 1407 px, dégagée du titre de page (fin à 462) et des icônes
+   (début à 1424). Les onglets qui ne tiennent pas défilent au focus (v1.3.16).
+   Si un plugin ajoute encore des icônes : descendre les onglets d'un cran
+   (`margin-top: 0` + `padding-top` double des pages), solution maquettée en
+   octobre 2026 et gardée en réserve. */
+.layout-tv .sectionTabs {
+    max-width: calc(100% - 38em);
+}
 
 .sectionTabs .emby-tab-button {
     display: inline-flex;

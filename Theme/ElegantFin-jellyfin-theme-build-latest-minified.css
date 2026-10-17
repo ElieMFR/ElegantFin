@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.4.1 */
+/* ElegantFin Cinema Edition v1.4.2 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.4.1";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.4.2-test";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -1301,7 +1301,7 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
     height: calc(100vh - 27vh - var(--secondaryItemPageNegativeSpace));
 }
 .layout-tv #itemDetailPage:has(.subtitle):has(.detailLogo:not(.hide)):not(:has(.detailImageContainer .backdropCard)) .itemBackdrop {
-    height: calc(100vh - 9.4em - var(--secondaryItemPageNegativeSpace));
+    height: calc(100vh - 6.2em - var(--secondaryItemPageNegativeSpace));
 }
 #itemDetailPage:has(.detailImageContainer .cardPadder-square:not(.person)) .itemBackdrop {
     height: calc(100vh - 20vh - var(--secondaryItemPageNegativeSpace));
@@ -1360,6 +1360,9 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
 }
 #itemDetailPage:has(.subtitle) .detailLogo {
     top: calc(100vh - 6em - var(--secondaryItemPageNegativeSpace));
+}
+.layout-tv #itemDetailPage:has(.subtitle) .detailLogo {
+    top: calc(100vh - 2.8em - var(--secondaryItemPageNegativeSpace));
 }
 .layout-desktop .detailImageContainer .card {
     position: relative !important;
@@ -4377,6 +4380,9 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     padding-inline-end: 0.5ch;
     font-size: 1.2em;
     font-variation-settings: "FILL" 0;
+}
+.layout-tv .sectionTabs {
+    max-width: calc(100% - 38em);
 }
 .sectionTabs .emby-tab-button {
     display: inline-flex;
