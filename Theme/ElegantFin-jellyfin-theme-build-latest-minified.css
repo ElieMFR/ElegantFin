@@ -1301,7 +1301,7 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
     height: calc(100vh - 27vh - var(--secondaryItemPageNegativeSpace));
 }
 .layout-tv #itemDetailPage:has(.subtitle):has(.detailLogo:not(.hide)):not(:has(.detailImageContainer .backdropCard)) .itemBackdrop {
-    height: calc(100vh - 6.2em - var(--secondaryItemPageNegativeSpace));
+    height: calc(100vh - 9.4em - var(--secondaryItemPageNegativeSpace));
 }
 #itemDetailPage:has(.detailImageContainer .cardPadder-square:not(.person)) .itemBackdrop {
     height: calc(100vh - 20vh - var(--secondaryItemPageNegativeSpace));
@@ -1362,7 +1362,7 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
     top: calc(100vh - 6em - var(--secondaryItemPageNegativeSpace));
 }
 .layout-tv #itemDetailPage:has(.subtitle) .detailLogo {
-    top: calc(100vh - 2.8em - var(--secondaryItemPageNegativeSpace));
+    height: 12.5vh;
 }
 .layout-desktop .detailImageContainer .card {
     position: relative !important;

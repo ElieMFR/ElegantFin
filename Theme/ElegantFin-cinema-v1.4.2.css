@@ -2035,8 +2035,7 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
    l'écran : même formule que le logo, moins la marge haute de la page (4,2em).
    Les fiches Épisode ne sont pas concernées : elles masquent leur logo. */
 .layout-tv #itemDetailPage:has(.subtitle):has(.detailLogo:not(.hide)):not(:has(.detailImageContainer .backdropCard)) .itemBackdrop {
-    /* v1.4.2 : 9.4em → 6.2em, le logo descend de 3.2em (voir .detailLogo TV plus bas) */
-    height: calc(100vh - 6.2em - var(--secondaryItemPageNegativeSpace));
+    height: calc(100vh - 9.4em - var(--secondaryItemPageNegativeSpace));
 }
 
 #itemDetailPage:has(.detailImageContainer .cardPadder-square:not(.person)) .itemBackdrop {
@@ -2144,12 +2143,17 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
     top: calc(100vh - 6em - var(--secondaryItemPageNegativeSpace));
 }
 
-/* v1.4.2 — TV, fiches Saison : le cadre du logo commençait à 54 px, dans la bande
-   de l'en-tête (135 px à 27 px de base), presque contre les icônes. Descendu de
-   3.2em (cadre 140 → 356 px en 1080p) ; titre, saison et bouton Lire suivent via
-   la hauteur de .itemBackdrop ci-dessus (titre à 378 px, Lire à 705 px). */
+/* v1.4.2 — TV, fiches Saison : le cadre du logo (20vh) commençait à 54 px, dans la
+   bande de l'en-tête (135 px à 27 px de base), presque contre les icônes. Son bas
+   reste où il est (270 px en 1080p, juste au-dessus du titre) et sa hauteur passe à
+   12.5vh : le cadre va de 135 à 270 px, sous l'en-tête. Le logo est plus petit
+   (62 %) mais RIEN d'autre ne bouge. ⚠️ Ne pas « descendre le tout » à la place :
+   Jellyfin centre le bouton Lire au chargement dès que le défilement nécessaire
+   dépasse la hauteur de .headerTop (scrollManager.minimumScrollY) — descendre le
+   contenu de 81 px déclenche un défilement de 208 px et le logo repasse sous
+   l'en-tête (mesuré sur TV Samsung). */
 .layout-tv #itemDetailPage:has(.subtitle) .detailLogo {
-    top: calc(100vh - 2.8em - var(--secondaryItemPageNegativeSpace));
+    height: 12.5vh;
 }
 
 
