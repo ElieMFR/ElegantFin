@@ -76,6 +76,14 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.4.2 — TV: header tabs and season logo no longer under the icons
+
+- TV, home and libraries: the tab row stops before the header icons. With SyncPlay, Jellyfin Enhanced, NotifySync, search, avatar and clock, the right side had grown and "Requests" was hiding under the first icon. Tabs that don't fit scroll when you reach them, as before.
+- TV, season pages: the logo sits just under the header instead of inside it. It is smaller (about 60 %); title, season and Play button don't move.
+- Checked on a Samsung TV (Tizen 9).
+
+---
+
 #### v1.4.1 — TV: smoother navigation
 
 - TV: moving around with the remote is lighter. A desktop-only rule was making the TV recompute the whole page at every move; it now only watches the playback bar. Measured on a Samsung TV: 8.1 → 6.1 ms of work per focus move (3.8 ms without the theme), so the theme's extra cost is almost halved. No visible change on PC, phone or TV.
@@ -796,6 +804,14 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.4.2 — TV : onglets et logo des saisons ne passent plus sous les icones
+
+- TV, accueil et bibliotheques : la rangee d'onglets s'arrete avant les icones de l'en-tete. Avec SyncPlay, Jellyfin Enhanced, NotifySync, la recherche, l'avatar et l'heure, la partie droite avait grandi et « Requests » passait sous la premiere icone. Les onglets qui ne tiennent pas defilent quand on y arrive, comme avant.
+- TV, fiches saison : le logo se place juste sous l'en-tete au lieu d'y entrer. Il est plus petit (environ 60 %) ; titre, saison et bouton Lire ne bougent pas.
+- Verifie sur une TV Samsung (Tizen 9).
 
 ---
 
