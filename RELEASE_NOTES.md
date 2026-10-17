@@ -78,7 +78,7 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 #### v1.4.1 — TV: smoother navigation
 
-- TV: moving around with the remote is smoother (home screen on a Samsung TV: about 38 → 46 frames per second, half as many stutters). A desktop-only rule was making the TV recompute the whole page at every move; it now only watches the playback bar. No visible change on PC, phone or TV.
+- TV: moving around with the remote is lighter. A desktop-only rule was making the TV recompute the whole page at every move; it now only watches the playback bar. Measured on a Samsung TV: 8.1 → 6.1 ms of work per focus move (3.8 ms without the theme), so the theme's extra cost is almost halved. No visible change on PC, phone or TV.
 
 ---
 
@@ -801,7 +801,7 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 
 #### v1.4.1 — TV : navigation plus fluide
 
-- TV : la navigation a la telecommande est plus fluide (accueil sur une TV Samsung : environ 38 → 46 images par seconde, deux fois moins d'a-coups). Une regle reservee au PC faisait recalculer toute la page a chaque deplacement sur TV ; elle ne surveille plus que la barre de lecture. Aucun changement visible sur PC, telephone ou TV.
+- TV : la navigation a la telecommande est plus legere. Une regle reservee au PC faisait recalculer toute la page a chaque deplacement sur TV ; elle ne surveille plus que la barre de lecture. Mesure sur une TV Samsung : 8,1 → 6,1 ms de travail par deplacement du focus (3,8 ms sans le theme), soit un surcout du theme presque divise par deux. Aucun changement visible sur PC, telephone ou TV.
 
 ---
 
