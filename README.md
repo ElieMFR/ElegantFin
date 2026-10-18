@@ -15,10 +15,6 @@
   <i>Un thème Jellyfin cinématique, inspiré du streaming — sur PC, téléphone et TV.</i>
 </p>
 
-<p align="center">
-  <img src="Theme/assets/img/banner.png" alt="ElegantFin Cinema Edition">
-</p>
-
 ---
 
 <p align="center">

@@ -1,0 +1,31 @@
+name: "Proposer une amélioration / Suggest an improvement"
+description: "Une idée ou un besoin qui n’existe pas encore / An idea or a need that does not exist yet"
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: "Le besoin / The need"
+      description: "Quelle situation vous gêne aujourd’hui ? Décrivez le besoin plutôt que la solution. / What situation bothers you today? Describe the need rather than the solution."
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: "Comment vous l’imaginez / How you picture it"
+  - type: dropdown
+    id: where
+    attributes:
+      label: "Sur quels appareils en avez-vous besoin ? / On which devices do you need it?"
+      multiple: true
+      options:
+        - "Navigateur sur ordinateur / Desktop browser"
+        - "Navigateur sur téléphone ou tablette / Phone or tablet browser"
+        - "Appli Android / Android app"
+        - "TV (Android TV, Samsung, LG) / TV (Android TV, Samsung, LG)"
+        - "Peu importe / Any"
+  - type: input
+    id: jellyfin_version
+    attributes:
+      label: "Version de Jellyfin / Jellyfin version"
+      placeholder: "12.2.0"

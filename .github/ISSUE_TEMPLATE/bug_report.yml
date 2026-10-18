@@ -1,0 +1,99 @@
+name: "Signaler un problème / Report a problem"
+description: "Quelque chose ne fonctionne pas comme prévu / Something does not work as expected"
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci de prendre le temps de signaler ça. Quelques précisions permettent de reproduire le problème plus vite. / Thank you for reporting this. A few details help reproduce the problem faster.
+        **Retirez vos clés, jetons et mots de passe** des logs et des captures avant de les coller. / **Remove your keys, tokens and passwords** from logs and screenshots before pasting them.
+        Ce dépôt est un fork (Cinema Edition) d'ElegantFin. Si le problème existe aussi dans ElegantFin d'origine, dites-le. / This repository is a fork (Cinema Edition) of ElegantFin. If the problem also exists in the original ElegantFin, please say so.
+  - type: input
+    id: component_version
+    attributes:
+      label: "Version du thème / Theme version"
+      description: "Visible dans le nom du fichier CSS ou dans le README. / Shown in the CSS file name or the README."
+      placeholder: "e.g. v1.4.3"
+    validations:
+      required: true
+  - type: input
+    id: jellyfin_version
+    attributes:
+      label: "Version de Jellyfin (serveur) / Jellyfin version (server)"
+      placeholder: "12.2.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: applied
+    attributes:
+      label: "Comment le thème est appliqué / How the theme is applied"
+      options:
+        - "CSS personnalisé via une URL (jsDelivr) / Custom CSS via a URL (jsDelivr)"
+        - "CSS collé dans les réglages / CSS pasted in the settings"
+        - "Autre / Other"
+    validations:
+      required: true
+  - type: dropdown
+    id: client
+    attributes:
+      label: "Où le problème apparaît-il ? / Where does the problem appear?"
+      multiple: true
+      options:
+        - "Navigateur sur ordinateur / Desktop browser"
+        - "Navigateur sur téléphone ou tablette / Phone or tablet browser"
+        - "Appli Android (téléphone / tablette) / Android app (phone / tablet)"
+        - "Appli Android TV / Google TV / Android TV / Google TV app"
+        - "Appli Samsung (Tizen) / Samsung app (Tizen)"
+        - "Appli LG (webOS) / LG app (webOS)"
+        - "iOS (Swiftfin ou autre) / iOS (Swiftfin or other)"
+        - "Autre (précisez plus bas) / Other (say below)"
+    validations:
+      required: true
+  - type: input
+    id: client_version
+    attributes:
+      label: "Client, version et appareil / Client, version and device"
+      description: "Navigateur + version, ou appli + version. Pour une TV, indiquez aussi le modèle et l'année. / Browser + version, or app + version. For a TV, also give the model and year."
+      placeholder: "ex. appli Android 2.7.3 sur Pixel 10 Pro / e.g. Android app 2.7.3 on Pixel 10 Pro"
+    validations:
+      required: true
+  - type: textarea
+    id: others
+    attributes:
+      label: "Autre CSS personnalisé et plugins actifs / Other custom CSS and active plugins"
+      description: "Surtout ceux qui modifient l'interface (FileTransformation, thème, autres plugins). Versions si vous les connaissez. / Especially those that change the interface (FileTransformation, theme, other plugins). Versions if you know them."
+  - type: textarea
+    id: what
+    attributes:
+      label: "Ce qui se passe, et ce que vous attendiez / What happens, and what you expected"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: "Comment le reproduire / How to reproduce it"
+      placeholder: |
+        1. …
+        2. …
+  - type: textarea
+    id: shot
+    attributes:
+      label: "Capture d'écran / Screenshot"
+      description: "Glissez l'image ici. Un thème se décrit mal sans image. Indiquez la taille d'écran. / Drag the image here. A theme is hard to describe without one. Give the screen size."
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: "Console du navigateur (F12) / Browser console (F12)"
+      description: "Masquez les données personnelles. / Hide personal data."
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: "Avant d’envoyer / Before sending"
+      options:
+        - label: "J'ai cherché dans les issues existantes, y compris fermées. / I searched existing issues, including closed ones."
+          required: true
+        - label: "J'ai retiré mes clés, jetons et mots de passe de ce que je colle ici. / I removed my keys, tokens and passwords from what I paste here."
+          required: true
