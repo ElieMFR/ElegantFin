@@ -73,11 +73,11 @@ That's it — every browser, phone and TV connected to your server now uses the 
 > [!IMPORTANT]
 > **Prerequisites:**
 > * Jellyfin **12.x** (10.11.x is still supported)
-> * Server-side installation reaches **every client**, TV apps included. Client-side installation only affects the browser where you set it.
+> * Server-side installation reaches **every client**, TV apps included. Client-side installation only applies to your own account.
 
 ### Server-side (recommended)
 
-1.  Open the **Dashboard** from Settings → Administration.
+1.  Open the **Dashboard** from the avatar menu, top right (on Jellyfin 10.11: Settings → Administration).
 2.  Go to **Branding** and scroll down to **Custom CSS code**.
 3.  Paste the import line from [Quick Start](#-quick-start) and click **Save**.
 4.  Reload your browser (`Ctrl+F5`). On TVs, close and reopen the Jellyfin app.
@@ -103,7 +103,7 @@ Delete the `@import` line from **Custom CSS code** and click **Save**: Jellyfin 
 
 ## ⚙️ Customization
 
-All original ElegantFin options are kept. Add these overrides **after** the import line:
+These options come from the original ElegantFin. Add your overrides **after** the import line:
 
 ```css
 :root {
@@ -123,7 +123,7 @@ All original ElegantFin options are kept. Add these overrides **after** the impo
 | **Title logo** | `--clearLogoVisibility` | `block` / `none` |
 | **Critics rating on phones** | `--criticsRatingVisibility` | `none` (hidden) / `block` |
 | **Icon pack (LG TV fix)** | `--iconPack` | `'Material Icons'` |
-| **Color themes** | See the [Playground](https://github.com/lscambo13/ElegantFin/discussions/221) | Various |
+| **Color themes** | See the [Playground](https://github.com/lscambo13/ElegantFin/discussions/221) | Partly: backgrounds and borders change, the theme's purple accent stays |
 
 ## 📱 Compatibility
 
@@ -131,12 +131,13 @@ All original ElegantFin options are kept. Add these overrides **after** the impo
 |----------|--------|
 | **Jellyfin Server 12** | Fully supported — main target |
 | **Jellyfin Server 10.11** | Supported |
-| **Web browsers** (Chrome, Edge, Firefox, Safari) | Fully supported |
+| **Web browsers** (Chrome, Edge, Firefox) | Fully supported |
+| **Safari** | Should work, not tested |
 | **Jellyfin Android app** | Fully supported |
 | **Samsung Tizen** (Jellyfin community app) | Supported, field-tested; older models fall back gracefully |
 | **Android TV apps based on the Jellyfin web interface** | Supported, field-tested on an Android TV box |
-| **LG webOS** | Supported (may need the icon pack option) |
-| **Jellyfin Media Player** (older web engine) | Partial |
+| **LG webOS** | Should work, not tested (may need the icon pack option) |
+| **Jellyfin Media Player** (older web engine) | Not tested, may look simpler |
 | **Android TV native app** | Not supported (it doesn't load custom CSS) |
 
 ## 🔌 Supported Plugins
@@ -159,7 +160,7 @@ A plugin that isn't listed works with its own styling — the theme just doesn't
 |-------|----------|
 | **The theme doesn't show** | Check that the `@import` line is the **first** line of the Custom CSS field, click **Save**, then `Ctrl+F5`. |
 | **A TV still shows the previous version** | Close and reopen the Jellyfin app. If it persists, [pin a version](#-pin-a-version): a new URL can't come from the cache. |
-| **`@main` hasn't updated yet** | The CDN can take up to an hour to refresh `@main`. Pin the new version tag to get it right away. |
+| **`@main` hasn't updated yet** | The CDN can take a few hours (up to 12 h) to refresh `@main`. Pin the new version tag to get it right away. |
 | **Square icons on an LG TV** | Add `--iconPack: 'Material Icons';` in a `:root { }` block after the import. |
 | **No arrows on the home tabs in Firefox** | Expected: those arrows need a recent Chrome or Edge. Firefox keeps a thin scrollbar under the tabs. |
 | **Something looks off on an old TV or in Jellyfin Media Player** | Their web engine is older; the theme falls back to a simpler look there. Open an issue with a screenshot if something is actually broken. |
@@ -203,8 +204,8 @@ ElegantFin Cinema Edition est une déclinaison d'[ElegantFin](https://github.com
 
 ## 🚀 Démarrage rapide
 
-1. Ouvrez **Tableau de bord → Branding**.
-2. Collez cette ligne dans **Code CSS personnalisé**, puis **Enregistrer** :
+1. Ouvrez **Tableau de bord → Slogan** (la page Branding porte ce nom dans Jellyfin en français).
+2. Collez cette ligne dans **Code CSS personnalisé**, puis **Sauvegarder** :
    ```css
    @import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
    ```
@@ -231,19 +232,19 @@ C'est tout : tous les navigateurs, téléphones et TV connectés à votre serveu
 > [!IMPORTANT]
 > **Prérequis :**
 > * Jellyfin **12.x** (10.11.x reste pris en charge)
-> * L'installation côté serveur atteint **tous les clients**, applis TV comprises. L'installation côté client ne vaut que pour le navigateur où vous la faites.
+> * L'installation côté serveur atteint **tous les clients**, applis TV comprises. L'installation côté client ne vaut que pour votre compte.
 
 ### Côté serveur (recommandé)
 
-1.  Ouvrez le **Tableau de bord** depuis Paramètres → Administration.
-2.  Allez dans **Branding**, puis descendez jusqu'à **Code CSS personnalisé**.
-3.  Collez la ligne d'import du [Démarrage rapide](#-démarrage-rapide) et cliquez sur **Enregistrer**.
+1.  Ouvrez le **Tableau de bord** depuis le menu de l'avatar, en haut à droite (sur Jellyfin 10.11 : Paramètres → Administration).
+2.  Allez dans **Slogan** (Branding), puis descendez jusqu'à **Code CSS personnalisé**.
+3.  Collez la ligne d'import du [Démarrage rapide](#-démarrage-rapide) et cliquez sur **Sauvegarder**.
 4.  Rechargez le navigateur (`Ctrl+F5`). Sur les TV, fermez puis rouvrez l'appli Jellyfin.
 
 ### Côté client
 
 1.  Ouvrez **Paramètres → Affichage**.
-2.  Descendez jusqu'à **Code CSS personnalisé**, collez la ligne d'import et cliquez sur **Enregistrer**.
+2.  Descendez jusqu'à **Code CSS personnalisé**, collez la ligne d'import et cliquez sur **Sauvegarder**.
 
 ### 📌 Figer une version
 
@@ -257,11 +258,11 @@ Une version figée ne change jamais : c'est aussi le moyen le plus rapide de fai
 
 ### 🗑️ Désinstaller
 
-Supprimez la ligne `@import` du **Code CSS personnalisé** et cliquez sur **Enregistrer** : Jellyfin retrouve son apparence d'origine au prochain rechargement (`Ctrl+F5`, ou en rouvrant l'appli sur une TV).
+Supprimez la ligne `@import` du **Code CSS personnalisé** et cliquez sur **Sauvegarder** : Jellyfin retrouve son apparence d'origine au prochain rechargement (`Ctrl+F5`, ou en rouvrant l'appli sur une TV).
 
 ## ⚙️ Personnalisation
 
-Toutes les options d'ElegantFin d'origine sont conservées. Ajoutez vos réglages **après** la ligne d'import :
+Ces options viennent d'ElegantFin d'origine. Ajoutez vos réglages **après** la ligne d'import :
 
 ```css
 :root {
@@ -281,7 +282,7 @@ Toutes les options d'ElegantFin d'origine sont conservées. Ajoutez vos réglage
 | **Logo du titre** | `--clearLogoVisibility` | `block` / `none` |
 | **Note critique sur téléphone** | `--criticsRatingVisibility` | `none` (masquée) / `block` |
 | **Pack d'icônes (TV LG)** | `--iconPack` | `'Material Icons'` |
-| **Thèmes de couleurs** | Voir le [Playground](https://github.com/lscambo13/ElegantFin/discussions/221) | Divers |
+| **Thèmes de couleurs** | Voir le [Playground](https://github.com/lscambo13/ElegantFin/discussions/221) | En partie : fonds et bordures changent, le violet du thème reste |
 
 ## 📱 Compatibilité
 
@@ -289,12 +290,13 @@ Toutes les options d'ElegantFin d'origine sont conservées. Ajoutez vos réglage
 |------------|------|
 | **Serveur Jellyfin 12** | Entièrement pris en charge — cible principale |
 | **Serveur Jellyfin 10.11** | Pris en charge |
-| **Navigateurs web** (Chrome, Edge, Firefox, Safari) | Entièrement pris en charge |
+| **Navigateurs web** (Chrome, Edge, Firefox) | Entièrement pris en charge |
+| **Safari** | Devrait fonctionner, non testé |
 | **Appli Android Jellyfin** | Entièrement prise en charge |
 | **Samsung Tizen** (appli communautaire Jellyfin) | Prise en charge, éprouvée sur matériel réel ; repli propre sur les anciens modèles |
 | **Applis Android TV basées sur l'interface web de Jellyfin** | Prises en charge, testées sur une box Android TV |
-| **LG webOS** | Pris en charge (l'option pack d'icônes peut être nécessaire) |
-| **Jellyfin Media Player** (moteur web plus ancien) | Partiel |
+| **LG webOS** | Devrait fonctionner, non testé (l'option pack d'icônes peut être nécessaire) |
+| **Jellyfin Media Player** (moteur web plus ancien) | Non testé, rendu possiblement plus simple |
 | **Appli native Android TV** | Non prise en charge (elle ne charge pas de CSS personnalisé) |
 
 ## 🔌 Plugins pris en charge
@@ -315,9 +317,9 @@ Un plugin absent de la liste fonctionne avec son propre habillage : le thème ne
 
 | Problème | Solution |
 |----------|----------|
-| **Le thème ne s'affiche pas** | Vérifiez que la ligne `@import` est la **première** ligne du champ CSS personnalisé, cliquez sur **Enregistrer**, puis `Ctrl+F5`. |
+| **Le thème ne s'affiche pas** | Vérifiez que la ligne `@import` est la **première** ligne du champ CSS personnalisé, cliquez sur **Sauvegarder**, puis `Ctrl+F5`. |
 | **Une TV affiche encore l'ancienne version** | Fermez puis rouvrez l'appli Jellyfin. Si ça persiste, [figez une version](#-figer-une-version) : une nouvelle adresse ne peut pas venir du cache. |
-| **`@main` n'est pas encore à jour** | Le CDN peut mettre jusqu'à une heure à rafraîchir `@main`. Figez le nouveau numéro de version pour l'avoir tout de suite. |
+| **`@main` n'est pas encore à jour** | Le CDN peut mettre quelques heures (jusqu'à 12 h) à rafraîchir `@main`. Figez le nouveau numéro de version pour l'avoir tout de suite. |
 | **Icônes carrées sur une TV LG** | Ajoutez `--iconPack: 'Material Icons';` dans un bloc `:root { }` après l'import. |
 | **Pas de flèches sur les onglets de l'accueil dans Firefox** | Normal : ces flèches demandent un Chrome ou un Edge récent. Firefox garde une fine barre de défilement sous les onglets. |
 | **Un détail cloche sur une ancienne TV ou dans Jellyfin Media Player** | Leur moteur web est plus ancien ; le thème y passe à un rendu plus simple. Ouvrez une issue avec une capture si quelque chose est vraiment cassé. |
