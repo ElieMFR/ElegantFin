@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/github/v/release/peterdu1109/ElegantFin?label=version&color=red&cacheSeconds=3600" alt="Version">
-  <img src="https://img.shields.io/badge/Jellyfin-10.11.x%20%7C%2012.x-blueviolet" alt="Jellyfin">
+  <img src="https://img.shields.io/badge/Jellyfin-12.x%20%7C%2010.11.x-blueviolet" alt="Jellyfin">
   <img src="https://img.shields.io/badge/platform-Desktop%20%7C%20Mobile%20%7C%20TV-green" alt="Platforms">
   <a href="https://github.com/lscambo13/ElegantFin"><img src="https://img.shields.io/badge/based%20on-ElegantFin%20v26.09.05-blue" alt="Based on ElegantFin"></a>
   <img src="https://img.shields.io/badge/license-GPL--2.0-green" alt="License">
@@ -60,11 +60,11 @@ That's it — every browser, phone and TV connected to your server now uses the 
 
 ## ✨ Key Features
 
+*   **Made for Jellyfin 12** — The new desktop and mobile interface gets the full cinema look: library pills in the top bar, the theme's purple instead of Jellyfin blue, every page and plugin restyled. Jellyfin 10.11 is still supported.
 *   **Cinematic detail pages** — Full-bleed backdrops, title logos, light typography, a white Play button, and media info laid out in clean panels.
 *   **Streaming-style cards** — Rounded posters, a gentle zoom and light border on hover, glass badges for counts and quality, a soft veil on what you've already watched.
 *   **Built for the couch** — On TV, every control gets a clear white focus. Card zoom and row dimming wait until you stop moving, so fast scrolling stays smooth. Menus stay readable over bright video, and the header gets a navy veil as you scroll a detail page, and the home tabs never slide under the header icons.
 *   **Light on TVs** — No blur, no drop shadows, no looping animations on TV layouts. Every TV change is measured on a real Samsung TV (Tizen) and an Android TV box before release.
-*   **Jellyfin 12 ready** — The new desktop and mobile interface keeps the 10.11 look: library pills in the top bar, the theme's purple instead of Jellyfin blue.
 *   **Phones too** — Rows that settle on a card, a readable layout in portrait and landscape, and the same top bar as on desktop when the phone is turned sideways.
 *   **Polished everyday details** — Glass dialogs and menus, a modern video player bar, thin scrollbars, drop-down lists that never hide their text under the arrow, round "Who's watching?" avatars on the login screen.
 *   **Plugin-aware** — Dedicated styling for Jellyfin Enhanced, Media Carousel, Editor's Choice, Media Bar and Home Screen Sections, so they look like part of the theme.
@@ -76,7 +76,7 @@ That's it — every browser, phone and TV connected to your server now uses the 
 
 > [!IMPORTANT]
 > **Prerequisites:**
-> * Jellyfin **10.11.x** or **12.x**
+> * Jellyfin **12.x** (10.11.x is still supported)
 > * Server-side installation reaches **every client**, TV apps included. Client-side installation only affects the browser where you set it.
 
 ### Server-side (recommended)
@@ -118,7 +118,7 @@ All original ElegantFin options are kept. Add these overrides **after** the impo
 | **Card hover effect** | `--cardHoverEffect` | `""` (enabled) / `none` (disabled) |
 | **Library labels** | `--libraryLabelVisibility` | `block` / `none` |
 | **Extra card buttons** | `--extraCardButtonsVisibility` | `block` / `none` |
-| **App bar style (10.11 and TV)** | `--appBarHeight` | `5em` (fading) / `4.6em` (solid) |
+| **App bar style (TV and Jellyfin 10.11)** | `--appBarHeight` | `5em` (fading) / `4.6em` (solid) |
 | **Original title** | `--itemOriginalTitleVisibility` | `block` / `none` |
 | **Title logo** | `--clearLogoVisibility` | `block` / `none` |
 | **Critics rating on phones** | `--criticsRatingVisibility` | `none` (hidden) / `block` |
@@ -129,7 +129,8 @@ All original ElegantFin options are kept. Add these overrides **after** the impo
 
 | Platform | Status |
 |----------|--------|
-| **Jellyfin Server 10.11 and 12** | Fully supported |
+| **Jellyfin Server 12** | Fully supported — main target |
+| **Jellyfin Server 10.11** | Supported |
 | **Web browsers** (Chrome, Edge, Firefox, Safari) | Fully supported |
 | **Jellyfin Android app** | Fully supported |
 | **Samsung Tizen** (Jellyfin community app) | Supported, field-tested; older models fall back gracefully |
@@ -213,11 +214,11 @@ C'est tout : tous les navigateurs, téléphones et TV connectés à votre serveu
 
 ## ✨ Fonctionnalités
 
+*   **Pensé pour Jellyfin 12** — La nouvelle interface PC et mobile prend tout le style cinéma : pastilles de bibliothèques dans la barre du haut, violet du thème au lieu du bleu Jellyfin, chaque page et chaque plugin rhabillés. Jellyfin 10.11 reste pris en charge.
 *   **Fiches cinématiques** — Images de fond en pleine page, logos des titres, typographie légère, bouton Lire blanc, et infos média rangées dans des panneaux nets.
 *   **Cartes façon streaming** — Affiches arrondies, léger zoom et liseré éclairci au survol, pastilles en verre pour le nombre d'épisodes et la qualité, voile discret sur ce que vous avez déjà vu.
 *   **Pensé pour le canapé** — Sur TV, chaque élément a un focus blanc bien visible. Le zoom des cartes et l'atténuation de la rangée attendent que vous vous arrêtiez : le défilement rapide reste fluide. Les menus restent lisibles sur une vidéo claire, et l'en-tête prend un voile bleu nuit quand on descend dans une fiche, et les onglets de l'accueil ne passent jamais sous les icônes.
 *   **Léger sur TV** — Ni flou, ni ombre portée, ni animation en boucle en disposition TV. Chaque changement TV est mesuré sur une vraie TV Samsung (Tizen) et une box Android TV avant publication.
-*   **Prêt pour Jellyfin 12** — La nouvelle interface PC et mobile garde l'allure de la 10.11 : pastilles de bibliothèques dans la barre du haut, violet du thème au lieu du bleu Jellyfin.
 *   **Aussi sur téléphone** — Rangées qui s'arrêtent sur une carte, mise en page lisible en portrait comme en paysage, et la même barre du haut que sur PC quand le téléphone est tourné.
 *   **Les détails du quotidien** — Fenêtres et menus en verre, barre du lecteur vidéo moderne, barres de défilement fines, listes déroulantes dont le texte ne passe jamais sous la flèche, avatars ronds « Qui regarde ? » à la connexion.
 *   **Attentif aux plugins** — Un habillage dédié pour Jellyfin Enhanced, Media Carousel, Editor's Choice, Media Bar et Home Screen Sections, pour qu'ils fassent partie du thème.
@@ -229,7 +230,7 @@ C'est tout : tous les navigateurs, téléphones et TV connectés à votre serveu
 
 > [!IMPORTANT]
 > **Prérequis :**
-> * Jellyfin **10.11.x** ou **12.x**
+> * Jellyfin **12.x** (10.11.x reste pris en charge)
 > * L'installation côté serveur atteint **tous les clients**, applis TV comprises. L'installation côté client ne vaut que pour le navigateur où vous la faites.
 
 ### Côté serveur (recommandé)
@@ -271,7 +272,7 @@ Toutes les options d'ElegantFin d'origine sont conservées. Ajoutez vos réglage
 | **Effet au survol des cartes** | `--cardHoverEffect` | `""` (activé) / `none` (désactivé) |
 | **Noms des bibliothèques** | `--libraryLabelVisibility` | `block` / `none` |
 | **Boutons supplémentaires des cartes** | `--extraCardButtonsVisibility` | `block` / `none` |
-| **Style de la barre du haut (10.11 et TV)** | `--appBarHeight` | `5em` (en fondu) / `4.6em` (pleine) |
+| **Style de la barre du haut (TV et Jellyfin 10.11)** | `--appBarHeight` | `5em` (en fondu) / `4.6em` (pleine) |
 | **Titre original** | `--itemOriginalTitleVisibility` | `block` / `none` |
 | **Logo du titre** | `--clearLogoVisibility` | `block` / `none` |
 | **Note critique sur téléphone** | `--criticsRatingVisibility` | `none` (masquée) / `block` |
@@ -282,7 +283,8 @@ Toutes les options d'ElegantFin d'origine sont conservées. Ajoutez vos réglage
 
 | Plateforme | État |
 |------------|------|
-| **Serveur Jellyfin 10.11 et 12** | Entièrement pris en charge |
+| **Serveur Jellyfin 12** | Entièrement pris en charge — cible principale |
+| **Serveur Jellyfin 10.11** | Pris en charge |
 | **Navigateurs web** (Chrome, Edge, Firefox, Safari) | Entièrement pris en charge |
 | **Appli Android Jellyfin** | Entièrement prise en charge |
 | **Samsung Tizen** (appli communautaire Jellyfin) | Prise en charge, éprouvée sur matériel réel ; repli propre sur les anciens modèles |
