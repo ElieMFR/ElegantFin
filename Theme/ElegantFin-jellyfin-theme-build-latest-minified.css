@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.4.4 */
+/* ElegantFin Cinema Edition v1.4.5 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.4.4";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.4.5";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -114,6 +114,7 @@
     --overlayPlayButtonPosition: -999em;
     --iconPack: "Material Icons Round", Material Icons;
     --extraCardButtonsVisibility: none;
+    --jeTabsVisibility: inline-flex;
     --itemOriginalTitleVisibility: block;
     --libraryLabelVisibility: none;
     --clearLogoVisibility: block;
@@ -640,8 +641,10 @@ body {
 [dir="ltr"].layout-desktop .cardOverlayButton-br {
     bottom: 0.75em;
     right: 0.5em;
-    display: var(--extraCardButtonsVisibility);
     z-index: 1;
+}
+.layout-desktop .cardOverlayButton-br > :not([data-action="menu"]) {
+    display: var(--extraCardButtonsVisibility);
 }
 .layout-desktop .cardOverlayButton-br button {
     color: white;
@@ -5052,6 +5055,10 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 .layout-desktop .headerTabs,
 .layout-mobile .headerTabs {
     padding-bottom: 0 !important;
+}
+.layout-desktop .emby-tab-button[id^="je-native-tab-btn-"],
+.layout-mobile .emby-tab-button[id^="je-native-tab-btn-"] {
+    display: var(--jeTabsVisibility);
 }
 .layout-desktop .editorsChoiceScrollButtonsContainer,
 .layout-desktop .editorsChoicePlayPauseContainer {

@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.4.4 */
+/* ElegantFin Cinema Edition v1.4.5 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.4.4";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.4.5";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -228,6 +228,15 @@
     /* none: hides the watched and mark favorite buttons on hover [default];
        block: makes them visible use block */
     --extraCardButtonsVisibility: none;
+
+    /* v1.4.5 — onglets Jellyfin Enhanced (Recommandations Seerr, Requests,
+       Calendar) sur PC et téléphone : inline-flex = onglets sous la barre [défaut] ;
+       none = icônes en haut à droite à la place. Ce n'est pas le thème qui crée les
+       icônes : JE ajoute de lui-même un raccourci dans la barre dès que l'onglet est
+       invisible, et le retire dès qu'il redevient visible. « Les deux » est donc
+       impossible côté thème. Sans place dans la barre, JE range ces icônes dans son
+       bouton « Plus de Jellyfin Enhanced ». */
+    --jeTabsVisibility: inline-flex;
 
     /* block: keeps the original (foreign) title visible if it is available [default];
        none: always hides the original title of Movie/TV */
@@ -1079,8 +1088,15 @@ body {
 [dir="ltr"].layout-desktop .cardOverlayButton-br {
     bottom: 0.75em;
     right: 0.5em;
-    display: var(--extraCardButtonsVisibility);
     z-index: 1;
+}
+
+/* v1.4.5 : l'option ne masque plus que les boutons vu / favori. Elle masquait le
+   GROUPE entier, donc aussi le « ⋮ » que la règle ci-dessus veut garder : en 12.1 le
+   groupe ne contient que ce bouton, et il était invisible au survol (0 px, mesuré
+   sur la page d'accueil). */
+.layout-desktop .cardOverlayButton-br > :not([data-action="menu"]) {
+    display: var(--extraCardButtonsVisibility);
 }
 
 .layout-desktop .cardOverlayButton-br button {
@@ -7774,6 +7790,14 @@ for extended styling, use the add-on */
 .layout-desktop .headerTabs,
 .layout-mobile .headerTabs {
     padding-bottom: 0 !important;
+}
+
+/* v1.4.5 : option --jeTabsVisibility (voir sa déclaration). TV exclue : elle garde
+   ses onglets. Sélecteur de droite en classe, pas en attribut seul, pour rester
+   dans le seau de la classe et ne pas être testé sur chaque élément. */
+.layout-desktop .emby-tab-button[id^="je-native-tab-btn-"],
+.layout-mobile .emby-tab-button[id^="je-native-tab-btn-"] {
+    display: var(--jeTabsVisibility);
 }
 
 /* v1.2.72/73 : contrôles du plugin (flèches ‹ › + pause) — leur position d'origine
