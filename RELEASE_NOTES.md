@@ -76,6 +76,12 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.4.4 — Top bar: room after the library pills
+
+- Top bar (desktop and phone in landscape): a little room after the last library pill (often "More ▾"), which almost touched the icons next to it on a phone in landscape.
+
+---
+
 #### v1.4.3 — Phones in landscape: library pills like on desktop
 
 - Phone in landscape (Jellyfin Android app): the library links in the top bar (Animés, Films, Séries, More…) get the same pills as on desktop instead of plain text. No change on desktop, in portrait (Jellyfin hides these links there) or on TV.
@@ -810,6 +816,12 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.4.4 — Barre du haut : de l'air apres les pastilles de bibliotheques
+
+- Barre du haut (PC et telephone en paysage) : un peu d'espace apres la derniere pastille de bibliotheque (souvent « Plus ▾ »), qui touchait presque les icones voisines sur telephone en paysage.
 
 ---
 

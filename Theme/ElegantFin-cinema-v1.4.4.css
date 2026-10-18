@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.4.3 */
+/* ElegantFin Cinema Edition v1.4.4 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.4.3";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.4.4";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -4242,6 +4242,13 @@ div[data-role="controlgroup"] a.ui-btn-active {
     font-weight: 400;
     padding: 0.35rem 1.1rem;
     margin: 0 0.3rem;
+}
+
+/* v1.4.4 — de l'air après la DERNIÈRE pastille de bibliothèque (souvent « Plus ▾ ») :
+   au téléphone en paysage, elle touchait presque les icônes de Jellyfin Enhanced qui
+   la suivent (~6 px, vu sur l'appli Android). */
+:root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiStack-root > .MuiButton-text:not(.MuiButtonGroup-grouped):last-child {
+    margin-right: 1.2rem;
 }
 
 :root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-text:not(.MuiButtonGroup-grouped) .MuiButton-startIcon {
