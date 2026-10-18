@@ -101,6 +101,10 @@ That's it — every browser, phone and TV connected to your server now uses the 
 
 A pinned version never changes, so it is also the fastest way to get an update on a TV app that keeps the previous file in cache. Versions follow `X.Y.Z`: the last number for fixes, the middle one when a batch of work closes.
 
+### 🗑️ Uninstall
+
+Delete the `@import` line from **Custom CSS code** and click **Save**: Jellyfin goes back to its original look on the next reload (`Ctrl+F5`, or reopen the app on a TV).
+
 ## ⚙️ Customization
 
 All original ElegantFin options are kept. Add these overrides **after** the import line:
@@ -254,6 +258,10 @@ C'est tout : tous les navigateurs, téléphones et TV connectés à votre serveu
 ```
 
 Une version figée ne change jamais : c'est aussi le moyen le plus rapide de faire passer une mise à jour sur une appli TV qui garde l'ancien fichier en cache. Les versions suivent `X.Y.Z` : le dernier chiffre pour les correctifs, celui du milieu quand un ensemble de travaux se referme.
+
+### 🗑️ Désinstaller
+
+Supprimez la ligne `@import` du **Code CSS personnalisé** et cliquez sur **Enregistrer** : Jellyfin retrouve son apparence d'origine au prochain rechargement (`Ctrl+F5`, ou en rouvrant l'appli sur une TV).
 
 ## ⚙️ Personnalisation
 
