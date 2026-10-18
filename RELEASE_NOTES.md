@@ -76,6 +76,13 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.4.5 — Card menu button and Jellyfin Enhanced tabs
+
+- Desktop: the ⋮ button is back on cards when you hover them (it was hidden on Jellyfin 12, so the card menu was only reachable with a right click). `--extraCardButtonsVisibility` now only hides the watched and favorite buttons.
+- New option `--jeTabsVisibility` (desktop and phone): `none` hides the Jellyfin Enhanced tabs (Seerr recommendations, Requests, Calendar), and Jellyfin Enhanced then shows them as icons at the top right. Default `inline-flex` keeps the tabs. TV unchanged.
+
+---
+
 #### v1.4.4 — Top bar: room after the library pills
 
 - Top bar (desktop and phone in landscape): a little room after the last library pill (often "More ▾"), which almost touched the icons next to it on a phone in landscape.
@@ -816,6 +823,13 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.4.5 — Bouton menu des cartes et onglets Jellyfin Enhanced
+
+- PC : le bouton ⋮ revient sur les cartes au survol (il etait masque en Jellyfin 12, le menu d'une carte ne s'ouvrait plus que par clic droit). `--extraCardButtonsVisibility` ne masque plus que les boutons vu et favori.
+- Nouvelle option `--jeTabsVisibility` (PC et telephone) : `none` masque les onglets Jellyfin Enhanced (Recommandations Seerr, Requests, Calendar), que Jellyfin Enhanced affiche alors en icones en haut a droite. Par defaut `inline-flex` garde les onglets. TV inchangee.
 
 ---
 

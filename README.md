@@ -81,7 +81,7 @@ ElegantFin Cinema Edition is a Jellyfin theme inspired by streaming platforms, b
 `@main` always follows the latest version. To update when you choose, replace `@main` with a version number:
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@v1.4.4/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+@import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@v1.4.5/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
 A pinned version never changes. It is also the fastest way to update a TV app that keeps the old file in cache.
@@ -92,7 +92,7 @@ Delete the `@import` line, click **Save**, then reload (`Ctrl+F5`, or reopen the
 
 ## ⚙️ Customization
 
-These options come from the original ElegantFin. Add them **after** the import line:
+Most of these options come from the original ElegantFin. Add them **after** the import line:
 
 ```css
 :root {
@@ -106,12 +106,13 @@ These options come from the original ElegantFin. Add them **after** the import l
 | **Play button on cards** | `--overlayPlayButtonPosition` | `50%` (center) / `-999em` (hidden) |
 | **Card hover effect** | `--cardHoverEffect` | `""` (on) / `none` (off) |
 | **Library labels** | `--libraryLabelVisibility` | `block` / `none` |
-| **Extra card buttons** | `--extraCardButtonsVisibility` | `block` / `none` |
-| **Top bar (TV and Jellyfin 10.11)** | `--appBarHeight` | `5em` (fading) / `4.6em` (solid) |
+| **Watched and favorite buttons on cards (PC)** | `--extraCardButtonsVisibility` | `none` (hidden) / `block` |
+| **Top bar height (TV and Jellyfin 10.11)** | `--appBarHeight` | `5em` (default) or another height |
 | **Original title** | `--itemOriginalTitleVisibility` | `block` / `none` |
 | **Title logo** | `--clearLogoVisibility` | `block` / `none` |
 | **Critics rating on phones** | `--criticsRatingVisibility` | `none` (hidden) / `block` |
 | **Icons (LG TV)** | `--iconPack` | `'Material Icons'` |
+| **Jellyfin Enhanced tabs (PC and phone)** | `--jeTabsVisibility` | `inline-flex` (tabs under the bar) / `none` (icons at the top right) |
 | **Color themes** | See the [Playground](https://github.com/lscambo13/ElegantFin/discussions/221) | Partly: backgrounds and borders change, the purple stays |
 
 ## 📱 Compatibility
@@ -224,7 +225,7 @@ ElegantFin Cinema Edition est un thème Jellyfin inspiré des plateformes de str
 `@main` suit toujours la dernière version. Pour mettre à jour quand vous le décidez, remplacez `@main` par un numéro de version :
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@v1.4.4/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+@import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@v1.4.5/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
 Une version figée ne change jamais. C'est aussi le moyen le plus rapide de mettre à jour une appli TV qui garde l'ancien fichier en cache.
@@ -235,7 +236,7 @@ Supprimez la ligne `@import`, cliquez sur **Sauvegarder**, puis rechargez (`Ctrl
 
 ## ⚙️ Personnalisation
 
-Ces options viennent d'ElegantFin d'origine. Ajoutez-les **après** la ligne d'import :
+La plupart de ces options viennent d'ElegantFin d'origine. Ajoutez-les **après** la ligne d'import :
 
 ```css
 :root {
@@ -249,12 +250,13 @@ Ces options viennent d'ElegantFin d'origine. Ajoutez-les **après** la ligne d'i
 | **Bouton Lire sur les cartes** | `--overlayPlayButtonPosition` | `50%` (centré) / `-999em` (masqué) |
 | **Effet au survol des cartes** | `--cardHoverEffect` | `""` (activé) / `none` (désactivé) |
 | **Noms des bibliothèques** | `--libraryLabelVisibility` | `block` / `none` |
-| **Boutons supplémentaires des cartes** | `--extraCardButtonsVisibility` | `block` / `none` |
-| **Barre du haut (TV et Jellyfin 10.11)** | `--appBarHeight` | `5em` (en fondu) / `4.6em` (pleine) |
+| **Boutons vu et favori sur les cartes (PC)** | `--extraCardButtonsVisibility` | `none` (masqués) / `block` |
+| **Hauteur de la barre du haut (TV et Jellyfin 10.11)** | `--appBarHeight` | `5em` (par défaut) ou une autre hauteur |
 | **Titre original** | `--itemOriginalTitleVisibility` | `block` / `none` |
 | **Logo du titre** | `--clearLogoVisibility` | `block` / `none` |
 | **Note critique sur téléphone** | `--criticsRatingVisibility` | `none` (masquée) / `block` |
 | **Icônes (TV LG)** | `--iconPack` | `'Material Icons'` |
+| **Onglets Jellyfin Enhanced (PC et téléphone)** | `--jeTabsVisibility` | `inline-flex` (onglets sous la barre) / `none` (icônes en haut à droite) |
 | **Thèmes de couleurs** | Voir le [Playground](https://github.com/lscambo13/ElegantFin/discussions/221) | En partie : fonds et bordures changent, le violet reste |
 
 ## 📱 Compatibilité
