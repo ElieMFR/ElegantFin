@@ -1,352 +1,333 @@
-<!-- Image banniere -->
-<img src="Theme/assets/img/banner.png" alt="ElegantFin Cinema Edition - Banner">
+<h1 align="center">🎬 ElegantFin Cinema Edition</h1>
 
-<div align="center">
+<p align="center">
+  <img src="https://img.shields.io/github/v/release/peterdu1109/ElegantFin?label=version&color=red&cacheSeconds=3600" alt="Version">
+  <img src="https://img.shields.io/badge/Jellyfin-10.11.x%20%7C%2012.x-blueviolet" alt="Jellyfin">
+  <img src="https://img.shields.io/badge/platform-Desktop%20%7C%20Mobile%20%7C%20TV-green" alt="Platforms">
+  <a href="https://github.com/lscambo13/ElegantFin"><img src="https://img.shields.io/badge/based%20on-ElegantFin%20v26.09.05-blue" alt="Based on ElegantFin"></a>
+  <img src="https://img.shields.io/badge/license-GPL--2.0-green" alt="License">
+  <a href="https://www.jsdelivr.com/package/gh/peterdu1109/ElegantFin"><img src="https://img.shields.io/jsdelivr/gh/hm/peterdu1109/ElegantFin?label=CDN%20hits&color=orange" alt="jsDelivr"></a>
+  <img src="https://img.shields.io/github/release-date/peterdu1109/ElegantFin?color=orange&cacheSeconds=3600" alt="Last release">
+</p>
 
-# ElegantFin Cinema Edition
+<p align="center">
+  <b>A cinematic, streaming-inspired theme for Jellyfin — on desktop, mobile and TV.</b><br>
+  <i>Un thème Jellyfin cinématique, inspiré du streaming — sur PC, téléphone et TV.</i>
+</p>
 
-**A cinematic fork of [ElegantFin](https://github.com/lscambo13/ElegantFin) — streaming-inspired Jellyfin theme**
-
-[![Version](https://img.shields.io/badge/Cinema%20Edition-v1.4.4-red?style=flat&logo=github)](https://github.com/peterdu1109/ElegantFin/releases)
-[![Based on](https://img.shields.io/badge/Based%20on-ElegantFin%20v26.09.05-blue?style=flat&logo=github)](https://github.com/lscambo13/ElegantFin)
-[![Jellyfin](https://img.shields.io/badge/Jellyfin-10.11.x%20%7C%2012.x-00A4DC?style=flat&logo=jellyfin&logoColor=white)](https://jellyfin.org)
-[![Platform](https://img.shields.io/badge/Platform-Desktop%20%7C%20Mobile%20%7C%20TV-green?style=flat)]()
-[![jsDelivr](https://img.shields.io/jsdelivr/gh/hm/peterdu1109/ElegantFin?style=flat&label=CDN&color=orange)](https://www.jsdelivr.com/package/gh/peterdu1109/ElegantFin)
-
-</div>
+<p align="center">
+  <img src="Theme/assets/img/banner.png" alt="ElegantFin Cinema Edition">
+</p>
 
 ---
 
-<div align="center">
-
-## [English](#english) | [Français](#francais)
-
-</div>
+<p align="center">
+  <b>🌐 Language / Langue</b><br>
+  <a href="#english">English</a> | <a href="#français">Français</a>
+</p>
 
 ---
 
 <a name="english"></a>
+# English
 
-## English
+ElegantFin Cinema Edition is a fork of [ElegantFin](https://github.com/lscambo13/ElegantFin) by [lscambo13](https://github.com/lscambo13), reworked into a full streaming-style experience: cinematic detail pages, polished cards, a remote-friendly TV interface and dedicated styling for popular plugins. One line of CSS, and every device connected to your server gets it.
 
-### What is this?
+> 📖 **Changelog & version history:** see [GitHub Releases](https://github.com/peterdu1109/ElegantFin/releases) for what's new in each version, and [`RELEASE_NOTES.md`](./RELEASE_NOTES.md) for every detail.
 
-This is a **Cinema Edition** of the ElegantFin theme by [lscambo13](https://github.com/lscambo13), enhanced with **cinematic modules** that transform your Jellyfin into a professional streaming experience inspired by the major streaming platforms.
+## 📑 Table of Contents
 
-Everything works on **desktop, mobile and TV** with a single CSS import.
+- [🚀 Quick Start](#-quick-start)
+- [✨ Key Features](#-key-features)
+- [📦 Installation](#-installation)
+- [⚙️ Customization](#️-customization)
+- [📱 Compatibility](#-compatibility)
+- [🔌 Supported Plugins](#-supported-plugins)
+- [❓ Troubleshooting](#-troubleshooting)
+- [🔔 Recommended Plugin](#-recommended-plugin)
+- [👥 Authors & Credits](#-authors--credits)
 
----
+## 🚀 Quick Start
 
-### What's new compared to the original?
+1. Open **Dashboard → Branding**.
+2. Paste this line into **Custom CSS code**, then **Save**:
+   ```css
+   @import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+   ```
+3. Reload the page (`Ctrl+F5`). On a TV, close and reopen the Jellyfin app.
 
-| Module | Description |
-|--------|-------------|
-| **Glassmorphism Login** | Frosted glass login card with smooth entrance animation |
-| **Page Transitions** | Fade-in and slide-up animations on every page load |
-| **Cascade Sections** | Staggered delays for a streaming-style reveal effect |
-| **Shimmer Effect** | Subtle light sweep on the first row of cards (desktop) |
-| **Cinema Backdrop** | Deeper transparent header gradient, softer backdrop |
-| **Cinema Cards** | Pop zoom (1.06x), glowing borders, text highlight on hover |
-| **White Progress Bars** | Clean white progress bars replacing colored ones |
-| **Premium Badges** | Blurred glass indicators for count, resolution, watched |
-| **Cinema Detail Page** | Ultra-light titles (weight 100), italic tagline, white Play button |
-| **Modern OSD Player** | Soft gradient, reactive slider, glass footer |
-| **Section Titles** | Bolder (700), hidden chevrons, overflow ellipsis |
-| **Glass Dialogs** | Backdrop blur on dialogs, menus, drawer, toast, upNext |
-| **Navigation Tabs** | Violet active tab, white-pill focus, subtle inactive tabs |
-| **TV Focus System** | White-pill focus on every control (buttons, rows, tabs, links) — readable from the couch |
-| **Deferred TV Effects** | Card pop + row spotlight fire only at rest — fast scrolling stays smooth |
-| **Opaque TV Panels** | Menus and dialogs stay readable over bright video |
-| **Who's Watching** | Round centered profile avatars on the login screen |
-| **Row Scroll-Snap** | Rows settle aligned on a card (desktop and mobile) |
-| **Full-Height Scroll Arrows** | Streaming-style gradient arrows on desktop rows |
-| **Home Tabs Arrows** | Narrow desktop window: arrows instead of a scrollbar under the home tabs (recent Chrome and Edge) |
-| **TV Header Veil** | On TV detail pages, a navy veil fades in behind the header as you scroll, so content never mixes with the icons |
-| **Typography Hierarchy** | Refined weights for body text, episode titles, subtitles |
-| **Long Titles Fix** | Responsive line-clamp (2 desktop, 3 mobile), word-break |
-| **Thin Scrollbars** | 4px cross-browser scrollbars, transparent track |
-| **OSD Header Glass** | Blurred dark header during video playback |
-| **Alpha Picker** | Smooth transition on library A-Z picker |
-| **TV Optimizations** | No blur, no drop shadows, no looping animations for low-end TVs |
-| **Mobile Optimizations** | Reduced blur intensity for better performance |
-| **Hover Preview Info** | Secondary text and gradient reveal on card hover (desktop) |
-| **Now Playing Glass** | Glassmorphism on the Now Playing bar |
-| **Watched Overlay** | Subtle dark overlay on already-watched items |
-| **Sidebar Glass** | Enhanced sidebar with glass effect, styled nav items |
-| **Jellyfin 12** | The new desktop and mobile interface looks like 10.11 (TV unchanged) |
+That's it — every browser, phone and TV connected to your server now uses the theme.
 
----
+## ✨ Key Features
 
-### Installation
+*   **Cinematic detail pages** — Full-bleed backdrops, title logos, light typography, a white Play button, and media info laid out in clean panels.
+*   **Streaming-style cards** — Rounded posters, a gentle zoom and light border on hover, glass badges for counts and quality, a soft veil on what you've already watched.
+*   **Built for the couch** — On TV, every control gets a clear white focus. Card zoom and row dimming wait until you stop moving, so fast scrolling stays smooth. Menus stay readable over bright video, and the header gets a navy veil as you scroll a detail page, and the home tabs never slide under the header icons.
+*   **Light on TVs** — No blur, no drop shadows, no looping animations on TV layouts. Every TV change is measured on a real Samsung TV (Tizen) and an Android TV box before release.
+*   **Jellyfin 12 ready** — The new desktop and mobile interface keeps the 10.11 look: library pills in the top bar, the theme's purple instead of Jellyfin blue.
+*   **Phones too** — Rows that settle on a card, a readable layout in portrait and landscape, and the same top bar as on desktop when the phone is turned sideways.
+*   **Polished everyday details** — Glass dialogs and menus, a modern video player bar, thin scrollbars, drop-down lists that never hide their text under the arrow, round "Who's watching?" avatars on the login screen.
+*   **Plugin-aware** — Dedicated styling for Jellyfin Enhanced, Media Carousel, Editor's Choice, Media Bar and Home Screen Sections, so they look like part of the theme.
+*   **Self-hosted fonts** — Inter and Material Icons ship with the theme. Nothing is loaded from Google, and the theme file itself is about 150 KB.
+*   **Graceful on older devices** — Modern effects come with fallbacks: an older TV or browser keeps a clean, working interface instead of a broken one.
+*   **Accessible** — `prefers-reduced-motion` is respected: animations switch off when the system asks for it.
 
-**Paste the following in your Custom CSS field:**
+## 📦 Installation
 
+> [!IMPORTANT]
+> **Prerequisites:**
+> * Jellyfin **10.11.x** or **12.x**
+> * Server-side installation reaches **every client**, TV apps included. Client-side installation only affects the browser where you set it.
+
+### Server-side (recommended)
+
+1.  Open the **Dashboard** from Settings → Administration.
+2.  Go to **Branding** and scroll down to **Custom CSS code**.
+3.  Paste the import line from [Quick Start](#-quick-start) and click **Save**.
+4.  Reload your browser (`Ctrl+F5`). On TVs, close and reopen the Jellyfin app.
+
+### Client-side
+
+1.  Open **Settings → Display**.
+2.  Scroll down to **Custom CSS code**, paste the import line, and click **Save**.
+
+### 📌 Pin a version
+
+`@main` always follows the latest version. To update on your own schedule, replace `@main` with a version tag, for example:
+
+```css
+@import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@v1.4.4/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
-@import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+
+A pinned version never changes, so it is also the fastest way to get an update on a TV app that keeps the previous file in cache. Versions follow `X.Y.Z`: the last number for fixes, the middle one when a batch of work closes.
+
+## ⚙️ Customization
+
+All original ElegantFin options are kept. Add these overrides **after** the import line:
+
+```css
+:root {
+    --clearLogoVisibility: none;
+}
 ```
-
-> 📌 `@main` always follows the latest version. To pin a release (and upgrade on your own schedule), replace `@main` with a version tag, e.g. `@v1.4.4` — see [Releases](https://github.com/peterdu1109/ElegantFin/releases).
->
-> **Versioning.** `X.Y.Z` — the last number moves for fixes and adjustments, the middle one when a batch of work closes (e.g. `1.4.0`), or rather than letting the last one reach 100.
-
-<details>
-<summary><b>Server-side installation</b></summary>
-
-1. Open the **Dashboard** from the Administration tab in Settings
-2. In the sidebar, select **Branding**
-3. Scroll down to the **Custom CSS code** field
-4. Paste the CSS import above
-5. Click **Save**
-</details>
-
-<details>
-<summary><b>Client-side installation</b></summary>
-
-1. Open the **Display** tab in Settings
-2. Scroll down to the **Custom CSS code** field
-3. Paste the CSS import above
-4. Click **Save**
-</details>
-
----
-
-### Customization
-
-All original ElegantFin customization options are preserved. Add these overrides **after** the import line:
-
-<details>
-<summary><b>Available options</b></summary>
 
 | Option | Variable | Values |
 |--------|----------|--------|
-| Login background | `--loginPageBgUrl` | `url("your-server/Branding/Splashscreen...")` |
-| Play button position | `--overlayPlayButtonPosition` | `50%` (center) / `-999em` (hidden) |
-| Card hover effect | `--cardHoverEffect` | `""` (enabled) / `none` (disabled) |
-| Library labels | `--libraryLabelVisibility` | `block` / `none` |
-| Extra card buttons | `--extraCardButtonsVisibility` | `block` / `none` |
-| App bar style (10.11 and TV) | `--appBarHeight` | `5em` (fading) / `4.6em` (solid) |
-| Original title | `--itemOriginalTitleVisibility` | `block` / `none` |
-| Clear logo | `--clearLogoVisibility` | `block` / `none` |
-| Critics rating on phones | `--criticsRatingVisibility` | `none` (hidden) / `block` |
-| Icon pack (LG TV fix) | `--iconPack` | `'Material Icons'` (old) |
-| Color themes | See [Playground](https://github.com/lscambo13/ElegantFin/discussions/221) | Various |
+| **Login background** | `--loginPageBgUrl` | `url("your-server/Branding/Splashscreen...")` |
+| **Play button on cards** | `--overlayPlayButtonPosition` | `50%` (center) / `-999em` (hidden) |
+| **Card hover effect** | `--cardHoverEffect` | `""` (enabled) / `none` (disabled) |
+| **Library labels** | `--libraryLabelVisibility` | `block` / `none` |
+| **Extra card buttons** | `--extraCardButtonsVisibility` | `block` / `none` |
+| **App bar style (10.11 and TV)** | `--appBarHeight` | `5em` (fading) / `4.6em` (solid) |
+| **Original title** | `--itemOriginalTitleVisibility` | `block` / `none` |
+| **Title logo** | `--clearLogoVisibility` | `block` / `none` |
+| **Critics rating on phones** | `--criticsRatingVisibility` | `none` (hidden) / `block` |
+| **Icon pack (LG TV fix)** | `--iconPack` | `'Material Icons'` |
+| **Color themes** | See the [Playground](https://github.com/lscambo13/ElegantFin/discussions/221) | Various |
 
-</details>
-
----
-
-### Compatibility
+## 📱 Compatibility
 
 | Platform | Status |
 |----------|--------|
-| Jellyfin Server 10.11 and 12 | Fully supported |
-| Web browsers (Chrome, Edge, Firefox, Safari) | Fully supported |
-| Jellyfin Android App | Fully supported |
-| LG WebOS | Supported (may need icon pack fix) |
-| Samsung Tizen (Jellyfin community) | Supported (extensively field-tested; graceful degrade on older models) |
-| Android TV apps based on the Jellyfin web interface | Supported (field-tested on an Android TV box) |
-| Android TV native app | Not supported (no CSS support) |
-| Jellyfin Media Player (Qt 5.x) | Partial (outdated web engine) |
+| **Jellyfin Server 10.11 and 12** | Fully supported |
+| **Web browsers** (Chrome, Edge, Firefox, Safari) | Fully supported |
+| **Jellyfin Android app** | Fully supported |
+| **Samsung Tizen** (Jellyfin community app) | Supported, field-tested; older models fall back gracefully |
+| **Android TV apps based on the Jellyfin web interface** | Supported, field-tested on an Android TV box |
+| **LG webOS** | Supported (may need the icon pack option) |
+| **Jellyfin Media Player** (older web engine) | Partial |
+| **Android TV native app** | Not supported (it doesn't load custom CSS) |
 
----
+## 🔌 Supported Plugins
 
-### Accessibility
-
-- `prefers-reduced-motion` is respected: all animations are disabled when the user has this preference enabled
-- TV layouts disable blur, drop shadows and looping animations for performance
-- Mobile layouts use reduced blur intensity
-
----
-
-### 🔌 Supported plugins
-
-Cinema Edition has dedicated styling for these popular Jellyfin plugins:
+The theme adds dedicated styling for these plugins:
 
 | Plugin | What it does | Cinema styling |
 |--------|--------------|----------------|
-| [**Editor's Choice**](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | Curated editorial picks on home page | Banner spacing fix, button/section collision resolved, 3-line description on desktop, working scroll/pause controls as navy pills below the header, aspect-ratio-safe title logo |
-| [**Media Bar**](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) | Auto-cycling slideshow at top of home | Gradient overlay, readable synopsis, polished button states |
-| [**Home Screen Sections**](https://github.com/IAmParadox27/jellyfin-plugin-home-sections) | Extra curated rows on the home page | Readable Top 10 rank numbers (they were near-black on near-black), Discover badges in the theme accent and in French |
-| [**Jellyfin Enhanced**](https://github.com/n00bcodr/Jellyfin-Enhanced) | All-in-one additions: shortcuts, Jellyseerr requests, reviews, extra links | Letterboxd and Seerr icons in line with the other logos, TMDB reviews no longer overflow the detail page, "where to watch" bar and Seerr badges in the theme's colours |
-| [**Media Carousel**](https://github.com/peterdu1109/MediaCarousel) | Streaming-style home rows: server Top 10 from real plays, worldwide Top 10, Seerr requests, library rows | Row arrows centred on the posters, like the other rows |
+| [**Jellyfin Enhanced**](https://github.com/n00bcodr/Jellyfin-Enhanced) | Shortcuts, Jellyseerr requests, reviews, extra links | Letterboxd and Seerr icons in line with the other logos, "where to watch" bar, Seerr badges and active streams button in the theme's colours, reviews that stay inside the page |
+| [**Media Carousel**](https://github.com/peterdu1109/MediaCarousel) | Streaming-style home rows: server Top 10, worldwide Top 10, Seerr requests | Row arrows centred on the posters, like the other rows |
+| [**Editor's Choice**](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | Curated picks on the home page | Banner spacing, readable description, working scroll and pause controls, aspect-safe title logo |
+| [**Media Bar**](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) | Auto-cycling slideshow at the top of home | Gradient overlay, readable synopsis, polished buttons |
+| [**Home Screen Sections**](https://github.com/IAmParadox27/jellyfin-plugin-home-sections) | Extra curated rows on the home page | Readable Top 10 numbers, Discover badges in the theme accent |
 
-If a plugin isn't in this list, the theme just doesn't add overrides for it — it'll work with default styling.
+A plugin that isn't listed works with its own styling — the theme just doesn't add anything to it.
 
----
+## ❓ Troubleshooting
 
-### What's new?
+| Issue | Solution |
+|-------|----------|
+| **The theme doesn't show** | Check that the `@import` line is the **first** line of the Custom CSS field, click **Save**, then `Ctrl+F5`. |
+| **A TV still shows the previous version** | Close and reopen the Jellyfin app. If it persists, [pin a version](#-pin-a-version): a new URL can't come from the cache. |
+| **`@main` hasn't updated yet** | The CDN can take up to an hour to refresh `@main`. Pin the new version tag to get it right away. |
+| **Square icons on an LG TV** | Add `--iconPack: 'Material Icons';` in a `:root { }` block after the import. |
+| **No arrows on the home tabs in Firefox** | Expected: those arrows need a recent Chrome or Edge. Firefox keeps a thin scrollbar under the tabs. |
+| **Something looks off on an old TV or in Jellyfin Media Player** | Their web engine is older; the theme falls back to a simpler look there. Open an issue with a screenshot if something is actually broken. |
+| **A plugin doesn't look like the rest** | Only the [plugins listed above](#-supported-plugins) are styled. Open an issue to suggest another one. |
 
-📋 See the [**latest GitHub Releases**](https://github.com/peterdu1109/ElegantFin/releases) for a curated, bilingual changelog of all major updates with installation URLs.
+## 🔔 Recommended Plugin
 
-🗂️ The full technical changelog (every version) is in [`RELEASE_NOTES.md`](./RELEASE_NOTES.md).
+ElegantFin Cinema Edition pairs with [**NotifySync**](https://github.com/peterdu1109/NotifySync), a real-time notification bell for Jellyfin: the latest additions in a glass dropdown that follows the theme's colours.
 
----
+> ⭐ Install both for a complete streaming-style Jellyfin, with new content announced as soon as it arrives.
 
-### Credits
+## 👥 Authors & Credits
 
 - **Original theme:** [ElegantFin](https://github.com/lscambo13/ElegantFin) by [lscambo13](https://github.com/lscambo13)
-- **Cinema Edition:** Enhanced by [ElieMFR](https://github.com/ElieMFR)
+- **Cinema Edition:** [ElieMFR](https://github.com/ElieMFR)
+
+Bug reports and suggestions are welcome on [GitHub](https://github.com/peterdu1109/ElegantFin/issues).
+
+Released under the [GPL-2.0 License](./LICENSE), like the original theme.
 
 ---
 
-<a name="francais"></a>
+<a name="français"></a>
+# Français
 
-## Français
+ElegantFin Cinema Edition est une déclinaison d'[ElegantFin](https://github.com/lscambo13/ElegantFin) de [lscambo13](https://github.com/lscambo13), retravaillée en une vraie expérience façon streaming : fiches cinématiques, cartes soignées, une interface TV pensée pour la télécommande et un habillage dédié aux plugins populaires. Une ligne de CSS, et tous les appareils connectés à votre serveur en profitent.
 
-### C'est quoi ?
+> 📖 **Nouveautés & historique :** voir les [Releases GitHub](https://github.com/peterdu1109/ElegantFin/releases) pour ce qu'apporte chaque version, et [`RELEASE_NOTES.md`](./RELEASE_NOTES.md) pour tous les détails.
 
-C'est une **Édition Cinéma** du thème ElegantFin par [lscambo13](https://github.com/lscambo13), enrichie de **modules cinématiques** qui transforment votre Jellyfin en une expérience de streaming professionnelle, inspirée des grandes plateformes.
+## 📑 Sommaire
 
-Tout fonctionne sur **PC, mobile et TV** avec un seul import CSS.
+- [🚀 Démarrage rapide](#-démarrage-rapide)
+- [✨ Fonctionnalités](#-fonctionnalités)
+- [📦 Installation](#-installation-1)
+- [⚙️ Personnalisation](#️-personnalisation)
+- [📱 Compatibilité](#-compatibilité)
+- [🔌 Plugins pris en charge](#-plugins-pris-en-charge)
+- [❓ Dépannage](#-dépannage)
+- [🔔 Plugin recommandé](#-plugin-recommandé)
+- [👥 Auteurs & Crédits](#-auteurs--crédits)
 
----
+## 🚀 Démarrage rapide
 
-### Quoi de neuf par rapport à l'original ?
+1. Ouvrez **Tableau de bord → Branding**.
+2. Collez cette ligne dans **Code CSS personnalisé**, puis **Enregistrer** :
+   ```css
+   @import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+   ```
+3. Rechargez la page (`Ctrl+F5`). Sur une TV, fermez puis rouvrez l'appli Jellyfin.
 
-| Module | Description |
-|--------|-------------|
-| **Connexion en verre dépoli** | Carte de connexion translucide avec animation d'entrée |
-| **Transitions de pages** | Fondu et glissement vers le haut à chaque chargement |
-| **Sections en cascade** | Délais décalés pour une révélation façon streaming |
-| **Effet de balayage** | Reflet lumineux sur la première rangée de cartes (PC) |
-| **Arrière-plan Cinéma** | Dégradé transparent plus profond, arrière-plan plus doux |
-| **Cartes Cinéma** | Zoom au survol (1,06×), bordures lumineuses, titre mis en avant |
-| **Barres de progression blanches** | Barres épurées à la place des barres colorées |
-| **Badges Premium** | Pastilles en verre flouté pour le nombre, la résolution, les éléments vus |
-| **Page de détail Cinéma** | Titres ultra-fins, accroche en italique, bouton Lire blanc |
-| **Lecteur modernisé** | Dégradé doux, curseur réactif, pied de page en verre |
-| **Titres de sections** | Plus gras, chevrons masqués, coupure par ellipse |
-| **Fenêtres en verre** | Flou d'arrière-plan sur les dialogues, menus, menu latéral, notifications et « À suivre » |
-| **Onglets de navigation** | Onglet actif violet, pastille blanche au focus, inactifs discrets |
-| **Système de focus TV** | Pastille blanche sur chaque contrôle — boutons, rangées, onglets, liens — lisible depuis le canapé |
-| **Effets TV différés** | Le zoom des cartes et la mise en avant de la rangée n'arrivent qu'à l'arrêt : le défilement rapide reste fluide |
-| **Panneaux TV opaques** | Menus et dialogues lisibles par-dessus la vidéo |
-| **Qui regarde ?** | Avatars de profil ronds et centrés à la connexion |
-| **Aimantation des rangées** | Les rangées se posent alignées sur une carte (PC et mobile) |
-| **Flèches pleine hauteur** | Flèches en dégradé façon streaming sur les rangées PC |
-| **Flèches des onglets** | Fenêtre PC étroite : des flèches au lieu d'une barre de défilement sous les onglets de l'accueil (Chrome et Edge récents) |
-| **Voile de l'en-tête TV** | Sur les fiches TV, un voile bleu nuit apparaît derrière l'en-tête au défilement : le contenu ne se mêle plus aux icônes |
-| **Hiérarchie typographique** | Graisses affinées pour le texte, les titres d'épisodes et les sous-titres |
-| **Titres longs** | Nombre de lignes limité selon l'écran (2 sur PC, 3 sur mobile), césure des mots |
-| **Barres de défilement fines** | 4 px, compatibles tous navigateurs, piste transparente |
-| **En-tête du lecteur en verre** | Bandeau sombre flouté pendant la lecture |
-| **Sélecteur A-Z** | Transition fluide sur le sélecteur alphabétique des bibliothèques |
-| **Optimisations TV** | Ni flou, ni ombre portée, ni animation en boucle, pour les téléviseurs peu puissants |
-| **Optimisations mobile** | Intensité de flou réduite pour de meilleures performances |
-| **Aperçu au survol** | Texte secondaire et dégradé révélés au survol des cartes (PC) |
-| **Lecture en cours en verre** | Effet verre dépoli sur la barre de lecture |
-| **Voile sur les éléments vus** | Voile sombre discret sur ce qui est déjà visionné |
-| **Menu latéral en verre** | Menu latéral en verre dépoli, entrées de navigation habillées |
-| **Jellyfin 12** | La nouvelle interface PC et mobile ressemble à la 10.11 (TV inchangée) |
+C'est tout : tous les navigateurs, téléphones et TV connectés à votre serveur utilisent désormais le thème.
 
----
+## ✨ Fonctionnalités
 
-### Installation
+*   **Fiches cinématiques** — Images de fond en pleine page, logos des titres, typographie légère, bouton Lire blanc, et infos média rangées dans des panneaux nets.
+*   **Cartes façon streaming** — Affiches arrondies, léger zoom et liseré éclairci au survol, pastilles en verre pour le nombre d'épisodes et la qualité, voile discret sur ce que vous avez déjà vu.
+*   **Pensé pour le canapé** — Sur TV, chaque élément a un focus blanc bien visible. Le zoom des cartes et l'atténuation de la rangée attendent que vous vous arrêtiez : le défilement rapide reste fluide. Les menus restent lisibles sur une vidéo claire, et l'en-tête prend un voile bleu nuit quand on descend dans une fiche, et les onglets de l'accueil ne passent jamais sous les icônes.
+*   **Léger sur TV** — Ni flou, ni ombre portée, ni animation en boucle en disposition TV. Chaque changement TV est mesuré sur une vraie TV Samsung (Tizen) et une box Android TV avant publication.
+*   **Prêt pour Jellyfin 12** — La nouvelle interface PC et mobile garde l'allure de la 10.11 : pastilles de bibliothèques dans la barre du haut, violet du thème au lieu du bleu Jellyfin.
+*   **Aussi sur téléphone** — Rangées qui s'arrêtent sur une carte, mise en page lisible en portrait comme en paysage, et la même barre du haut que sur PC quand le téléphone est tourné.
+*   **Les détails du quotidien** — Fenêtres et menus en verre, barre du lecteur vidéo moderne, barres de défilement fines, listes déroulantes dont le texte ne passe jamais sous la flèche, avatars ronds « Qui regarde ? » à la connexion.
+*   **Attentif aux plugins** — Un habillage dédié pour Jellyfin Enhanced, Media Carousel, Editor's Choice, Media Bar et Home Screen Sections, pour qu'ils fassent partie du thème.
+*   **Polices intégrées** — Inter et Material Icons sont livrées avec le thème. Rien n'est chargé depuis Google, et le fichier du thème pèse environ 150 Ko.
+*   **Sans casse sur les anciens appareils** — Les effets récents ont un repli : une ancienne TV ou un vieux navigateur garde une interface propre et fonctionnelle.
+*   **Accessible** — `prefers-reduced-motion` est respecté : les animations se coupent quand le système le demande.
 
-**Collez le code suivant dans le champ CSS personnalisé :**
+## 📦 Installation
 
+> [!IMPORTANT]
+> **Prérequis :**
+> * Jellyfin **10.11.x** ou **12.x**
+> * L'installation côté serveur atteint **tous les clients**, applis TV comprises. L'installation côté client ne vaut que pour le navigateur où vous la faites.
+
+### Côté serveur (recommandé)
+
+1.  Ouvrez le **Tableau de bord** depuis Paramètres → Administration.
+2.  Allez dans **Branding**, puis descendez jusqu'à **Code CSS personnalisé**.
+3.  Collez la ligne d'import du [Démarrage rapide](#-démarrage-rapide) et cliquez sur **Enregistrer**.
+4.  Rechargez le navigateur (`Ctrl+F5`). Sur les TV, fermez puis rouvrez l'appli Jellyfin.
+
+### Côté client
+
+1.  Ouvrez **Paramètres → Affichage**.
+2.  Descendez jusqu'à **Code CSS personnalisé**, collez la ligne d'import et cliquez sur **Enregistrer**.
+
+### 📌 Figer une version
+
+`@main` suit toujours la dernière version. Pour mettre à jour quand vous le décidez, remplacez `@main` par un numéro de version, par exemple :
+
+```css
+@import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@v1.4.4/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
-@import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+
+Une version figée ne change jamais : c'est aussi le moyen le plus rapide de faire passer une mise à jour sur une appli TV qui garde l'ancien fichier en cache. Les versions suivent `X.Y.Z` : le dernier chiffre pour les correctifs, celui du milieu quand un ensemble de travaux se referme.
+
+## ⚙️ Personnalisation
+
+Toutes les options d'ElegantFin d'origine sont conservées. Ajoutez vos réglages **après** la ligne d'import :
+
+```css
+:root {
+    --clearLogoVisibility: none;
+}
 ```
-
-> 📌 `@main` suit toujours la dernière version. Pour figer une version et mettre à jour quand VOUS le décidez, remplacez `@main` par un tag, par exemple `@v1.4.4` — voir les [Releases](https://github.com/peterdu1109/ElegantFin/releases).
->
-> **Numérotation.** `X.Y.Z` — le dernier chiffre change pour les correctifs et ajustements, celui du milieu quand un ensemble de travaux se referme (par exemple `1.4.0`), ou plutôt que de laisser le dernier atteindre 100.
-
-<details>
-<summary><b>Installation côté serveur</b></summary>
-
-1. Ouvrez le **Tableau de bord** depuis l'onglet Administration dans les Paramètres
-2. Dans la barre latérale, sélectionnez **Slogan** (« Branding » en anglais)
-3. Descendez jusqu'au champ **Code CSS personnalisé**
-4. Collez l'import ci-dessus
-5. Cliquez sur **Enregistrer**
-</details>
-
-<details>
-<summary><b>Installation côté client</b></summary>
-
-1. Ouvrez l'onglet **Affichage** dans les Paramètres
-2. Descendez jusqu'au champ **Code CSS personnalisé**
-3. Collez l'import ci-dessus
-4. Cliquez sur **Enregistrer**
-</details>
-
----
-
-### Personnalisation
-
-Toutes les options de personnalisation d'ElegantFin sont préservées. Ajoutez ces surcharges **après** la ligne d'import :
-
-<details>
-<summary><b>Options disponibles</b></summary>
 
 | Option | Variable | Valeurs |
 |--------|----------|---------|
-| Fond de l'écran de connexion | `--loginPageBgUrl` | `url("votre-serveur/Branding/Splashscreen...")` |
-| Position du bouton de lecture | `--overlayPlayButtonPosition` | `50%` (centré) / `-999em` (masqué) |
-| Effet au survol des cartes | `--cardHoverEffect` | `""` (activé) / `none` (désactivé) |
-| Étiquettes des bibliothèques | `--libraryLabelVisibility` | `block` / `none` |
-| Boutons supplémentaires des cartes | `--extraCardButtonsVisibility` | `block` / `none` |
-| Style de la barre du haut (10.11 et TV) | `--appBarHeight` | `5em` (fondue) / `4.6em` (pleine) |
-| Titre original | `--itemOriginalTitleVisibility` | `block` / `none` |
-| Logo du titre | `--clearLogoVisibility` | `block` / `none` |
-| Note des critiques sur téléphone | `--criticsRatingVisibility` | `none` (masquée) / `block` |
-| Jeu d'icônes (correctif LG TV) | `--iconPack` | `'Material Icons'` (anciennes) |
-| Thèmes de couleurs | Voir le [Playground](https://github.com/lscambo13/ElegantFin/discussions/221) | Divers |
+| **Fond de la page de connexion** | `--loginPageBgUrl` | `url("votre-serveur/Branding/Splashscreen...")` |
+| **Bouton Lire sur les cartes** | `--overlayPlayButtonPosition` | `50%` (centré) / `-999em` (masqué) |
+| **Effet au survol des cartes** | `--cardHoverEffect` | `""` (activé) / `none` (désactivé) |
+| **Noms des bibliothèques** | `--libraryLabelVisibility` | `block` / `none` |
+| **Boutons supplémentaires des cartes** | `--extraCardButtonsVisibility` | `block` / `none` |
+| **Style de la barre du haut (10.11 et TV)** | `--appBarHeight` | `5em` (en fondu) / `4.6em` (pleine) |
+| **Titre original** | `--itemOriginalTitleVisibility` | `block` / `none` |
+| **Logo du titre** | `--clearLogoVisibility` | `block` / `none` |
+| **Note critique sur téléphone** | `--criticsRatingVisibility` | `none` (masquée) / `block` |
+| **Pack d'icônes (TV LG)** | `--iconPack` | `'Material Icons'` |
+| **Thèmes de couleurs** | Voir le [Playground](https://github.com/lscambo13/ElegantFin/discussions/221) | Divers |
 
-</details>
+## 📱 Compatibilité
 
----
+| Plateforme | État |
+|------------|------|
+| **Serveur Jellyfin 10.11 et 12** | Entièrement pris en charge |
+| **Navigateurs web** (Chrome, Edge, Firefox, Safari) | Entièrement pris en charge |
+| **Appli Android Jellyfin** | Entièrement prise en charge |
+| **Samsung Tizen** (appli communautaire Jellyfin) | Prise en charge, éprouvée sur matériel réel ; repli propre sur les anciens modèles |
+| **Applis Android TV basées sur l'interface web de Jellyfin** | Prises en charge, testées sur une box Android TV |
+| **LG webOS** | Pris en charge (l'option pack d'icônes peut être nécessaire) |
+| **Jellyfin Media Player** (moteur web plus ancien) | Partiel |
+| **Appli native Android TV** | Non prise en charge (elle ne charge pas de CSS personnalisé) |
 
-### Compatibilité
+## 🔌 Plugins pris en charge
 
-| Plateforme | Statut |
-|------------|--------|
-| Jellyfin Server 10.11 et 12 | Entièrement pris en charge |
-| Navigateurs web (Chrome, Edge, Firefox, Safari) | Entièrement pris en charge |
-| Application Android Jellyfin | Entièrement prise en charge |
-| LG WebOS | Pris en charge (peut nécessiter le correctif d'icônes) |
-| Samsung Tizen (communauté Jellyfin) | Pris en charge, éprouvé sur matériel réel ; dégradation progressive sur les modèles anciens |
-| Applis Android TV basées sur l'interface web de Jellyfin | Prises en charge (testé sur une box Android TV) |
-| Application native Android TV | Non prise en charge (elle n'accepte pas de CSS) |
-| Jellyfin Media Player (Qt 5.x) | Partiel (moteur web obsolète) |
+Le thème ajoute un habillage dédié à ces plugins :
 
----
-
-### Accessibilité
-
-- `prefers-reduced-motion` est respecté : toutes les animations sont désactivées si l'utilisateur a exprimé cette préférence
-- Les dispositions TV désactivent les flous, les ombres portées et les animations en boucle, pour la fluidité
-- Les dispositions mobiles utilisent une intensité de flou réduite
-
----
-
-### 🔌 Plugins pris en charge
-
-L'Édition Cinéma habille spécifiquement ces plugins Jellyfin :
-
-| Plugin | Ce qu'il fait | Habillage Cinéma |
+| Plugin | Ce qu'il fait | Habillage Cinema |
 |--------|---------------|------------------|
-| [**Editor's Choice**](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | Sélection éditoriale sur la page d'accueil | Espacement de la bannière corrigé, collision bouton/section résolue, description sur trois lignes sur PC, contrôles de défilement et de pause fonctionnels en pastilles sombres sous la barre du haut, logo de titre au ratio préservé |
-| [**Media Bar**](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) | Diaporama défilant en haut de la page d'accueil | Dégradé d'arrière-plan, résumé lisible, états des boutons soignés |
-| [**Home Screen Sections**](https://github.com/IAmParadox27/jellyfin-plugin-home-sections) | Rangées éditoriales supplémentaires sur la page d'accueil | Numéros du Top 10 rendus lisibles — ils étaient quasi noirs sur fond quasi noir — et badges Découvrir à la couleur du thème, en français |
-| [**Jellyfin Enhanced**](https://github.com/n00bcodr/Jellyfin-Enhanced) | Ajouts tout-en-un : raccourcis, demandes Jellyseerr, avis, liens supplémentaires | Icônes Letterboxd et Seerr alignées sur les autres logos, avis TMDB qui ne débordent plus de la fiche, bandeau « où regarder » et badges Seerr aux couleurs du thème |
-| [**Media Carousel**](https://github.com/peterdu1109/MediaCarousel) | Rangées d'accueil façon streaming : Top 10 du serveur d'après les vraies lectures, Top 10 mondial, demandes Seerr, rangées de la bibliothèque | Flèches des rangées centrées sur les affiches, comme les autres rangées |
+| [**Jellyfin Enhanced**](https://github.com/n00bcodr/Jellyfin-Enhanced) | Raccourcis, demandes Jellyseerr, avis, liens supplémentaires | Icônes Letterboxd et Seerr alignées sur les autres logos, bandeau « où regarder », badges Seerr et bouton des lectures en cours aux couleurs du thème, avis qui restent dans la page |
+| [**Media Carousel**](https://github.com/peterdu1109/MediaCarousel) | Rangées d'accueil façon streaming : Top 10 du serveur, Top 10 mondial, demandes Seerr | Flèches des rangées centrées sur les affiches, comme les autres rangées |
+| [**Editor's Choice**](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | Sélection éditoriale sur l'accueil | Espacement de la bannière, résumé lisible, contrôles de défilement et de pause fonctionnels, logo de titre au ratio préservé |
+| [**Media Bar**](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) | Diaporama défilant en haut de l'accueil | Dégradé d'arrière-plan, résumé lisible, boutons soignés |
+| [**Home Screen Sections**](https://github.com/IAmParadox27/jellyfin-plugin-home-sections) | Rangées éditoriales supplémentaires sur l'accueil | Numéros du Top 10 lisibles, badges Découvrir à la couleur du thème |
 
-Si un plugin ne figure pas dans cette liste, le thème ne lui applique aucune surcharge : il s'affiche avec son habillage d'origine.
+Un plugin absent de la liste fonctionne avec son propre habillage : le thème ne lui ajoute simplement rien.
 
----
+## ❓ Dépannage
 
-### Quoi de neuf ?
+| Problème | Solution |
+|----------|----------|
+| **Le thème ne s'affiche pas** | Vérifiez que la ligne `@import` est la **première** ligne du champ CSS personnalisé, cliquez sur **Enregistrer**, puis `Ctrl+F5`. |
+| **Une TV affiche encore l'ancienne version** | Fermez puis rouvrez l'appli Jellyfin. Si ça persiste, [figez une version](#-figer-une-version) : une nouvelle adresse ne peut pas venir du cache. |
+| **`@main` n'est pas encore à jour** | Le CDN peut mettre jusqu'à une heure à rafraîchir `@main`. Figez le nouveau numéro de version pour l'avoir tout de suite. |
+| **Icônes carrées sur une TV LG** | Ajoutez `--iconPack: 'Material Icons';` dans un bloc `:root { }` après l'import. |
+| **Pas de flèches sur les onglets de l'accueil dans Firefox** | Normal : ces flèches demandent un Chrome ou un Edge récent. Firefox garde une fine barre de défilement sous les onglets. |
+| **Un détail cloche sur une ancienne TV ou dans Jellyfin Media Player** | Leur moteur web est plus ancien ; le thème y passe à un rendu plus simple. Ouvrez une issue avec une capture si quelque chose est vraiment cassé. |
+| **Un plugin ne ressemble pas au reste** | Seuls les [plugins listés plus haut](#-plugins-pris-en-charge) sont habillés. Ouvrez une issue pour en proposer un autre. |
 
-📋 Voir les [**dernières Releases GitHub**](https://github.com/peterdu1109/ElegantFin/releases) pour un journal des versions sélectif et bilingue, avec les URLs d'installation.
+## 🔔 Plugin recommandé
 
-🗂️ Le journal technique complet, version par version, est dans [`RELEASE_NOTES.md`](./RELEASE_NOTES.md).
+ElegantFin Cinema Edition va de pair avec [**NotifySync**](https://github.com/peterdu1109/NotifySync), une cloche de notifications en temps réel pour Jellyfin : les derniers ajouts dans un menu en verre aux couleurs du thème.
 
----
+> ⭐ Installez les deux pour un Jellyfin complet façon streaming, avec les nouveautés annoncées dès leur arrivée.
 
-### Crédits
+## 👥 Auteurs & Crédits
 
 - **Thème original :** [ElegantFin](https://github.com/lscambo13/ElegantFin) par [lscambo13](https://github.com/lscambo13)
-- **Édition Cinéma :** enrichie par [ElieMFR](https://github.com/ElieMFR)
+- **Édition Cinéma :** [ElieMFR](https://github.com/ElieMFR)
+
+Signalements de bugs et suggestions bienvenus sur [GitHub](https://github.com/peterdu1109/ElegantFin/issues).
+
+Distribué sous [licence GPL-2.0](./LICENSE), comme le thème d'origine.
