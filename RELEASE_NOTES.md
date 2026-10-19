@@ -76,6 +76,14 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.5.0 — TV: much lighter when Jellyfin shows or hides an element
+
+- TV (and every device): 9 theme rules made each show/hide done by Jellyfin cost about 150 ms of style work on a Samsung TV (1 ms without the theme). They are rewritten without that cost: 0.8 ms now, like without the theme. TV guide: style work for 12 arrow presses 443 → 265 ms, 2 to 3 more frames per second. Same look everywhere.
+- Desktop: the library pills of the top bar no longer wrap ("TV en direct" on two lines around 1540-1600 px wide made the bar grow from 48 to 62 px).
+- Phone (Jellyfin 10.11): the Home button now also shows on library pages, which have no ☰ menu on a phone either.
+
+---
+
 #### v1.4.5 — Card menu button and Jellyfin Enhanced tabs
 
 - Desktop: the ⋮ button is back on cards when you hover them (it was hidden on Jellyfin 12, so the card menu was only reachable with a right click). `--extraCardButtonsVisibility` now only hides the watched and favorite buttons.
@@ -823,6 +831,14 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.5.0 — TV : beaucoup plus legere quand Jellyfin affiche ou masque un element
+
+- TV (et tous les appareils) : 9 regles du theme faisaient couter chaque affichage ou masquage d'element par Jellyfin environ 150 ms de calcul de styles sur une TV Samsung (1 ms sans theme). Elles sont reecrites sans ce cout : 0,8 ms desormais, comme sans theme. Guide TV : calcul de styles pour 12 fleches 443 → 265 ms, 2 a 3 images par seconde de plus. Rendu identique partout.
+- PC : les pastilles de bibliotheques de la barre du haut ne passent plus sur deux lignes (« TV en direct » vers 1 540-1 600 px faisait grandir la barre de 48 a 62 px).
+- Telephone (Jellyfin 10.11) : le bouton Accueil s'affiche aussi sur les bibliotheques, qui n'ont pas non plus de menu ☰ au telephone.
 
 ---
 

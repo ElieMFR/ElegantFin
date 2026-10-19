@@ -4285,6 +4285,12 @@ div[data-role="controlgroup"] a.ui-btn-active {
     font-weight: 400;
     padding: 0.35rem 1.1rem;
     margin: 0 0.3rem;
+    /* v1.5.0 — une pastille ne passe plus sur deux lignes (« TV en direct » vers
+       1 540-1 600 px) : la barre ne grandit plus de 48 à 62 px. Mesuré : sans
+       retour à la ligne, la dernière pastille s'arrête avant les icônes, que
+       Jellyfin Enhanced range de lui-même dans son bouton « Plus » s'il manque de
+       place. */
+    white-space: nowrap;
 }
 
 /* v1.4.4 — de l'air après la DERNIÈRE pastille de bibliothèque (souvent « Plus ▾ ») :
@@ -6086,7 +6092,8 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 
 /* v1.5.0 — carte élargie à 40em quand les avatars s'affichent, SANS :has() (invariant
    au début du fichier) : la carte prend la largeur de son contenu, au moins 28em ;
-   les avatars ont 36em (+ 2 × 2em de marge intérieure = 40em). Le formulaire manuel
+   les avatars ont 36em moins les 2 × 1 px de bordure (+ 2 × 2em de marge intérieure
+   = 40em, au pixel près comme avant, mesuré sur PC). Le formulaire manuel
    et les boutons du bas ne poussent pas la carte (`width: 0; min-width: 100%`) : un
    long texte d'avertissement ne l'élargit pas. */
 #loginPage .padded-left.padded-right.padded-bottom-page {
@@ -6102,7 +6109,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 }
 
 #loginPage .visualLoginForm:not(.hide) {
-    width: 36em;
+    width: calc(36em - 2px);
     max-width: 100%;
 }
 

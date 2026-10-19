@@ -2781,6 +2781,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
     font-weight: 400;
     padding: 0.35rem 1.1rem;
     margin: 0 0.3rem;
+    white-space: nowrap;
 }
 :root .MuiAppBar-root > .MuiToolbar-root:first-child .MuiStack-root > .MuiButton-text:not(.MuiButtonGroup-grouped):last-child {
     margin-right: 1.2rem;
@@ -4003,7 +4004,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     min-width: 100%;
 }
 #loginPage .visualLoginForm:not(.hide) {
-    width: 36em;
+    width: calc(36em - 2px);
     max-width: 100%;
 }
 #divUsers .squareCard {
