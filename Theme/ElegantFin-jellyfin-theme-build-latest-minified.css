@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.4.5 */
+/* ElegantFin Cinema Edition v1.5.0 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.4.5";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.0";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -154,7 +154,7 @@ body {
     --secondaryItemPageNegativeSpace: 60vh;
     --clearLogoBottomSpace: 11em;
 }
-.layout-desktop > body:has(> .appfooter > .nowPlayingBar:not(.hide):not(.nowPlayingBar-hidden)) {
+.layout-desktop > body:has(> .appfooter > .nowPlayingBar:not(.nowPlayingBar-hidden)) {
     --primaryItemPageNegativeSpace: calc(14vh + 5em);
     --secondaryItemPageNegativeSpace: calc(60vh + 5em);
 }
@@ -1078,7 +1078,7 @@ body {
 .skinHeader-withBackground:not(.semiTransparent) .headerHomeButton {
     display: none;
 }
-html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
+html.layout-mobile .skinHeader:not(.noHomeButtonHeader, .noHeaderRight) .headerHomeButton {
     display: inline-flex !important;
 }
 .pageTitle {
@@ -1303,7 +1303,7 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
 #itemDetailPage:has(.detailImageContainer .live_tv) .itemBackdrop {
     height: calc(100vh - 27vh - var(--secondaryItemPageNegativeSpace));
 }
-.layout-tv #itemDetailPage:has(.subtitle):has(.detailLogo:not(.hide)):not(:has(.detailImageContainer .backdropCard)) .itemBackdrop {
+.layout-tv #itemDetailPage:has(.subtitle):not(:has(.detailImageContainer .backdropCard)) .itemBackdrop {
     height: calc(100vh - 9.4em - var(--secondaryItemPageNegativeSpace));
 }
 #itemDetailPage:has(.detailImageContainer .cardPadder-square:not(.person)) .itemBackdrop {
@@ -2196,7 +2196,7 @@ progress + span {
 .overview-controls {
     height: 0;
 }
-.detailSectionContent:has(.itemExternalLinks.hide) .overview-controls {
+.detailSectionContent:has(> .itemExternalLinks:empty) .overview-controls {
     height: 1em;
 }
 #seriesAirTime {
@@ -2693,10 +2693,10 @@ div[data-role="controlgroup"] a.ui-btn-active {
     z-index: -1;
     pointer-events: none;
 }
-:root.layout-desktop:has(#itemDetailPage:not(.hide)) .MuiAppBar-root {
+:root.layout-desktop:has(.skinHeader.semiTransparent) .MuiAppBar-root {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%) !important;
 }
-:root.layout-desktop:has(#itemDetailPage:not(.hide)) .MuiAppBar-root::after {
+:root.layout-desktop:has(.skinHeader.semiTransparent) .MuiAppBar-root::after {
     content: none;
 }
 :where([class*="Mui"]):not(.MuiIcon-root):not(.material-icons) {
@@ -3143,7 +3143,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
     align-content: end;
     min-height: 16vh;
 }
-.detailSectionContent:has(.tagline.hide + .overview.hide) {
+.detailSectionContent:has(> .tagline:empty + .overview:empty) {
     min-height: unset;
 }
 .itemDetailsGroup {
@@ -3940,7 +3940,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 .skinHeader.focuscontainer-x.skinHeader-withBackground.skinHeader-blurred.semiTransparent.noHeaderRight {
     display: none;
 }
-:root:has(#loginPage:not(.hide)) .MuiAppBar-root {
+:root:has(.skinHeader.noHeaderRight) .MuiAppBar-root {
     display: none;
 }
 #loginPage {
@@ -3992,8 +3992,19 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 .visualLoginForm > h1 {
     display: none;
 }
-#loginPage .padded-left.padded-right.padded-bottom-page:has(.visualLoginForm:not(.hide)) {
-    width: 40em;
+#loginPage .padded-left.padded-right.padded-bottom-page {
+    width: auto;
+    min-width: min(28em, calc(100vw - 2em));
+    max-width: calc(100vw - 2em);
+}
+#loginPage .manualLoginForm,
+#loginPage .readOnlyContent {
+    width: 0;
+    min-width: 100%;
+}
+#loginPage .visualLoginForm:not(.hide) {
+    width: 36em;
+    max-width: 100%;
 }
 #divUsers .squareCard {
     width: 30% !important;

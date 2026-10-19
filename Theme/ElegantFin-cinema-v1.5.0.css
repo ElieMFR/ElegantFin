@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.4.5 */
+/* ElegantFin Cinema Edition v1.5.0 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.4.5";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.0";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -338,8 +338,18 @@ body {
    de `.hide` n'importe où dans la page, et comme il pose des variables sur body,
    il recalculait tout le document — même sur TV où `.layout-desktop` ne correspond
    pas. Mesuré sur TV Samsung : 2,1 ms de style par déplacement du focus, accueil
-   38 → 46 images/s une fois restreint. Effet sur PC identique. */
-.layout-desktop > body:has(> .appfooter > .nowPlayingBar:not(.hide):not(.nowPlayingBar-hidden)) {
+   38 → 46 images/s une fois restreint. Effet sur PC identique.
+   v1.5.0 — `:not(.hide)` retiré (voir l'invariant ci-dessous) : nowPlayingBar.js
+   pose `nowPlayingBar-hidden` AVANT `hide` en la masquant et le retire APRÈS
+   `hide` en l'affichant, donc `:not(.nowPlayingBar-hidden)` seul suffit.
+   v1.5.0 — ⚠️ INVARIANT PERF : JAMAIS la classe `hide` dans l'argument d'un
+   :has(), ni en `:not(.hide)` ni en `.hide`, quelle que soit la portée de la règle.
+   Une seule règle de ce type suffit : à chaque bascule de `hide` n'importe où dans
+   la page, le moteur recalcule le style de tout le document. Mesuré sur TV Samsung
+   (2026-10-19) : 150 ms par bascule avec les 9 règles d'alors, 1 ms sans (= sans
+   thème) ; guide TV 495 → 290 ms de style pour 12 flèches. Même une règle
+   `.layout-desktop` coûte sur TV : la portée ne protège pas. */
+.layout-desktop > body:has(> .appfooter > .nowPlayingBar:not(.nowPlayingBar-hidden)) {
     --primaryItemPageNegativeSpace: calc(14vh + 5em);
     --secondaryItemPageNegativeSpace: calc(60vh + 5em);
 }
@@ -1711,8 +1721,14 @@ body {
    Jellyfin cache le bouton avec `.noHomeButtonHeader` — même spécificité, même
    `!important` que notre règle, et le Custom CSS étant injecté en dernier, c'est
    nous qui l'emporterions. Vérifié sur téléphone : présent sur une fiche, absent
-   sur l'accueil, absent sur les bibliothèques. */
-html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
+   sur l'accueil, absent sur les bibliothèques.
+   v1.5.0 — plus de `:has(#itemDetailPage:not(.hide))` (coût TV, invariant au début
+   du fichier). Au téléphone, aucune autre marque ne distingue une fiche d'une
+   bibliothèque (`setTransparentMenu(!layoutManager.mobile)` : rien sur mobile). Le
+   bouton s'affiche donc sur toutes les pages sauf l'accueil (`noHomeButtonHeader`,
+   home.tsx / home.js) et les pages hors connexion (`noHeaderRight`) : les
+   bibliothèques n'ont pas non plus de menu ☰ au téléphone, le bouton y sert aussi. */
+html.layout-mobile .skinHeader:not(.noHomeButtonHeader, .noHeaderRight) .headerHomeButton {
     display: inline-flex !important;
 }
 
@@ -2050,7 +2066,11 @@ html.layout-mobile:has(#itemDetailPage:not(.hide)) .headerHomeButton {
    Le contenu commence désormais 0,8em sous le logo, quelle que soit la hauteur de
    l'écran : même formule que le logo, moins la marge haute de la page (4,2em).
    Les fiches Épisode ne sont pas concernées : elles masquent leur logo. */
-.layout-tv #itemDetailPage:has(.subtitle):has(.detailLogo:not(.hide)):not(:has(.detailImageContainer .backdropCard)) .itemBackdrop {
+/* v1.5.0 — condition « logo affiché » retirée (coût TV, invariant au début du
+   fichier) : les épisodes, qui masquent leur logo, sont déjà exclus par leur vignette
+   (`.backdropCard`). Seule une saison SANS logo change : son contenu commence 9,4em
+   sous le haut de l'écran au lieu de 27vh, soit à peu près au même endroit. */
+.layout-tv #itemDetailPage:has(.subtitle):not(:has(.detailImageContainer .backdropCard)) .itemBackdrop {
     height: calc(100vh - 9.4em - var(--secondaryItemPageNegativeSpace));
 }
 
@@ -3375,7 +3395,9 @@ progress + span {
     height: 0;
 }
 
-.detailSectionContent:has(.itemExternalLinks.hide) .overview-controls {
+/* v1.5.0 — `:empty` au lieu de `.hide` (invariant au début du fichier) : renderLinks
+   vide le bloc des liens quand il le masque (itemDetails/index.js). */
+.detailSectionContent:has(> .itemExternalLinks:empty) .overview-controls {
     height: 1em;
 }
 
@@ -4065,11 +4087,16 @@ div[data-role="controlgroup"] a.ui-btn-active {
    ⚠️ `:not(.hide)` indispensable : la fiche est une page legacy que le gestionnaire
    de vues garde en cache, masquée, après qu'on l'a quittée. Sans lui, le dégradé
    des fiches restait sur la bibliothèque visitée ensuite (constaté au prototype). */
-:root.layout-desktop:has(#itemDetailPage:not(.hide)) .MuiAppBar-root {
+/* v1.5.0 — la fiche affichée se lit sur l'en-tête legacy : itemDetails pose
+   `semiTransparent` sur `.skinHeader` à l'affichage (setTransparentMenu, sauf
+   téléphone) et le retire en la quittant. Plus de `:not(.hide)` dans le :has()
+   (invariant au début du fichier). Les autres pages qui le posent : file d'attente
+   (même dégradé, cohérent) et pages hors connexion (barre MUI masquée plus bas). */
+:root.layout-desktop:has(.skinHeader.semiTransparent) .MuiAppBar-root {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%) !important;
 }
 
-:root.layout-desktop:has(#itemDetailPage:not(.hide)) .MuiAppBar-root::after {
+:root.layout-desktop:has(.skinHeader.semiTransparent) .MuiAppBar-root::after {
     content: none;
 }
 
@@ -4833,7 +4860,10 @@ div[data-role="controlgroup"] a.ui-btn-active {
     min-height: 16vh;
 }
 
-.detailSectionContent:has(.tagline.hide + .overview.hide) {
+/* v1.5.0 — `:empty` au lieu de `.hide` (invariant au début du fichier) : le résumé
+   est vidé quand il est masqué ; le slogan, lui, garde son ancien texte, donc une
+   fiche sans slogan visitée juste après une fiche avec garde l'espace réservé. */
+.detailSectionContent:has(> .tagline:empty + .overview:empty) {
     min-height: unset;
 }
 
@@ -5992,7 +6022,10 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    barre) : la page reprend tout l'écran, comme en 10.11. Dès qu'on quitte la page,
    la barre et son espaceur de 48 px reviennent (accueil identique, vérifié).
    `:not(.hide)` : la page de connexion reste en cache, masquée, après usage. */
-:root:has(#loginPage:not(.hide)) .MuiAppBar-root {
+/* v1.5.0 — `noHeaderRight` (index.jsx : posé sur l'en-tête tant qu'une page
+   autonome est affichée — connexion, mot de passe oublié, choix du serveur) au lieu
+   de `#loginPage:not(.hide)` (invariant au début du fichier). */
+:root:has(.skinHeader.noHeaderRight) .MuiAppBar-root {
     display: none;
 }
 
@@ -6051,8 +6084,26 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     display: none;
 }
 
-#loginPage .padded-left.padded-right.padded-bottom-page:has(.visualLoginForm:not(.hide)) {
-    width: 40em;
+/* v1.5.0 — carte élargie à 40em quand les avatars s'affichent, SANS :has() (invariant
+   au début du fichier) : la carte prend la largeur de son contenu, au moins 28em ;
+   les avatars ont 36em (+ 2 × 2em de marge intérieure = 40em). Le formulaire manuel
+   et les boutons du bas ne poussent pas la carte (`width: 0; min-width: 100%`) : un
+   long texte d'avertissement ne l'élargit pas. */
+#loginPage .padded-left.padded-right.padded-bottom-page {
+    width: auto;
+    min-width: min(28em, calc(100vw - 2em));
+    max-width: calc(100vw - 2em);
+}
+
+#loginPage .manualLoginForm,
+#loginPage .readOnlyContent {
+    width: 0;
+    min-width: 100%;
+}
+
+#loginPage .visualLoginForm:not(.hide) {
+    width: 36em;
+    max-width: 100%;
 }
 
 #divUsers .squareCard {
