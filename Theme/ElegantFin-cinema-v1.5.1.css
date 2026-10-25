@@ -7529,7 +7529,8 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    animation de background-position n'est pas prise en charge par le compositeur :
    recalcul des styles et redessin de la bannière à CHAQUE image, même sans toucher
    à la télécommande. Mesuré au repos sur l'accueil, 10 s, avant → après :
-   Samsung 620 → 30 recalculs, travail 1,8 → 0,7 s ; Freebox 530 → 50 recalculs,
+   Samsung 525 → 34 recalculs avec le fichier v1.5.1 (appli juste démarrée ; 620 → 30
+   et travail 1,8 → 0,7 s sur une appli déjà posée) ; Freebox 530 → 50 recalculs,
    styles 0,6-0,77 → 0,26-0,28 s ; Philips 466 → 40 recalculs. L'image reste, elle ne
    glisse plus. PC et téléphone gardent l'effet. */
 .layout-tv .editorsChoiceItemBanner {
