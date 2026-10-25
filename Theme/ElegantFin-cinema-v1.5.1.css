@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.5.0 */
+/* ElegantFin Cinema Edition v1.5.1 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.0";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.1";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -7512,10 +7512,28 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 .layout-tv .formDialogHeader,
 .layout-tv .iconOsd,
 .layout-tv .skinHeader-blurred,
+.layout-tv .skinHeader-blurred::after,
 .layout-tv .osdHeader,
 .layout-tv .nowPlayingBar {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+}
+/* v1.5.1 : `.skinHeader-blurred::after` ajouté. Le flou de l'en-tête est porté par
+   ce pseudo-élément (règle `@container skinHeader`), pas par l'en-tête lui-même : il
+   survivait sur l'accueil, le guide, les bibliothèques et la recherche (relevé sur la
+   TV Samsung, `blur(20px)`). Coût non mesurable sur la Samsung ; on le retire pour
+   tenir la règle « pas de flou sur TV ». */
+
+/* v1.5.1 — TV : Editor's Choice anime en boucle la position de l'image de sa bannière
+   (`@keyframes banner`, background-position-y, 10 s, infinite, CSS du plugin). Une
+   animation de background-position n'est pas prise en charge par le compositeur :
+   recalcul des styles et redessin de la bannière à CHAQUE image, même sans toucher
+   à la télécommande. Mesuré au repos sur l'accueil, 10 s, avant → après :
+   Samsung 620 → 30 recalculs, travail 1,8 → 0,7 s ; Freebox 530 → 50 recalculs,
+   styles 0,6-0,77 → 0,26-0,28 s ; Philips 466 → 40 recalculs. L'image reste, elle ne
+   glisse plus. PC et téléphone gardent l'effet. */
+.layout-tv .editorsChoiceItemBanner {
+    animation: none !important;
 }
 /* (v1.2.57 : la variante ":has(> button:hover)" retirée de la liste ci-dessus — elle
    était redondante avec .cardOverlayContainer ET, étant un :has() dépendant du hover,
