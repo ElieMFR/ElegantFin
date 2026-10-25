@@ -76,6 +76,13 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.5.1 — TV: Editor's Choice banner at rest, no header blur
+
+- TV: the Editor's Choice banner image no longer slides in a loop (its own animation made the TV redraw the banner on every frame, even untouched). Measured at rest on the home page: style recalculations per 10 s 525 → 34 on a Samsung TV, 530 → 50 on an Android TV box, 466 → 40 on a Philips Android TV. Desktop and phone keep the effect.
+- TV: no more blur under the top bar on the home page, guide, libraries and search; the dark gradient stays.
+
+---
+
 #### v1.5.0 — TV: much lighter when Jellyfin shows or hides an element
 
 - TV (and every device): 9 theme rules made each show/hide done by Jellyfin cost about 150 ms of style work on a Samsung TV (1 ms without the theme). They are rewritten without that cost: 0.8 ms now, like without the theme. TV guide: style work for 12 arrow presses 443 → 265 ms, 2 to 3 more frames per second. Same look everywhere.
@@ -831,6 +838,13 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.5.1 — TV : banniere Editor's Choice au repos, plus de flou d'en-tete
+
+- TV : l'image de la banniere Editor's Choice ne glisse plus en boucle (son animation faisait redessiner la banniere a chaque image, meme sans toucher a la telecommande). Mesure au repos sur l'accueil : recalculs de styles par 10 s 525 → 34 sur une TV Samsung, 530 → 50 sur une box Android TV, 466 → 40 sur une TV Philips Android. PC et telephone gardent l'effet.
+- TV : plus de flou sous la barre du haut sur l'accueil, le guide, les bibliotheques et la recherche ; le degrade sombre reste.
 
 ---
 

@@ -81,7 +81,7 @@ ElegantFin Cinema Edition is a Jellyfin theme inspired by streaming platforms, b
 `@main` always follows the latest version. To update when you choose, replace `@main` with a version number:
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@v1.5.0/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+@import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@v1.5.1/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
 A pinned version never changes. It is also the fastest way to update a TV app that keeps the old file in cache.
@@ -225,7 +225,7 @@ ElegantFin Cinema Edition est un thème Jellyfin inspiré des plateformes de str
 `@main` suit toujours la dernière version. Pour mettre à jour quand vous le décidez, remplacez `@main` par un numéro de version :
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@v1.5.0/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+@import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@v1.5.1/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
 Une version figée ne change jamais. C'est aussi le moyen le plus rapide de mettre à jour une appli TV qui garde l'ancien fichier en cache.
