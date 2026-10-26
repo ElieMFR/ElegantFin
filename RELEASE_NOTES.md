@@ -76,6 +76,13 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.5.2 — TV: Editor's Choice banner up to the top, header veil on the home page
+
+- TV, Editor's Choice in hero mode: the banner now reaches the top of the screen. The plugin moves the home page up by a fixed 120 px, which left a 29 px dark strip above the tabs on a TV; the theme now moves it by exactly the space it adds at the top of the page.
+- TV, home page and other pages: when you scroll down, the top bar gets the same dark veil as on detail pages, so the tabs and icons no longer mix with the row underneath.
+
+---
+
 #### v1.5.1 — TV: Editor's Choice banner at rest, no header blur
 
 - TV: the Editor's Choice banner image no longer slides in a loop (its own animation made the TV redraw the banner on every frame, even untouched). Measured at rest on the home page: style recalculations per 10 s 525 → 34 on a Samsung TV, 530 → 50 on an Android TV box, 466 → 40 on a Philips Android TV. Desktop and phone keep the effect.
@@ -838,6 +845,13 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.5.2 — TV : banniere Editor's Choice jusqu'en haut, voile d'en-tete sur l'accueil
+
+- TV, Editor's Choice en mode heros : la banniere va desormais jusqu'en haut de l'ecran. Le plugin remonte l'accueil de 120 px fixes, ce qui laissait une bande sombre de 29 px au-dessus des onglets sur une TV ; le theme le remonte maintenant exactement de la marge qu'il ajoute en haut de page.
+- TV, accueil et autres pages : en descendant, la barre du haut prend le meme voile sombre que sur les fiches, et les onglets et les icones ne se melent plus a la rangee du dessous.
 
 ---
 
