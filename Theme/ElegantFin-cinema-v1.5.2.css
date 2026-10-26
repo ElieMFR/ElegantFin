@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.5.1 */
+/* ElegantFin Cinema Edition v1.5.2 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.1";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.2";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -6536,8 +6536,12 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    (Chromium 115+ : Freebox, Tizen 9) ; ailleurs, le bloc est ignoré et l'en-tête
    reste tel quel. Opacité seule : animée par le compositeur, sans recalcul de
    style à chaque pas. Pas de `:has()` (coût TV, voir v1.3.15). */
+/* v1.5.2 — le voile vaut aussi pour l'accueil et les autres pages TV (`.semiTransparent`
+   retiré du sélecteur) : en descendant d'une rangée sur l'accueil, la rangée du dessus
+   (« Mes médias ») passait sous les onglets et les icônes de l'en-tête, transparent, et
+   s'y mêlait (constaté sur la TV Samsung). Même voile, même coût (opacité seule). */
 @supports (animation-timeline: scroll()) {
-    .layout-tv .skinHeader.semiTransparent:not(.osdHeader)::before {
+    .layout-tv .skinHeader:not(.osdHeader)::before {
         content: "";
         position: absolute;
         top: 0;
@@ -6800,6 +6804,26 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     /* this increases page top padding when section tabs are expanded on TVs*/
     .layout-tv .libraryPage:not(.noSecondaryNavPage) {
         padding-top: calc(var(--appBarHeight) * 2 + 0.5em) !important;
+    }
+}
+
+/* v1.5.2 — Editor's Choice en mode héros remonte l'accueil de 120 px FIXES
+   (`#homeTab.editorsChoiceHeroMode { transform: translateY(-120px) }`, CSS du plugin)
+   pour glisser sa bannière sous l'en-tête. Sur TV, le thème fait commencer la page à
+   `--appBarHeight + 0.5em` (ou deux fois la barre sous 100em, règles ci-dessus) : 148,5 px
+   sur la Samsung (police 27 px). Il manquait 29 px → bande sombre au-dessus des onglets.
+   On remonte exactement de la marge que le thème ajoute, dans la même unité, donc juste
+   quelle que soit la taille de texte de la TV. Mesuré sur la Samsung : bannière à 0 px du
+   haut au lieu de 29. Mêmes requêtes de largeur et même ordre que les règles de marge. */
+@media (min-width: 100em) {
+    .layout-tv #homeTab.editorsChoiceHeroMode {
+        transform: translateY(calc(-1 * (var(--appBarHeight) + 0.5em))) !important;
+    }
+}
+
+@media (max-width: 100em) {
+    .layout-tv #homeTab.editorsChoiceHeroMode {
+        transform: translateY(calc(-1 * (var(--appBarHeight) * 2 + 0.5em))) !important;
     }
 }
 
