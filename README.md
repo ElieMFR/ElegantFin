@@ -1,13 +1,13 @@
 <h1 align="center">🎬 ElegantFin Cinema Edition</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/peterdu1109/ElegantFin?label=version&color=red&cacheSeconds=3600" alt="Version">
+  <img src="https://img.shields.io/github/v/release/ElieMFR/ElegantFin?label=version&color=red&cacheSeconds=3600" alt="Version">
   <img src="https://img.shields.io/badge/Jellyfin-12.x%20%7C%2010.11.x-blueviolet" alt="Jellyfin">
   <img src="https://img.shields.io/badge/platform-Desktop%20%7C%20Mobile%20%7C%20TV-green" alt="Platforms">
   <a href="https://github.com/lscambo13/ElegantFin"><img src="https://img.shields.io/badge/based%20on-ElegantFin%20v26.09.05-blue" alt="Based on ElegantFin"></a>
   <img src="https://img.shields.io/badge/license-GPL--2.0-green" alt="License">
-  <a href="https://www.jsdelivr.com/package/gh/peterdu1109/ElegantFin"><img src="https://img.shields.io/jsdelivr/gh/hm/peterdu1109/ElegantFin?label=CDN%20hits&color=orange" alt="jsDelivr"></a>
-  <img src="https://img.shields.io/github/release-date/peterdu1109/ElegantFin?color=orange&cacheSeconds=3600" alt="Last release">
+  <a href="https://www.jsdelivr.com/package/gh/ElieMFR/ElegantFin"><img src="https://img.shields.io/jsdelivr/gh/hm/ElieMFR/ElegantFin?label=CDN%20hits&color=orange" alt="jsDelivr"></a>
+  <img src="https://img.shields.io/github/release-date/ElieMFR/ElegantFin?color=orange&cacheSeconds=3600" alt="Last release">
 </p>
 
 <p align="center">
@@ -29,7 +29,7 @@
 
 ElegantFin Cinema Edition is a Jellyfin theme inspired by streaming platforms, based on [ElegantFin](https://github.com/lscambo13/ElegantFin) by [lscambo13](https://github.com/lscambo13). One line of CSS on the server, and every device gets it: PC, phone and TV.
 
-> 📖 **Version history:** see [GitHub Releases](https://github.com/peterdu1109/ElegantFin/releases) for what's new in each version, and [`RELEASE_NOTES.md`](./RELEASE_NOTES.md) for every detail.
+> 📖 **Version history:** see [GitHub Releases](https://github.com/ElieMFR/ElegantFin/releases) for what's new in each version, and [`RELEASE_NOTES.md`](./RELEASE_NOTES.md) for every detail.
 
 ## 📑 Table of Contents
 
@@ -70,7 +70,7 @@ ElegantFin Cinema Edition is a Jellyfin theme inspired by streaming platforms, b
 2.  Go to **Branding** and scroll down to **Custom CSS code**.
 3.  Paste this line, then click **Save**:
     ```css
-    @import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+    @import url("https://cdn.jsdelivr.net/gh/ElieMFR/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
     ```
 4.  Reload the page (`Ctrl+F5`). On a TV, close and reopen the Jellyfin app.
 
@@ -81,7 +81,7 @@ ElegantFin Cinema Edition is a Jellyfin theme inspired by streaming platforms, b
 `@main` always follows the latest version. To update when you choose, replace `@main` with a version number:
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@v1.5.2/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+@import url("https://cdn.jsdelivr.net/gh/ElieMFR/ElegantFin@v1.5.2/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
 A pinned version never changes. It is also the fastest way to update a TV app that keeps the old file in cache.
@@ -162,7 +162,7 @@ ElegantFin Cinema Edition goes well with [**NotifySync**](https://github.com/pet
 - **Original theme:** [ElegantFin](https://github.com/lscambo13/ElegantFin) by [lscambo13](https://github.com/lscambo13)
 - **Cinema Edition:** [ElieMFR](https://github.com/ElieMFR)
 
-Bug reports and suggestions are welcome on [GitHub](https://github.com/peterdu1109/ElegantFin/issues).
+Bug reports and suggestions are welcome on [GitHub](https://github.com/ElieMFR/ElegantFin/issues).
 
 Released under the [GPL-2.0 License](./LICENSE), like the original theme.
 
@@ -173,7 +173,7 @@ Released under the [GPL-2.0 License](./LICENSE), like the original theme.
 
 ElegantFin Cinema Edition est un thème Jellyfin inspiré des plateformes de streaming, basé sur [ElegantFin](https://github.com/lscambo13/ElegantFin) de [lscambo13](https://github.com/lscambo13). Une ligne de CSS sur le serveur, et tous les appareils en profitent : PC, téléphone et TV.
 
-> 📖 **Historique des versions :** voir les [Releases GitHub](https://github.com/peterdu1109/ElegantFin/releases) pour les nouveautés de chaque version, et [`RELEASE_NOTES.md`](./RELEASE_NOTES.md) pour tous les détails.
+> 📖 **Historique des versions :** voir les [Releases GitHub](https://github.com/ElieMFR/ElegantFin/releases) pour les nouveautés de chaque version, et [`RELEASE_NOTES.md`](./RELEASE_NOTES.md) pour tous les détails.
 
 ## 📑 Sommaire
 
@@ -214,7 +214,7 @@ ElegantFin Cinema Edition est un thème Jellyfin inspiré des plateformes de str
 2.  Allez dans **Slogan** (c'est le nom de la page Branding en français), puis descendez jusqu'à **Code CSS personnalisé**.
 3.  Collez cette ligne, puis cliquez sur **Sauvegarder** :
     ```css
-    @import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+    @import url("https://cdn.jsdelivr.net/gh/ElieMFR/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
     ```
 4.  Rechargez la page (`Ctrl+F5`). Sur une TV, fermez puis rouvrez l'appli Jellyfin.
 
@@ -225,7 +225,7 @@ ElegantFin Cinema Edition est un thème Jellyfin inspiré des plateformes de str
 `@main` suit toujours la dernière version. Pour mettre à jour quand vous le décidez, remplacez `@main` par un numéro de version :
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/peterdu1109/ElegantFin@v1.5.2/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+@import url("https://cdn.jsdelivr.net/gh/ElieMFR/ElegantFin@v1.5.2/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
 Une version figée ne change jamais. C'est aussi le moyen le plus rapide de mettre à jour une appli TV qui garde l'ancien fichier en cache.
@@ -306,6 +306,6 @@ ElegantFin Cinema Edition va bien avec [**NotifySync**](https://github.com/peter
 - **Thème original :** [ElegantFin](https://github.com/lscambo13/ElegantFin) de [lscambo13](https://github.com/lscambo13)
 - **Édition Cinéma :** [ElieMFR](https://github.com/ElieMFR)
 
-Signalements de bugs et suggestions bienvenus sur [GitHub](https://github.com/peterdu1109/ElegantFin/issues).
+Signalements de bugs et suggestions bienvenus sur [GitHub](https://github.com/ElieMFR/ElegantFin/issues).
 
 Distribué sous [licence GPL-2.0](./LICENSE), comme le thème d'origine.
