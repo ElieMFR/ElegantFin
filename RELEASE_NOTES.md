@@ -76,6 +76,12 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.5.3 — TV: the up arrow reaches the tabs again from the Editor's Choice banner
+
+- TV, Editor's Choice in hero mode: since v1.5.2 the up arrow no longer moved from the banner to the tabs, because the banner itself started at the very top of the screen. The banner is back in its place and only its image is stretched up to the top: no dark strip, and the up arrow works again.
+
+---
+
 #### v1.5.2 — TV: Editor's Choice banner up to the top, header veil on the home page
 
 - TV, Editor's Choice in hero mode: the banner now reaches the top of the screen. The plugin moves the home page up by a fixed 120 px, which left a 29 px dark strip above the tabs on a TV; the theme now moves it by exactly the space it adds at the top of the page.
@@ -845,6 +851,12 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - **Slider reactif** — S'agrandit a `0.5em` au survol, pouce blanc avec `border-radius: 2px`, lueur sur la barre de progression
 - **Slider Firefox** — Stylisation complete `::-moz-range-thumb` identique a WebKit (taille, bordure, radius, transitions)
 - **Bouton skip** — Gras (700), `letter-spacing: 0.03em`, `scale(1.03)` au survol
+
+---
+
+#### v1.5.3 — TV : la fleche haut ramene de nouveau aux onglets depuis la banniere Editor's Choice
+
+- TV, Editor's Choice en mode heros : depuis la v1.5.2, la fleche haut ne passait plus de la banniere aux onglets, parce que la banniere elle-meme commencait tout en haut de l'ecran. La banniere reprend sa place et seule son image est prolongee jusqu'en haut : pas de bande sombre, et la fleche haut fonctionne de nouveau.
 
 ---
 
