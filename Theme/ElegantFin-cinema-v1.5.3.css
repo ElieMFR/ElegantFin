@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.5.2 */
+/* ElegantFin Cinema Edition v1.5.3 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.2";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.3";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -6807,23 +6807,37 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     }
 }
 
-/* v1.5.2 — Editor's Choice en mode héros remonte l'accueil de 120 px FIXES
+/* v1.5.2 → v1.5.3 — Editor's Choice en mode héros remonte l'accueil de 120 px FIXES
    (`#homeTab.editorsChoiceHeroMode { transform: translateY(-120px) }`, CSS du plugin)
    pour glisser sa bannière sous l'en-tête. Sur TV, le thème fait commencer la page à
-   `--appBarHeight + 0.5em` (ou deux fois la barre sous 100em, règles ci-dessus) : 148,5 px
+   `--appBarHeight + 0.5em` (deux fois la barre sous 100em, règles ci-dessus) : 148,5 px
    sur la Samsung (police 27 px). Il manquait 29 px → bande sombre au-dessus des onglets.
-   On remonte exactement de la marge que le thème ajoute, dans la même unité, donc juste
-   quelle que soit la taille de texte de la TV. Mesuré sur la Samsung : bannière à 0 px du
-   haut au lieu de 29. Mêmes requêtes de largeur et même ordre que les règles de marge. */
+   ⚠️ v1.5.2 remontait tout l'accueil de la marge exacte : la bannière commençait à 0 px
+   et la flèche HAUT ne menait plus aux onglets. focusManager.js (`nav`, cas « up ») ne
+   retient qu'un élément dont le haut est STRICTEMENT au-dessus du haut de l'élément ciblé ;
+   à 0 px (et même à 1 px), plus rien dans l'en-tête ne passait ce test. Vérifié sur la
+   Samsung : v1.5.1 → « Accueil », v1.5.2 → bloqué.
+   v1.5.3 : la bannière garde sa place (29 px) pour la navigation, seule son IMAGE de fond
+   est prolongée vers le haut, du même écart, dans la même unité que la marge du thème.
+   Les conteneurs de Splide laissent dépasser l'image (overflow visible) ; en mode fondu,
+   les diapositives sont empilées au même endroit, rien d'autre ne déborde. Vérifié sur la
+   Samsung : image jusqu'en haut, et rangées → bannière → « Accueil » à la télécommande. */
+.layout-tv .editorsChoiceHeroMode .editorsChoiceContainer .splide,
+.layout-tv .editorsChoiceHeroMode .editorsChoiceContainer .splide__track,
+.layout-tv .editorsChoiceHeroMode .editorsChoiceContainer .splide__list,
+.layout-tv .editorsChoiceHeroMode .editorsChoiceItemBanner {
+    overflow: visible !important;
+}
+
 @media (min-width: 100em) {
-    .layout-tv #homeTab.editorsChoiceHeroMode {
-        transform: translateY(calc(-1 * (var(--appBarHeight) + 0.5em))) !important;
+    .layout-tv .editorsChoiceHeroMode .editorsChoiceItemBanner .editorsChoiceBackdrop {
+        top: calc(120px - (var(--appBarHeight) + 0.5em)) !important;
     }
 }
 
 @media (max-width: 100em) {
-    .layout-tv #homeTab.editorsChoiceHeroMode {
-        transform: translateY(calc(-1 * (var(--appBarHeight) * 2 + 0.5em))) !important;
+    .layout-tv .editorsChoiceHeroMode .editorsChoiceItemBanner .editorsChoiceBackdrop {
+        top: calc(120px - (var(--appBarHeight) * 2 + 0.5em)) !important;
     }
 }
 
