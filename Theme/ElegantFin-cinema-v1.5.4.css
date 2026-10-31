@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.5.3 */
+/* ElegantFin Cinema Edition v1.5.4 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.3";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.4";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -215,9 +215,12 @@
     /* fill out YOUR-JELLYFIN-SERVER-ADDRESS with a relevant host address;
        url("<YOUR-JELLYFIN-SERVER-ADDRESS>/Branding/Splashscreen?format=webp&foregroundLayer=1&quality=33&width=3840&height=2160&blur=2"); */
     --loginPageBgUrl: url("");
-    --loginPageText: "Connectez-vous pour continuer";
+    /* title above the login form: follows the Jellyfin language (English, or French
+       when Jellyfin is in French) [default]; uncomment to force your own text */
+    /* --loginPageText: "Sign in to continue"; */
 
-    /* use 2.8em keep the overlay play button at bottom-left corner [default];
+    /* use -999em to hide the overlay play button [default];
+       use 2.8em to keep it at the bottom-left corner;
        use 50% to place it at the center of a card */
     --overlayPlayButtonPosition: -999em;
 
@@ -262,15 +265,15 @@
     none: makes them always hidden only on mobile */
     --miniOverlayButtonVisibility: block;
 
-    /* use "" to enable the card hover effect [default]; 
-       use none (without quotes) to disable it */
+    /* use "" to enable the card hover effect;
+       use none (without quotes) to disable it [default] */
     --cardHoverEffect: none;
 
     /* use 5em to enable the fading app bar (seamless); 
        use 4.6em to get the solid app bar (cleaner with border) */
     --appBarHeight: 5em;
 
-    /* use 10% to crop the top 10% of a backdrop image on a 16:9 screen (recommended) [default]; 
+    /* use 5% to crop the top 5% of a backdrop image on a 16:9 screen [default];
        use a figure between 0% and 20% according to your liking */
     --backdropTrimFromTop: 5%;
 }
@@ -1038,11 +1041,6 @@ body {
 .layout-mobile .section0 .cardImageContainer::before,
 .layout-tv .section0 .cardImageContainer::before {
     display: none;
-}
-
-/* Pause shimmer when page is not visible (saves GPU) */
-.page.hide .section0 .cardImageContainer::before {
-    animation-play-state: paused;
 }
 
 .cardBox:not(.visualCardBox) .cardPadder {
@@ -3371,8 +3369,8 @@ progress + span {
 }
 
 .overview-expand.emby-button:after {
-    content: "\e313";
-    font-family: "Material Icons";
+    content: "keyboard_arrow_down";
+    font-family: var(--iconPack), "Material Icons";
     background: var(--selectorBackgroundColor);
     border-radius: 50%;
     width: 1.5em;
@@ -4238,8 +4236,12 @@ div[data-role="controlgroup"] a.ui-btn-active {
    et attrapait aussi « Tout lire » et « Lecture aléatoire », logés DANS la barre
    (LibraryToolbar est rendue à l'intérieur de l'AppBar) : texte et icônes y
    sortaient violets (mesuré rgb(119, 91, 244)) au lieu du quasi-noir voulu par la
-   règle `.MuiButton-containedPrimary` plus bas. */
-.MuiAppBar-root .MuiButton-textPrimary {
+   règle `.MuiButton-containedPrimary` plus bas.
+   v1.5.4 : limité à la première rangée de la barre. Jellyfin 12.4 ajoute dans la
+   deuxième rangée (LibraryToolbar) un bouton « Réinitialiser les filtres » de même
+   variante, qui prenait la pastille de la médiathèque active (mesuré rgb(119, 91, 244)
+   sur un filtre « Non lu »). */
+.MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-textPrimary {
     background-color: var(--activeColor) !important;
     color: #fff !important;
     border-radius: var(--largeRadius);
@@ -4806,8 +4808,12 @@ div[data-role="controlgroup"] a.ui-btn-active {
     margin-top: 0;
 }
 
+/* v1.5.4 : pistes audio et sous-titres juste sous les boutons de la fiche, avant le
+   résumé. Placées après lui (order 2), elles étaient 317 px plus bas (mesuré sur une
+   Freebox) : en y descendant, la page défilait, les boutons sortaient de l'écran par
+   le haut et la flèche haut menait à l'en-tête au lieu de revenir sur « Lire ». */
 .layout-tv .trackSelections {
-    order: 2;
+    order: 0;
 }
 
 .recordingFields {
@@ -6121,9 +6127,16 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     width: 45% !important;
 }
 
+/* v1.5.4 : titre dans la langue de Jellyfin, qui la pose sur <html lang> ;
+   --loginPageText, s'il est défini, garde la priorité. */
+html:lang(fr) .manualLoginForm::before,
+html:lang(fr) .visualLoginForm::before {
+    content: var(--loginPageText, "Connectez-vous pour continuer");
+}
+
 .manualLoginForm::before,
 .visualLoginForm::before {
-    content: var(--loginPageText);
+    content: var(--loginPageText, "Sign in to continue");
     position: relative;
     display: block;
     top: -3.5em;
@@ -6655,19 +6668,21 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     transform: translateY(0);
 }
 
+/* v1.5.4 : noms de ligature au lieu des codepoints \e87d et \e88a (voir v1.2.88), et
+   police par --iconPack comme les autres icônes ; "FILL" retiré, sans effet sur une
+   police statique. */
 .noHomeButtonHeader .emby-tab-button[data-index="1"]:before {
-    content: "\e87d";
+    content: "favorite";
 }
 
 .noHomeButtonHeader .emby-tab-button[data-index="0"]:before {
-    content: "\e88a";
+    content: "home";
 }
 
 .noHomeButtonHeader .emby-tab-button:before {
-    font-family: "Material Icons Round";
+    font-family: var(--iconPack), "Material Icons";
     padding-inline-end: 0.5ch;
     font-size: 1.2em;
-    font-variation-settings: "FILL" 0;
 }
 
 /* v1.3.16 — RETIRÉ : `.layout-tv .sectionTabs .emby-tabs.smoothScrollX { overflow:

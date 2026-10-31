@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.5.3 */
+/* ElegantFin Cinema Edition v1.5.4 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.3";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.4";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -110,7 +110,6 @@
     --headerBlurLayerVisibility: "";
     --headerBackground: var(--headerColorGradient);
     --loginPageBgUrl: url("");
-    --loginPageText: "Connectez-vous pour continuer";
     --overlayPlayButtonPosition: -999em;
     --iconPack: "Material Icons Round", Material Icons;
     --extraCardButtonsVisibility: none;
@@ -604,9 +603,6 @@ body {
 .layout-mobile .section0 .cardImageContainer::before,
 .layout-tv .section0 .cardImageContainer::before {
     display: none;
-}
-.page.hide .section0 .cardImageContainer::before {
-    animation-play-state: paused;
 }
 .cardBox:not(.visualCardBox) .cardPadder {
     background-color: var(--lighterGradientPoint);
@@ -2176,8 +2172,8 @@ progress + span {
     color: transparent;
 }
 .overview-expand.emby-button:after {
-    content: "\e313";
-    font-family: "Material Icons";
+    content: "keyboard_arrow_down";
+    font-family: var(--iconPack), "Material Icons";
     background: var(--selectorBackgroundColor);
     border-radius: 50%;
     width: 1.5em;
@@ -2763,7 +2759,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
     --jf-palette-Button-inheritContainedHoverBg: var(--borderColor);
     --jf-palette-SnackbarContent-bg: var(--drawerColor);
 }
-.MuiAppBar-root .MuiButton-textPrimary {
+.MuiAppBar-root > .MuiToolbar-root:first-child .MuiButton-textPrimary {
     background-color: var(--activeColor) !important;
     color: #fff !important;
     border-radius: var(--largeRadius);
@@ -3098,7 +3094,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
     margin-top: 0;
 }
 .layout-tv .trackSelections {
-    order: 2;
+    order: 0;
 }
 .recordingFields {
     order: 4;
@@ -4013,9 +4009,13 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 .layout-mobile #divUsers .squareCard {
     width: 45% !important;
 }
+html:lang(fr) .manualLoginForm::before,
+html:lang(fr) .visualLoginForm::before {
+    content: var(--loginPageText, "Connectez-vous pour continuer");
+}
 .manualLoginForm::before,
 .visualLoginForm::before {
-    content: var(--loginPageText);
+    content: var(--loginPageText, "Sign in to continue");
     position: relative;
     display: block;
     top: -3.5em;
@@ -4388,16 +4388,15 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     transform: translateY(0);
 }
 .noHomeButtonHeader .emby-tab-button[data-index="1"]:before {
-    content: "\e87d";
+    content: "favorite";
 }
 .noHomeButtonHeader .emby-tab-button[data-index="0"]:before {
-    content: "\e88a";
+    content: "home";
 }
 .noHomeButtonHeader .emby-tab-button:before {
-    font-family: "Material Icons Round";
+    font-family: var(--iconPack), "Material Icons";
     padding-inline-end: 0.5ch;
     font-size: 1.2em;
-    font-variation-settings: "FILL" 0;
 }
 .layout-tv .sectionTabs {
     max-width: calc(100% - 38em);

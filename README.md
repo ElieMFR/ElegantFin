@@ -81,7 +81,7 @@ ElegantFin Cinema Edition is a Jellyfin theme inspired by streaming platforms, b
 `@main` always follows the latest version. To update when you choose, replace `@main` with a version number:
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/ElieMFR/ElegantFin@v1.5.3/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+@import url("https://cdn.jsdelivr.net/gh/ElieMFR/ElegantFin@v1.5.4/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
 A pinned version never changes. It is also the fastest way to update a TV app that keeps the old file in cache.
@@ -103,6 +103,7 @@ Most of these options come from the original ElegantFin. Add them **after** the 
 | Option | Variable | Values |
 |--------|----------|--------|
 | **Login background** | `--loginPageBgUrl` | `url("your-server/Branding/Splashscreen...")` |
+| **Login title** | `--loginPageText` | Follows the Jellyfin language (English, French) / your own text, e.g. `"Welcome"` |
 | **Play button on cards** | `--overlayPlayButtonPosition` | `50%` (center) / `-999em` (hidden) |
 | **Card hover effect** | `--cardHoverEffect` | `""` (on) / `none` (off) |
 | **Library labels** | `--libraryLabelVisibility` | `block` / `none` |
@@ -225,7 +226,7 @@ ElegantFin Cinema Edition est un thème Jellyfin inspiré des plateformes de str
 `@main` suit toujours la dernière version. Pour mettre à jour quand vous le décidez, remplacez `@main` par un numéro de version :
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/ElieMFR/ElegantFin@v1.5.3/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+@import url("https://cdn.jsdelivr.net/gh/ElieMFR/ElegantFin@v1.5.4/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
 Une version figée ne change jamais. C'est aussi le moyen le plus rapide de mettre à jour une appli TV qui garde l'ancien fichier en cache.
@@ -247,6 +248,7 @@ La plupart de ces options viennent d'ElegantFin d'origine. Ajoutez-les **après*
 | Option | Variable | Valeurs |
 |--------|----------|---------|
 | **Fond de la page de connexion** | `--loginPageBgUrl` | `url("votre-serveur/Branding/Splashscreen...")` |
+| **Titre de la page de connexion** | `--loginPageText` | Suit la langue de Jellyfin (anglais, français) / votre texte, par ex. `"Bienvenue"` |
 | **Bouton Lire sur les cartes** | `--overlayPlayButtonPosition` | `50%` (centré) / `-999em` (masqué) |
 | **Effet au survol des cartes** | `--cardHoverEffect` | `""` (activé) / `none` (désactivé) |
 | **Noms des bibliothèques** | `--libraryLabelVisibility` | `block` / `none` |
