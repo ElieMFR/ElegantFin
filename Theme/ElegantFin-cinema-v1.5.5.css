@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.5.4 */
+/* ElegantFin Cinema Edition v1.5.5 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.4";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.5";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -463,6 +463,25 @@ body {
     outline: 0.12em solid rgba(255, 255, 255, 0.95);
     outline-offset: 0.1em;
     box-shadow: 0 0 0.8em rgba(255, 255, 255, 0.3);
+}
+
+/* v1.5.5 : focus clavier sur PC et téléphone. Là, .card est un DIV qui ne prend
+   jamais le focus (la règle ci-dessus ne s'y applique pas) : c'est le lien
+   .cardImageContainer qui le reçoit. Mesuré en v1.5.4 : aucun contour, aucune ombre.
+   Même contour blanc intérieur que la TV, sur l'image seule. Media Carousel ne
+   dessine son cadre que sur `.mc-row .card:focus` : pas de double cadre (mesuré). */
+.layout-desktop .cardImageContainer:focus-visible,
+.layout-mobile .cardImageContainer:focus-visible {
+    outline: none !important;
+    box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.95) !important;
+}
+
+/* v1.5.5 : titre cliquable d'une rangée (ouvre la liste complète), contour calculé à `none` au clavier
+   en v1.5.4. Les flèches des rangées ont déjà leur lueur de focus (mesurée). */
+.layout-desktop .sectionTitleTextButton:focus-visible,
+.layout-mobile .sectionTitleTextButton:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.95) !important;
+    outline-offset: 2px;
 }
 
 /* v1.2.35: TV focus passé du violet (var(--uiAccentColor)) au BLANC.

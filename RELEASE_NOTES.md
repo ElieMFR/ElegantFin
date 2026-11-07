@@ -13,6 +13,13 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.5.5 — Keyboard focus visible on desktop and phone
+
+- Desktop and phone, keyboard: the focused card now shows a white outline, drawn just inside the edge of the image. It showed nothing before, because the focus lands on the image link and not on the card.
+- Desktop and phone, keyboard: a row title that opens the full list gets a white outline when focused.
+
+---
+
 #### v1.5.4 — TV: the up arrow returns to Play on detail pages, Jellyfin 12.4 filter button
 
 - TV, detail pages: the audio and subtitle menus now sit right under the Play buttons, before the overview. They were 317 px lower, so going down to them scrolled the buttons off the screen and the up arrow went to the top bar instead of back to Play.
@@ -735,6 +742,13 @@ Repository/quality release; the rendered theme is byte-for-byte identical in rul
 ### Edition Cinema — modules cinematiques par-dessus ElegantFin
 
 Cette version transforme le theme ElegantFin en une experience de streaming professionnelle inspiree des grandes apps de streaming, tout en gardant la compatibilite complete avec bureau, mobile et TV.
+
+---
+
+#### v1.5.5 — Focus clavier visible sur PC et telephone
+
+- PC et telephone, au clavier : la carte qui a le focus montre maintenant un contour blanc, trace juste a l'interieur du bord de l'image. Rien ne s'affichait avant, parce que le focus va sur le lien de l'image et non sur la carte.
+- PC et telephone, au clavier : le titre d'une rangee qui ouvre la liste complete prend un contour blanc quand il a le focus.
 
 ---
 
