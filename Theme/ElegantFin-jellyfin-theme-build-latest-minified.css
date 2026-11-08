@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.5.5 */
+/* ElegantFin Cinema Edition v1.5.7 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.5";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.7";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -265,16 +265,6 @@ body {
 .layout-tv .card,
 .layout-tv .cardImageContainer {
     transition: none !important;
-}
-.layout-tv .card:focus-visible .cardScalable {
-    box-shadow:
-        inset 0 0 0 3px rgba(255, 255, 255, 0.95),
-        0 0 16px rgba(255, 255, 255, 0.3);
-}
-.layout-tv .card:focus .cardScalable {
-    box-shadow:
-        inset 0 0 0 3px rgba(255, 255, 255, 0.95),
-        0 0 16px rgba(255, 255, 255, 0.3);
 }
 .layout-tv .card:focus-visible .cardScalable {
     transform: none !important;
@@ -555,7 +545,8 @@ body {
     max-width: 100%;
     transition: color 0.2s ease;
 }
-.layout-desktop .card-hoverable:hover .cardText { color: #fff !important; }
+.layout-desktop .card-hoverable:hover .cardText,
+.layout-desktop .card-hoverable:focus-within .cardText { color: #fff !important; }
 .layout-desktop .card-hoverable:hover .cardOverlayContainer {
     background: transparent;
 }
@@ -2010,7 +2001,7 @@ progress + span {
     padding-bottom: 5vh;
 }
 .btnHeaderSave.button-flat {
-    color: var(--activeColor) !important;
+    color: var(--jf-palette-primary-light) !important;
     gap: 0.3em;
     border-radius: var(--smallRadius);
 }
@@ -2558,11 +2549,6 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
     outline-offset: 3px;
     box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
 }
-.detailButton:not(.btnPlay):focus-visible {
-    outline: 2px solid rgba(255, 255, 255, 0.95);
-    outline-offset: 2px;
-    background: rgba(255, 255, 255, 0.1) !important;
-}
 .sectionTabs .emby-tab-button:focus-visible {
     outline: 2px solid rgba(255, 255, 255, 0.95);
     outline-offset: 2px;
@@ -2728,7 +2714,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
     font-weight: 700;
     letter-spacing: 0.1em;
     line-height: normal;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.5);
     background-color: transparent;
     padding: 1.5em 1em 0.5em 1em;
 }
@@ -2841,7 +2827,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
     color: #fff !important;
 }
 .MuiLink-root {
-    color: var(--activeColor) !important;
+    color: var(--jf-palette-primary-light) !important;
 }
 .MuiLink-root:has(> .sectionTitle) {
     color: rgba(255, 255, 255, 0.8) !important;
@@ -4001,6 +3987,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 }
 #loginPage .padded-left.padded-right.padded-bottom-page {
     width: auto;
+    min-width: 28em;
     min-width: min(28em, calc(100vw - 2em));
     max-width: calc(100vw - 2em);
 }
@@ -4658,11 +4645,13 @@ html:lang(fr) .visualLoginForm::before {
     transition: max-height 0.3s var(--ease-smooth),
                 opacity 0.25s var(--ease-smooth);
 }
-.layout-desktop .card-hoverable:hover .cardText-secondary {
+.layout-desktop .card-hoverable:hover .cardText-secondary,
+.layout-desktop .card-hoverable:focus-within .cardText-secondary {
     max-height: 3em;
     opacity: 1;
 }
-.layout-desktop .card-hoverable:hover .cardFooter {
+.layout-desktop .card-hoverable:hover .cardFooter,
+.layout-desktop .card-hoverable:focus-within .cardFooter {
     background: linear-gradient(
         to top,
         rgba(0, 0, 0, 0.85) 0%,
@@ -4752,7 +4741,7 @@ html:lang(fr) .visualLoginForm::before {
     font-size: 0.7em;
     font-weight: 700;
     letter-spacing: 0.1em;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.5);
     padding: 1.5em 1em 0.5em 1em;
 }
 .layout-tv .mainDrawer {
@@ -5059,33 +5048,6 @@ html:lang(fr) .visualLoginForm::before {
 .layout-mobile #itemDetailPage .nameContainer:has(.subtitle) h1.parentName {
     font-size: 1.5em !important;
 }
-#slides-container {
-    top: calc(-0.5 * var(--appBarHeight));
-}
-.backdrop-overlay {
-    background: linear-gradient(
-        var(--lighterGradientPoint),
-        var(--gradientPointAlpha),
-        60%,
-        var(--darkerGradientPointAlpha)
-    );
-}
-.plot {
-    color: var(--textColor);
-    text-shadow: 1px 1px var(--lighterGradientPointAlpha);
-}
-.button-container {
-    align-items: center;
-}
-.favorite-button {
-    background: none;
-    color: var(--textColor);
-}
-.detail-button:hover,
-.favorite-button:hover {
-    background: var(--dimTextColor);
-    color: black;
-}
 .editorsChoiceContainer {
     margin-bottom: 2em;
 }
@@ -5129,21 +5091,6 @@ html:lang(fr) .visualLoginForm::before {
 .layout-desktop .editorsChoiceItemOverview {
     -webkit-line-clamp: 3 !important;
     line-clamp: 3 !important;
-}
-.top-ten .card:before {
-    color: transparent;
-    -webkit-text-stroke: 3px var(--uiAccentColor);
-    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
-}
-.discover-card .discoverCard-movie:before {
-    content: 'Film';
-    background-color: var(--uiAccentColor);
-    border-color: var(--uiAccentColor);
-}
-.discover-card .discoverCard-tv:before {
-    content: 'Série';
-    background-color: var(--uiAccentColor);
-    border-color: var(--uiAccentColor);
 }
 @supports not (display: grid) {
     .innerCardFooter,

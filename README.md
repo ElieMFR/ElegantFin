@@ -51,7 +51,7 @@ ElegantFin Cinema Edition is a Jellyfin theme inspired by streaming platforms, b
 *   **Light on TV**: no blur, no drop shadows, no looping animations. Every TV change is measured on a Samsung TV and an Android TV box.
 *   **Phones**: rows that stop on a card, readable in portrait and landscape, and the same top bar as on PC when the phone is turned sideways.
 *   **Details**: glass dialogs and menus, a modern player bar, thin scrollbars, drop-down lists whose text never hides under the arrow.
-*   **Plugins**: dedicated styling for Jellyfin Enhanced, Media Carousel, Editor's Choice, Media Bar and Home Screen Sections.
+*   **Plugins**: dedicated styling for Jellyfin Enhanced, Media Carousel and Editor's Choice.
 *   **Fonts included**: Inter and Material Icons ship with the theme, nothing is loaded from Google. The theme file is about 150 KB.
 *   **Older devices**: recent effects have a fallback, so an old TV or browser keeps a clean interface.
 *   **Accessible**: animations switch off when the system asks for reduced motion.
@@ -81,7 +81,7 @@ ElegantFin Cinema Edition is a Jellyfin theme inspired by streaming platforms, b
 `@main` always follows the latest version. To update when you choose, replace `@main` with a version number:
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/ElieMFR/ElegantFin@v1.5.5/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+@import url("https://cdn.jsdelivr.net/gh/ElieMFR/ElegantFin@v1.5.7/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
 A pinned version never changes. It is also the fastest way to update a TV app that keeps the old file in cache.
@@ -138,8 +138,6 @@ Most of these options come from the original ElegantFin. Add them **after** the 
 | [**Jellyfin Enhanced**](https://github.com/n00bcodr/Jellyfin-Enhanced) | Shortcuts, Jellyseerr requests, reviews, extra links | Letterboxd and Seerr icons in line, "where to watch" bar, badges and active streams button in the theme's colours |
 | [**Media Carousel**](https://github.com/peterdu1109/MediaCarousel) | Home rows: server Top 10, worldwide Top 10, Seerr requests | Row arrows centred on the posters |
 | [**Editor's Choice**](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | Curated picks on the home page | Banner spacing, readable description, working controls |
-| [**Media Bar**](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) | Slideshow at the top of home | Gradient, readable synopsis, buttons |
-| [**Home Screen Sections**](https://github.com/IAmParadox27/jellyfin-plugin-home-sections) | Extra rows on the home page | Readable Top 10 numbers, badges in the theme's colour |
 
 Other plugins keep their own look.
 
@@ -156,7 +154,7 @@ Other plugins keep their own look.
 
 ## 🔔 Recommended Plugin
 
-ElegantFin Cinema Edition goes well with [**NotifySync**](https://github.com/peterdu1109/NotifySync), a notification bell for Jellyfin in the theme's colours. Both work together on PC, mobile and TV.
+ElegantFin Cinema Edition goes well with [**NotifySync**](https://github.com/ElieMFR/NotifySync), a notification bell for Jellyfin in the theme's colours. Both work together on PC, mobile and TV.
 
 ## 👥 Authors & Credits
 
@@ -196,7 +194,7 @@ ElegantFin Cinema Edition est un thème Jellyfin inspiré des plateformes de str
 *   **Léger sur TV** : ni flou, ni ombre portée, ni animation en boucle. Chaque changement TV est mesuré sur une TV Samsung et une box Android TV.
 *   **Téléphone** : rangées qui s'arrêtent sur une carte, lisible en portrait comme en paysage, et la même barre du haut que sur PC quand le téléphone est tourné.
 *   **Détails** : fenêtres et menus en verre, barre du lecteur moderne, barres de défilement fines, listes déroulantes dont le texte ne passe jamais sous la flèche.
-*   **Plugins** : un habillage dédié pour Jellyfin Enhanced, Media Carousel, Editor's Choice, Media Bar et Home Screen Sections.
+*   **Plugins** : un habillage dédié pour Jellyfin Enhanced, Media Carousel et Editor's Choice.
 *   **Polices incluses** : Inter et Material Icons sont livrées avec le thème, rien n'est chargé depuis Google. Le fichier du thème pèse environ 150 Ko.
 *   **Anciens appareils** : les effets récents ont un repli, une ancienne TV ou un vieux navigateur garde une interface propre.
 *   **Accessible** : les animations se coupent quand le système demande moins de mouvement.
@@ -226,7 +224,7 @@ ElegantFin Cinema Edition est un thème Jellyfin inspiré des plateformes de str
 `@main` suit toujours la dernière version. Pour mettre à jour quand vous le décidez, remplacez `@main` par un numéro de version :
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/ElieMFR/ElegantFin@v1.5.5/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+@import url("https://cdn.jsdelivr.net/gh/ElieMFR/ElegantFin@v1.5.7/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
 Une version figée ne change jamais. C'est aussi le moyen le plus rapide de mettre à jour une appli TV qui garde l'ancien fichier en cache.
@@ -283,8 +281,6 @@ La plupart de ces options viennent d'ElegantFin d'origine. Ajoutez-les **après*
 | [**Jellyfin Enhanced**](https://github.com/n00bcodr/Jellyfin-Enhanced) | Raccourcis, demandes Jellyseerr, avis, liens supplémentaires | Icônes Letterboxd et Seerr alignées, bandeau « où regarder », badges et bouton des lectures en cours aux couleurs du thème |
 | [**Media Carousel**](https://github.com/peterdu1109/MediaCarousel) | Rangées d'accueil : Top 10 du serveur, Top 10 mondial, demandes Seerr | Flèches des rangées centrées sur les affiches |
 | [**Editor's Choice**](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | Sélection éditoriale sur l'accueil | Espacement de la bannière, résumé lisible, contrôles fonctionnels |
-| [**Media Bar**](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) | Diaporama en haut de l'accueil | Dégradé, résumé lisible, boutons |
-| [**Home Screen Sections**](https://github.com/IAmParadox27/jellyfin-plugin-home-sections) | Rangées supplémentaires sur l'accueil | Numéros du Top 10 lisibles, badges à la couleur du thème |
 
 Les autres plugins gardent leur propre apparence.
 
@@ -301,7 +297,7 @@ Les autres plugins gardent leur propre apparence.
 
 ## 🔔 Plugin recommandé
 
-ElegantFin Cinema Edition va bien avec [**NotifySync**](https://github.com/peterdu1109/NotifySync), une cloche de notifications pour Jellyfin aux couleurs du thème. Les deux fonctionnent ensemble sur PC, mobile et TV.
+ElegantFin Cinema Edition va bien avec [**NotifySync**](https://github.com/ElieMFR/NotifySync), une cloche de notifications pour Jellyfin aux couleurs du thème. Les deux fonctionnent ensemble sur PC, mobile et TV.
 
 ## 👥 Auteurs & Crédits
 

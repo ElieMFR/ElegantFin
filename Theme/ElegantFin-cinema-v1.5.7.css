@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.5.5 */
+/* ElegantFin Cinema Edition v1.5.7 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -19,7 +19,7 @@
    13. PORTAGE UPSTREAM — fixes additifs (v1.2.61)
    14. FORMAT UNIQUE DU TITRE DE SÉRIE — règle ID (v1.2.65) ; les
        chemins par-plateforme restent = fallback clients sans :has()
-   15. PLUGINS — Media Bar, Editor's Choice, Home Screen Sections
+   15. PLUGINS — Editor's Choice
        (blocs balisés « start » / « end »)
    16. REPLI SANS GRILLE CSS — Tizen 4.0 (v1.3.3), en fin de fichier
    Jellyfin 12 (coque moderne en MUI) : pas de section à part, chaque
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.5";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.7";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -538,20 +538,9 @@ body {
     transition: none !important;
 }
 
-.layout-tv .card:focus-visible .cardScalable {
-    box-shadow:
-        inset 0 0 0 3px rgba(255, 255, 255, 0.95),    /* contour blanc — image seule */
-        0 0 16px rgba(255, 255, 255, 0.3);             /* glow blanc subtle */
-}
-
-/* ⚠️ SÉPARÉ : ne jamais recoller ces deux règles. Un sélecteur non reconnu
-   invalide la RÈGLE ENTIÈRE, liste comprise — la moitié ancienne tomberait
-   avec la moderne sur les moteurs qui ignorent le sélecteur du dessus. */
-.layout-tv .card:focus .cardScalable {
-    box-shadow:
-        inset 0 0 0 3px rgba(255, 255, 255, 0.95),    /* contour blanc — image seule */
-        0 0 16px rgba(255, 255, 255, 0.3);             /* glow blanc subtle */
-}
+/* v1.5.7 : RETIRÉ ici les deux règles `.layout-tv .card:focus(-visible) .cardScalable { box-shadow }`,
+   sans !important donc battues par `.layout-tv .cardScalable { box-shadow: none !important }` ;
+   l'ombre du focus est posée en !important plus bas (« ne jamais recoller » reste vrai là). */
 
 /* v1.2.49 — ANTI-CUMUL DE SCALE. La télécommande déclenche aussi le :hover, qui
    scalait .cardScalable à 1.06 EN PLUS du scale 1.05 de .cardBox → l'image (enfant)
@@ -991,7 +980,8 @@ body {
     max-width: 100%;
     transition: color 0.2s ease;
 }
-.layout-desktop .card-hoverable:hover .cardText { color: #fff !important; }
+.layout-desktop .card-hoverable:hover .cardText,
+.layout-desktop .card-hoverable:focus-within .cardText { color: #fff !important; }
 
 /* Overlay transparent au survol */
 .layout-desktop .card-hoverable:hover .cardOverlayContainer {
@@ -3147,7 +3137,7 @@ progress + span {
 }
 
 .btnHeaderSave.button-flat {
-    color: var(--activeColor) !important;
+    color: var(--jf-palette-primary-light) !important;   /* v1.5.7 : contraste AA */
     gap: 0.3em;
     border-radius: var(--smallRadius);
 }
@@ -3318,8 +3308,8 @@ progress + span {
 
 /* v1.3.21 : badges de type des résultats Seerr (recherche, sections Jellyseerr) —
    Jellyfin Enhanced les code en dur en bleu (Film), magenta (Série) et vert
-   (Collection). On les passe à l'accent du thème, comme les badges Film / Série de
-   la rangée Découvrir de Home Screen Sections ; le libellé dit déjà le type.
+   (Collection). On les passe à l'accent du thème ;
+   le libellé dit déjà le type.
    Classe doublée pour battre le plugin quel que soit l'ordre de chargement. */
 .jellyseerr-media-badge.jellyseerr-media-badge-movie,
 .jellyseerr-media-badge.jellyseerr-media-badge-series,
@@ -3893,11 +3883,10 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
     box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
 }
 
-.detailButton:not(.btnPlay):focus-visible {
-    outline: 2px solid rgba(255, 255, 255, 0.95);
-    outline-offset: 2px;
-    background: rgba(255, 255, 255, 0.1) !important;
-}
+/* v1.5.7 : RETIRÉ ici `.detailButton:not(.btnPlay):focus-visible { background: rgba(255,255,255,.1)
+   !important }` : même spécificité que la règle du focus clavier plus haut (fond blanc, icône
+   noire) et placée après elle, elle l'annulait (mesuré : fond à 10 % de blanc sous une
+   icône noire, donc invisible). Son contour était déjà mort (`outline: none !important`). */
 
 .sectionTabs .emby-tab-button:focus-visible {
     outline: 2px solid rgba(255, 255, 255, 0.95);
@@ -4162,7 +4151,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
     font-weight: 700;
     letter-spacing: 0.1em;
     line-height: normal;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.5);   /* v1.5.7 : contraste AA (0,4 : 3,6:1) */
     background-color: transparent;
     padding: 1.5em 1em 0.5em 1em;
 }
@@ -4382,7 +4371,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
 }
 
 .MuiLink-root {
-    color: var(--activeColor) !important;
+    color: var(--jf-palette-primary-light) !important;   /* v1.5.7 : 5,4:1 au lieu de 3,9:1 */
 }
 
 /* …sauf quand le lien n'est qu'une enveloppe de titre de section. Jellyfin 12
@@ -6123,6 +6112,7 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
    long texte d'avertissement ne l'élargit pas. */
 #loginPage .padded-left.padded-right.padded-bottom-page {
     width: auto;
+    min-width: 28em;   /* v1.5.7 : repli avant Chromium 79, qui jette `min()` ci-dessous */
     min-width: min(28em, calc(100vw - 2em));
     max-width: calc(100vw - 2em);
 }
@@ -7151,12 +7141,17 @@ html:lang(fr) .visualLoginForm::before {
                 opacity 0.25s var(--ease-smooth);
 }
 
-.layout-desktop .card-hoverable:hover .cardText-secondary {
+/* v1.5.7 : aussi au focus clavier (:focus-within), comme le fait Jellyfin : le focus est
+   sur le lien de l'image, jamais sur .card. Sans cela l'année et l'épisode restaient
+   cachés (max-height 0, opacité 0) pour qui navigue au clavier. */
+.layout-desktop .card-hoverable:hover .cardText-secondary,
+.layout-desktop .card-hoverable:focus-within .cardText-secondary {
     max-height: 3em;
     opacity: 1;
 }
 
-.layout-desktop .card-hoverable:hover .cardFooter {
+.layout-desktop .card-hoverable:hover .cardFooter,
+.layout-desktop .card-hoverable:focus-within .cardFooter {
     background: linear-gradient(
         to top,
         rgba(0, 0, 0, 0.85) 0%,
@@ -7310,7 +7305,7 @@ html:lang(fr) .visualLoginForm::before {
     font-size: 0.7em;
     font-weight: 700;
     letter-spacing: 0.1em;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.5);   /* v1.5.7 : contraste AA */
     padding: 1.5em 1em 0.5em 1em;
 }
 
@@ -7866,44 +7861,6 @@ html:lang(fr) .visualLoginForm::before {
    FIN CINEMA FEATURES
    ============================================================ */
 
-/* basic styling for the Media Bar Plugin - start
-for extended styling, use the add-on */
-
-#slides-container {
-    top: calc(-0.5 * var(--appBarHeight));
-}
-
-.backdrop-overlay {
-    background: linear-gradient(
-        var(--lighterGradientPoint),
-        var(--gradientPointAlpha),
-        60%,
-        var(--darkerGradientPointAlpha)
-    );
-}
-
-.plot {
-    color: var(--textColor);
-    text-shadow: 1px 1px var(--lighterGradientPointAlpha);
-}
-
-.button-container {
-    align-items: center;
-}
-
-.favorite-button {
-    background: none;
-    color: var(--textColor);
-}
-
-.detail-button:hover,
-.favorite-button:hover {
-    background: var(--dimTextColor);
-    color: black;
-}
-
-/* basic styling for the Media Bar Plugin - end */
-
 /* === Editor's Choice Plugin overrides — start ===
    Plugin: lachlandcp/jellyfin-editors-choice-plugin
    v1.2.23: fix button/section collision when description is long.
@@ -7999,37 +7956,6 @@ for extended styling, use the add-on */
 }
 
 /* === Editor's Choice Plugin overrides — end === */
-
-/* === Home Screen Sections (HSS) overrides — start ===
-   Plugin : fork FR de IAmParadox27/jellyfin-plugin-home-sections
-   1) Top 10 — le chiffre géant est colorié par défaut en --darkerGradientPoint
-      (#111827, quasi noir) avec un contour --borderColor terne, donc invisible
-      sur le fond sombre du thème. On le passe en contour d'accent, remplissage
-      transparent, pour qu'il ressorte.
-   2) Rangée Découvrir — les badges sont codés 'Movie'/'Series' en bleu/violet en
-      dur dans le plugin. On les met à l'accent du thème et en français. Sélecteur
-      volontairement plus spécifique (.discover-card ...) pour battre le plugin
-      quel que soit l'ordre de chargement. */
-
-.top-ten .card:before {
-    color: transparent;
-    -webkit-text-stroke: 3px var(--uiAccentColor);
-    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
-}
-
-.discover-card .discoverCard-movie:before {
-    content: 'Film';
-    background-color: var(--uiAccentColor);
-    border-color: var(--uiAccentColor);
-}
-
-.discover-card .discoverCard-tv:before {
-    content: 'Série';
-    background-color: var(--uiAccentColor);
-    border-color: var(--uiAccentColor);
-}
-
-/* === Home Screen Sections (HSS) overrides — end === */
 
 /* ============================================================
    v1.3.3 — REPLI POUR LES MOTEURS SANS GRILLE CSS (Tizen 4.0)

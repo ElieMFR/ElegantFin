@@ -13,6 +13,22 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.5.7 — Keyboard focus: card info and detail buttons, contrast
+
+- Desktop, keyboard: the year or episode line under a focused card now shows, as it does on hover. It stayed hidden before.
+- Desktop, keyboard: the buttons next to Play on a detail page (favorite, watched, more) now turn white with a dark icon when focused. Another rule was making them almost transparent, so the icon could not be seen.
+- Contrast: purple links, the Save button of the top bar and the section titles of the side menu are lighter, to stay readable on the dark background.
+- Login card: a fallback width for older TVs that do not know `min()` (before Chromium 79).
+- Housekeeping: two TV rules without effect removed; the NotifySync link in the README points to its new address.
+
+---
+
+#### v1.5.6 — Media Bar and Home Screen Sections are no longer styled
+
+- The theme no longer styles the Media Bar and Home Screen Sections plugins and no longer lists them as supported: it is not tested with them. Their rules are removed (slideshow gradient and buttons, Top 10 numbers, Discover badges). Both plugins keep their own look.
+
+---
+
 #### v1.5.5 — Keyboard focus visible on desktop and phone
 
 - Desktop and phone, keyboard: the focused card now shows a white outline, drawn just inside the edge of the image. It showed nothing before, because the focus lands on the image link and not on the card.
@@ -742,6 +758,22 @@ Repository/quality release; the rendered theme is byte-for-byte identical in rul
 ### Edition Cinema — modules cinematiques par-dessus ElegantFin
 
 Cette version transforme le theme ElegantFin en une experience de streaming professionnelle inspiree des grandes apps de streaming, tout en gardant la compatibilite complete avec bureau, mobile et TV.
+
+---
+
+#### v1.5.7 — Focus clavier : infos des cartes et boutons de fiche, contraste
+
+- PC, au clavier : la ligne annee ou episode sous une carte qui a le focus s'affiche maintenant, comme au survol. Elle restait cachee avant.
+- PC, au clavier : les boutons a cote de Lire sur une fiche (favori, vu, plus) deviennent blancs avec une icone sombre quand ils ont le focus. Une autre regle les rendait presque transparents, donc l'icone ne se voyait pas.
+- Contraste : les liens violets, le bouton Enregistrer de la barre du haut et les titres de section du menu lateral sont plus clairs, pour rester lisibles sur le fond sombre.
+- Carte de connexion : une largeur de repli pour les anciennes TV qui ne connaissent pas `min()` (avant Chromium 79).
+- Menage : deux regles TV sans effet retirees ; le lien NotifySync du README pointe vers sa nouvelle adresse.
+
+---
+
+#### v1.5.6 — Media Bar et Home Screen Sections ne sont plus habilles
+
+- Le theme n'habille plus les plugins Media Bar et Home Screen Sections et ne les annonce plus comme pris en charge : il n'est pas teste avec eux. Leurs regles sont retirees (degrade et boutons du diaporama, numeros du Top 10, badges Decouvrir). Les deux plugins gardent leur propre aspect.
 
 ---
 
