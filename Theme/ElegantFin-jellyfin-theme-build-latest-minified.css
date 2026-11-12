@@ -2536,6 +2536,11 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
     flex-direction: row;
     transition: background-color 0.2s var(--ease-smooth), color 0.2s var(--ease-smooth), transform 0.2s var(--ease-smooth), box-shadow 0.2s var(--ease-smooth) !important;
 }
+:root:not(.layout-tv) .btnPlay.detailButton:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.95) !important;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
+}
 .btnPlay.detailButton:focus-visible {
     outline: 2px solid rgba(255, 255, 255, 0.95);
     outline-offset: 3px;
@@ -3601,6 +3606,11 @@ textarea,
         border-color: rgba(255, 255, 255, 0.95) !important;
         outline: thin solid rgba(255, 255, 255, 0.95) !important;
     }
+}
+.layout-tv .emby-select-withcolor:focus,
+.layout-tv .emby-input:focus,
+.layout-tv .emby-textarea:focus {
+    outline: 3px solid rgba(255, 255, 255, 0.95) !important;
 }
 .emby-select-withcolor > option {
     color: inherit;

@@ -3872,6 +3872,15 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
 }
 
 /* Focus-visible (clavier) — v1.2.44 : violet → blanc pour cohérence monochrome */
+/* v1.5.8 : sur PC et téléphone le contour était écrasé par `.btnPlay:focus-visible
+   { outline: none !important }` (l.575) : il ne restait qu'un halo à 25 % (~2:1). Le
+   `!important` rend l'anneau blanc visible ; TV exclue (chemin `.show-focus`). */
+:root:not(.layout-tv) .btnPlay.detailButton:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.95) !important;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
+}
+
 .btnPlay.detailButton:focus-visible {
     outline: 2px solid rgba(255, 255, 255, 0.95);
     outline-offset: 3px;
@@ -5559,6 +5568,14 @@ textarea,
         border-color: rgba(255, 255, 255, 0.95) !important;
         outline: thin solid rgba(255, 255, 255, 0.95) !important;
     }
+}
+
+/* v1.5.8 : TV, trait de focus des champs 3 px (mesuré à ~2,5 px au total sur Freebox,
+   fin à 3 m). Contour et non ombre : pas d'ombre sur TV. */
+.layout-tv .emby-select-withcolor:focus,
+.layout-tv .emby-input:focus,
+.layout-tv .emby-textarea:focus {
+    outline: 3px solid rgba(255, 255, 255, 0.95) !important;
 }
 
 .emby-select-withcolor > option {
