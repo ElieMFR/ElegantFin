@@ -114,7 +114,7 @@
     --btnDeleteBorderColor: rgb(217, 84, 84);
     --btnSubmitColor: rgb(61, 54, 178);
     --btnSubmitBorderColor: rgb(117, 111, 226);
-    --checkboxCheckedBgColor: rgb(79, 70, 229);
+    --checkboxCheckedBgColor: rgb(145, 120, 255); /* 5,35:1 sur le fond navy (79,70,229 : 2,82:1) */
     --highlightOutlineColor: rgb(37, 99, 235);
 
     --defaultBorder: var(--borderWidth) solid var(--borderColor);
@@ -3331,7 +3331,6 @@ progress + span {
 .itemTags > a {
     display: none;
     font-size: unset !important;
-    font-weight: 200;
 }
 
 .detail-clamp-text {
@@ -3711,7 +3710,8 @@ progress + span {
 }
 
 .playedIndicator {
-    background: rgb(34, 197, 94);
+    /* vert 21,128,61 : coche blanche à 5,02:1 (34,197,94 : 2,28:1) */
+    background: rgb(21, 128, 61);
     border: var(--defaultLighterBorder);
     font-weight: 700;
 }
@@ -4724,38 +4724,42 @@ div[data-role="controlgroup"] a.ui-btn-active {
    0,7 s par flèche, contre 48 images/s sans ces règles (mesuré sur une Tizen 9,
    2026-10-05). Sans danger : un attribut fixé à l'affichage ([data-type]), ou un
    attribut testé sur l'élément lui-même hors de :has() (comme ci-dessous). */
-.actionSheetMenuItem:has(.listItemIcon.check) {
-    position: relative;
-    isolation: isolate;
-}
+/* Sans :has() (Chromium < 105) la couche absolue n'aurait pas de parent positionné :
+   le menu garde alors l'icône de coche native de Jellyfin. */
+@supports selector(:has(*)) {
+    .actionSheetMenuItem:has(.listItemIcon.check) {
+        position: relative;
+        isolation: isolate;
+    }
 
-.actionSheetMenuItem:has(.listItemIcon.check) .listItemBodyText {
-    color: white;
-}
+    .actionSheetMenuItem:has(.listItemIcon.check) .listItemBodyText {
+        color: white;
+    }
 
-/* width/height : Jellyfin impose `.listItemIcon { width: 1em !important;
-   height: 1em !important }`, qu'il faut lever pour que inset:0 étire la couche. */
-.actionSheetMenuItem > .actionsheetMenuItemIcon.listItemIcon.check {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    width: auto !important;
-    height: auto !important;
-    margin: 0 !important;
-    border-radius: inherit;
-    background-color: var(--activeColor);
-    color: transparent !important;
-    font-size: 0 !important;
-    pointer-events: none;
-}
+    /* width/height : Jellyfin impose `.listItemIcon { width: 1em !important;
+       height: 1em !important }`, qu'il faut lever pour que inset:0 étire la couche. */
+    .actionSheetMenuItem > .actionsheetMenuItemIcon.listItemIcon.check {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        width: auto !important;
+        height: auto !important;
+        margin: 0 !important;
+        border-radius: inherit;
+        background-color: var(--activeColor);
+        color: transparent !important;
+        font-size: 0 !important;
+        pointer-events: none;
+    }
 
-/* Au focus, la ligne prend la pastille blanche (.listItem:focus) : la couche de
-   l'option choisie ne doit pas la recouvrir. */
-.actionSheetMenuItem:focus > .actionsheetMenuItemIcon.listItemIcon.check {
-    background-color: transparent;
+    /* Au focus, la ligne prend la pastille blanche (.listItem:focus) : la couche de
+       l'option choisie ne doit pas la recouvrir. */
+    .actionSheetMenuItem:focus > .actionsheetMenuItemIcon.listItemIcon.check {
+        background-color: transparent;
+    }
 }
 
 .navMenuOption {
