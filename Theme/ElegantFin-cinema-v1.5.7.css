@@ -102,8 +102,9 @@
     --osdSeekBarBufferedColorAlpha: rgba(128, 128, 128, 0.5);
     --osdSeekBarThumbColor: white;
     --tableBodyColor: rgb(31, 41, 55);
-    /* v1.2.47 : unifie sur l'unique violet d'accent (etait rgb(117 111 226),
-       un 2e violet quasi identique a --activeColor = desordre). Un seul violet. */
+    /* v1.2.47 : aligne sur le violet d'accent (etait rgb(117 111 226), quasi
+       identique a --activeColor). Plusieurs violets restent en service (voir
+       --btnSubmitColor, --checkboxCheckedBgColor) : a unifier, pas fait. */
     --uiAccentColor: rgb(119, 91, 244);
     --btnMiniPlayColor: rgb(41, 154, 93);
     --btnMiniPlayBorderColor: rgb(50, 167, 105);
@@ -5345,8 +5346,8 @@ textarea,
 
 /* v1.2.74 (S1) : bouton « Passer le générique » en navy au repos (était crème
    #f5f5f5). Sur crème, la jauge de compte à rebours violette (pas celle de Jellyfin
-   seul : feuille externe, probablement Intro Skipper, à vérifier) ressortait en lavande « bizarre » ; sur navy, cette même jauge se lit comme une
-   progression violette cohérente avec la palette. Texte blanc + fin liseré pour
+   seul : feuille externe, probablement Intro Skipper, à vérifier) ressortait en
+   lavande « bizarre » ; sur navy, cette même jauge se lit comme une progression violette cohérente avec la palette. Texte blanc + fin liseré pour
    la lisibilité sur scènes sombres. Focus clavier / TV = pastille blanche
    (règle d'inversion existante, inchangée). */
 .skip-button {
