@@ -5344,8 +5344,8 @@ textarea,
 }
 
 /* v1.2.74 (S1) : bouton « Passer le générique » en navy au repos (était crème
-   #f5f5f5). Sur crème, la jauge de compte à rebours violette native de Jellyfin
-   ressortait en lavande « bizarre » ; sur navy, cette même jauge se lit comme une
+   #f5f5f5). Sur crème, la jauge de compte à rebours violette (pas celle de Jellyfin
+   seul : feuille externe, probablement Intro Skipper, à vérifier) ressortait en lavande « bizarre » ; sur navy, cette même jauge se lit comme une
    progression violette cohérente avec la palette. Texte blanc + fin liseré pour
    la lisibilité sur scènes sombres. Focus clavier / TV = pastille blanche
    (règle d'inversion existante, inchangée). */
