@@ -48,7 +48,7 @@ ElegantFin Cinema Edition is a Jellyfin theme inspired by streaming platforms, b
 *   **Detail pages**: full-screen backdrops, title logos, a white Play button, media info in clean panels.
 *   **Cards**: rounded posters, a light zoom on hover, glass badges, a soft veil on what you've already watched.
 *   **TV**: a clear white focus on every control. The zoom waits until you stop moving, so fast scrolling stays smooth. The home tabs never slide under the header icons.
-*   **Light on TV**: no blur, no drop shadows, no looping animations. Every TV change is measured on a Samsung TV and an Android TV box.
+*   **Light on TV**: no blur and no looping animations. Every TV change is measured on a Samsung TV and an Android TV box.
 *   **Phones**: rows that stop on a card, readable in portrait and landscape, and the same top bar as on PC when the phone is turned sideways.
 *   **Details**: glass dialogs and menus, a modern player bar, thin scrollbars, drop-down lists whose text never hides under the arrow.
 *   **Plugins**: dedicated styling for Jellyfin Enhanced, Media Carousel and Editor's Choice.
@@ -191,7 +191,7 @@ ElegantFin Cinema Edition est un thème Jellyfin inspiré des plateformes de str
 *   **Fiches** : images de fond en plein écran, logos des titres, bouton Lire blanc, infos média dans des panneaux nets.
 *   **Cartes** : affiches arrondies, léger zoom au survol, pastilles en verre, voile discret sur ce que vous avez déjà vu.
 *   **TV** : un focus blanc bien visible sur chaque élément. Le zoom attend que vous vous arrêtiez, le défilement rapide reste donc fluide. Les onglets de l'accueil ne passent jamais sous les icônes.
-*   **Léger sur TV** : ni flou, ni ombre portée, ni animation en boucle. Chaque changement TV est mesuré sur une TV Samsung et une box Android TV.
+*   **Léger sur TV** : ni flou ni animation en boucle. Chaque changement TV est mesuré sur une TV Samsung et une box Android TV.
 *   **Téléphone** : rangées qui s'arrêtent sur une carte, lisible en portrait comme en paysage, et la même barre du haut que sur PC quand le téléphone est tourné.
 *   **Détails** : fenêtres et menus en verre, barre du lecteur moderne, barres de défilement fines, listes déroulantes dont le texte ne passe jamais sous la flèche.
 *   **Plugins** : un habillage dédié pour Jellyfin Enhanced, Media Carousel et Editor's Choice.
