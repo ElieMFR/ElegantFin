@@ -86,7 +86,6 @@
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
     --lighterGradientPoint: #1d2635;
     --lighterGradientPointAlpha: rgba(29, 38, 53, 0.85);
-    --gradientPointAlpha: rgba(29, 38, 53, 0.3);
     --headerColor: rgba(30, 40, 54, 0.8);
     --drawerColor: rgba(30, 40, 54, 0.9);
 
@@ -859,10 +858,6 @@ body {
     transition: transform 0.3s var(--ease-smooth),
                 box-shadow 0.3s var(--ease-smooth),
                 border-color 0.3s var(--ease-smooth) !important;
-}
-
-.card-hoverable:hover .cardScalable {
-    will-change: transform;
 }
 
 @supports (aspect-ratio: 1 / 1) {
@@ -2654,7 +2649,7 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
         display: none;
     }
 
-    .layout-mobile .btnPlay.detailButton:not(.play-button) {
+    .layout-mobile .btnPlay.detailButton {
         flex: 0 0 100%;
         margin-right: 0 !important;
     }
@@ -2680,7 +2675,6 @@ h2 {
 
 html,
 .nowPlayingPlaylist,
-.nowPlayingContextMenu,
 .backgroundContainer:not(.withBackdrop),
 .backgroundContainer:not(.backgroundContainer-transparent),
 .backdropContainer {
@@ -2788,8 +2782,10 @@ html,
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* `backwards` et non `forwards` : avec les délais ci-dessous, la rangée restait visible
+   avant de disparaître puis de fondre en entrée, et gardait un transform permanent. */
 .emby-scroller-container {
-    animation: sectionSlideIn 0.5s var(--ease-smooth) forwards;
+    animation: sectionSlideIn 0.5s var(--ease-smooth) backwards;
 }
 
 @keyframes sectionSlideIn {
@@ -3129,7 +3125,6 @@ progress + span {
     border-right-color: rgba(255, 255, 255, 0.06) !important;
     border-right-style: solid;
     border-right-width: var(--borderWidth);
-    backdrop-filter: var(--blurLarge);
 }
 
 .mainDrawer-scrollContainer {
@@ -3778,7 +3773,6 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
 }
 
 .emby-button.block,
-.button-alt,
 .raised,
 #btnDeleteImage,
 .manageRecordingButton,
@@ -3915,7 +3909,7 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
     box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
 }
 
-.btnPlay:not(.formDialogFooterItem):not(.play-button):after {
+.btnPlay:not(.formDialogFooterItem):after {
     content: attr(title);
     padding: 0 1ch;
 }
@@ -3991,8 +3985,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
 }
 
 #btnDeleteImage,
-.button-delete,
-#btnShutdown {
+.button-delete {
     background: var(--btnDeleteColor);
     border: solid var(--btnDeleteBorderColor) var(--borderWidth);
 }
@@ -4129,7 +4122,6 @@ div[data-role="controlgroup"] a.ui-btn-active {
    deux façons différentes. Le repli sans flou reste `--drawerColor`, opaque. */
 .MuiDrawer-paper {
     background: var(--drawerColor);
-    backdrop-filter: var(--blurLarge);
     border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
     box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
     padding: 0.25em;
@@ -5254,7 +5246,6 @@ div[data-role="controlgroup"] a.ui-btn-active {
 .toast {
     border-radius: var(--smallRadius);
     background: var(--headerColor) !important;
-    backdrop-filter: var(--blurDefault);
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
     border-color: rgba(255, 255, 255, 0.1) !important;
 }
@@ -5269,7 +5260,6 @@ div[data-role="controlgroup"] a.ui-btn-active {
     overflow-y: auto;
     overflow-x: hidden;
     background: var(--headerColor) !important;
-    backdrop-filter: var(--blurDefault);
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
@@ -5366,7 +5356,15 @@ textarea,
     color: #fff;
     font-weight: 700 !important;
     letter-spacing: 0.03em;
-    transition: background-color 0.2s var(--ease-smooth), color 0.2s var(--ease-smooth), box-shadow 0.2s var(--ease-smooth);
+    /* Opacité conservée : Jellyfin masque le bouton par un fondu d'opacité et attend
+       `transitionend` pour retirer le focus et poser `hide`. Sans elle le bouton reste
+       invisible mais focalisé (un OK télécommande saute le segment à l'aveugle). */
+    transition: opacity 0.2s ease-out, background-color 0.2s var(--ease-smooth), color 0.2s var(--ease-smooth), box-shadow 0.2s var(--ease-smooth);
+}
+
+/* Jellyfin pose `no-transition` pour un affichage immédiat : la règle ci-dessus la masquerait. */
+.skip-button.no-transition {
+    transition: none;
 }
 
 /* this allows the skip button get focused correctly on TVs using remote navigation; needs 10.10.7*/
@@ -7062,11 +7060,10 @@ html:lang(fr) .visualLoginForm::before {
     background: rgba(0, 0, 0, 0.85) !important;
 }
 
-/* TV : pas d'animations de page ni de shimmer */
+/* TV : pas d'animations de page (le shimmer y est déjà en display: none) */
 .layout-tv .page:not(.hide),
 .layout-tv .emby-scroller-container,
-.layout-tv .verticalSection,
-.layout-tv .section0 .cardImageContainer::before {
+.layout-tv .verticalSection {
     animation: none !important;
 }
 
