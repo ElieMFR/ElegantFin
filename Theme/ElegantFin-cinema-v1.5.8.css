@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.5.7 */
+/* ElegantFin Cinema Edition v1.5.8 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.7";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.8";
 
     /* Base theme colors */
     color-scheme: dark;

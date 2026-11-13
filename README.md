@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/github/v/release/ElieMFR/ElegantFin?label=version&color=red&cacheSeconds=3600" alt="Version">
-  <img src="https://img.shields.io/badge/Jellyfin-12.x%20%7C%2010.11.x-blueviolet" alt="Jellyfin">
+  <img src="https://img.shields.io/badge/Jellyfin-12.x-blueviolet" alt="Jellyfin">
   <img src="https://img.shields.io/badge/platform-Desktop%20%7C%20Mobile%20%7C%20TV-green" alt="Platforms">
   <a href="https://github.com/lscambo13/ElegantFin"><img src="https://img.shields.io/badge/based%20on-ElegantFin%20v26.09.05-blue" alt="Based on ElegantFin"></a>
   <img src="https://img.shields.io/badge/license-GPL--2.0-green" alt="License">
@@ -61,12 +61,11 @@ ElegantFin Cinema Edition is a Jellyfin theme inspired by streaming platforms, b
 > [!IMPORTANT]
 > **Requirements:**
 > * Jellyfin **12.x**
-> * Jellyfin **10.11.x**
 >
 > Installed on the server, the theme reaches every client, TV apps included.
 
 ### Steps
-1.  Open the **Dashboard** from the avatar menu, top right (Jellyfin 10.11: Settings → Administration).
+1.  Open the **Dashboard** from the avatar menu, top right.
 2.  Go to **Branding** and scroll down to **Custom CSS code**.
 3.  Paste this line, then click **Save**:
     ```css
@@ -81,7 +80,7 @@ ElegantFin Cinema Edition is a Jellyfin theme inspired by streaming platforms, b
 `@main` always follows the latest version. To update when you choose, replace `@main` with a version number:
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/ElieMFR/ElegantFin@v1.5.7/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+@import url("https://cdn.jsdelivr.net/gh/ElieMFR/ElegantFin@v1.5.8/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
 A pinned version never changes. It is also the fastest way to update a TV app that keeps the old file in cache.
@@ -108,7 +107,7 @@ Most of these options come from the original ElegantFin. Add them **after** the 
 | **Card hover effect** | `--cardHoverEffect` | `""` (on) / `none` (off) |
 | **Library labels** | `--libraryLabelVisibility` | `block` / `none` |
 | **Watched and favorite buttons on cards (PC)** | `--extraCardButtonsVisibility` | `none` (hidden) / `block` |
-| **Top bar height (TV and Jellyfin 10.11)** | `--appBarHeight` | `5em` (default) or another height |
+| **Top bar height (TV)** | `--appBarHeight` | `5em` (default) or another height |
 | **Original title** | `--itemOriginalTitleVisibility` | `block` / `none` |
 | **Title logo** | `--clearLogoVisibility` | `block` / `none` |
 | **Critics rating on phones** | `--criticsRatingVisibility` | `none` (hidden) / `block` |
@@ -120,8 +119,7 @@ Most of these options come from the original ElegantFin. Add them **after** the 
 
 | Platform | Status |
 |----------|--------|
-| **Jellyfin 12** | Main target |
-| **Jellyfin 10.11** | Supported |
+| **Jellyfin 12** | Target |
 | **Chrome, Edge, Firefox** | Supported |
 | **Safari** | Should work, not tested |
 | **Jellyfin Android app** | Supported |
@@ -204,12 +202,11 @@ ElegantFin Cinema Edition est un thème Jellyfin inspiré des plateformes de str
 > [!IMPORTANT]
 > **Prérequis :**
 > * Jellyfin **12.x**
-> * Jellyfin **10.11.x**
 >
 > Installé sur le serveur, le thème atteint tous les clients, applis TV comprises.
 
 ### Étapes
-1.  Ouvrez le **Tableau de bord** depuis le menu de l'avatar, en haut à droite (Jellyfin 10.11 : Paramètres → Administration).
+1.  Ouvrez le **Tableau de bord** depuis le menu de l'avatar, en haut à droite.
 2.  Allez dans **Slogan** (c'est le nom de la page Branding en français), puis descendez jusqu'à **Code CSS personnalisé**.
 3.  Collez cette ligne, puis cliquez sur **Sauvegarder** :
     ```css
@@ -224,7 +221,7 @@ ElegantFin Cinema Edition est un thème Jellyfin inspiré des plateformes de str
 `@main` suit toujours la dernière version. Pour mettre à jour quand vous le décidez, remplacez `@main` par un numéro de version :
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/ElieMFR/ElegantFin@v1.5.7/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
+@import url("https://cdn.jsdelivr.net/gh/ElieMFR/ElegantFin@v1.5.8/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 ```
 
 Une version figée ne change jamais. C'est aussi le moyen le plus rapide de mettre à jour une appli TV qui garde l'ancien fichier en cache.
@@ -251,7 +248,7 @@ La plupart de ces options viennent d'ElegantFin d'origine. Ajoutez-les **après*
 | **Effet au survol des cartes** | `--cardHoverEffect` | `""` (activé) / `none` (désactivé) |
 | **Noms des bibliothèques** | `--libraryLabelVisibility` | `block` / `none` |
 | **Boutons vu et favori sur les cartes (PC)** | `--extraCardButtonsVisibility` | `none` (masqués) / `block` |
-| **Hauteur de la barre du haut (TV et Jellyfin 10.11)** | `--appBarHeight` | `5em` (par défaut) ou une autre hauteur |
+| **Hauteur de la barre du haut (TV)** | `--appBarHeight` | `5em` (par défaut) ou une autre hauteur |
 | **Titre original** | `--itemOriginalTitleVisibility` | `block` / `none` |
 | **Logo du titre** | `--clearLogoVisibility` | `block` / `none` |
 | **Note critique sur téléphone** | `--criticsRatingVisibility` | `none` (masquée) / `block` |
@@ -263,8 +260,7 @@ La plupart de ces options viennent d'ElegantFin d'origine. Ajoutez-les **après*
 
 | Plateforme | État |
 |------------|------|
-| **Jellyfin 12** | Cible principale |
-| **Jellyfin 10.11** | Pris en charge |
+| **Jellyfin 12** | Cible |
 | **Chrome, Edge, Firefox** | Pris en charge |
 | **Safari** | Devrait fonctionner, non testé |
 | **Appli Android Jellyfin** | Prise en charge |
