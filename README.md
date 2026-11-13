@@ -195,7 +195,7 @@ ElegantFin Cinema Edition est un thème Jellyfin inspiré des plateformes de str
 *   **Plugins** : un habillage dédié pour Jellyfin Enhanced, Media Carousel et Editor's Choice.
 *   **Polices incluses** : Inter et Material Icons sont livrées avec le thème, rien n'est chargé depuis Google. Le fichier du thème pèse environ 150 Ko.
 *   **Anciens appareils** : les effets récents ont un repli, une ancienne TV ou un vieux navigateur garde une interface propre.
-*   **Accessible** : les animations se coupent quand le système demande moins de mouvement.
+*   **Accessible** : les animations se coupent quand le système demande moins de mouvement (certaines transitions de survol et de focus restent).
 
 ## 📦 Installation
 
