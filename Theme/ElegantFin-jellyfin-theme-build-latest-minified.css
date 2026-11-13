@@ -58,7 +58,7 @@
     --btnDeleteBorderColor: rgb(217, 84, 84);
     --btnSubmitColor: rgb(61, 54, 178);
     --btnSubmitBorderColor: rgb(117, 111, 226);
-    --checkboxCheckedBgColor: rgb(145, 120, 255);
+    --checkboxCheckedBgColor: rgb(79, 70, 229);
     --highlightOutlineColor: rgb(37, 99, 235);
     --defaultBorder: var(--borderWidth) solid var(--borderColor);
     --defaultLighterBorder: var(--borderWidth) solid var(--lighterBorderColor);

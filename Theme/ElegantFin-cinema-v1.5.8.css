@@ -114,7 +114,7 @@
     --btnDeleteBorderColor: rgb(217, 84, 84);
     --btnSubmitColor: rgb(61, 54, 178);
     --btnSubmitBorderColor: rgb(117, 111, 226);
-    --checkboxCheckedBgColor: rgb(145, 120, 255); /* 5,35:1 sur le fond navy (79,70,229 : 2,82:1) */
+    --checkboxCheckedBgColor: rgb(79, 70, 229); /* indigo de la 1.5.7, gardé : coche blanche plus nette qu'avec un fond lilas (6,29:1 contre 3,32:1) ; le fond fait 2,82:1 sur le navy */
     --highlightOutlineColor: rgb(37, 99, 235);
 
     --defaultBorder: var(--borderWidth) solid var(--borderColor);

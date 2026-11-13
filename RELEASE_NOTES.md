@@ -19,7 +19,7 @@ This release transforms the ElegantFin theme into a professional, premium stream
 - Desktop and phone, keyboard: the Play button on a detail page now shows a clear white ring when focused. A faint halo was all that remained.
 - TV: the focus outline of text fields and drop-down lists is thicker (3 px).
 - Home rows: no more flash of the row before it slides in.
-- Contrast: checked checkboxes and switches use a lighter purple, and the "watched" badge a darker green behind its white tick, to stand out more on the dark background.
+- Contrast: the "watched" badge uses a darker green behind its white tick, so the tick is easier to read.
 - Menus with a selected option (audio, subtitles…): on older TVs and browsers without `:has()` (before Chromium 105), the menu keeps Jellyfin's own tick for the selected option.
 - Housekeeping: rules that no longer match anything in Jellyfin 12, and blur effects that were already redundant, removed; the README no longer claims there are no shadows at all on TV, and no longer lists Jellyfin 10.11: the theme now targets Jellyfin 12 only.
 
@@ -779,7 +779,7 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 - PC et téléphone, au clavier : le bouton Lire d'une fiche affiche maintenant un anneau blanc net quand il a le focus. Il ne restait qu'un halo très discret.
 - TV : le contour de focus des champs de texte et des listes déroulantes est plus épais (3 px).
 - Rangées de l'accueil : plus de flash de la rangée avant son entrée en glissement.
-- Contraste : les cases et interrupteurs cochés prennent un violet plus clair, et la pastille « vu » un vert plus foncé derrière sa coche blanche, pour mieux ressortir sur le fond sombre.
+- Contraste : la pastille « vu » prend un vert plus foncé derrière sa coche blanche, pour mieux la lire.
 - Menus avec une option choisie (audio, sous-titres…) : sur les anciennes TV et navigateurs sans `:has()` (avant Chromium 105), le menu garde la coche native de Jellyfin pour l'option choisie.
 - Ménage : règles qui ne correspondent plus à rien dans Jellyfin 12 et flous déjà redondants retirés ; le README ne prétend plus qu'il n'y a aucune ombre sur TV, et ne mentionne plus Jellyfin 10.11 : le thème cible désormais Jellyfin 12 seulement.
 
