@@ -13,6 +13,12 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.5.9 — Housekeeping: old detail-page rules removed
+
+- Detail pages: rules for older Jellyfin versions that no longer match anything in Jellyfin 12 are removed, so the pages look the same (computed styles compared on an episode page and a series page, with the desktop, TV and phone layouts: no difference).
+
+---
+
 #### v1.5.8 — Skip button, Play button focus, contrast, TV input fields
 
 - Skip button (intro, credits): it fades out again instead of staying invisible but focused, where a remote's OK button would skip the segment blindly. Checked on an Android TV.
@@ -771,6 +777,12 @@ Repository/quality release; the rendered theme is byte-for-byte identical in rul
 ### Edition Cinema — modules cinematiques par-dessus ElegantFin
 
 Cette version transforme le theme ElegantFin en une experience de streaming professionnelle inspiree des grandes apps de streaming, tout en gardant la compatibilite complete avec bureau, mobile et TV.
+
+---
+
+#### v1.5.9 — Ménage : anciennes règles des fiches retirées
+
+- Fiches : les règles prévues pour d'anciennes versions de Jellyfin, qui ne correspondent plus à rien dans Jellyfin 12, sont retirées, donc les pages restent identiques (styles calculés comparés sur une page d'épisode et une page de série, avec les dispositions PC, TV et téléphone : aucune différence).
 
 ---
 

@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.5.8 */
+/* ElegantFin Cinema Edition v1.5.9 */
 /* Cinematic modules for a premium streaming experience */
 
 /* ============================================================
@@ -78,7 +78,7 @@
        Enhanced reconnaît ElegantFin à `--elegantFinFooterText` (themer.js,
        `uniqueIdentifier`) et prend `--activeColor` comme accent de ses propres
        éléments (indicateur des lectures en cours…). Vérifié sur la 12.1 (v1.3.10). */
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.8";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.9";
 
     /* Base theme colors */
     color-scheme: dark;
@@ -1649,8 +1649,6 @@ body {
     /* margin-bottom: -1.5em; */
 }
 
-/* this disables block padding on pre-10.11.0 */
-.layout-mobile .detailPagePrimaryContainer.detailRibbon,
 /* this disables block padding on 10.11.0 */
 .layout-mobile .detailPagePrimaryContainer>.detailRibbon {
     padding: 0 var(--sidePadding);
@@ -1666,9 +1664,7 @@ body {
 
 /* this removes the extra large left padding on 10.11.0 */
 .detailPagePrimaryContainer>.detailPagePrimaryContent,
-[dir=ltr] .detailPagePrimaryContainer>.detailRibbon,
-/* this removes the extra large left padding on pre-10.11.0 */
-[dir=ltr] .detailPagePrimaryContainer.detailRibbon {
+[dir=ltr] .detailPagePrimaryContainer>.detailRibbon {
     padding-left: var(--sidePadding);
 }
 
@@ -1688,7 +1684,6 @@ body {
 }
 
 .detailPageSecondaryContainer {
-    /* use !important for pre-10.11.0 compatibility */
     padding-top: 0 !important;
 }
 
@@ -4803,10 +4798,6 @@ div[data-role="controlgroup"] a.ui-btn-active {
     grid-template-columns: 1fr;
 }
 
-.detailPageContent {
-    gap: 1em;
-}
-
 .trackSelections {
     order: 3;
     max-width: unset !important;
@@ -5083,16 +5074,9 @@ div[data-role="controlgroup"] a.ui-btn-active {
     padding-right: 6.5%;
 }
 
-[dir="ltr"] .detailPageContent,
 .content-primary {
     padding-left: var(--sidePadding) !important;
     padding-right: var(--sidePadding) !important;
-}
-
-/* this prevents double padding on Jellyfin pre-10.11.0 */
-[dir="ltr"] .detailPageContent > .detailPagePrimaryContent {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
 }
 
 /* this removes right padding from cast page sections to place cards evenly*/
@@ -5390,7 +5374,7 @@ textarea,
     transition: opacity 0.2s ease-out, box-shadow 0.15s ease;
 }
 
-/* this allows the skip button get focused correctly on TVs using remote navigation; needs 10.10.7*/
+/* this allows the skip button get focused correctly on TVs using remote navigation */
 .layout-tv .skip-button {
     margin-right: auto;
     margin-left: var(--sidePadding);

@@ -1,4 +1,4 @@
-/* ElegantFin Cinema Edition v1.5.8 */
+/* ElegantFin Cinema Edition v1.5.9 */
 @font-face {
     font-family: "Inter";
     src: url("./fonts/Inter-latin.woff2") format("woff2");
@@ -32,7 +32,7 @@
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 :root {
-    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.8";
+    --elegantFinFooterText: "ElegantFin Cinema Edition v1.5.9";
     color-scheme: dark;
     --darkerGradientPoint: #111827;
     --darkerGradientPointAlpha: rgba(17, 24, 39, 0.85);
@@ -1039,7 +1039,6 @@ body {
     align-items: center;
     text-align: left;
 }
-.layout-mobile .detailPagePrimaryContainer.detailRibbon,
 .layout-mobile .detailPagePrimaryContainer>.detailRibbon {
     padding: 0 var(--sidePadding);
 }
@@ -1050,8 +1049,7 @@ body {
     background-color: transparent;
 }
 .detailPagePrimaryContainer>.detailPagePrimaryContent,
-[dir=ltr] .detailPagePrimaryContainer>.detailRibbon,
-[dir=ltr] .detailPagePrimaryContainer.detailRibbon {
+[dir=ltr] .detailPagePrimaryContainer>.detailRibbon {
     padding-left: var(--sidePadding);
 }
 .layout-mobile .detailPagePrimaryContent {
@@ -3070,9 +3068,6 @@ div[data-role="controlgroup"] a.ui-btn-active {
 .layout-mobile .detailSection {
     grid-template-columns: 1fr;
 }
-.detailPageContent {
-    gap: 1em;
-}
 .trackSelections {
     order: 3;
     max-width: unset !important;
@@ -3275,14 +3270,9 @@ div[data-role="controlgroup"] a.ui-btn-active {
     padding-left: 4.5%;
     padding-right: 6.5%;
 }
-[dir="ltr"] .detailPageContent,
 .content-primary {
     padding-left: var(--sidePadding) !important;
     padding-right: var(--sidePadding) !important;
-}
-[dir="ltr"] .detailPageContent > .detailPagePrimaryContent {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
 }
 #itemDetailPage .verticalSection .itemsContainer.padded-right {
     padding-right: 0 !important;
