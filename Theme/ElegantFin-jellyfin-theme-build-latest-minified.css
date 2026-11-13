@@ -3481,6 +3481,9 @@ textarea,
 .skip-button.no-transition {
     transition: none;
 }
+.layout-tv .skip-button.emby-button:not(.btnPlay):not(.detailButton):not(.headerButton):not(.paper-icon-button-light):not(.no-transition):focus-visible {
+    transition: opacity 0.2s ease-out, box-shadow 0.15s ease;
+}
 .layout-tv .skip-button {
     margin-right: auto;
     margin-left: var(--sidePadding);

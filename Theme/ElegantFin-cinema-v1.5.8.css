@@ -5381,6 +5381,15 @@ textarea,
     transition: none;
 }
 
+/* v1.5.8 : TV. La règle des boutons génériques focalisés (`.layout-tv .emby-button:not(...):focus-visible`,
+   plus haut) impose `transition: box-shadow` et battait l'opacité ci-dessus : sur TV, le bouton Passer
+   garde le focus, donc le fondu de sortie n'avait pas lieu, pas de `transitionend`, et le bouton restait
+   focalisé et invisible. Mesuré sur une Philips Android TV 8 : sans cette règle, opacité 0 et focus
+   conservé après 8 s ; avec elle, fondu, classe `hide`, focus rendu. Même `box-shadow` qu'avant. */
+.layout-tv .skip-button.emby-button:not(.btnPlay):not(.detailButton):not(.headerButton):not(.paper-icon-button-light):not(.no-transition):focus-visible {
+    transition: opacity 0.2s ease-out, box-shadow 0.15s ease;
+}
+
 /* this allows the skip button get focused correctly on TVs using remote navigation; needs 10.10.7*/
 .layout-tv .skip-button {
     margin-right: auto;

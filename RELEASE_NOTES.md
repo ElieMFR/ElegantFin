@@ -15,7 +15,7 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 #### v1.5.8 — Skip button, Play button focus, contrast, TV input fields
 
-- Skip button (intro, credits): it fades out again instead of staying invisible but focused, where a remote's OK button would skip the segment blindly.
+- Skip button (intro, credits): it fades out again instead of staying invisible but focused, where a remote's OK button would skip the segment blindly. Checked on an Android TV.
 - Desktop and phone, keyboard: the Play button on a detail page now shows a clear white ring when focused. A faint halo was all that remained.
 - TV: the focus outline of text fields and drop-down lists is thicker (3 px).
 - Home rows: no more flash of the row before it slides in.
@@ -775,7 +775,7 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 
 #### v1.5.8 — Bouton Passer, focus du bouton Lire, contraste, champs en TV
 
-- Bouton Passer (intro, générique) : il s'efface de nouveau en fondu au lieu de rester invisible mais focalisé, ce qui faisait sauter le segment à l'aveugle avec le bouton OK d'une télécommande.
+- Bouton Passer (intro, générique) : il s'efface de nouveau en fondu au lieu de rester invisible mais focalisé, ce qui faisait sauter le segment à l'aveugle avec le bouton OK d'une télécommande. Vérifié sur une Android TV.
 - PC et téléphone, au clavier : le bouton Lire d'une fiche affiche maintenant un anneau blanc net quand il a le focus. Il ne restait qu'un halo très discret.
 - TV : le contour de focus des champs de texte et des listes déroulantes est plus épais (3 px).
 - Rangées de l'accueil : plus de flash de la rangée avant son entrée en glissement.
