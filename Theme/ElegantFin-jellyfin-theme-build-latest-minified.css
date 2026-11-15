@@ -194,12 +194,7 @@ body {
     content: "info_outline";
     font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
-.dashboardFooter {
-    font-family: "Noto Sans", serif;
-    transition: transform 50ms;
-}
-#myPreferencesMenuPage > div:after,
-.dashboardFooter::after {
+#myPreferencesMenuPage > div:after {
     content: var(--elegantFinFooterText);
     font-size: 0.8em;
     color: rgba(255, 255, 255, 0.6);
@@ -274,7 +269,7 @@ body {
     transform: none !important;
 }
 .btnPlay:focus-visible {
-    background-color: #111827 !important;
+    background-color: var(--darkerGradientPoint) !important;
     color: #fff !important;
     outline: none !important;
     box-shadow:
@@ -284,7 +279,7 @@ body {
     position: relative;
 }
 .layout-tv .btnPlay.show-focus:focus {
-    background-color: #111827 !important;
+    background-color: var(--darkerGradientPoint) !important;
     color: #fff !important;
     outline: none !important;
     box-shadow:
@@ -615,7 +610,7 @@ body {
 .listItemImageButton,
 .layout-mobile .cardOverlayButton-br:not([data-action="menu"]) > .cardOverlayButtonIcon {
     background-color: #fff !important;
-    color: #111827;
+    color: var(--darkerGradientPoint);
     border: var(--defaultLighterBorder);
     border-color: rgba(0, 0, 0, 0.12);
     font-size: 75%;
@@ -2899,7 +2894,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
 }
 .MuiButton-containedPrimary {
     background-color: #fff !important;
-    color: #111827 !important;
+    color: var(--darkerGradientPoint) !important;
 }
 .MuiButton-containedPrimary:hover {
     background-color: #e8e8e8 !important;
@@ -3460,7 +3455,7 @@ textarea,
     bottom: 25%;
 }
 .skip-button {
-    background-color: #111827;
+    background-color: var(--darkerGradientPoint);
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18), 0 4px 15px rgba(0, 0, 0, 0.45) !important;
     margin-right: var(--sidePadding);
     color: #fff;
@@ -3498,7 +3493,7 @@ textarea,
 }
 .layout-tv .skip-button.show-focus:focus,
 .layout-tv .skip-button:focus {
-    background-color: #111827;
+    background-color: var(--darkerGradientPoint);
     color: #fff;
 }
 .activeSession {

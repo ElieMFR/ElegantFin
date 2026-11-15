@@ -418,13 +418,7 @@ body {
     font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 
-.dashboardFooter {
-    font-family: "Noto Sans", serif;
-    transition: transform 50ms;
-}
-
-#myPreferencesMenuPage > div:after,
-.dashboardFooter::after {
+#myPreferencesMenuPage > div:after {
     content: var(--elegantFinFooterText);
     font-size: 0.8em;
     color: rgba(255, 255, 255, 0.6);   /* v1.2.64 (audit WCAG) : var(--borderColor) donnait 1.86:1, quasi illisible — et c'est CE texte qu'on lit pour vérifier la version. ~5.5:1 maintenant. */
@@ -573,7 +567,7 @@ body {
    aussi le focus CLAVIER sur PC (Tab), sans se déclencher au clic souris
    (heuristique native du navigateur). TV garde son chemin .show-focus. */
 .btnPlay:focus-visible {
-    background-color: #111827 !important;
+    background-color: var(--darkerGradientPoint) !important;
     color: #fff !important;
     outline: none !important;
     box-shadow:
@@ -587,7 +581,7 @@ body {
    invalide la RÈGLE ENTIÈRE, liste comprise — la moitié ancienne tomberait
    avec la moderne sur les moteurs qui ignorent le sélecteur du dessus. */
 .layout-tv .btnPlay.show-focus:focus {
-    background-color: #111827 !important;
+    background-color: var(--darkerGradientPoint) !important;
     color: #fff !important;
     outline: none !important;
     box-shadow:
@@ -1064,7 +1058,7 @@ body {
 .listItemImageButton,
 .layout-mobile .cardOverlayButton-br:not([data-action="menu"]) > .cardOverlayButtonIcon {
     background-color: #fff !important;                 /* v1.2.53 : mini-Lire BLANC = identique au bouton Lire principal (était vert, hors palette) */
-    color: #111827;                                    /* icône sombre sur blanc */
+    color: var(--darkerGradientPoint);                                    /* icône sombre sur blanc */
     border: var(--defaultLighterBorder);
     border-color: rgba(0, 0, 0, 0.12);                 /* anneau neutre (plus le vert) */
     font-size: 75%;
@@ -4565,7 +4559,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
    (containedError rouge, containedSuccess vert) et ne sont pas touchées. */
 .MuiButton-containedPrimary {
     background-color: #fff !important;
-    color: #111827 !important;
+    color: var(--darkerGradientPoint) !important;
 }
 
 .MuiButton-containedPrimary:hover {
@@ -5348,7 +5342,7 @@ textarea,
    la lisibilité sur scènes sombres. Focus clavier / TV = pastille blanche
    (règle d'inversion existante, inchangée). */
 .skip-button {
-    background-color: #111827;
+    background-color: var(--darkerGradientPoint);
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18), 0 4px 15px rgba(0, 0, 0, 0.45) !important;
     margin-right: var(--sidePadding);
     color: #fff;
@@ -5426,7 +5420,7 @@ textarea,
    TV). Le bouton garde au focus son bleu nuit de base, où la jauge se lit bien. */
 .layout-tv .skip-button.show-focus:focus,
 .layout-tv .skip-button:focus {
-    background-color: #111827;
+    background-color: var(--darkerGradientPoint);
     color: #fff;
 }
 
