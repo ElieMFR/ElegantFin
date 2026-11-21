@@ -2627,10 +2627,6 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
     [data-type="Series"] .listItemImage {
         display: unset;
     }
-
-    .dashboardActionsContainer {
-        font-size: min(3.6vw, 98%);
-    }
 }
 
 @media (orientation: portrait) {
@@ -2807,6 +2803,16 @@ html,
     .card-hoverable:hover .cardScalable {
         transform: none !important;
     }
+    /* Zoom de focus TV : le contour blanc (sur .cardScalable) reste. Deux règles
+       SÉPARÉES, comme les règles de focus d'origine. */
+    .layout-tv .card:focus-visible .cardBox {
+        transform: none !important;
+        transition: none !important;
+    }
+    .layout-tv .card:focus .cardBox {
+        transform: none !important;
+        transition: none !important;
+    }
 }
 
 .backdropImageFadeIn {
@@ -2912,16 +2918,6 @@ html,
     background-color: #fff !important;
 }
 
-.backgroundProgress > div,
-.backgroundProgress {
-    background-color: var(--darkerGradientPoint);
-}
-
-/* v1.2.44 : barres de progression violettes → blanches, pour finir le module
-   "White Progress Bars" (les barres des cards étaient déjà blanches). */
-.playbackProgress > div {
-    background-color: #fff;
-}
 
 ::-moz-progress-bar {
     background: #fff !important;
@@ -3027,6 +3023,23 @@ progress + span {
 
 .sliderContainer:active .mdl-slider::-webkit-slider-thumb,
 .mdl-slider.show-focus:focus::-webkit-slider-thumb {
+    width: 0.2em !important;
+    height: 0.8em !important;
+    border-radius: 0.2em;
+    transform: scale(1) scaleY(1.25);
+}
+
+/* Focus clavier sur PC : `show-focus` n'est posé qu'en TV et Jellyfin met
+   `outline: 0` ; le curseur focalisé était identique au curseur au repos. Même
+   forme que le focus TV. Règles SÉPARÉES (webkit / moz) et de la liste TV ci-dessus. */
+.mdl-slider:focus-visible::-webkit-slider-thumb {
+    width: 0.2em !important;
+    height: 0.8em !important;
+    border-radius: 0.2em;
+    transform: scale(1) scaleY(1.25);
+}
+
+.mdl-slider:focus-visible::-moz-range-thumb {
     width: 0.2em !important;
     height: 0.8em !important;
     border-radius: 0.2em;
@@ -3765,8 +3778,7 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
 .emby-button.block,
 .raised,
 #btnDeleteImage,
-.manageRecordingButton,
-.dashboardActionsContainer > .emby-button {
+.manageRecordingButton {
     color: #fff;
     border-radius: var(--smallRadius);
     background: var(--lighterGradientPoint);
@@ -3983,8 +3995,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
     border-radius: 0.5em;
 }
 
-#btnDeleteImage,
-.button-delete {
+#btnDeleteImage {
     background: var(--btnDeleteColor);
     border: solid var(--btnDeleteBorderColor) var(--borderWidth);
 }
@@ -4434,6 +4445,14 @@ div[data-role="controlgroup"] a.ui-btn-active {
    couleur de l'onde avec la même profondeur de sélecteur. */
 .Mui-focusVisible > .MuiTouchRipple-root {
     display: none;
+}
+
+/* Interrupteurs et cases de l'interface moderne : leur seul repère de focus
+   clavier était l'onde masquée ci-dessus. Même anneau que `.MuiButton-contained`. */
+.MuiSwitch-switchBase.Mui-focusVisible,
+.MuiCheckbox-root.Mui-focusVisible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
 }
 
 .MuiTouchRipple-root .MuiTouchRipple-child {
@@ -5215,9 +5234,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
     margin: 0.75em 0 -0.75em 0;
 }
 
-.dashboardSection .sectionTitleTextButton > .material-icons,
-.sectionTitleTextButton > .material-icons,
-.dashboardSection .sectionTitleTextButton > .material-icons.material-icons {
+.sectionTitleTextButton > .material-icons {
     font-size: unset;
 }
 
@@ -5399,7 +5416,7 @@ textarea,
 .skip-button:active {
     background-color: rgba(255, 255, 255, 0.85);
     color: #000;
-    box-shadow: none;
+    box-shadow: none !important;   /* sans !important, la règle de base l'emportait */
 }
 
 /* ⚠️ INVARIANT — bouton skip sur TV : NE RIEN DÉCLARER ICI qui touche au fond.
@@ -5518,6 +5535,15 @@ textarea,
     border: var(--defaultLighterBorder);
     border-radius: var(--smallRadius);
     padding: 0.5em !important;
+}
+
+/* Texte d'exemple : le gris par défaut du navigateur (117,117,117) faisait 2,24:1
+   sur le fond du champ ; blanc à 60 % = 4,9:1. Séparées : `::placeholder` est
+   ignoré tel quel par les vieux moteurs sans dommage pour le reste. */
+.emby-input::placeholder,
+.emby-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    opacity: 1;
 }
 
 /* v1.3.20 : le `padding: 0.5em !important` ci-dessus écrasait aussi la marge droite
@@ -5907,10 +5933,6 @@ table:not(.MuiTable-root.MuiTable-stickyHeader) {
     overflow: hidden;
 }
 
-.detailTableHeaderCell {
-    vertical-align: middle;
-}
-
 /* v1.2.87 : les sélecteurs #serverActivityPage (journal d'activité) ont été
    retirés d'ici — c'est une page du TABLEAU DE BORD, où Jellyfin n'injecte pas
    le Custom CSS (vérifié en 10.11 et en 12.0) : ils n'ont jamais rien stylé.
@@ -6072,8 +6094,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
 }
 
 #loginPage .padded-left.padded-right.padded-bottom-page {
-    width: 28em;
-    width: min(28em, calc(100vw - 2em));
     background: rgba(17, 24, 39, 0.92) !important;
     padding: 2em 2em 1em 2em !important;
     border-radius: var(--largerRadius);
@@ -7459,6 +7479,12 @@ html:lang(fr) .visualLoginForm::before {
         opacity: 1;
     }
 
+    /* Focus clavier sur une flèche : la barre devient visible, comme au survol
+       (sinon le focus arrive sur un contrôle invisible). Règle séparée. */
+    .layout-desktop .verticalSection:not(.editorsChoiceContainer):not(:has(.editorsChoiceContainer)) .emby-scrollbuttons:focus-within {
+        opacity: 1;
+    }
+
     /* v1.3.22 — `padding-bottom` : la bande couvre l'image ET le titre sous la carte,
        le chevron se centrait donc sur l'ensemble, 18 à 22 px sous le centre des
        images (31 px pour des titres sur deux lignes). 3.2em ≈ la hauteur d'un titre
@@ -7699,13 +7725,13 @@ html:lang(fr) .visualLoginForm::before {
    ============================================================ */
 
 /* Bouton Enregistrer toujours visible dans les pages de paramètres (fini de
-   défiler jusqu'en bas pour sauvegarder). L'ombre large fond le bouton dans la
-   page pendant le défilement. */
+   défiler jusqu'en bas pour sauvegarder). Plus d'ombre : l'ancienne (3em d'étalement,
+   ~63 px de portée) grisait le dernier champ ou la dernière case au-dessus du bouton
+   (mesuré : Sous-titres, Connexion rapide ; le champ était à 27 px). */
 .userPreferencesPage .button-submit {
     position: sticky !important;
     bottom: 1em;
     bottom: calc(1em + env(safe-area-inset-bottom, 0px));
-    box-shadow: 0 0.75em 2em 3em var(--darkerGradientPoint);
     z-index: 2 !important;
 }
 
@@ -7801,7 +7827,6 @@ html:lang(fr) .visualLoginForm::before {
     position: sticky;
     bottom: 1em;
     bottom: calc(1em + env(safe-area-inset-bottom, 0px));
-    box-shadow: 0 0.75em 2em 3em var(--darkerGradientPoint);
     z-index: 2;
 }
 

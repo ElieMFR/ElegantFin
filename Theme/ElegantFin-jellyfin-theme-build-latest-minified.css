@@ -1625,9 +1625,6 @@ html.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
     [data-type="Series"] .listItemImage {
         display: unset;
     }
-    .dashboardActionsContainer {
-        font-size: min(3.6vw, 98%);
-    }
 }
 @media (orientation: portrait) {
     .layout-mobile .skinHeader.noHomeButtonHeader .headerSyncButton {
@@ -1754,6 +1751,14 @@ html,
     .card-hoverable:hover .cardScalable {
         transform: none !important;
     }
+    .layout-tv .card:focus-visible .cardBox {
+        transform: none !important;
+        transition: none !important;
+    }
+    .layout-tv .card:focus .cardBox {
+        transform: none !important;
+        transition: none !important;
+    }
 }
 .backdropImageFadeIn {
     transform-origin: bottom center;
@@ -1830,13 +1835,6 @@ html,
 }
 .MuiLinearProgress-barColorPrimary {
     background-color: #fff !important;
-}
-.backgroundProgress > div,
-.backgroundProgress {
-    background-color: var(--darkerGradientPoint);
-}
-.playbackProgress > div {
-    background-color: #fff;
 }
 ::-moz-progress-bar {
     background: #fff !important;
@@ -1915,6 +1913,18 @@ progress + span {
 }
 .sliderContainer:active .mdl-slider::-webkit-slider-thumb,
 .mdl-slider.show-focus:focus::-webkit-slider-thumb {
+    width: 0.2em !important;
+    height: 0.8em !important;
+    border-radius: 0.2em;
+    transform: scale(1) scaleY(1.25);
+}
+.mdl-slider:focus-visible::-webkit-slider-thumb {
+    width: 0.2em !important;
+    height: 0.8em !important;
+    border-radius: 0.2em;
+    transform: scale(1) scaleY(1.25);
+}
+.mdl-slider:focus-visible::-moz-range-thumb {
     width: 0.2em !important;
     height: 0.8em !important;
     border-radius: 0.2em;
@@ -2453,8 +2463,7 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
 .emby-button.block,
 .raised,
 #btnDeleteImage,
-.manageRecordingButton,
-.dashboardActionsContainer > .emby-button {
+.manageRecordingButton {
     color: #fff;
     border-radius: var(--smallRadius);
     background: var(--lighterGradientPoint);
@@ -2614,8 +2623,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
     color: #000 !important;
     border-radius: 0.5em;
 }
-#btnDeleteImage,
-.button-delete {
+#btnDeleteImage {
     background: var(--btnDeleteColor);
     border: solid var(--btnDeleteBorderColor) var(--borderWidth);
 }
@@ -2851,6 +2859,11 @@ div[data-role="controlgroup"] a.ui-btn-active {
 }
 .Mui-focusVisible > .MuiTouchRipple-root {
     display: none;
+}
+.MuiSwitch-switchBase.Mui-focusVisible,
+.MuiCheckbox-root.Mui-focusVisible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
 }
 .MuiTouchRipple-root .MuiTouchRipple-child {
     background-color: var(--activeColor);
@@ -3359,9 +3372,7 @@ div[data-role="controlgroup"] a.ui-btn-active {
 .layout-mobile :not(.sectionTitleContainer-cards) > .sectionTitle-cards {
     margin: 0.75em 0 -0.75em 0;
 }
-.dashboardSection .sectionTitleTextButton > .material-icons,
-.sectionTitleTextButton > .material-icons,
-.dashboardSection .sectionTitleTextButton > .material-icons.material-icons {
+.sectionTitleTextButton > .material-icons {
     font-size: unset;
 }
 .sectionTitleTextButton > .material-icons::before {
@@ -3486,7 +3497,7 @@ textarea,
 .skip-button:active {
     background-color: rgba(255, 255, 255, 0.85);
     color: #000;
-    box-shadow: none;
+    box-shadow: none !important;
 }
 .layout-tv .skip-button:hover {
     transform: none;
@@ -3570,6 +3581,11 @@ textarea,
     border: var(--defaultLighterBorder);
     border-radius: var(--smallRadius);
     padding: 0.5em !important;
+}
+.emby-input::placeholder,
+.emby-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    opacity: 1;
 }
 .emby-select-withcolor,
 .emby-select {
@@ -3850,9 +3866,6 @@ table:not(.MuiTable-root.MuiTable-stickyHeader) {
     border-collapse: separate;
     overflow: hidden;
 }
-.detailTableHeaderCell {
-    vertical-align: middle;
-}
 .detailTableBodyRow-shaded:nth-child(odd) {
     background: var(--darkerGradientPointAlpha) !important;
 }
@@ -3942,8 +3955,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     box-sizing: border-box;
 }
 #loginPage .padded-left.padded-right.padded-bottom-page {
-    width: 28em;
-    width: min(28em, calc(100vw - 2em));
     background: rgba(17, 24, 39, 0.92) !important;
     padding: 2em 2em 1em 2em !important;
     border-radius: var(--largerRadius);
@@ -4816,6 +4827,9 @@ html:lang(fr) .visualLoginForm::before {
     .layout-desktop .verticalSection:not(.editorsChoiceContainer):not(:has(.editorsChoiceContainer)):hover .emby-scrollbuttons {
         opacity: 1;
     }
+    .layout-desktop .verticalSection:not(.editorsChoiceContainer):not(:has(.editorsChoiceContainer)) .emby-scrollbuttons:focus-within {
+        opacity: 1;
+    }
     .layout-desktop .verticalSection:not(.editorsChoiceContainer):not(:has(.editorsChoiceContainer)) .emby-scrollbuttons-button {
         pointer-events: auto;
         height: 100%;
@@ -4939,7 +4953,6 @@ html:lang(fr) .visualLoginForm::before {
     position: sticky !important;
     bottom: 1em;
     bottom: calc(1em + env(safe-area-inset-bottom, 0px));
-    box-shadow: 0 0.75em 2em 3em var(--darkerGradientPoint);
     z-index: 2 !important;
 }
 .userPreferencesPage .MuiTypography-h2 {
@@ -5002,7 +5015,6 @@ html:lang(fr) .visualLoginForm::before {
     position: sticky;
     bottom: 1em;
     bottom: calc(1em + env(safe-area-inset-bottom, 0px));
-    box-shadow: 0 0.75em 2em 3em var(--darkerGradientPoint);
     z-index: 2;
 }
 .tmdb-review-swipe-container {
