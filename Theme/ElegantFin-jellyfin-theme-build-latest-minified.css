@@ -2563,6 +2563,12 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
     outline-offset: 3px;
     box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
 }
+.layout-tv #loginPage .button-submit:focus-visible {
+    outline: 4px solid #fff !important;
+    outline-offset: 3px !important;
+    box-shadow: none !important;
+    color: #fff !important;
+}
 .btnPlay:not(.formDialogFooterItem):after {
     content: attr(title);
     padding: 0 1ch;

@@ -3920,6 +3920,16 @@ div[data-type="PhotoAlbum"] .play_arrow:before {
     box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
 }
 
+/* D35 : sur TV, `.layout-tv .emby-button:not(...):focus-visible` (outline: none !important)
+   annulait ce contour ; il ne restait que le halo a 25 %. Contour 4 px et texte blanc
+   (essai Freebox 2026-11-21). */
+.layout-tv #loginPage .button-submit:focus-visible {
+    outline: 4px solid #fff !important;
+    outline-offset: 3px !important;
+    box-shadow: none !important;
+    color: #fff !important;
+}
+
 .btnPlay:not(.formDialogFooterItem):after {
     content: attr(title);
     padding: 0 1ch;
