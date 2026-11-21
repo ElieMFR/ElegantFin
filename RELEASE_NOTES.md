@@ -13,6 +13,18 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
+#### v1.5.10 : TV login focus, Save button, keyboard focus, input contrast
+
+- TV, login screen: the focus on the "Sign In" button is now a thick white outline (4 px) with white text. Another rule was cancelling the outline on TV, so only a faint halo was left.
+- Preferences pages: the shadow under the sticky Save button is removed. It dimmed the last field or checkbox above the button (seen on Subtitles and Quick Connect).
+- Keyboard focus: switches and checkboxes of the modern interface now show a white ring, the slider handle changes shape when focused, and, on desktop, the arrows of a row show their bar when they receive the focus.
+- Text fields: the example text (placeholder) is lighter, so it is easier to read on the dark background.
+- TV: with reduced motion enabled, the zoom of a focused card is switched off (the white outline stays).
+- Skip button: when pressed, the shadow around it no longer stays visible.
+- Housekeeping: rules that no longer match anything in Jellyfin 12 removed, and one hard-coded colour replaced by the theme variable (computed styles unchanged for the colour).
+
+---
+
 #### v1.5.9 — Housekeeping: old detail-page rules removed
 
 - Detail pages: rules for older Jellyfin versions that no longer match anything in Jellyfin 12 are removed, so the pages look the same (computed styles compared on an episode page and a series page, with the desktop, TV and phone layouts: no difference).
@@ -777,6 +789,18 @@ Repository/quality release; the rendered theme is byte-for-byte identical in rul
 ### Edition Cinema — modules cinematiques par-dessus ElegantFin
 
 Cette version transforme le theme ElegantFin en une experience de streaming professionnelle inspiree des grandes apps de streaming, tout en gardant la compatibilite complete avec bureau, mobile et TV.
+
+---
+
+#### v1.5.10 : Focus de connexion sur TV, bouton Sauvegarder, focus clavier, contraste des champs
+
+- TV, écran de connexion : le focus du bouton « Se connecter » est maintenant un contour blanc épais (4 px) avec un texte blanc. Une autre règle annulait le contour sur TV, il ne restait qu'un halo très discret.
+- Pages de préférences : l'ombre sous le bouton Sauvegarder collant est retirée. Elle grisait le dernier champ ou la dernière case au-dessus du bouton (vu sur Sous-titres et Connexion rapide).
+- Focus clavier : les interrupteurs et les cases de l'interface moderne affichent un anneau blanc, la poignée du curseur change de forme quand elle a le focus, et, sur PC, les flèches d'une rangée montrent leur barre quand elles reçoivent le focus.
+- Champs de texte : le texte d'exemple (placeholder) est plus clair, donc plus lisible sur le fond sombre.
+- TV : avec le mouvement réduit activé, le zoom d'une carte focalisée est coupé (le contour blanc reste).
+- Bouton Passer : quand on appuie dessus, l'ombre autour du bouton ne reste plus visible.
+- Ménage : règles qui ne correspondent plus à rien dans Jellyfin 12 retirées, et une couleur écrite en dur remplacée par la variable du thème (styles calculés identiques pour la couleur).
 
 ---
 
