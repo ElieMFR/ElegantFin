@@ -47,14 +47,12 @@ ElegantFin Cinema Edition is a Jellyfin theme inspired by streaming platforms, b
 *   **Made for Jellyfin 12**: the new PC and phone interface gets the full look, with library pills in the top bar and the theme's purple instead of Jellyfin blue.
 *   **Detail pages**: full-screen backdrops, title logos, a white Play button, media info in clean panels.
 *   **Cards**: rounded posters, a light zoom on hover, glass badges, a soft veil on what you've already watched.
-*   **TV**: a clear white focus on every control. The zoom waits until you stop moving, so fast scrolling stays smooth. The home tabs never slide under the header icons.
-*   **Light on TV**: no blur and no looping animations. Every TV change is measured on a Samsung TV and an Android TV box.
-*   **Phones**: rows that stop on a card, readable in portrait and landscape, and the same top bar as on PC when the phone is turned sideways.
-*   **Details**: glass dialogs and menus, a modern player bar, thin scrollbars, drop-down lists whose text never hides under the arrow.
+*   **TV**: a clear white focus on every control, no blur, no looping animations. The home tabs never slide under the header icons.
+*   **Phones**: rows that stop on a card, readable in portrait and landscape.
+*   **Details**: glass dialogs and menus, a modern player bar, thin scrollbars.
 *   **Plugins**: dedicated styling for Jellyfin Enhanced, Media Carousel and Editor's Choice.
-*   **Fonts included**: Inter and Material Icons ship with the theme, nothing is loaded from Google. The theme file is about 150 KB.
-*   **Older devices**: recent effects have a fallback, so an old TV or browser keeps a clean interface.
-*   **Accessible**: animations switch off when the system asks for reduced motion (some hover and focus transitions remain).
+*   **Fonts included**: Inter and Material Icons ship with the theme, nothing is loaded from Google.
+*   **Older devices and reduced motion**: old TVs and browsers keep a clean interface, and most animations switch off when the system asks for reduced motion.
 
 ## 📦 Installation
 
@@ -188,14 +186,12 @@ ElegantFin Cinema Edition est un thème Jellyfin inspiré des plateformes de str
 *   **Pensé pour Jellyfin 12** : la nouvelle interface PC et mobile prend tout le style, avec les pastilles de bibliothèques dans la barre du haut et le violet du thème au lieu du bleu Jellyfin.
 *   **Fiches** : images de fond en plein écran, logos des titres, bouton Lire blanc, infos média dans des panneaux nets.
 *   **Cartes** : affiches arrondies, léger zoom au survol, pastilles en verre, voile discret sur ce que vous avez déjà vu.
-*   **TV** : un focus blanc bien visible sur chaque élément. Le zoom attend que vous vous arrêtiez, le défilement rapide reste donc fluide. Les onglets de l'accueil ne passent jamais sous les icônes.
-*   **Léger sur TV** : ni flou ni animation en boucle. Chaque changement TV est mesuré sur une TV Samsung et une box Android TV.
-*   **Téléphone** : rangées qui s'arrêtent sur une carte, lisible en portrait comme en paysage, et la même barre du haut que sur PC quand le téléphone est tourné.
-*   **Détails** : fenêtres et menus en verre, barre du lecteur moderne, barres de défilement fines, listes déroulantes dont le texte ne passe jamais sous la flèche.
+*   **TV** : un focus blanc bien visible sur chaque élément, ni flou ni animation en boucle. Les onglets de l'accueil ne passent jamais sous les icônes.
+*   **Téléphone** : rangées qui s'arrêtent sur une carte, lisible en portrait comme en paysage.
+*   **Détails** : fenêtres et menus en verre, barre du lecteur moderne, barres de défilement fines.
 *   **Plugins** : un habillage dédié pour Jellyfin Enhanced, Media Carousel et Editor's Choice.
-*   **Polices incluses** : Inter et Material Icons sont livrées avec le thème, rien n'est chargé depuis Google. Le fichier du thème pèse environ 150 Ko.
-*   **Anciens appareils** : les effets récents ont un repli, une ancienne TV ou un vieux navigateur garde une interface propre.
-*   **Accessible** : les animations se coupent quand le système demande moins de mouvement (certaines transitions de survol et de focus restent).
+*   **Polices incluses** : Inter et Material Icons sont livrées avec le thème, rien n'est chargé depuis Google.
+*   **Anciens appareils et mouvement réduit** : une ancienne TV ou un vieux navigateur garde une interface propre, et la plupart des animations se coupent quand le système demande moins de mouvement.
 
 ## 📦 Installation
 

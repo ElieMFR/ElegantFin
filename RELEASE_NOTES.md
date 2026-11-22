@@ -13,95 +13,92 @@ This release transforms the ElegantFin theme into a professional, premium stream
 
 ---
 
-#### v1.5.10 : TV login focus, Save button, keyboard focus, input contrast
+#### v1.5.10: TV login focus, Save button, keyboard focus
 
-- TV, login screen: the focus on the "Sign In" button is now a thick white outline (4 px) with white text. Another rule was cancelling the outline on TV, so only a faint halo was left.
-- Preferences pages: the shadow under the sticky Save button is removed. It dimmed the last field or checkbox above the button (seen on Subtitles and Quick Connect).
-- Keyboard focus: switches and checkboxes of the modern interface now show a white ring, the slider handle changes shape when focused, and, on desktop, the arrows of a row show their bar when they receive the focus.
-- Text fields: the example text (placeholder) is lighter, so it is easier to read on the dark background.
-- TV: with reduced motion enabled, the zoom of a focused card is switched off (the white outline stays).
-- Skip button: when pressed, the shadow around it no longer stays visible.
-- Housekeeping: rules that no longer match anything in Jellyfin 12 removed, and one hard-coded colour replaced by the theme variable (computed styles unchanged for the colour).
-
----
-
-#### v1.5.9 — Housekeeping: old detail-page rules removed
-
-- Detail pages: rules for older Jellyfin versions that no longer match anything in Jellyfin 12 are removed, so the pages look the same (computed styles compared on an episode page and a series page, with the desktop, TV and phone layouts: no difference).
+- TV: the "Sign In" button shows a thick white outline when selected.
+- Settings pages: the Save button no longer dims the field above it.
+- Keyboard: switches, checkboxes and the slider handle are easier to see when selected.
+- Desktop, keyboard: the arrows of a row show up when selected.
+- Text fields: the example text is easier to read.
+- TV: with reduced motion turned on, a selected card no longer zooms.
+- The Skip button no longer keeps its shadow when pressed.
 
 ---
 
-#### v1.5.8 — Skip button, Play button focus, contrast, TV input fields
+#### v1.5.9: Clean-up
 
-- Skip button (intro, credits): it fades out again instead of staying invisible but focused, where a remote's OK button would skip the segment blindly. Checked on an Android TV.
-- Desktop and phone, keyboard: the Play button on a detail page now shows a clear white ring when focused. A faint halo was all that remained.
-- TV: the focus outline of text fields and drop-down lists is thicker (3 px).
-- Home rows: no more flash of the row before it slides in.
-- Contrast: the "watched" badge uses a darker green behind its white tick, so the tick is easier to read.
-- Menus with a selected option (audio, subtitles…): on older TVs and browsers without `:has()` (before Chromium 105), the menu keeps Jellyfin's own tick for the selected option.
-- Housekeeping: rules that no longer match anything in Jellyfin 12, and blur effects that were already redundant, removed.
-- Jellyfin 10.11 is no longer a target: the theme now supports Jellyfin 12 only.
+- Detail pages: internal clean-up, no visible change.
 
 ---
 
-#### v1.5.7 — Keyboard focus: card info and detail buttons, contrast
+#### v1.5.8: Skip button, Play button focus, contrast
 
-- Desktop, keyboard: the year or episode line under a focused card now shows, as it does on hover. It stayed hidden before.
-- Desktop, keyboard: the buttons next to Play on a detail page (favorite, watched, more) now turn white with a dark icon when focused. Another rule was making them almost transparent, so the icon could not be seen.
-- Contrast: purple links, the Save button of the top bar and the section titles of the side menu are lighter, to stay readable on the dark background.
-- Login card: a fallback width for older TVs that do not know `min()` (before Chromium 79).
-- Housekeeping: two TV rules without effect removed; the NotifySync link in the README points to its new address.
-
----
-
-#### v1.5.6 — Media Bar and Home Screen Sections are no longer styled
-
-- The theme no longer styles the Media Bar and Home Screen Sections plugins and no longer lists them as supported: it is not tested with them. Their rules are removed (slideshow gradient and buttons, Top 10 numbers, Discover badges). Both plugins keep their own look.
+- TV: the Skip button fades out again instead of staying selected while invisible, so pressing OK no longer skips blindly.
+- Keyboard (desktop and phone): the Play button shows a clear white ring when selected.
+- TV: the outline of text fields and drop-down lists is thicker.
+- Home rows no longer flash before sliding in.
+- The "watched" tick is easier to read.
+- Menus (audio, subtitles…) on older TVs and browsers keep the tick on the selected option.
+- Jellyfin 10.11 is no longer supported: the theme targets Jellyfin 12 only.
 
 ---
 
-#### v1.5.5 — Keyboard focus visible on desktop and phone
+#### v1.5.7: Keyboard focus and contrast
 
-- Desktop and phone, keyboard: the focused card now shows a white outline, drawn just inside the edge of the image. It showed nothing before, because the focus lands on the image link and not on the card.
-- Desktop and phone, keyboard: a row title that opens the full list gets a white outline when focused.
-
----
-
-#### v1.5.4 — TV: the up arrow returns to Play on detail pages, Jellyfin 12.4 filter button
-
-- TV, detail pages: the audio and subtitle menus now sit right under the Play buttons, before the overview. They were 317 px lower, so going down to them scrolled the buttons off the screen and the up arrow went to the top bar instead of back to Play.
-- Jellyfin 12.4, library bar: the new "Reset filters" button no longer takes the purple pill of the active library.
-- Login page: the title, always in French until now, follows the Jellyfin language (French when Jellyfin is in French, English otherwise). `--loginPageText` still replaces it and is now listed in the README.
-- Icons of the Home and Favorites tabs and the "more" arrow of the overview: icon names instead of character codes, and they now follow `--iconPack` (LG TV tip in the README).
-- Housekeeping: one rule without effect removed, three option comments corrected, the old v1.2.0 notes moved to the archive.
+- Desktop, keyboard: the year or episode under a selected card shows, as on hover.
+- Desktop, keyboard: the buttons next to Play (favorite, watched, more) turn white when selected.
+- Purple links, the Save button of the top bar and the side menu titles are lighter, so they read better on the dark background.
+- Login card: now fits older TVs.
 
 ---
 
-#### v1.5.3 — TV: the up arrow reaches the tabs again from the Editor's Choice banner
+#### v1.5.6: Media Bar and Home Screen Sections
 
-- TV, Editor's Choice in hero mode: since v1.5.2 the up arrow no longer moved from the banner to the tabs, because the banner itself started at the very top of the screen. The banner is back in its place and only its image is stretched up to the top: no dark strip, and the up arrow works again.
-
----
-
-#### v1.5.2 — TV: Editor's Choice banner up to the top, header veil on the home page
-
-- TV, Editor's Choice in hero mode: the banner now reaches the top of the screen. The plugin moves the home page up by a fixed 120 px, which left a 29 px dark strip above the tabs on a TV; the theme now moves it by exactly the space it adds at the top of the page.
-- TV, home page and other pages: when you scroll down, the top bar gets the same dark veil as on detail pages, so the tabs and icons no longer mix with the row underneath.
+- The theme no longer styles Media Bar and Home Screen Sections, which it was not tested with, and no longer lists them as supported. Both keep their own look.
 
 ---
 
-#### v1.5.1 — TV: Editor's Choice banner at rest, no header blur
+#### v1.5.5: Keyboard focus on desktop and phone
 
-- TV: the Editor's Choice banner image no longer slides in a loop (its own animation made the TV redraw the banner on every frame, even untouched). Measured at rest on the home page: style recalculations per 10 s 525 → 34 on a Samsung TV, 530 → 50 on an Android TV box, 466 → 40 on a Philips Android TV. Desktop and phone keep the effect.
-- TV: no more blur under the top bar on the home page, guide, libraries and search; the dark gradient stays.
+- The selected card shows a white outline.
+- A row title that opens the full list shows a white outline when selected.
 
 ---
 
-#### v1.5.0 — TV: much lighter when Jellyfin shows or hides an element
+#### v1.5.4: TV detail pages, Jellyfin 12.4, login title
 
-- TV (and every device): 9 theme rules made each show/hide done by Jellyfin cost about 150 ms of style work on a Samsung TV (1 ms without the theme). They are rewritten without that cost: 0.8 ms now, like without the theme. TV guide: style work for 12 arrow presses 443 → 265 ms, 2 to 3 more frames per second. Same look everywhere.
-- Desktop: the library pills of the top bar no longer wrap ("TV en direct" on two lines around 1540-1600 px wide made the bar grow from 48 to 62 px).
-- Phone (Jellyfin 10.11): the Home button now also shows on library pages, which have no ☰ menu on a phone either.
+- TV, detail pages: the audio and subtitle menus sit right under the Play buttons, so the up arrow takes you back to Play.
+- Jellyfin 12.4: the "Reset filters" button no longer takes the purple pill of the active library.
+- Login page: the title follows the Jellyfin language (French or English). `--loginPageText` still sets your own text.
+- The Home and Favorites tab icons and the "more" arrow follow the `--iconPack` option (LG TV tip in the README).
+
+---
+
+#### v1.5.3: TV, Editor's Choice banner
+
+- The up arrow reaches the tabs again from the banner.
+
+---
+
+#### v1.5.2: TV, Editor's Choice banner and top bar
+
+- The banner reaches the top of the screen, with no dark strip above the tabs.
+- When you scroll, the top bar gets a dark veil, so the tabs and icons stay readable.
+
+---
+
+#### v1.5.1: TV, lighter home page
+
+- The Editor's Choice banner image stays still, so the TV does much less work on the home page. Desktop and phone keep the effect.
+- No more blur under the top bar.
+
+---
+
+#### v1.5.0: TV, much smoother
+
+- TV and other devices: much smoother when Jellyfin shows or hides something on screen. The TV guide scrolls more smoothly.
+- Desktop: library names in the top bar no longer wrap onto two lines.
+- Phone (Jellyfin 10.11): the Home button also shows on library pages.
 
 ---
 
@@ -792,95 +789,92 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 
 ---
 
-#### v1.5.10 : Focus de connexion sur TV, bouton Sauvegarder, focus clavier, contraste des champs
+#### v1.5.10 : Focus de connexion sur TV, bouton Sauvegarder, focus clavier
 
-- TV, écran de connexion : le focus du bouton « Se connecter » est maintenant un contour blanc épais (4 px) avec un texte blanc. Une autre règle annulait le contour sur TV, il ne restait qu'un halo très discret.
-- Pages de préférences : l'ombre sous le bouton Sauvegarder collant est retirée. Elle grisait le dernier champ ou la dernière case au-dessus du bouton (vu sur Sous-titres et Connexion rapide).
-- Focus clavier : les interrupteurs et les cases de l'interface moderne affichent un anneau blanc, la poignée du curseur change de forme quand elle a le focus, et, sur PC, les flèches d'une rangée montrent leur barre quand elles reçoivent le focus.
-- Champs de texte : le texte d'exemple (placeholder) est plus clair, donc plus lisible sur le fond sombre.
-- TV : avec le mouvement réduit activé, le zoom d'une carte focalisée est coupé (le contour blanc reste).
-- Bouton Passer : quand on appuie dessus, l'ombre autour du bouton ne reste plus visible.
-- Ménage : règles qui ne correspondent plus à rien dans Jellyfin 12 retirées, et une couleur écrite en dur remplacée par la variable du thème (styles calculés identiques pour la couleur).
-
----
-
-#### v1.5.9 — Ménage : anciennes règles des fiches retirées
-
-- Fiches : les règles prévues pour d'anciennes versions de Jellyfin, qui ne correspondent plus à rien dans Jellyfin 12, sont retirées, donc les pages restent identiques (styles calculés comparés sur une page d'épisode et une page de série, avec les dispositions PC, TV et téléphone : aucune différence).
+- TV : le bouton « Se connecter » affiche un contour blanc épais quand il est sélectionné.
+- Pages de réglages : le bouton Sauvegarder ne grise plus le champ au-dessus.
+- Clavier : les interrupteurs, les cases et la poignée du curseur se voient mieux quand ils sont sélectionnés.
+- PC, clavier : les flèches d'une rangée apparaissent quand elles sont sélectionnées.
+- Champs de texte : le texte d'exemple se lit mieux.
+- TV : avec le mouvement réduit activé, une carte sélectionnée ne zoome plus.
+- Le bouton Passer ne garde plus son ombre quand on appuie dessus.
 
 ---
 
-#### v1.5.8 — Bouton Passer, focus du bouton Lire, contraste, champs en TV
+#### v1.5.9 : Ménage
 
-- Bouton Passer (intro, générique) : il s'efface de nouveau en fondu au lieu de rester invisible mais focalisé, ce qui faisait sauter le segment à l'aveugle avec le bouton OK d'une télécommande. Vérifié sur une Android TV.
-- PC et téléphone, au clavier : le bouton Lire d'une fiche affiche maintenant un anneau blanc net quand il a le focus. Il ne restait qu'un halo très discret.
-- TV : le contour de focus des champs de texte et des listes déroulantes est plus épais (3 px).
-- Rangées de l'accueil : plus de flash de la rangée avant son entrée en glissement.
-- Contraste : la pastille « vu » prend un vert plus foncé derrière sa coche blanche, pour mieux la lire.
-- Menus avec une option choisie (audio, sous-titres…) : sur les anciennes TV et navigateurs sans `:has()` (avant Chromium 105), le menu garde la coche native de Jellyfin pour l'option choisie.
-- Ménage : règles qui ne correspondent plus à rien dans Jellyfin 12 et flous déjà redondants retirés.
-- Jellyfin 10.11 n'est plus une cible : le thème prend en charge Jellyfin 12 seulement.
+- Fiches : nettoyage interne, aucun changement visible.
 
 ---
 
-#### v1.5.7 — Focus clavier : infos des cartes et boutons de fiche, contraste
+#### v1.5.8 : Bouton Passer, focus du bouton Lire, contraste
 
-- PC, au clavier : la ligne annee ou episode sous une carte qui a le focus s'affiche maintenant, comme au survol. Elle restait cachee avant.
-- PC, au clavier : les boutons a cote de Lire sur une fiche (favori, vu, plus) deviennent blancs avec une icone sombre quand ils ont le focus. Une autre regle les rendait presque transparents, donc l'icone ne se voyait pas.
-- Contraste : les liens violets, le bouton Enregistrer de la barre du haut et les titres de section du menu lateral sont plus clairs, pour rester lisibles sur le fond sombre.
-- Carte de connexion : une largeur de repli pour les anciennes TV qui ne connaissent pas `min()` (avant Chromium 79).
-- Menage : deux regles TV sans effet retirees ; le lien NotifySync du README pointe vers sa nouvelle adresse.
-
----
-
-#### v1.5.6 — Media Bar et Home Screen Sections ne sont plus habilles
-
-- Le theme n'habille plus les plugins Media Bar et Home Screen Sections et ne les annonce plus comme pris en charge : il n'est pas teste avec eux. Leurs regles sont retirees (degrade et boutons du diaporama, numeros du Top 10, badges Decouvrir). Les deux plugins gardent leur propre aspect.
+- TV : le bouton Passer s'efface de nouveau en fondu au lieu de rester sélectionné sans être visible, donc appuyer sur OK ne fait plus sauter le segment à l'aveugle.
+- Clavier (PC et téléphone) : le bouton Lire affiche un anneau blanc net quand il est sélectionné.
+- TV : le contour des champs de texte et des listes déroulantes est plus épais.
+- Les rangées de l'accueil ne clignotent plus avant d'entrer en glissement.
+- La coche « vu » se lit mieux.
+- Menus (audio, sous-titres…) sur les anciennes TV et navigateurs : la coche reste sur l'option choisie.
+- Jellyfin 10.11 n'est plus pris en charge : le thème vise Jellyfin 12 seulement.
 
 ---
 
-#### v1.5.5 — Focus clavier visible sur PC et telephone
+#### v1.5.7 : Focus clavier et contraste
 
-- PC et telephone, au clavier : la carte qui a le focus montre maintenant un contour blanc, trace juste a l'interieur du bord de l'image. Rien ne s'affichait avant, parce que le focus va sur le lien de l'image et non sur la carte.
-- PC et telephone, au clavier : le titre d'une rangee qui ouvre la liste complete prend un contour blanc quand il a le focus.
-
----
-
-#### v1.5.4 — TV : la fleche haut revient sur Lire dans les fiches, bouton de filtre de Jellyfin 12.4
-
-- TV, fiches : les menus audio et sous-titres sont maintenant juste sous les boutons Lire, avant le resume. Ils etaient 317 px plus bas : en y descendant, la page faisait sortir les boutons de l'ecran et la fleche haut menait a la barre du haut au lieu de revenir sur Lire.
-- Jellyfin 12.4, barre des mediatheques : le nouveau bouton « Reinitialiser les filtres » ne prend plus la pastille violette de la mediatheque active.
-- Page de connexion : le titre, jusqu'ici toujours en francais, suit la langue de Jellyfin (francais quand Jellyfin est en francais, anglais sinon). `--loginPageText` le remplace toujours et figure maintenant dans le README.
-- Icones des onglets Accueil et Favoris et fleche « plus » du resume : noms d'icones au lieu de codes de caracteres, et elles suivent maintenant `--iconPack` (astuce TV LG du README).
-- Menage : une regle sans effet retiree, trois commentaires d'options corriges, les anciennes notes v1.2.0 deplacees dans l'archive.
+- PC, clavier : l'année ou l'épisode sous une carte sélectionnée s'affiche, comme au survol.
+- PC, clavier : les boutons à côté de Lire (favori, vu, plus) deviennent blancs quand ils sont sélectionnés.
+- Les liens violets, le bouton Sauvegarder de la barre du haut et les titres du menu latéral sont plus clairs, pour mieux se lire sur le fond sombre.
+- Carte de connexion : elle convient maintenant aux anciennes TV.
 
 ---
 
-#### v1.5.3 — TV : la fleche haut ramene de nouveau aux onglets depuis la banniere Editor's Choice
+#### v1.5.6 : Media Bar et Home Screen Sections
 
-- TV, Editor's Choice en mode heros : depuis la v1.5.2, la fleche haut ne passait plus de la banniere aux onglets, parce que la banniere elle-meme commencait tout en haut de l'ecran. La banniere reprend sa place et seule son image est prolongee jusqu'en haut : pas de bande sombre, et la fleche haut fonctionne de nouveau.
-
----
-
-#### v1.5.2 — TV : banniere Editor's Choice jusqu'en haut, voile d'en-tete sur l'accueil
-
-- TV, Editor's Choice en mode heros : la banniere va desormais jusqu'en haut de l'ecran. Le plugin remonte l'accueil de 120 px fixes, ce qui laissait une bande sombre de 29 px au-dessus des onglets sur une TV ; le theme le remonte maintenant exactement de la marge qu'il ajoute en haut de page.
-- TV, accueil et autres pages : en descendant, la barre du haut prend le meme voile sombre que sur les fiches, et les onglets et les icones ne se melent plus a la rangee du dessous.
+- Le thème n'habille plus Media Bar ni Home Screen Sections, avec lesquels il n'est pas testé, et ne les annonce plus comme pris en charge. Les deux gardent leur propre aspect.
 
 ---
 
-#### v1.5.1 — TV : banniere Editor's Choice au repos, plus de flou d'en-tete
+#### v1.5.5 : Focus clavier sur PC et téléphone
 
-- TV : l'image de la banniere Editor's Choice ne glisse plus en boucle (son animation faisait redessiner la banniere a chaque image, meme sans toucher a la telecommande). Mesure au repos sur l'accueil : recalculs de styles par 10 s 525 → 34 sur une TV Samsung, 530 → 50 sur une box Android TV, 466 → 40 sur une TV Philips Android. PC et telephone gardent l'effet.
-- TV : plus de flou sous la barre du haut sur l'accueil, le guide, les bibliotheques et la recherche ; le degrade sombre reste.
+- La carte sélectionnée affiche un contour blanc.
+- Le titre d'une rangée qui ouvre la liste complète affiche un contour blanc quand il est sélectionné.
 
 ---
 
-#### v1.5.0 — TV : beaucoup plus legere quand Jellyfin affiche ou masque un element
+#### v1.5.4 : Fiches TV, Jellyfin 12.4, titre de connexion
 
-- TV (et tous les appareils) : 9 regles du theme faisaient couter chaque affichage ou masquage d'element par Jellyfin environ 150 ms de calcul de styles sur une TV Samsung (1 ms sans theme). Elles sont reecrites sans ce cout : 0,8 ms desormais, comme sans theme. Guide TV : calcul de styles pour 12 fleches 443 → 265 ms, 2 a 3 images par seconde de plus. Rendu identique partout.
-- PC : les pastilles de bibliotheques de la barre du haut ne passent plus sur deux lignes (« TV en direct » vers 1 540-1 600 px faisait grandir la barre de 48 a 62 px).
-- Telephone (Jellyfin 10.11) : le bouton Accueil s'affiche aussi sur les bibliotheques, qui n'ont pas non plus de menu ☰ au telephone.
+- TV, fiches : les menus audio et sous-titres sont juste sous les boutons Lire, donc la flèche haut ramène sur Lire.
+- Jellyfin 12.4 : le bouton « Réinitialiser les filtres » ne prend plus la pastille violette de la bibliothèque active.
+- Page de connexion : le titre suit la langue de Jellyfin (français ou anglais). `--loginPageText` permet toujours de mettre votre texte.
+- Les icônes des onglets Accueil et Favoris et la flèche « plus » suivent l'option `--iconPack` (astuce TV LG du README).
+
+---
+
+#### v1.5.3 : TV, bannière Editor's Choice
+
+- La flèche haut ramène de nouveau aux onglets depuis la bannière.
+
+---
+
+#### v1.5.2 : TV, bannière Editor's Choice et barre du haut
+
+- La bannière va jusqu'en haut de l'écran, sans bande sombre au-dessus des onglets.
+- Quand on descend, la barre du haut prend un voile sombre, donc les onglets et les icônes restent lisibles.
+
+---
+
+#### v1.5.1 : TV, accueil plus léger
+
+- L'image de la bannière Editor's Choice reste fixe, donc la TV travaille beaucoup moins sur l'accueil. PC et téléphone gardent l'effet.
+- Plus de flou sous la barre du haut.
+
+---
+
+#### v1.5.0 : TV, beaucoup plus fluide
+
+- TV et autres appareils : beaucoup plus fluide quand Jellyfin affiche ou masque un élément à l'écran. Le guide TV défile plus fluidement.
+- PC : les noms de bibliothèques de la barre du haut ne passent plus sur deux lignes.
+- Téléphone (Jellyfin 10.11) : le bouton Accueil s'affiche aussi sur les pages de bibliothèque.
 
 ---
 
