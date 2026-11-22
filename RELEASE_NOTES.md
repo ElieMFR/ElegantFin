@@ -203,7 +203,8 @@ This release transforms the ElegantFin theme into a professional, premium stream
 #### v1.3.17: Library pills, theme colors, Play button on phones
 
 - Jellyfin 12, desktop: the libraries in the top bar become pills and the server name becomes a header with a thin divider (style adapted from elegantfin-jf12 by mihaif7, GPL-2.0).
-- Jellyfin 12: the interface follows the theme's purple, navy and red instead of Jellyfin's blue and gray. On TV, the selected Skip button, selected drop-down lists and the Up Next countdown turn purple.
+- Jellyfin 12: the interface follows the theme's purple, navy and red instead of Jellyfin's blue and gray.
+- Jellyfin 12, TV: the selected Skip button, selected drop-down lists and the Up Next countdown turn purple.
 - Phones, Jellyfin 12: movie posters get their Play button back.
 
 ---
@@ -604,7 +605,7 @@ This release transforms the ElegantFin theme into a professional, premium stream
 ---
 
 ### Compatibility
-- Jellyfin **10.11.x** and **12.x** (tested on 12.1, new and legacy interfaces)
+- Jellyfin **12.x** (tested on 12.1, new and legacy interfaces)
 - Works on all web browsers (Chrome, Edge, Firefox, Safari), Android app, LG WebOS, Samsung Tizen
 - Full `@supports` fallback for browsers without `backdrop-filter`
 
@@ -809,7 +810,8 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 #### v1.3.17 : Bibliothèques en pastilles, couleurs du thème, bouton Lire au téléphone
 
 - Jellyfin 12, PC : les bibliothèques de la barre du haut deviennent des pastilles et le nom du serveur devient un titre avec un fin séparateur (style adapté de elegantfin-jf12 par mihaif7, GPL-2.0).
-- Jellyfin 12 : l'interface suit le violet, le bleu marine et le rouge du thème au lieu du bleu et des gris de Jellyfin. Sur TV, le bouton Passer sélectionné, les listes déroulantes sélectionnées et le compte à rebours « À suivre » deviennent violets.
+- Jellyfin 12 : l'interface suit le violet, le bleu marine et le rouge du thème au lieu du bleu et des gris de Jellyfin.
+- Jellyfin 12, TV : le bouton Passer sélectionné, les listes déroulantes sélectionnées et le compte à rebours « À suivre » deviennent violets.
 - Téléphone, Jellyfin 12 : les affiches de films retrouvent leur bouton Lire.
 
 ---
@@ -1210,6 +1212,6 @@ Cette version transforme le theme ElegantFin en une experience de streaming prof
 ---
 
 ### Compatibilite
-- Jellyfin **10.11.x** et **12.x** (teste sur la 12.1, nouvelle interface et interface legacy)
+- Jellyfin **12.x** (teste sur la 12.1, nouvelle interface et interface legacy)
 - Fonctionne sur tous les navigateurs web (Chrome, Edge, Firefox, Safari), application Android, LG WebOS, Samsung Tizen
 - Fallback `@supports` complet pour les navigateurs sans `backdrop-filter`
