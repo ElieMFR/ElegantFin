@@ -27,7 +27,7 @@
 <a name="english"></a>
 # English
 
-ElegantFin Cinema Edition is a Jellyfin theme inspired by streaming platforms, based on [ElegantFin](https://github.com/lscambo13/ElegantFin) by [lscambo13](https://github.com/lscambo13). One line of CSS on the server, and every device gets it: PC, phone and TV.
+ElegantFin Cinema Edition is a Jellyfin theme inspired by streaming platforms, based on [ElegantFin](https://github.com/lscambo13/ElegantFin) by [lscambo13](https://github.com/lscambo13). One line of CSS on the server, and every device that loads it gets it: PC, phone and TV.
 
 > 📖 **Version history:** see [GitHub Releases](https://github.com/ElieMFR/ElegantFin/releases) for what's new in each version, and [`RELEASE_NOTES.md`](./RELEASE_NOTES.md) for every detail.
 
@@ -60,7 +60,7 @@ ElegantFin Cinema Edition is a Jellyfin theme inspired by streaming platforms, b
 > **Requirements:**
 > * Jellyfin **12.x**
 >
-> Installed on the server, the theme reaches every client, TV apps included.
+> Installed on the server, the theme reaches every client that loads the server's custom CSS, including TV apps based on the web interface.
 
 ### Steps
 1.  Open the **Dashboard** from the avatar menu, top right.
@@ -101,17 +101,16 @@ Most of these options come from the original ElegantFin. Add them **after** the 
 |--------|----------|--------|
 | **Login background** | `--loginPageBgUrl` | `url("your-server/Branding/Splashscreen...")` |
 | **Login title** | `--loginPageText` | Follows the Jellyfin language (English, French) / your own text, e.g. `"Welcome"` |
-| **Play button on cards** | `--overlayPlayButtonPosition` | `50%` (center) / `-999em` (hidden) |
-| **Card hover effect** | `--cardHoverEffect` | `""` (on) / `none` (off) |
-| **Library labels** | `--libraryLabelVisibility` | `block` / `none` |
-| **Watched and favorite buttons on cards (PC)** | `--extraCardButtonsVisibility` | `none` (hidden) / `block` |
+| **Play button on cards** | `--overlayPlayButtonPosition` | `50%` (center) / `-999em` (hidden, default) |
+| **Card hover effect** | `--cardHoverEffect` | `""` (on) / `none` (off, default) |
+| **Library labels** | `--libraryLabelVisibility` | `block` / `none` (default) |
+| **Watched and favorite buttons on cards (PC)** | `--extraCardButtonsVisibility` | `none` (hidden, default) / `block` |
 | **Top bar height (TV)** | `--appBarHeight` | `5em` (default) or another height |
 | **Original title** | `--itemOriginalTitleVisibility` | `block` / `none` |
 | **Title logo** | `--clearLogoVisibility` | `block` / `none` |
-| **Critics rating on phones** | `--criticsRatingVisibility` | `none` (hidden) / `block` |
+| **Critics rating on phones** | `--criticsRatingVisibility` | `none` (hidden, default) / `block` |
 | **Icons (LG TV)** | `--iconPack` | `'Material Icons'` |
 | **Jellyfin Enhanced tabs (PC and phone)** | `--jeTabsVisibility` | `inline-flex` (tabs under the bar) / `none` (icons at the top right) |
-| **Color themes** | See the [Playground](https://github.com/lscambo13/ElegantFin/discussions/221) | Partly: backgrounds and borders change, the purple stays |
 
 ## 📱 Compatibility
 
@@ -124,14 +123,14 @@ Most of these options come from the original ElegantFin. Add them **after** the 
 | **Samsung Tizen** (community app) | Supported, tested on a real TV |
 | **Android TV apps based on the Jellyfin web interface** | Supported, tested on an Android TV box |
 | **LG webOS** | Should work, not tested (may need the icon option) |
-| **Jellyfin Media Player** | Not tested |
+| **Jellyfin Desktop** (formerly Jellyfin Media Player) | Not tested |
 | **Native Android TV app** | Not supported: it doesn't load custom CSS |
 
 ## 🔌 Supported Plugins
 
 | Plugin | What it does | Theme styling |
 |--------|--------------|---------------|
-| [**Jellyfin Enhanced**](https://github.com/n00bcodr/Jellyfin-Enhanced) | Shortcuts, Jellyseerr requests, reviews, extra links | Letterboxd and Seerr icons in line, "where to watch" bar, badges and active streams button in the theme's colours |
+| [**Jellyfin Enhanced**](https://github.com/n00bcodr/Jellyfin-Enhanced) | Shortcuts, Seerr requests, reviews, extra links | Letterboxd and Seerr icons inline, "where to watch" bar, badges and active streams button in the theme's colours |
 | [**Media Carousel**](https://github.com/peterdu1109/MediaCarousel) | Home rows: server Top 10, worldwide Top 10, Seerr requests | Row arrows centred on the posters |
 | [**Editor's Choice**](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | Curated picks on the home page | Banner spacing, readable description, working controls |
 
@@ -150,7 +149,7 @@ Other plugins keep their own look.
 
 ## 🔔 Recommended Plugin
 
-ElegantFin Cinema Edition goes well with [**NotifySync**](https://github.com/ElieMFR/NotifySync), a notification bell for Jellyfin in the theme's colours. Both work together on PC, mobile and TV.
+ElegantFin Cinema Edition goes well with [**NotifySync**](https://github.com/ElieMFR/NotifySync), a notification bell for Jellyfin.
 
 ## 👥 Authors & Credits
 
@@ -166,7 +165,7 @@ Released under the [GPL-2.0 License](./LICENSE), like the original theme.
 <a name="français"></a>
 # Français
 
-ElegantFin Cinema Edition est un thème Jellyfin inspiré des plateformes de streaming, basé sur [ElegantFin](https://github.com/lscambo13/ElegantFin) de [lscambo13](https://github.com/lscambo13). Une ligne de CSS sur le serveur, et tous les appareils en profitent : PC, téléphone et TV.
+ElegantFin Cinema Edition est un thème Jellyfin inspiré des plateformes de streaming, basé sur [ElegantFin](https://github.com/lscambo13/ElegantFin) de [lscambo13](https://github.com/lscambo13). Une ligne de CSS sur le serveur, et tous les appareils qui le chargent en profitent : PC, téléphone et TV.
 
 > 📖 **Historique des versions :** voir les [Releases GitHub](https://github.com/ElieMFR/ElegantFin/releases) pour les nouveautés de chaque version, et [`RELEASE_NOTES.md`](./RELEASE_NOTES.md) pour tous les détails.
 
@@ -183,11 +182,11 @@ ElegantFin Cinema Edition est un thème Jellyfin inspiré des plateformes de str
 
 ## ✨ Fonctionnalités
 
-*   **Pensé pour Jellyfin 12** : la nouvelle interface PC et mobile prend tout le style, avec les pastilles de bibliothèques dans la barre du haut et le violet du thème au lieu du bleu Jellyfin.
+*   **Pensé pour Jellyfin 12** : la nouvelle interface PC et mobile reçoit tout l'habillage du thème, avec les pastilles de bibliothèques dans la barre du haut et le violet du thème au lieu du bleu Jellyfin.
 *   **Fiches** : images de fond en plein écran, logos des titres, bouton Lire blanc, infos média dans des panneaux nets.
 *   **Cartes** : affiches arrondies, léger zoom au survol, pastilles en verre, voile discret sur ce que vous avez déjà vu.
-*   **TV** : un focus blanc bien visible sur chaque élément, ni flou ni animation en boucle. Les onglets de l'accueil ne passent jamais sous les icônes.
-*   **Téléphone** : rangées qui s'arrêtent sur une carte, lisible en portrait comme en paysage.
+*   **TV** : un focus blanc bien visible sur chaque élément, ni flou ni animations en boucle. Les onglets de l'accueil ne passent jamais sous les icônes de l'en-tête.
+*   **Téléphone** : rangées qui s'arrêtent sur une carte, lisibles en portrait comme en paysage.
 *   **Détails** : fenêtres et menus en verre, barre du lecteur moderne, barres de défilement fines.
 *   **Plugins** : un habillage dédié pour Jellyfin Enhanced, Media Carousel et Editor's Choice.
 *   **Polices incluses** : Inter et Material Icons sont livrées avec le thème, rien n'est chargé depuis Google.
@@ -199,7 +198,7 @@ ElegantFin Cinema Edition est un thème Jellyfin inspiré des plateformes de str
 > **Prérequis :**
 > * Jellyfin **12.x**
 >
-> Installé sur le serveur, le thème atteint tous les clients, applis TV comprises.
+> Installé sur le serveur, le thème atteint tous les clients qui chargent le CSS du serveur, dont les applis TV basées sur l'interface web.
 
 ### Étapes
 1.  Ouvrez le **Tableau de bord** depuis le menu de l'avatar, en haut à droite.
@@ -240,17 +239,16 @@ La plupart de ces options viennent d'ElegantFin d'origine. Ajoutez-les **après*
 |--------|----------|---------|
 | **Fond de la page de connexion** | `--loginPageBgUrl` | `url("votre-serveur/Branding/Splashscreen...")` |
 | **Titre de la page de connexion** | `--loginPageText` | Suit la langue de Jellyfin (anglais, français) / votre texte, par ex. `"Bienvenue"` |
-| **Bouton Lire sur les cartes** | `--overlayPlayButtonPosition` | `50%` (centré) / `-999em` (masqué) |
-| **Effet au survol des cartes** | `--cardHoverEffect` | `""` (activé) / `none` (désactivé) |
-| **Noms des bibliothèques** | `--libraryLabelVisibility` | `block` / `none` |
-| **Boutons vu et favori sur les cartes (PC)** | `--extraCardButtonsVisibility` | `none` (masqués) / `block` |
+| **Bouton Lire sur les cartes** | `--overlayPlayButtonPosition` | `50%` (centré) / `-999em` (masqué, par défaut) |
+| **Effet au survol des cartes** | `--cardHoverEffect` | `""` (activé) / `none` (désactivé, par défaut) |
+| **Noms des bibliothèques** | `--libraryLabelVisibility` | `block` / `none` (par défaut) |
+| **Boutons vu et favori sur les cartes (PC)** | `--extraCardButtonsVisibility` | `none` (masqués, par défaut) / `block` |
 | **Hauteur de la barre du haut (TV)** | `--appBarHeight` | `5em` (par défaut) ou une autre hauteur |
 | **Titre original** | `--itemOriginalTitleVisibility` | `block` / `none` |
 | **Logo du titre** | `--clearLogoVisibility` | `block` / `none` |
-| **Note critique sur téléphone** | `--criticsRatingVisibility` | `none` (masquée) / `block` |
+| **Note critique sur téléphone** | `--criticsRatingVisibility` | `none` (masquée, par défaut) / `block` |
 | **Icônes (TV LG)** | `--iconPack` | `'Material Icons'` |
 | **Onglets Jellyfin Enhanced (PC et téléphone)** | `--jeTabsVisibility` | `inline-flex` (onglets sous la barre) / `none` (icônes en haut à droite) |
-| **Thèmes de couleurs** | Voir le [Playground](https://github.com/lscambo13/ElegantFin/discussions/221) | En partie : fonds et bordures changent, le violet reste |
 
 ## 📱 Compatibilité
 
@@ -263,14 +261,14 @@ La plupart de ces options viennent d'ElegantFin d'origine. Ajoutez-les **après*
 | **Samsung Tizen** (appli communautaire) | Prise en charge, testée sur une vraie TV |
 | **Applis Android TV basées sur l'interface web de Jellyfin** | Prises en charge, testées sur une box Android TV |
 | **LG webOS** | Devrait fonctionner, non testé (l'option icônes peut être nécessaire) |
-| **Jellyfin Media Player** | Non testé |
+| **Jellyfin Desktop** (ex-Jellyfin Media Player) | Non testé |
 | **Appli native Android TV** | Non prise en charge : elle ne charge pas de CSS personnalisé |
 
 ## 🔌 Plugins pris en charge
 
 | Plugin | Ce qu'il fait | Habillage du thème |
 |--------|---------------|--------------------|
-| [**Jellyfin Enhanced**](https://github.com/n00bcodr/Jellyfin-Enhanced) | Raccourcis, demandes Jellyseerr, avis, liens supplémentaires | Icônes Letterboxd et Seerr alignées, bandeau « où regarder », badges et bouton des lectures en cours aux couleurs du thème |
+| [**Jellyfin Enhanced**](https://github.com/n00bcodr/Jellyfin-Enhanced) | Raccourcis, demandes Seerr, avis, liens supplémentaires | Icônes Letterboxd et Seerr alignées, bandeau « où regarder », badges et bouton des lectures en cours aux couleurs du thème |
 | [**Media Carousel**](https://github.com/peterdu1109/MediaCarousel) | Rangées d'accueil : Top 10 du serveur, Top 10 mondial, demandes Seerr | Flèches des rangées centrées sur les affiches |
 | [**Editor's Choice**](https://github.com/lachlandcp/jellyfin-editors-choice-plugin) | Sélection éditoriale sur l'accueil | Espacement de la bannière, résumé lisible, contrôles fonctionnels |
 
@@ -289,7 +287,7 @@ Les autres plugins gardent leur propre apparence.
 
 ## 🔔 Plugin recommandé
 
-ElegantFin Cinema Edition va bien avec [**NotifySync**](https://github.com/ElieMFR/NotifySync), une cloche de notifications pour Jellyfin aux couleurs du thème. Les deux fonctionnent ensemble sur PC, mobile et TV.
+ElegantFin Cinema Edition va bien avec [**NotifySync**](https://github.com/ElieMFR/NotifySync), une cloche de notifications pour Jellyfin.
 
 ## 👥 Auteurs & Crédits
 
